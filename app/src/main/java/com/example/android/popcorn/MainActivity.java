@@ -3,13 +3,23 @@ package com.example.android.popcorn;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.android.popcorn.fragments.CurrentFragment;
+import com.example.android.popcorn.fragments.PopularFragment;
+import com.example.android.popcorn.fragments.TopFragment;
+import com.example.android.popcorn.ui.MovieCollectionPagerAdapter;
+
 public class MainActivity extends AppCompatActivity {
+
+    private final String POPULAR_MOVIES = "Popular";
+    private final String TOP_MOVIES = "Top";
+    private final String CURRENT_MOVIES = "Current";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
-//        setupViewPager();
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        setupViewPager(viewPager);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -53,17 +63,22 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-//    private void setupViewPager() {
-//        MovieCollectionPagerAdapter mPagerAdapter = new MovieCollectionPagerAdapter(getSupportFragmentManager());
-//        addFragments(mPagerAdapter);
-//        addFragmentTitles(mPagerAdapter);
-//    }
-//
-//    private void addFragments(FragmentPagerAdapter pagerAdapter) {
-//
-//    }
-//
-//    private void addFragmentTitles(FragmentPagerAdapter pagerAdapter) {
-//
-//    }
+    private void setupViewPager(ViewPager viewPager) {
+        MovieCollectionPagerAdapter mPagerAdapter = new MovieCollectionPagerAdapter(getSupportFragmentManager());
+        addFragments(mPagerAdapter);
+        addFragmentTitles(mPagerAdapter);
+        viewPager.setAdapter(mPagerAdapter);
+    }
+
+    private void addFragments(MovieCollectionPagerAdapter pagerAdapter) {
+        pagerAdapter.addFragment(new PopularFragment());
+        pagerAdapter.addFragment(new TopFragment());
+        pagerAdapter.addFragment(new CurrentFragment());
+    }
+
+    private void addFragmentTitles(MovieCollectionPagerAdapter pagerAdapter) {
+        pagerAdapter.addFragmentTitle(POPULAR_MOVIES);
+        pagerAdapter.addFragmentTitle(TOP_MOVIES);
+        pagerAdapter.addFragmentTitle(CURRENT_MOVIES);
+    }
 }
