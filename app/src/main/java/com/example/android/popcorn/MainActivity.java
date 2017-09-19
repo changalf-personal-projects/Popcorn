@@ -14,6 +14,9 @@ import com.example.android.popcorn.fragments.PopularFragment;
 import com.example.android.popcorn.fragments.TopFragment;
 import com.example.android.popcorn.ui.MovieCollectionPagerAdapter;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity {
 
     private final String POPULAR_MOVIES = "Popular";
@@ -21,18 +24,20 @@ public class MainActivity extends AppCompatActivity {
     private final String CURRENT_MOVIES = "Current";
     private final String FAVOURITE_MOVIES = "Favourite";
 
+    @BindView(R.id.toolbar) Toolbar mToolbar;
+    @BindView(R.id.viewpager) ViewPager mViewPager;
+    @BindView(R.id.tab_layout) TabLayout mTbaLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
-        setupViewPager(viewPager);
-
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.setupWithViewPager(viewPager);
+        // Use Butterknife to bind views.
+        ButterKnife.bind(this);
+        setSupportActionBar(mToolbar);
+        setupViewPager(mViewPager);
+        mTbaLayout.setupWithViewPager(mViewPager);
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
