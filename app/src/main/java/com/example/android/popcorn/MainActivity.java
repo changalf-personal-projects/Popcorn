@@ -19,11 +19,6 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
-    private final String POPULAR_MOVIES = "Popular";
-    private final String TOP_MOVIES = "Top";
-    private final String CURRENT_MOVIES = "Current";
-    private final String FAVOURITE_MOVIES = "Favourite";
-
     @BindView(R.id.toolbar) Toolbar mToolbar;
     @BindView(R.id.viewpager) ViewPager mViewPager;
     @BindView(R.id.tab_layout) TabLayout mTbaLayout;
@@ -86,9 +81,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addFragmentTitles(MovieCollectionPagerAdapter pagerAdapter) {
-        pagerAdapter.addFragmentTitle(POPULAR_MOVIES);
-        pagerAdapter.addFragmentTitle(TOP_MOVIES);
-        pagerAdapter.addFragmentTitle(CURRENT_MOVIES);
-        pagerAdapter.addFragmentTitle(FAVOURITE_MOVIES);
+        pagerAdapter.addFragmentTitle(MovieGroups.POPULAR_MOVIES);
+        pagerAdapter.addFragmentTitle(MovieGroups.TOP_MOVIES);
+        pagerAdapter.addFragmentTitle(MovieGroups.CURRENT_MOVIES);
+        pagerAdapter.addFragmentTitle(MovieGroups.FAVOURITE_MOVIES);
     }
 }
