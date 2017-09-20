@@ -22,11 +22,16 @@ public class PopularFragment extends Fragment {
         return rootView;
     }
 
-    private class FetchMoviesTask extends AsyncTask<Void, Void, Void> {
+    private class FetchMoviesTask extends AsyncTask<String, Void, String> {
 
         @Override
-        protected Void doInBackground(Void... voids) {
-            return null;
+        protected String doInBackground(String... url) {
+            return "";
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
         }
     }
 }
