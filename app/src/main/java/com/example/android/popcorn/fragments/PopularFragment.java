@@ -22,6 +22,10 @@ public class PopularFragment extends Fragment {
         return rootView;
     }
 
+    private void fetchJsonData() {
+
+    }
+
     // Use Volley instead?
     private class FetchMoviesTask extends AsyncTask<String, Void, String> {
 
