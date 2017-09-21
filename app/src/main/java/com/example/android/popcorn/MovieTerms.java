@@ -16,4 +16,8 @@ public class MovieTerms {
     public static final String POPULAR = "Popular";
     public static final String TOP = "Top";
     public static final String CURRENT = "Current";
+
+    // Poster url stuff.
+    public static final String POSTER_BASE_URL = " http://image.tmdb.org/t/p/";
+    public static final String POSTER_SIZE = "w185";
 }
