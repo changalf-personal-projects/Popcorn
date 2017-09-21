@@ -13,11 +13,15 @@ public class MovieTerms {
     public static final String FAVOURITE_MOVIES = "Favourite";
 
     // Query terms.
-    public static final String POPULAR = "Popular";
-    public static final String TOP = "Top";
-    public static final String CURRENT = "Current";
+    public static final String POPULAR = "popular";
+    public static final String TOP = "top";
+    public static final String CURRENT = "current";
 
     // Poster url stuff.
     public static final String POSTER_BASE_URL = " http://image.tmdb.org/t/p/";
     public static final String POSTER_SIZE = "w185";
+
+    // Movie group url stuff.
+    public static final String MOVIE_BASE_URL = "https://api.themoviedb.org/3/movie/";
+
 }
