@@ -34,7 +34,7 @@ public class PopularFragment extends Fragment {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        System.out.println(response);
+                        Log.v(LOG_TAG, response);
                     }
                 }, new Response.ErrorListener() {
             @Override
