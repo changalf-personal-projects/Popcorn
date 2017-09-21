@@ -30,6 +30,7 @@ public class PopularFragment extends Fragment {
     }
 
     private void fetchJsonData() {
+        String url = "https://api.themoviedb.org/3/movie/popular?api_key=<<api_key>>&language=en-US&page=1";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
@@ -41,7 +42,7 @@ public class PopularFragment extends Fragment {
             public void onErrorResponse(VolleyError error) {
                 Log.e(LOG_TAG, "Respone error: " + error);
             }
-        })
+        });
     }
 
     // Use Volley instead?
