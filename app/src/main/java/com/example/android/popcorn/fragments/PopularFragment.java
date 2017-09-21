@@ -22,6 +22,7 @@ public class PopularFragment extends Fragment {
         return rootView;
     }
 
+    // Use Volley instead?
     private class FetchMoviesTask extends AsyncTask<String, Void, String> {
 
         @Override
