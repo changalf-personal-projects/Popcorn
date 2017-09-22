@@ -12,7 +12,9 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.android.popcorn.BuildConfig;
 import com.example.android.popcorn.R;
+import com.example.android.popcorn.network.RequestQueueSingleton;
 
 /**
  * Created by alfredchang on 2017-09-16.
@@ -30,7 +32,9 @@ public class PopularFragment extends Fragment {
     }
 
     private void fetchJsonData() {
-        String url = "https://api.themoviedb.org/3/movie/popular?api_key=<<api_key>>&language=en-US&page=1";
+        String url = "https://api.themoviedb.org/3/movie/popular?api_key="
+                + BuildConfig.MOVIE_DP_API_KEY + "&language=en-US&page=1";
+
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
@@ -43,6 +47,8 @@ public class PopularFragment extends Fragment {
                 Log.e(LOG_TAG, "Respone error: " + error);
             }
         });
+
+        RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
     }
 
     // Use Volley instead?
