@@ -43,8 +43,11 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
     }
 
     @Override
-    public void onBindViewHolder(PosterRecyclerViewAdapter.PosterViewHolder holder, int position) {
+    public void onBindViewHolder(PosterViewHolder holder, int position) {
+    }
 
+    private boolean hasPosterPath(Movie movie) {
+        return movie.getPosterPath() != null;
     }
 
     @Override
