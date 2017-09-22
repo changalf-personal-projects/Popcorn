@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.toolbar) Toolbar mToolbar;
     @BindView(R.id.view_pager) ViewPager mViewPager;
-    @BindView(R.id.tab_layout) TabLayout mTbaLayout;
+    @BindView(R.id.tab_layout) TabLayout mTabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +30,10 @@ public class MainActivity extends AppCompatActivity {
 
         // Use Butterknife to bind views.
         ButterKnife.bind(this);
+        ButterKnife.setDebug(true);
         setSupportActionBar(mToolbar);
         setupViewPager(mViewPager);
-        mTbaLayout.setupWithViewPager(mViewPager);
+        mTabLayout.setupWithViewPager(mViewPager);
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
