@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.example.android.popcorn.MovieTerms;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.model.Movie;
 
@@ -44,6 +46,11 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
 
     @Override
     public void onBindViewHolder(PosterViewHolder holder, int position) {
+        Movie movie = mListOfMovies.get(position);
+        if (hasPosterPath(movie)) {
+            Glide.with(mContext).load(MovieTerms.POSTER_BASE_URL + MovieTerms.POSTER_SIZE
+                    + movie.getPosterPath()).into(holder.mPoster);
+        }
     }
 
     private boolean hasPosterPath(Movie movie) {
