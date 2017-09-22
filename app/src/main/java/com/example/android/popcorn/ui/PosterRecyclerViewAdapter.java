@@ -34,6 +34,8 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
 
     @Override
     public PosterRecyclerViewAdapter.PosterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        // Source: https://classroom.udacity.com/courses/ud851/lessons/
+        // c81cb722-d20a-495a-83c6-6890a6142aac/concepts/ae70fe56-dbd3-446c-be43-b8da0f076ea6.
         mContext = parent.getContext();
         LayoutInflater layoutInflater = LayoutInflater.from(mContext);
         int movieLayoutId = R.layout.movie_poster;
