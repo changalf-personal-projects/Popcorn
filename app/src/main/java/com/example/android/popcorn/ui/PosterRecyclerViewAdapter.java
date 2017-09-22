@@ -1,11 +1,16 @@
 package com.example.android.popcorn.ui;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.android.popcorn.R;
+import com.example.android.popcorn.model.Movie;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -16,10 +21,21 @@ import butterknife.ButterKnife;
 
 public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecyclerViewAdapter.PosterViewHolder> {
 
+    private final String LOG_TAG = PosterRecyclerViewAdapter.class.getSimpleName();
+
+    private Context mContext;
+    private List<Movie> listOfMovies;
 
     @Override
     public PosterRecyclerViewAdapter.PosterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return null;
+        mContext = parent.getContext();
+        LayoutInflater layoutInflater = LayoutInflater.from(mContext);
+        int movieLayoutId = R.layout.movie_poster;
+
+        View view = layoutInflater.inflate(movieLayoutId, parent, false);
+        PosterViewHolder posterViewHolder = new PosterViewHolder(view);
+
+        return posterViewHolder;
     }
 
     @Override
