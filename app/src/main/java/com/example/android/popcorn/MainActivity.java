@@ -8,10 +8,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.android.popcorn.fragments.CurrentFragment;
-import com.example.android.popcorn.fragments.FavouriteFragment;
-import com.example.android.popcorn.fragments.PopularFragment;
-import com.example.android.popcorn.fragments.TopFragment;
+import com.example.android.popcorn.fragment.CurrentFragment;
+import com.example.android.popcorn.fragment.FavouriteFragment;
+import com.example.android.popcorn.fragment.PopularFragment;
+import com.example.android.popcorn.fragment.TopFragment;
 import com.example.android.popcorn.ui.MovieCollectionPagerAdapter;
 
 import butterknife.BindView;

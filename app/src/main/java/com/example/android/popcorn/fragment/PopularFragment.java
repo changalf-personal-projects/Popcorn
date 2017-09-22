@@ -1,4 +1,4 @@
-package com.example.android.popcorn.fragments;
+package com.example.android.popcorn.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

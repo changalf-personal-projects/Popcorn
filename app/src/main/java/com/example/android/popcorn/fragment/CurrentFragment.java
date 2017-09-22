@@ -1,4 +1,4 @@
-package com.example.android.popcorn.fragments;
+package com.example.android.popcorn.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,7 +12,7 @@ import com.example.android.popcorn.R;
  * Created by alfredchang on 2017-09-16.
  */
 
-public class TopFragment extends Fragment {
+public class CurrentFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
