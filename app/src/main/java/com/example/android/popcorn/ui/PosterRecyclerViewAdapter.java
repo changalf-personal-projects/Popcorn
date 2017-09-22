@@ -24,7 +24,11 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
     private final String LOG_TAG = PosterRecyclerViewAdapter.class.getSimpleName();
 
     private Context mContext;
-    private List<Movie> listOfMovies;
+    private List<Movie> mListOfMovies;
+
+    public PosterRecyclerViewAdapter(List<Movie> listOfMovies) {
+        mListOfMovies = listOfMovies;
+    }
 
     @Override
     public PosterRecyclerViewAdapter.PosterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -45,7 +49,7 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mListOfMovies.size();
     }
 
     public class PosterViewHolder extends RecyclerView.ViewHolder {
