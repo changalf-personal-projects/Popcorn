@@ -28,6 +28,7 @@ public class PopularFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        fetchJsonData();
         return rootView;
     }
 
@@ -39,7 +40,7 @@ public class PopularFragment extends Fragment {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.v(LOG_TAG, response);
+                        Log.v(LOG_TAG, "Response: " + response);
                     }
                 }, new Response.ErrorListener() {
             @Override
