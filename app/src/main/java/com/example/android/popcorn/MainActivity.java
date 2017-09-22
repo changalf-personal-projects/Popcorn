@@ -20,7 +20,7 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.toolbar) Toolbar mToolbar;
-    @BindView(R.id.viewpager) ViewPager mViewPager;
+    @BindView(R.id.view_pager) ViewPager mViewPager;
     @BindView(R.id.tab_layout) TabLayout mTbaLayout;
 
     @Override
