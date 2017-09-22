@@ -1,6 +1,5 @@
 package com.example.android.popcorn.fragments;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -50,19 +49,5 @@ public class PopularFragment extends Fragment {
         });
 
         RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
-    }
-
-    // Use Volley instead?
-    private class FetchMoviesTask extends AsyncTask<String, Void, String> {
-
-        @Override
-        protected String doInBackground(String... url) {
-            return "";
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-        }
     }
 }
