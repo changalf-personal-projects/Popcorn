@@ -21,7 +21,7 @@ public class MovieTerms {
     public static final String POSTER_BASE_URL = " http://image.tmdb.org/t/p/";
     public static final String POSTER_SIZE = "w185";
 
-    // MovieLogan group url stuff.
+    // MovieJackson group url stuff.
     public static final String MOVIE_BASE_URL = "https://api.themoviedb.org/3/movie/";
 
 }

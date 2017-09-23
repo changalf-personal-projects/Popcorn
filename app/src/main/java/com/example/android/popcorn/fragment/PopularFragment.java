@@ -17,7 +17,7 @@ import com.example.android.popcorn.BuildConfig;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.networking.RequestQueueSingleton;
-import com.example.android.popcorn.fragment.parsing.MovieLogan;
+import com.example.android.popcorn.fragment.parsing.MovieJackson;
 import com.example.android.popcorn.fragment.parsing.MovieParser;
 import com.example.android.popcorn.ui.PosterRecyclerViewAdapter;
 
@@ -79,7 +79,7 @@ public class PopularFragment extends Fragment {
         RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
     }
 
-    private void initMovie(MovieLogan movieLogan) {
+    private void initMovie(MovieJackson movieLogan) {
 
     }
 }
