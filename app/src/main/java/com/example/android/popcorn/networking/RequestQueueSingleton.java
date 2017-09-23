@@ -1,4 +1,4 @@
-package com.example.android.popcorn.network;
+package com.example.android.popcorn.networking;
 
 import android.content.Context;
 

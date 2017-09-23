@@ -16,7 +16,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.example.android.popcorn.BuildConfig;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.model.Movie;
-import com.example.android.popcorn.network.RequestQueueSingleton;
+import com.example.android.popcorn.networking.RequestQueueSingleton;
+import com.example.android.popcorn.fragment.parsing.MovieLogan;
+import com.example.android.popcorn.fragment.parsing.MovieParser;
 import com.example.android.popcorn.ui.PosterRecyclerViewAdapter;
 
 import java.util.ArrayList;
@@ -36,6 +38,7 @@ public class PopularFragment extends Fragment {
 
     @BindView(R.id.recycler_view) RecyclerView mRecyclerView;
 
+    private MovieParser mMovieParser = new MovieParser();
     private PosterRecyclerViewAdapter mRecyclerAdapter;
     private List<Movie> mListOfMovies;
 
@@ -74,5 +77,9 @@ public class PopularFragment extends Fragment {
         });
 
         RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
+    }
+
+    private void initMovie(MovieLogan movieLogan) {
+
     }
 }
