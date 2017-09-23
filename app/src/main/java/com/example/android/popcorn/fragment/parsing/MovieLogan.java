@@ -1,6 +1,7 @@
 package com.example.android.popcorn.fragment.parsing;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.bluelinelabs.logansquare.annotation.JsonField;
+import com.bluelinelabs.logansquare.annotation.JsonObject;
 
 import java.util.List;
 
@@ -8,9 +9,10 @@ import java.util.List;
  * Used with LoganSquare.
  */
 
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class MovieJackson {
+@JsonObject
+public class MovieLogan {
 
+    @JsonField
     private List<Results> results;
 
     public List<Results> getResults() {
@@ -21,9 +23,10 @@ public class MovieJackson {
         this.results = results;
     }
 
-    @JsonIgnoreProperties(ignoreUnknown = true)
+    @JsonObject
     public static class Results {
 
+        @JsonField(name = "poster_path")
         private String posterPath;
 
         public String getPosterPath() {

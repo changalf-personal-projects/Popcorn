@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Use Butterknife to bind views.
         ButterKnife.bind(this);
-        ButterKnife.setDebug(true);
         setSupportActionBar(mToolbar);
         setupViewPager(mViewPager);
         mTabLayout.setupWithViewPager(mViewPager);

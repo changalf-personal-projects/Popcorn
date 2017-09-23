@@ -15,10 +15,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.android.popcorn.BuildConfig;
 import com.example.android.popcorn.R;
+import com.example.android.popcorn.fragment.parsing.MovieLogan;
+import com.example.android.popcorn.fragment.parsing.MovieParser;
 import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.networking.RequestQueueSingleton;
-import com.example.android.popcorn.fragment.parsing.MovieJackson;
-import com.example.android.popcorn.fragment.parsing.MovieParser;
 import com.example.android.popcorn.ui.PosterRecyclerViewAdapter;
 
 import java.util.ArrayList;
@@ -67,7 +67,8 @@ public class PopularFragment extends Fragment {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        MovieJackson movieJackson = mMovieParser.parseJsonData(response);
+                        MovieLogan movieJackson = mMovieParser.parseJsonData(response);
+                        initMovie(movieJackson);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -79,7 +80,17 @@ public class PopularFragment extends Fragment {
         RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
     }
 
-    private void initMovie(MovieJackson movieLogan) {
+    private void initMovie(MovieLogan movieLogan) {
+        for (MovieLogan.Results result: movieLogan.getResults()) {
+            Movie movie = new Movie();
+            movie.setPosterPath(result.getPosterPath());
+            Log.v(LOG_TAG, "Result poster path: " + result.getPosterPath());
+            mListOfMovies.add(movie);
+        }
 
+        // Test.
+        for (Movie movie: mListOfMovies) {
+            Log.v(LOG_TAG, "Poster path: " + movie.getPosterPath());
+        }
     }
 }
