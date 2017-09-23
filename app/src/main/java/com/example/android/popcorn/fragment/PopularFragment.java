@@ -87,10 +87,5 @@ public class PopularFragment extends Fragment {
             Log.v(LOG_TAG, "Result poster path: " + result.getPosterPath());
             mListOfMovies.add(movie);
         }
-
-        // Test.
-        for (Movie movie: mListOfMovies) {
-            Log.v(LOG_TAG, "Poster path: " + movie.getPosterPath());
-        }
     }
 }
