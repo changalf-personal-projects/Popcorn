@@ -16,11 +16,13 @@ public class MovieParser {
 
     ObjectMapper objMapper = new ObjectMapper();
 
-    public void parseJsonData(String response) {
+    public MovieJackson parseJsonData(String response) {
+        MovieJackson movieJackson = null;
         try {
-            MovieJackson movieJackson = objMapper.readValue(response, MovieJackson.class);
+            movieJackson = objMapper.readValue(response, MovieJackson.class);
         } catch (IOException e) {
             Log.e(LOG_TAG, "parseJsonData(): " + e);
         }
+        return movieJackson;
     }
 }

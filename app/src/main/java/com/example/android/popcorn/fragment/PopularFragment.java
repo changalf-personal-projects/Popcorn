@@ -67,7 +67,7 @@ public class PopularFragment extends Fragment {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.v(LOG_TAG, "Response: " + response);
+                        MovieJackson movieJackson = mMovieParser.parseJsonData(response);
                     }
                 }, new Response.ErrorListener() {
             @Override
