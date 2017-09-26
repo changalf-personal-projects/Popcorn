@@ -1,5 +1,6 @@
 package com.example.android.popcorn.fragment;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -14,6 +15,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.android.popcorn.BuildConfig;
+import com.example.android.popcorn.MovieTerms;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.fragment.parsing.MovieLogan;
 import com.example.android.popcorn.fragment.parsing.MovieParser;
@@ -34,7 +36,7 @@ import butterknife.ButterKnife;
 public class PopularFragment extends Fragment {
 
     private final String LOG_TAG = PopularFragment.class.getSimpleName();
-    private final int NUM_COLUMNS_LAYOUT = 2;
+    private final int LAYOUT_COL_SPAN = 2;
 
     @BindView(R.id.recycler_view) RecyclerView mRecyclerView;
 
@@ -51,17 +53,15 @@ public class PopularFragment extends Fragment {
         fetchJsonData();
 
         mListOfMovies = new ArrayList<>();
-        mRecyclerAdapter = new PosterRecyclerViewAdapter(mListOfMovies);
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(), NUM_COLUMNS_LAYOUT);
+//        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), LAYOUT_COL_SPAN);
         mRecyclerView.setLayoutManager(layoutManager);
-        mRecyclerView.setAdapter(mRecyclerAdapter);
 
         return rootView;
     }
 
     private void fetchJsonData() {
-        String url = "https://api.themoviedb.org/3/movie/popular?api_key="
-                + BuildConfig.MOVIE_DP_API_KEY + "&language=en-US&page=1";
+        String url = createUrl();
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
@@ -69,6 +69,7 @@ public class PopularFragment extends Fragment {
                     public void onResponse(String response) {
                         MovieLogan movieJackson = mMovieParser.parseJsonData(response);
                         initMovie(movieJackson);
+                        attachAdapter();
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -83,9 +84,21 @@ public class PopularFragment extends Fragment {
     private void initMovie(MovieLogan movieLogan) {
         for (MovieLogan.Results result: movieLogan.getResults()) {
             Movie movie = new Movie();
-            movie.setPosterPath(result.getPosterPath());
-            Log.v(LOG_TAG, "Result poster path: " + result.getPosterPath());
+            movie.setPosterPath(MovieTerms.POSTER_BASE_URL.concat(MovieTerms.POSTER_SIZE).concat(result.getPosterPath()));
             mListOfMovies.add(movie);
         }
+    }
+
+    private void attachAdapter() {
+        mRecyclerAdapter = new PosterRecyclerViewAdapter(mListOfMovies);
+        mRecyclerView.setAdapter(mRecyclerAdapter);
+    }
+
+    private String createUrl() {
+        return Uri.parse(MovieTerms.MOVIE_BASE_URL).buildUpon().appendPath(MovieTerms.POPULAR)
+                .appendQueryParameter(MovieTerms.TMDB_API_KEY, BuildConfig.MOVIE_DP_API_KEY)
+                .appendQueryParameter(MovieTerms.TMDB_LANGUAGE, MovieTerms.LANGUAGE)
+                .appendQueryParameter(MovieTerms.TMDB_PAGE, MovieTerms.PAGE)
+                .build().toString();
     }
 }

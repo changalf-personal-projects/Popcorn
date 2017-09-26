@@ -7,10 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
-import com.example.android.popcorn.MovieTerms;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.model.Movie;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -33,13 +32,12 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
     }
 
     @Override
-    public PosterRecyclerViewAdapter.PosterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public PosterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // Source: https://classroom.udacity.com/courses/ud851/lessons/
         // c81cb722-d20a-495a-83c6-6890a6142aac/concepts/ae70fe56-dbd3-446c-be43-b8da0f076ea6.
         mContext = parent.getContext();
-        LayoutInflater layoutInflater = LayoutInflater.from(mContext);
         int movieLayoutId = R.layout.movie_poster;
-
+        LayoutInflater layoutInflater = LayoutInflater.from(mContext);
         View view = layoutInflater.inflate(movieLayoutId, parent, false);
         PosterViewHolder posterViewHolder = new PosterViewHolder(view);
 
@@ -49,9 +47,22 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
     @Override
     public void onBindViewHolder(PosterViewHolder holder, int position) {
         Movie movie = mListOfMovies.get(position);
+//        GlideApp.with(mContext).load(movie.getPosterPath()).placeholder(R.mipmap.ic_circle).into(holder.mPoster);
         if (hasPosterPath(movie)) {
-            Glide.with(mContext).load(MovieTerms.POSTER_BASE_URL + MovieTerms.POSTER_SIZE
-                    + movie.getPosterPath()).into(holder.mPoster);
+            Picasso.with(mContext).load(movie.getPosterPath()).into(holder.mPoster);
+        }
+
+        // Debugging.
+        if (position == 0) {
+            holder.mPoster.setBackgroundResource(R.color.lightGreenTest);
+        } else if (position == 1) {
+            holder.mPoster.setBackgroundResource(R.color.blackTest);
+        } else if (position == 2) {
+            holder.mPoster.setBackgroundResource(R.color.blueTest);
+        } else if (position == 3) {
+            holder.mPoster.setBackgroundResource(R.color.greenTest);
+        } else if (position == 4) {
+            holder.mPoster.setBackgroundResource(R.color.greyTest);
         }
     }
 
@@ -64,7 +75,7 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
         return mListOfMovies.size();
     }
 
-    public class PosterViewHolder extends RecyclerView.ViewHolder {
+    public static class PosterViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.movie_poster) ImageView mPoster;
 

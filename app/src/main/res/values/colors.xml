@@ -3,4 +3,11 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!-- Colors for debugging background. -->
+    <color name="blackTest">#000000</color>
+    <color name="blueTest">#1F618D</color>
+    <color name="greenTest">#28B463</color>
+    <color name="greyTest">#5D6D7E</color>
+    <color name="lightGreenTest">#DAF7A6</color>
 </resources>
