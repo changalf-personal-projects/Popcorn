@@ -54,10 +54,6 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
             GlideApp.with(mContext).load(movie.getPosterPath()).override(POSTER_WIDTH, POSTER_HEIGHT)
                     .into(holder.mPoster);
         }
-
-//        if (hasPosterPath(movie)) {
-//            Picasso.with(mContext).load(movie.getPosterPath()).into(holder.mPoster);
-//        }
     }
 
     private boolean hasPosterPath(Movie movie) {
