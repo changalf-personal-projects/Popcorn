@@ -58,19 +58,6 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
 //        if (hasPosterPath(movie)) {
 //            Picasso.with(mContext).load(movie.getPosterPath()).into(holder.mPoster);
 //        }
-
-        // Debugging.
-        if (position == 0) {
-            holder.mPoster.setBackgroundResource(R.color.lightGreenTest);
-        } else if (position == 1) {
-            holder.mPoster.setBackgroundResource(R.color.blackTest);
-        } else if (position == 2) {
-            holder.mPoster.setBackgroundResource(R.color.blueTest);
-        } else if (position == 3) {
-            holder.mPoster.setBackgroundResource(R.color.greenTest);
-        } else if (position == 4) {
-            holder.mPoster.setBackgroundResource(R.color.greyTest);
-        }
     }
 
     private boolean hasPosterPath(Movie movie) {
