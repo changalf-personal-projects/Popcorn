@@ -9,7 +9,6 @@ import android.widget.ImageView;
 
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.model.Movie;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -23,6 +22,10 @@ import butterknife.ButterKnife;
 public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecyclerViewAdapter.PosterViewHolder> {
 
     private final String LOG_TAG = PosterRecyclerViewAdapter.class.getSimpleName();
+
+    // Approximate dimensions.
+    private final int POSTER_WIDTH = 700;
+    private final int POSTER_HEIGHT = 800;
 
     private Context mContext;
     private List<Movie> mListOfMovies;
@@ -47,10 +50,14 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
     @Override
     public void onBindViewHolder(PosterViewHolder holder, int position) {
         Movie movie = mListOfMovies.get(position);
-//        GlideApp.with(mContext).load(movie.getPosterPath()).placeholder(R.mipmap.ic_circle).into(holder.mPoster);
         if (hasPosterPath(movie)) {
-            Picasso.with(mContext).load(movie.getPosterPath()).into(holder.mPoster);
+            GlideApp.with(mContext).load(movie.getPosterPath()).override(POSTER_WIDTH, POSTER_HEIGHT)
+                    .into(holder.mPoster);
         }
+
+//        if (hasPosterPath(movie)) {
+//            Picasso.with(mContext).load(movie.getPosterPath()).into(holder.mPoster);
+//        }
 
         // Debugging.
         if (position == 0) {
