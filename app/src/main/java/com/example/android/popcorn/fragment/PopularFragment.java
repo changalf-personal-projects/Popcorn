@@ -1,6 +1,5 @@
 package com.example.android.popcorn.fragment;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -14,7 +13,6 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.example.android.popcorn.BuildConfig;
 import com.example.android.popcorn.MovieKeywords;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.fragment.parsing.MovieLogan;
@@ -28,6 +26,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.example.android.popcorn.networking.UrlCreator.createUrl;
 
 /**
  * Created by alfredchang on 2017-09-16.
@@ -50,12 +50,12 @@ public class PopularFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         ButterKnife.bind(this, rootView);
 
-        fetchJsonData();
-
         mListOfMovies = new ArrayList<>();
 //        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), LAYOUT_COL_SPAN);
         mRecyclerView.setLayoutManager(layoutManager);
+
+        fetchJsonData();
 
         return rootView;
     }
@@ -92,13 +92,5 @@ public class PopularFragment extends Fragment {
     private void attachAdapter() {
         mRecyclerAdapter = new PosterRecyclerViewAdapter(mListOfMovies);
         mRecyclerView.setAdapter(mRecyclerAdapter);
-    }
-
-    private String createUrl() {
-        return Uri.parse(MovieKeywords.MOVIE_BASE_URL).buildUpon().appendPath(MovieKeywords.POPULAR)
-                .appendQueryParameter(MovieKeywords.TMDB_API_KEY, BuildConfig.MOVIE_DP_API_KEY)
-                .appendQueryParameter(MovieKeywords.TMDB_LANGUAGE, MovieKeywords.LANGUAGE)
-                .appendQueryParameter(MovieKeywords.TMDB_PAGE, MovieKeywords.PAGE)
-                .build().toString();
     }
 }
