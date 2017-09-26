@@ -15,7 +15,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.android.popcorn.BuildConfig;
-import com.example.android.popcorn.MovieTerms;
+import com.example.android.popcorn.MovieKeywords;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.fragment.parsing.MovieLogan;
 import com.example.android.popcorn.fragment.parsing.MovieParser;
@@ -84,7 +84,7 @@ public class PopularFragment extends Fragment {
     private void initMovie(MovieLogan movieLogan) {
         for (MovieLogan.Results result: movieLogan.getResults()) {
             Movie movie = new Movie();
-            movie.setPosterPath(MovieTerms.POSTER_BASE_URL.concat(MovieTerms.POSTER_SIZE).concat(result.getPosterPath()));
+            movie.setPosterPath(MovieKeywords.POSTER_BASE_URL.concat(MovieKeywords.POSTER_SIZE).concat(result.getPosterPath()));
             mListOfMovies.add(movie);
         }
     }
@@ -95,10 +95,10 @@ public class PopularFragment extends Fragment {
     }
 
     private String createUrl() {
-        return Uri.parse(MovieTerms.MOVIE_BASE_URL).buildUpon().appendPath(MovieTerms.POPULAR)
-                .appendQueryParameter(MovieTerms.TMDB_API_KEY, BuildConfig.MOVIE_DP_API_KEY)
-                .appendQueryParameter(MovieTerms.TMDB_LANGUAGE, MovieTerms.LANGUAGE)
-                .appendQueryParameter(MovieTerms.TMDB_PAGE, MovieTerms.PAGE)
+        return Uri.parse(MovieKeywords.MOVIE_BASE_URL).buildUpon().appendPath(MovieKeywords.POPULAR)
+                .appendQueryParameter(MovieKeywords.TMDB_API_KEY, BuildConfig.MOVIE_DP_API_KEY)
+                .appendQueryParameter(MovieKeywords.TMDB_LANGUAGE, MovieKeywords.LANGUAGE)
+                .appendQueryParameter(MovieKeywords.TMDB_PAGE, MovieKeywords.PAGE)
                 .build().toString();
     }
 }
