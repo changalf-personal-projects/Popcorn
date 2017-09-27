@@ -26,6 +26,6 @@ public class MovieKeywords {
     public static final String TMDB_LANGUAGE = "language";
     public static final String TMDB_PAGE = "page";
 
-    // MovieLogan group url stuff.
+    // Main url to get movie id (plus queries).
     public static final String MOVIE_BASE_URL = "https://api.themoviedb.org/3/movie/";
 }
