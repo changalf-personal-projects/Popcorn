@@ -60,6 +60,7 @@ public class PopularFragment extends Fragment {
         return rootView;
     }
 
+    // Can't be moved into another class because onResponse() doesn't return anything.
     private void fetchJsonData() {
         String url = createUrl();
 

@@ -6,7 +6,7 @@ import com.bluelinelabs.logansquare.annotation.JsonObject;
 import java.util.List;
 
 /**
- * Used with LoganSquare.
+ * Private fields are keys of wanted values.
  */
 
 @JsonObject
