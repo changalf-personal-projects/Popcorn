@@ -40,7 +40,6 @@ public class PopularFragment extends Fragment {
 
     @BindView(R.id.recycler_view) RecyclerView mRecyclerView;
 
-    private MovieParser mMovieParser = new MovieParser();
     private PosterRecyclerViewAdapter mRecyclerAdapter;
     private List<Movie> mListOfMovies;
 
@@ -68,7 +67,7 @@ public class PopularFragment extends Fragment {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        MovieLogan movieJackson = mMovieParser.parseJsonData(response);
+                        MovieLogan movieJackson = MovieParser.parseJsonData(response);
                         initMovie(movieJackson);
                         attachAdapter();
                     }

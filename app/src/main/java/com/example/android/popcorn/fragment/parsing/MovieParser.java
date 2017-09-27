@@ -12,9 +12,9 @@ import java.io.IOException;
 
 public class MovieParser {
 
-    private final String LOG_TAG = MovieParser.class.getSimpleName();
+    private static final String LOG_TAG = MovieParser.class.getSimpleName();
 
-    public MovieLogan parseJsonData(String response) {
+    public static MovieLogan parseJsonData(String response) {
         MovieLogan movieLogan = null;
         try {
             movieLogan = LoganSquare.parse(response, MovieLogan.class);
