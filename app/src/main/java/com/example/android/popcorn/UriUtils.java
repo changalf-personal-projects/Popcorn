@@ -28,4 +28,8 @@ public class UriUtils {
 
     // Main url to get movie id (plus queries).
     public static final String MOVIE_BASE_URL = "https://api.themoviedb.org/3/movie/";
+
+    // Normally, looking for the movie details means we have to first get the movie id and then use
+    // that id to get the details.  But with "append_to_response", this can be done in one request.
+    public static final String APPEND_REQUEST = "append_to_response";
 }

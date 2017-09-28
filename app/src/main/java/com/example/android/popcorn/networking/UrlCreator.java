@@ -32,6 +32,10 @@ public class UrlCreator {
                 .build().toString();
     }
 
+    public static String createPosterUrl(String path) {
+        return UriUtils.POSTER_BASE_URL.concat(UriUtils.POSTER_SIZE).concat(path);
+    }
+
     // Request for movie trailers.
     public static String createTrailerUrl() {
         return "";

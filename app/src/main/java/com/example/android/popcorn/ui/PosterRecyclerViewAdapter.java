@@ -2,6 +2,7 @@ package com.example.android.popcorn.ui;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +51,7 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
     @Override
     public void onBindViewHolder(PosterViewHolder holder, int position) {
         Movie movie = mListOfMovies.get(position);
+        Log.v(LOG_TAG, "Formed url: " + movie.getPosterPath());
         if (hasPosterPath(movie)) {
             GlideApp.with(mContext).load(movie.getPosterPath()).override(POSTER_WIDTH, POSTER_HEIGHT)
                     .into(holder.mPoster);

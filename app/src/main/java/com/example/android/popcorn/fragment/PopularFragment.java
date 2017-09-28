@@ -20,6 +20,7 @@ import com.example.android.popcorn.fragment.parsing.LoganIdTemplate;
 import com.example.android.popcorn.fragment.parsing.MovieParser;
 import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.networking.RequestQueueSingleton;
+import com.example.android.popcorn.networking.UrlCreator;
 import com.example.android.popcorn.ui.PosterRecyclerViewAdapter;
 
 import java.util.ArrayList;
@@ -28,7 +29,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.example.android.popcorn.networking.UrlCreator.createDetailUrl;
 import static com.example.android.popcorn.networking.UrlCreator.createUrl;
 
 /**
@@ -84,26 +84,27 @@ public class PopularFragment extends Fragment {
         RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
     }
 
-    private void fetchJsonDetails() {
-        for (int i = 0; i < mListOfMovies.size(); i++) {
-            String url = createDetailUrl(mListOfMovies.get(i).getId());
-            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            LoganDetailsTemplate movieLogan = MovieParser.parseJsonDetailsData(response);
-                            saveMovieDetails(movieLogan);
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Log.e(LOG_TAG, "Respone error (fetchJsonDetails): " + error);
-                }
-            });
-
-            RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
-        }
-    }
+//    private void fetchJsonDetails() {
+//        for (int i = 0; i < mListOfMovies.size(); i++) {
+//            String url = createDetailUrl(mListOfMovies.get(i).getId());
+//            final int index = i;
+//            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+//                    new Response.Listener<String>() {
+//                        @Override
+//                        public void onResponse(String response) {
+//                            LoganDetailsTemplate movieLogan = MovieParser.parseJsonDetailsData(response);
+//                            saveMovieDetails(movieLogan, index);
+//                        }
+//                    }, new Response.ErrorListener() {
+//                @Override
+//                public void onErrorResponse(VolleyError error) {
+//                    Log.e(LOG_TAG, "Respone error (fetchJsonDetails): " + error);
+//                }
+//            });
+//
+//            RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
+//        }
+//    }
 
     private void saveMovieId(LoganIdTemplate movieLogan) {
         for (LoganIdTemplate.Results result: movieLogan.getResults()) {
@@ -112,11 +113,11 @@ public class PopularFragment extends Fragment {
             movie.setId(result.getId());
             mListOfMovies.add(movie);
         }
-        fetchJsonDetails();
     }
 
-    private void saveMovieDetails(LoganDetailsTemplate movieLogan) {
-
+    private void saveMovieDetails(LoganDetailsTemplate movieLogan, int index) {
+        mListOfMovies.get(index).setPosterPath(UrlCreator.createPosterUrl(movieLogan.getPosterPath()));
+        Log.v(LOG_TAG, "The url: " + mListOfMovies.get(index).getPosterPath());
     }
 
     private void attachAdapter() {
