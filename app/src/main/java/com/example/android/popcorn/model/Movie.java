@@ -13,6 +13,7 @@ public class Movie {
     private String id;
     private String releaseDate;
     private String posterPath;
+    private String backdropPath;
 
     public String getTitle() {
         return title;
@@ -68,5 +69,13 @@ public class Movie {
 
     public void setPosterPath(String posterPath) {
         this.posterPath = posterPath;
+    }
+
+    public String getBackdropPath() {
+        return backdropPath;
+    }
+
+    public void setBackdropPath(String backdropPath) {
+        this.backdropPath = backdropPath;
     }
 }
