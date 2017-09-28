@@ -78,7 +78,7 @@ public class PopularFragment extends Fragment {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e(LOG_TAG, "Respone error: " + error);
+                Log.e(LOG_TAG, "Respone error (fetchJsonId): " + error);
             }
         });
 
@@ -98,7 +98,7 @@ public class PopularFragment extends Fragment {
                     }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.e(LOG_TAG, "Respone error: " + error);
+                    Log.e(LOG_TAG, "Respone error (fetchJsonDetails): " + error);
                 }
             });
 
