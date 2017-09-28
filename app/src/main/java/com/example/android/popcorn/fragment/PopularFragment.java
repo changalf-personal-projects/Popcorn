@@ -29,6 +29,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.android.popcorn.networking.UrlCreator.createDetailUrl;
 import static com.example.android.popcorn.networking.UrlCreator.createUrl;
 
 /**
@@ -72,7 +73,6 @@ public class PopularFragment extends Fragment {
                     public void onResponse(String response) {
                         LoganIdTemplate movieLogan = MovieParser.parseJsonData(response);
                         saveMovieId(movieLogan);
-                        attachAdapter();
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -84,27 +84,27 @@ public class PopularFragment extends Fragment {
         RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
     }
 
-//    private void fetchJsonDetails() {
-//        for (int i = 0; i < mListOfMovies.size(); i++) {
-//            String url = createDetailUrl(mListOfMovies.get(i).getId());
-//            final int index = i;
-//            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-//                    new Response.Listener<String>() {
-//                        @Override
-//                        public void onResponse(String response) {
-//                            LoganDetailsTemplate movieLogan = MovieParser.parseJsonDetailsData(response);
-//                            saveMovieDetails(movieLogan, index);
-//                        }
-//                    }, new Response.ErrorListener() {
-//                @Override
-//                public void onErrorResponse(VolleyError error) {
-//                    Log.e(LOG_TAG, "Respone error (fetchJsonDetails): " + error);
-//                }
-//            });
-//
-//            RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
-//        }
-//    }
+    private void fetchJsonDetails() {
+        for (int i = 0; i < mListOfMovies.size(); i++) {
+            String url = createDetailUrl(mListOfMovies.get(i).getId());
+            final int index = i;
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            LoganDetailsTemplate movieLogan = MovieParser.parseJsonDetailsData(response);
+                            saveMovieDetails(movieLogan, index);
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.e(LOG_TAG, "Respone error (fetchJsonDetails): " + error);
+                }
+            });
+
+            RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
+        }
+    }
 
     private void saveMovieId(LoganIdTemplate movieLogan) {
         for (LoganIdTemplate.Results result: movieLogan.getResults()) {
@@ -113,10 +113,13 @@ public class PopularFragment extends Fragment {
             movie.setId(result.getId());
             mListOfMovies.add(movie);
         }
+        fetchJsonDetails();
     }
 
+    // AttachAdapter method needs to be done after all required info has been saved to movie object.
     private void saveMovieDetails(LoganDetailsTemplate movieLogan, int index) {
         mListOfMovies.get(index).setPosterPath(UrlCreator.createPosterUrl(movieLogan.getPosterPath()));
+        attachAdapter();
         Log.v(LOG_TAG, "The url: " + mListOfMovies.get(index).getPosterPath());
     }
 
