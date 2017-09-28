@@ -10,7 +10,7 @@ import java.util.List;
  */
 
 @JsonObject
-public class MovieLogan {
+public class LoganIdTemplate {
 
     @JsonField
     private List<Results> results;
@@ -26,15 +26,15 @@ public class MovieLogan {
     @JsonObject
     public static class Results {
 
-        @JsonField(name = "poster_path")
-        private String posterPath;
+        @JsonField
+        private String id;
 
-        public String getPosterPath() {
-            return posterPath;
+        public String getId() {
+            return id;
         }
 
-        public void setPosterPath(String posterPath) {
-            this.posterPath = posterPath;
+        public void setId(String id) {
+            this.id = id;
         }
     }
 }

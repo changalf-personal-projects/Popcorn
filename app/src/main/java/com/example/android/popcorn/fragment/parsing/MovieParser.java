@@ -14,10 +14,22 @@ public class MovieParser {
 
     private static final String LOG_TAG = MovieParser.class.getSimpleName();
 
-    public static MovieLogan parseJsonData(String response) {
-        MovieLogan movieLogan = null;
+    // Parse the movie id first.
+    public static LoganIdTemplate parseJsonData(String response) {
+        LoganIdTemplate movieLogan = null;
         try {
-            movieLogan = LoganSquare.parse(response, MovieLogan.class);
+            movieLogan = LoganSquare.parse(response, LoganIdTemplate.class);
+        } catch (IOException e) {
+            Log.e(LOG_TAG, "parseJsonData(): " + e);
+        }
+        return movieLogan;
+    }
+
+    // Using movie id, get the rest of details.
+    public static LoganDetailsTemplate parseJsonDetailsData(String response) {
+        LoganDetailsTemplate movieLogan = null;
+        try {
+            movieLogan = LoganSquare.parse(response, LoganDetailsTemplate.class);
         } catch (IOException e) {
             Log.e(LOG_TAG, "parseJsonData(): " + e);
         }

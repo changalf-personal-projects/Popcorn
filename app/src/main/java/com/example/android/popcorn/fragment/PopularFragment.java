@@ -13,10 +13,10 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.example.android.popcorn.MovieKeywords;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.dagger.component.FragmentComponent;
-import com.example.android.popcorn.fragment.parsing.MovieLogan;
+import com.example.android.popcorn.fragment.parsing.LoganDetailsTemplate;
+import com.example.android.popcorn.fragment.parsing.LoganIdTemplate;
 import com.example.android.popcorn.fragment.parsing.MovieParser;
 import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.networking.RequestQueueSingleton;
@@ -28,6 +28,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.android.popcorn.networking.UrlCreator.createDetailUrl;
 import static com.example.android.popcorn.networking.UrlCreator.createUrl;
 
 /**
@@ -56,21 +57,22 @@ public class PopularFragment extends Fragment {
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), LAYOUT_COL_SPAN);
         mRecyclerView.setLayoutManager(layoutManager);
 
-        fetchJsonData();
+        fetchJsonId();
+        fetchJsonDetails();
 
         return rootView;
     }
 
     // Can't be moved into another class because onResponse() doesn't return anything.
-    private void fetchJsonData() {
+    private void fetchJsonId() {
         String url = createUrl();
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        MovieLogan movieJackson = MovieParser.parseJsonData(response);
-                        initMovie(movieJackson);
+                        LoganIdTemplate movieLogan = MovieParser.parseJsonData(response);
+                        saveMovieId(movieLogan);
                         attachAdapter();
                     }
                 }, new Response.ErrorListener() {
@@ -83,10 +85,32 @@ public class PopularFragment extends Fragment {
         RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
     }
 
-    private void initMovie(MovieLogan movieLogan) {
-        for (MovieLogan.Results result: movieLogan.getResults()) {
+    private void fetchJsonDetails() {
+        for (int i = 0; i < mListOfMovies.size(); i++) {
+            String url = createDetailUrl(mListOfMovies.get(i).getId());
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            LoganDetailsTemplate movieLogan = MovieParser.parseJsonDetailsData(response);
+                            Log.v(LOG_TAG, "Response: " + movieLogan);
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.e(LOG_TAG, "Respone error: " + error);
+                }
+            });
+
+            RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
+        }
+    }
+
+    private void saveMovieId(LoganIdTemplate movieLogan) {
+        for (LoganIdTemplate.Results result: movieLogan.getResults()) {
             Movie movie = new Movie();
-            movie.setPosterPath(MovieKeywords.POSTER_BASE_URL.concat(MovieKeywords.POSTER_SIZE).concat(result.getPosterPath()));
+//            movie.setPosterPath(UriUtils.POSTER_BASE_URL.concat(UriUtils.POSTER_SIZE).concat(result.getPosterPath()));
+            movie.setId(result.getId());
             mListOfMovies.add(movie);
         }
     }

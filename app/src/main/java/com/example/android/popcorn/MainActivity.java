@@ -81,9 +81,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addFragmentTitles(MovieCollectionPagerAdapter pagerAdapter) {
-        pagerAdapter.addFragmentTitle(MovieKeywords.POPULAR_MOVIES);
-        pagerAdapter.addFragmentTitle(MovieKeywords.TOP_MOVIES);
-        pagerAdapter.addFragmentTitle(MovieKeywords.CURRENT_MOVIES);
-        pagerAdapter.addFragmentTitle(MovieKeywords.FAVOURITE_MOVIES);
+        pagerAdapter.addFragmentTitle(UriUtils.POPULAR_MOVIES);
+        pagerAdapter.addFragmentTitle(UriUtils.TOP_MOVIES);
+        pagerAdapter.addFragmentTitle(UriUtils.CURRENT_MOVIES);
+        pagerAdapter.addFragmentTitle(UriUtils.FAVOURITE_MOVIES);
     }
 }

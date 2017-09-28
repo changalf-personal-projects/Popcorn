@@ -4,7 +4,7 @@ package com.example.android.popcorn;
  * Created by alfredchang on 2017-09-20.
  */
 
-public class MovieKeywords {
+public class UriUtils {
 
     // Tab titles.
     public static final String POPULAR_MOVIES = "Popular";
