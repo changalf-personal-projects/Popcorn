@@ -58,7 +58,6 @@ public class PopularFragment extends Fragment {
         mRecyclerView.setLayoutManager(layoutManager);
 
         fetchJsonId();
-        fetchJsonDetails();
 
         return rootView;
     }
@@ -93,7 +92,7 @@ public class PopularFragment extends Fragment {
                         @Override
                         public void onResponse(String response) {
                             LoganDetailsTemplate movieLogan = MovieParser.parseJsonDetailsData(response);
-                            Log.v(LOG_TAG, "Response: " + movieLogan);
+                            saveMovieDetails(movieLogan);
                         }
                     }, new Response.ErrorListener() {
                 @Override
@@ -113,6 +112,11 @@ public class PopularFragment extends Fragment {
             movie.setId(result.getId());
             mListOfMovies.add(movie);
         }
+        fetchJsonDetails();
+    }
+
+    private void saveMovieDetails(LoganDetailsTemplate movieLogan) {
+
     }
 
     private void attachAdapter() {
