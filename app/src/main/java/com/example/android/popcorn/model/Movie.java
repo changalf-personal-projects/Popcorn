@@ -1,11 +1,15 @@
 package com.example.android.popcorn.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by alfredchang on 2017-09-21.
  */
 
 public class Movie {
 
+    private List<String> genres = new ArrayList<>();
     private String title;
     private String runtime;
     private String rating;
@@ -14,6 +18,14 @@ public class Movie {
     private String releaseDate;
     private String posterPath;
     private String backdropPath;
+
+    public List<String> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(String genre) {
+        genres.add(genre);
+    }
 
     public String getTitle() {
         return title;

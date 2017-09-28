@@ -118,9 +118,21 @@ public class PopularFragment extends Fragment {
 
     // AttachAdapter method needs to be done after all required info has been saved to movie object.
     private void saveMovieDetails(LoganDetailsTemplate movieLogan, int index) {
-        mListOfMovies.get(index).setPosterPath(UrlCreator.createPosterUrl(movieLogan.getPosterPath()));
+        Movie movie = mListOfMovies.get(index);
+
+        // Saving all info to a movie object.
+        for (LoganDetailsTemplate.Genre genre: movieLogan.getGenres()) {
+            movie.setGenres(genre.getName());
+        }
+        movie.setTitle(movieLogan.getTitle());
+        movie.setRuntime(movieLogan.getRuntime());
+        movie.setRating(movieLogan.getVoteAverage());
+        movie.setSynopsis(movieLogan.getSynopsis());
+        movie.setReleaseDate(movieLogan.getRelease());
+        movie.setPosterPath(UrlCreator.createImageUrl(movieLogan.getPosterPath()));
+        movie.setBackdropPath(UrlCreator.createImageUrl(movieLogan.getBackdropPath()));
+
         attachAdapter();
-        Log.v(LOG_TAG, "The url: " + mListOfMovies.get(index).getPosterPath());
     }
 
     private void attachAdapter() {

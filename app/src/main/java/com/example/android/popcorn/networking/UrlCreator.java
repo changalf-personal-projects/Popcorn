@@ -32,7 +32,7 @@ public class UrlCreator {
                 .build().toString();
     }
 
-    public static String createPosterUrl(String path) {
+    public static String createImageUrl(String path) {
         return UriUtils.POSTER_BASE_URL.concat(UriUtils.POSTER_SIZE).concat(path);
     }
 

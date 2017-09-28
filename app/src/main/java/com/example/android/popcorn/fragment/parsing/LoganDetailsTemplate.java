@@ -61,6 +61,9 @@ public class LoganDetailsTemplate {
     @JsonField(name = "release_date")
     private String release;
 
+    @JsonField
+    private String runtime;
+
     @JsonField(name = "vote_average")
     private String voteAverage;
 
@@ -94,6 +97,14 @@ public class LoganDetailsTemplate {
 
     public void setRelease(String release) {
         this.release = release;
+    }
+
+    public String getRuntime() {
+        return runtime;
+    }
+
+    public void setRuntime(String runtime) {
+        this.runtime = runtime;
     }
 
     public String getVoteAverage() {
