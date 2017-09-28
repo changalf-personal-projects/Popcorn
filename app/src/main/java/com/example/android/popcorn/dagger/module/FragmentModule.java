@@ -14,7 +14,7 @@ import dagger.Provides;
  */
 
 @Module
-public class PopularFragmentModule {
+public class FragmentModule {
 
     @Provides
     public PosterRecyclerViewAdapter provideRecyclerAdapter(List<Movie> movies) {

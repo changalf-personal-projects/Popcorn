@@ -15,6 +15,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.android.popcorn.MovieKeywords;
 import com.example.android.popcorn.R;
+import com.example.android.popcorn.dagger.component.FragmentComponent;
 import com.example.android.popcorn.fragment.parsing.MovieLogan;
 import com.example.android.popcorn.fragment.parsing.MovieParser;
 import com.example.android.popcorn.model.Movie;
@@ -38,10 +39,11 @@ public class PopularFragment extends Fragment {
     private final String LOG_TAG = PopularFragment.class.getSimpleName();
     private final int LAYOUT_COL_SPAN = 2;
 
-    @BindView(R.id.recycler_view) RecyclerView mRecyclerView;
-
+    private FragmentComponent mFragmentComponent;
     private PosterRecyclerViewAdapter mRecyclerAdapter;
     private List<Movie> mListOfMovies;
+
+    @BindView(R.id.recycler_view) RecyclerView mRecyclerView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
