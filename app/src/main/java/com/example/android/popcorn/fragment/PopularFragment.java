@@ -1,5 +1,6 @@
 package com.example.android.popcorn.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -13,6 +14,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.android.popcorn.DetailActivity;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.dagger.component.FragmentComponent;
 import com.example.android.popcorn.fragment.parsing.LoganDetailsTemplate;
@@ -21,6 +23,7 @@ import com.example.android.popcorn.fragment.parsing.MovieParser;
 import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.networking.RequestQueueSingleton;
 import com.example.android.popcorn.networking.UrlCreator;
+import com.example.android.popcorn.ui.OnMovieClickListener;
 import com.example.android.popcorn.ui.PosterRecyclerViewAdapter;
 
 import java.util.ArrayList;
@@ -36,7 +39,7 @@ import static com.example.android.popcorn.networking.UrlCreator.createUrl;
  * Created by alfredchang on 2017-09-16.
  */
 
-public class PopularFragment extends Fragment {
+public class PopularFragment extends Fragment implements OnMovieClickListener {
 
     private final String LOG_TAG = PopularFragment.class.getSimpleName();
     private final int LAYOUT_COL_SPAN = 2;
@@ -138,5 +141,11 @@ public class PopularFragment extends Fragment {
     private void attachAdapter() {
         mRecyclerAdapter = new PosterRecyclerViewAdapter(mListOfMovies);
         mRecyclerView.setAdapter(mRecyclerAdapter);
+    }
+
+    @Override
+    public void onMovieClick(Movie movie) {
+        Intent detailIntent = new Intent(getContext(), DetailActivity.class);
+        startActivity(detailIntent);
     }
 }
