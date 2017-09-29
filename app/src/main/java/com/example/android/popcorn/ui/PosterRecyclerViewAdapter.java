@@ -29,9 +29,11 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
 
     private Context mContext;
     private List<Movie> mListOfMovies;
+    private OnMovieClickListener mClickListener;
 
-    public PosterRecyclerViewAdapter(List<Movie> listOfMovies) {
+    public PosterRecyclerViewAdapter(List<Movie> listOfMovies, OnMovieClickListener clickListener) {
         mListOfMovies = listOfMovies;
+        mClickListener = clickListener;
     }
 
     @Override
@@ -65,13 +67,19 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
         return mListOfMovies.size();
     }
 
-    public static class PosterViewHolder extends RecyclerView.ViewHolder {
+    public class PosterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         @BindView(R.id.movie_poster) ImageView mPoster;
 
         public PosterViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            mClickListener.onMovieClick(mListOfMovies.get(getAdapterPosition()));
         }
     }
 }

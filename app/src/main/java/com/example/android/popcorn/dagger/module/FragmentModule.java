@@ -18,11 +18,13 @@ public class FragmentModule {
 
     @Provides
     public PosterRecyclerViewAdapter provideRecyclerAdapter(List<Movie> movies) {
-        return new PosterRecyclerViewAdapter(movies);
+//        return new PosterRecyclerViewAdapter(movies);
+        return null;
     }
 
     @Provides
     public PopularFragment providePopularFragment() {
-        return new PopularFragment();
+//        return new PopularFragment();
+        return null;
     }
 }
