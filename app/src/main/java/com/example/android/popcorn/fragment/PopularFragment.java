@@ -57,7 +57,6 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
         ButterKnife.bind(this, rootView);
 
         mListOfMovies = new ArrayList<>();
-//        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), LAYOUT_COL_SPAN);
         mRecyclerView.setLayoutManager(layoutManager);
 
