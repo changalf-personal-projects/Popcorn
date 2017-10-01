@@ -147,6 +147,5 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
     public void onMovieClick(Movie movie) {
         Intent detailIntent = new Intent(getContext(), DetailActivity.class);
         startActivity(detailIntent);
-//        Toast.makeText(getActivity(), movie.getId(), Toast.LENGTH_SHORT).show();
     }
 }

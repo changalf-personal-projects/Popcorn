@@ -7,6 +7,7 @@
     <!-- Colors for various uses. -->
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+    <color name="cardview_background">#F2F2F2</color>
 
     <!-- Colors for debugging background. -->
     <color name="blackTest">#000000</color>

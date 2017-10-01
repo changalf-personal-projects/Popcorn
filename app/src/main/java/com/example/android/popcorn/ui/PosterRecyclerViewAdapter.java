@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.model.Movie;
@@ -55,6 +56,7 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
         if (hasPosterPath(movie)) {
             GlideApp.with(mContext).load(movie.getPosterPath()).override(POSTER_WIDTH, POSTER_HEIGHT)
                     .into(holder.mPoster);
+            // TODO: Holder textviews populated here.
         }
     }
 
@@ -70,6 +72,9 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
     public class PosterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         @BindView(R.id.movie_poster) ImageView mPoster;
+        @BindView(R.id.title) TextView title;
+        @BindView(R.id.rating) TextView rating;
+        @BindView(R.id.genres) TextView genres;
 
         public PosterViewHolder(View itemView) {
             super(itemView);

@@ -6,4 +6,11 @@
 
     <!-- Various font sizes. -->
     <dimen name="title_size">30sp</dimen>
+
+    <!--Paddings. -->
+    <dimen name="cardview_margin">2dp</dimen>
+    <dimen name="tabs_and_posters_divider">105dp</dimen>
+
+    <!-- Elevations. -->
+    <dimen name="cardview_elevation">5dp</dimen>
 </resources>
