@@ -6,7 +6,7 @@
 
     <!-- Various font sizes. -->
     <dimen name="title_size">30sp</dimen>
-    <dimen name="cardview_title_size">20sp</dimen>
+    <dimen name="cardview_title_size">22sp</dimen>
 
     <!--Margins. -->
     <dimen name="cardview_margin">20dp</dimen>
