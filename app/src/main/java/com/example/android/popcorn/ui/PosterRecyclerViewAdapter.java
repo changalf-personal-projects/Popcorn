@@ -16,6 +16,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.android.popcorn.Utilities.hasPosterPath;
+import static com.example.android.popcorn.Utilities.roundToNearestTenth;
+
 /**
  * Created by alfredchang on 2017-09-21.
  */
@@ -53,15 +56,38 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
     @Override
     public void onBindViewHolder(PosterViewHolder holder, int position) {
         Movie movie = mListOfMovies.get(position);
+        onBindPoster(movie, holder);
+        onBindTitle(movie, holder);
+        onBindRating(movie, holder);
+        onBindGenres(movie, holder);
+    }
+
+    private void onBindPoster(Movie movie, PosterViewHolder holder) {
         if (hasPosterPath(movie)) {
             GlideApp.with(mContext).load(movie.getPosterPath()).override(POSTER_WIDTH, POSTER_HEIGHT)
                     .into(holder.mPoster);
-            // TODO: Holder textviews populated here.
         }
     }
 
-    private boolean hasPosterPath(Movie movie) {
-        return movie.getPosterPath() != null;
+    private void onBindTitle(Movie movie, PosterViewHolder holder) {
+        holder.title.setText(movie.getTitle());
+    }
+
+    private void onBindRating(Movie movie, PosterViewHolder holder) {
+        holder.rating.setText(mContext.getResources().getString(R.string.rating_out_of_ten,
+                String.valueOf(roundToNearestTenth(movie))));
+    }
+
+    private void onBindGenres(Movie movie, PosterViewHolder holder) {
+        List<String> genres = movie.getGenres();
+        for (int i = 0; i < genres.size(); i++) {
+            holder.genres.setText(mContext.getResources().getString(R.string.genre_plus_comma,
+                    movie.getGenres().get(i)));
+            // "i" is the number of genres iterated so far.
+            if (i > 3) {
+                break;
+            }
+        }
     }
 
     @Override
