@@ -10,7 +10,7 @@ import java.util.List;
  */
 
 @JsonObject
-public class LoganDetailsTemplate {
+public class LoganDetailsTemplate extends MovieLogan {
 
     @JsonField(name = "backdrop_path")
     private String backdropPath;

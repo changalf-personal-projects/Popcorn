@@ -16,20 +16,18 @@ public class MovieParser {
 
     // Parse the movie id first.
     public static LoganIdTemplate parseJsonData(String response) {
-        LoganIdTemplate movieLogan = null;
-        try {
-            movieLogan = LoganSquare.parse(response, LoganIdTemplate.class);
-        } catch (IOException e) {
-            Log.e(LOG_TAG, "parseJsonData(): " + e);
-        }
-        return movieLogan;
+        return (LoganIdTemplate) parseData(response, LoganIdTemplate.class);
     }
 
     // Using movie id, get the rest of details.
     public static LoganDetailsTemplate parseJsonDetailsData(String response) {
-        LoganDetailsTemplate movieLogan = null;
+        return (LoganDetailsTemplate) parseData(response, LoganDetailsTemplate.class);
+    }
+
+    private static MovieLogan parseData(String response, Class template) {
+        MovieLogan movieLogan = null;
         try {
-            movieLogan = LoganSquare.parse(response, LoganDetailsTemplate.class);
+            movieLogan = (MovieLogan) LoganSquare.parse(response, template);
         } catch (IOException e) {
             Log.e(LOG_TAG, "parseJsonData(): " + e);
         }

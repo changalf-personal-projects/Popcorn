@@ -10,7 +10,7 @@ import java.util.List;
  */
 
 @JsonObject
-public class LoganIdTemplate {
+public class LoganIdTemplate extends MovieLogan {
 
     @JsonField
     private List<Results> results;
