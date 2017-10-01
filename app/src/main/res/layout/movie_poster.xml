@@ -27,17 +27,38 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/title"
                 android:textColor="@color/black"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="@dimen/cardview_title_size"
+                android:layout_marginTop="@dimen/cardview_margin"
+                android:layout_marginLeft="@dimen/cardview_margin"
+                android:layout_marginStart="@dimen/cardview_margin"
+                android:layout_marginRight="@dimen/cardview_margin"
+                android:layout_marginEnd="@dimen/cardview_margin" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/rating" />
+                android:id="@+id/rating"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/cardview_rating_top_margin"
+                android:layout_marginLeft="@dimen/cardview_margin"
+                android:layout_marginStart="@dimen/cardview_margin"
+                android:layout_marginRight="@dimen/cardview_margin"
+                android:layout_marginEnd="@dimen/cardview_margin" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/genres" />
+                android:id="@+id/genres"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/cardview_rating_top_margin"
+                android:layout_marginLeft="@dimen/cardview_margin"
+                android:layout_marginStart="@dimen/cardview_margin"
+                android:layout_marginRight="@dimen/cardview_margin"
+                android:layout_marginEnd="@dimen/cardview_margin"
+                android:layout_marginBottom="@dimen/cardview_genre_bottom_margin" />
 
         </LinearLayout>
 
