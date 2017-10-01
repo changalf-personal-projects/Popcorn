@@ -16,6 +16,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.android.popcorn.Utilities.convertDoubleToString;
+import static com.example.android.popcorn.Utilities.hasAtLeastOneGenre;
 import static com.example.android.popcorn.Utilities.hasPosterPath;
 import static com.example.android.popcorn.Utilities.roundToNearestTenth;
 
@@ -30,6 +32,9 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
     // Approximate dimensions.
     private final int POSTER_WIDTH = 700;
     private final int POSTER_HEIGHT = 800;
+    private final int FIRST_GENRE = 0;
+    private final String NO_GENRE = "No genre";
+    private final String NO_RATING = "-/10";
 
     private Context mContext;
     private List<Movie> mListOfMovies;
@@ -74,19 +79,17 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
     }
 
     private void onBindRating(Movie movie, PosterViewHolder holder) {
-        holder.rating.setText(mContext.getResources().getString(R.string.rating_out_of_ten,
-                String.valueOf(roundToNearestTenth(movie))));
+        double rating = roundToNearestTenth(movie);
+        String ratingAsString = convertDoubleToString(rating);
+        holder.rating.setText(mContext.getResources().getString(R.string.rating_out_of_ten, ratingAsString));
     }
 
     private void onBindGenres(Movie movie, PosterViewHolder holder) {
         List<String> genres = movie.getGenres();
-        for (int i = 0; i < genres.size(); i++) {
-            holder.genres.setText(mContext.getResources().getString(R.string.genre_plus_comma,
-                    movie.getGenres().get(i)));
-            // "i" is the number of genres iterated so far.
-            if (i > 3) {
-                break;
-            }
+        if (hasAtLeastOneGenre(genres)) {
+            holder.genres.setText(genres.get(FIRST_GENRE));
+        } else {
+            holder.genres.setText(NO_GENRE);
         }
     }
 
