@@ -16,6 +16,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.android.popcorn.DetailActivity;
 import com.example.android.popcorn.R;
+import com.example.android.popcorn.UriTerms;
 import com.example.android.popcorn.dagger.component.FragmentComponent;
 import com.example.android.popcorn.fragment.parsing.LoganDetailsTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganIdTemplate;
@@ -32,7 +33,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.example.android.popcorn.networking.UrlCreator.createDetailUrl;
 import static com.example.android.popcorn.networking.UrlCreator.createUrl;
 
 /**
@@ -68,7 +68,7 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
 
     // Can't be moved into another class because onResponse() doesn't return anything.
     private void fetchJsonId() {
-        String url = createUrl();
+        String url = createUrl(UriTerms.POPULAR);
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
@@ -89,7 +89,7 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
 
     private void fetchJsonDetails() {
         for (int i = 0; i < mListOfMovies.size(); i++) {
-            String url = createDetailUrl(mListOfMovies.get(i).getId());
+            String url = createUrl(mListOfMovies.get(i).getId());
             final int index = i;
             StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                     new Response.Listener<String>() {
@@ -112,7 +112,7 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
     private void saveMovieId(LoganIdTemplate movieLogan) {
         for (LoganIdTemplate.Results result: movieLogan.getResults()) {
             Movie movie = new Movie();
-//            movie.setPosterPath(UriUtils.POSTER_BASE_URL.concat(UriUtils.POSTER_SIZE).concat(result.getPosterPath()));
+//            movie.setPosterPath(UriTerms.POSTER_BASE_URL.concat(UriTerms.POSTER_SIZE).concat(result.getPosterPath()));
             movie.setId(result.getId());
             mListOfMovies.add(movie);
         }
