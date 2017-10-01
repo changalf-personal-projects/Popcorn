@@ -74,7 +74,7 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        LoganIdTemplate movieLogan = MovieParser.parseJsonData(response);
+                        LoganIdTemplate movieLogan = MovieParser.parseJsonIdData(response);
                         saveMovieId(movieLogan);
                     }
                 }, new Response.ErrorListener() {
@@ -112,7 +112,6 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
     private void saveMovieId(LoganIdTemplate movieLogan) {
         for (LoganIdTemplate.Results result: movieLogan.getResults()) {
             Movie movie = new Movie();
-//            movie.setPosterPath(UriTerms.POSTER_BASE_URL.concat(UriTerms.POSTER_SIZE).concat(result.getPosterPath()));
             movie.setId(result.getId());
             mListOfMovies.add(movie);
         }

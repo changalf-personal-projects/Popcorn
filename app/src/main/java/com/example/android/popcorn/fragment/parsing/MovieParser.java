@@ -15,7 +15,7 @@ public class MovieParser {
     private static final String LOG_TAG = MovieParser.class.getSimpleName();
 
     // Parse the movie id first.
-    public static LoganIdTemplate parseJsonData(String response) {
+    public static LoganIdTemplate parseJsonIdData(String response) {
         return (LoganIdTemplate) parseData(response, LoganIdTemplate.class);
     }
 
@@ -29,7 +29,7 @@ public class MovieParser {
         try {
             movieLogan = (MovieLogan) LoganSquare.parse(response, template);
         } catch (IOException e) {
-            Log.e(LOG_TAG, "parseJsonData(): " + e);
+            Log.e(LOG_TAG, "parseJsonIdData(): " + e);
         }
         return movieLogan;
     }
