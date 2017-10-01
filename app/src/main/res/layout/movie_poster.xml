@@ -26,19 +26,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/title"
-                android:text="@string/test_string" />
+                android:textColor="@color/black"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/rating"
-                android:text="@string/test_string" />
+                android:id="@+id/rating" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/genres"
-                android:text="@string/test_string" />
+                android:id="@+id/genres" />
 
         </LinearLayout>
 

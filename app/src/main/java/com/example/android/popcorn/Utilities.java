@@ -32,11 +32,4 @@ public class Utilities {
     public static boolean hasAtLeastOneGenre(List<String> genres) {
         return genres.size() >= 1;
     }
-
-    private static String formatGenres(String genres) {
-        final int SECOND_CHAR = 1;
-        final int SECOND_LAST_CHAR = genres.length() - 1;
-        return genres.substring(SECOND_CHAR, genres.length() - SECOND_LAST_CHAR);
-    }
-
 }
