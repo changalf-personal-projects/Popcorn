@@ -9,10 +9,10 @@
     <dimen name="cardview_title_size">22sp</dimen>
 
     <!--Margins. -->
-    <dimen name="cardview_margin">20dp</dimen>
+    <dimen name="cardview_margin">14dp</dimen>
     <dimen name="tabs_and_posters_divider">105dp</dimen>
-    <dimen name="cardview_rating_top_margin">1dp</dimen>
-    <dimen name="cardview_genre_bottom_margin">21dp</dimen>
+    <dimen name="cardview_rating_top_margin">16dp</dimen>
+    <dimen name="cardview_genre_bottom_margin">15dp</dimen>
 
     <!-- Elevations. -->
     <dimen name="cardview_elevation">5dp</dimen>
