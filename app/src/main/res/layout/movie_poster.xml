@@ -29,7 +29,7 @@
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textSize="@dimen/cardview_title_size"
-                android:layout_marginTop="@dimen/cardview_margin"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="@dimen/cardview_margin"
                 android:layout_marginStart="@dimen/cardview_margin"
                 android:layout_marginRight="@dimen/cardview_margin"
