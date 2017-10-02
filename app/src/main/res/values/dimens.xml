@@ -9,11 +9,17 @@
     <dimen name="cardview_title_size">22sp</dimen>
 
     <!--Margins. -->
-    <dimen name="cardview_margin">14dp</dimen>
     <dimen name="tabs_and_posters_divider">105dp</dimen>
+    <dimen name="linearlayout_left_margin">4dp</dimen>
+    <dimen name="cardview_margin">14dp</dimen>
     <dimen name="cardview_rating_top_margin">16dp</dimen>
     <dimen name="cardview_genre_bottom_margin">15dp</dimen>
+    <dimen name="cardview_title_top_margin">10dp</dimen>
+    <dimen name="cardview_rating_icon_left_margin">6dp</dimen>
 
     <!-- Elevations. -->
     <dimen name="cardview_elevation">5dp</dimen>
+
+    <!-- Widths and heights. -->
+    <dimen name="rating_icon_dims">20dp</dimen>
 </resources>
