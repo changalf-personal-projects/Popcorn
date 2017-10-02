@@ -14,7 +14,7 @@
         android:id="@+id/search_widget"
         android:title="@string/test_string"
         android:icon="@mipmap/ic_search"
-        android:actionViewClass="android.widget.SearchView"
+        app:actionViewClass="android.support.v7.widget.SearchView"
         app:showAsAction="collapseActionView|ifRoom" />
 
 </menu>
