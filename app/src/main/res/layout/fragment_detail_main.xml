@@ -58,7 +58,8 @@
                             android:adjustViewBounds="true"
                             android:maxWidth="@dimen/icon_dims"
                             android:maxHeight="@dimen/icon_dims"
-                            android:layout_marginLeft="@dimen/detail_rating_icon_left_margin" />
+                            android:layout_marginLeft="@dimen/detail_rating_left_margin"
+                            android:layout_marginStart="@dimen/detail_rating_left_margin" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -102,11 +103,15 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/release_label"
-                        android:textColor="@color/black" />
+                        android:src="@mipmap/ic_release"
+                        android:adjustViewBounds="true"
+                        android:maxWidth="@dimen/icon_dims"
+                        android:maxHeight="@dimen/icon_dims"
+                        android:layout_marginLeft="@dimen/detail_release_left_margin"
+                        android:layout_marginStart="@dimen/detail_release_left_margin" />
 
                     <TextView
                         android:layout_width="wrap_content"

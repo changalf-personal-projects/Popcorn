@@ -88,7 +88,7 @@ public class DetailFragment extends Fragment {
 
     private void setRelease(Movie movie) {
         Log.v(LOG_TAG, "Release date: " + movie.getReleaseDate());
-        mRuntime.setText(movie.getReleaseDate());
+        mRelease.setText(movie.getReleaseDate());
     }
 
     private void setGenres(Movie movie) {
