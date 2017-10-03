@@ -17,6 +17,10 @@ import com.example.android.popcorn.ui.GlideApp;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.android.popcorn.Utilities.convertDoubleToString;
+import static com.example.android.popcorn.Utilities.formatGenres;
+import static com.example.android.popcorn.Utilities.roundToNearestTenth;
+
 /**
  * Created by alfredchang on 2017-09-27.
  */
@@ -50,6 +54,7 @@ public class DetailFragment extends Fragment {
         setPoster(movie);
         setTitle(movie);
         setRating(movie);
+        setGenres(movie);
     }
 
     private void setBackdrop(Movie movie) {
@@ -65,7 +70,17 @@ public class DetailFragment extends Fragment {
     }
 
     private void setRating(Movie movie) {
-        mRating.setText(movie.getRating());
+        double rating = roundToNearestTenth(movie);
+        String ratingAsString = convertDoubleToString(rating);
+        mRating.setText(getActivity().getResources().getString(R.string.rating_out_of_ten, ratingAsString));
+    }
+
+    private void setGenres(Movie movie) {
+        mGenres.setText(formatGenres(movie.getGenres().toString()));
+    }
+
+    private void setCast(Movie movie) {
+
     }
 
 }

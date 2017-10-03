@@ -9,9 +9,9 @@ import java.util.List;
  */
 
 public class Utilities {
-    private static final String LOG_TAG = Utilities.class.getSimpleName();
-    private static final int MAX_GENRES_ALLOWED = 2;
+
     public static final String PARCELABLE_MOVIE_KEY = "movie";
+    private static final String LOG_TAG = Utilities.class.getSimpleName();
 
     public static boolean hasPosterPath(Movie movie) {
         return movie.getPosterPath() != null;
@@ -26,11 +26,18 @@ public class Utilities {
         }
     }
 
+    public static boolean hasAtLeastOneGenre(List<String> genres) {
+        return genres.size() >= 1;
+    }
+
     public static String convertDoubleToString(double rating) {
         return String.valueOf(rating);
     }
 
-    public static boolean hasAtLeastOneGenre(List<String> genres) {
-        return genres.size() >= 1;
+    public static String formatGenres(String genres) {
+        final int SECOND_CHAR = 1;
+        final int SECOND_LAST_CHAR = genres.length() - 1;
+
+        return genres.substring(SECOND_CHAR, SECOND_LAST_CHAR);
     }
 }

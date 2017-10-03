@@ -2,12 +2,13 @@
     <string name="app_name">Popcorn</string>
     <string name="action_settings">Settings</string>
     <string name="action_search">Search</string>
-
-    <!-- Test strings. -->
-    <string name="test_string">Test</string>
+    <string name="genre_label">Genres: </string>
 
     <!-- Placeholder strings. -->
     <string name="genre_plus_comma">%1$s, </string>
     <string name="rating_out_of_ten">%1$s/10</string>
     <string name="search_hint">Movie Title</string>
+
+    <!-- Test strings. -->
+    <string name="test_string">Test</string>
 </resources>
