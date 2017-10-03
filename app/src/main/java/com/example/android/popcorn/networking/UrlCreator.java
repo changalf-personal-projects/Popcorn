@@ -21,8 +21,8 @@ public class UrlCreator {
                 .build().toString();
     }
 
-    public static String createImageUrl(String path) {
-        return UriTerms.POSTER_BASE_URL.concat(UriTerms.POSTER_SIZE).concat(path);
+    public static String createImageUrl(String path, String size) {
+        return UriTerms.POSTER_BASE_URL.concat(size).concat(path);
     }
 
     // Request for movie trailers.

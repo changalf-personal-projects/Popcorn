@@ -21,7 +21,8 @@ public class UriTerms {
 
     // Poster url stuff.
     public static final String POSTER_BASE_URL = "http://image.tmdb.org/t/p/";
-    public static final String POSTER_SIZE = "w500";
+    public static final String POSTER_SIZE_W500 = "w500";
+    public static final String POSTER_SIZE_ORIGINAL = "original";
     public static final String TMDB_API_KEY = "api_key";
     public static final String TMDB_LANGUAGE = "language";
     public static final String TMDB_PAGE = "page";

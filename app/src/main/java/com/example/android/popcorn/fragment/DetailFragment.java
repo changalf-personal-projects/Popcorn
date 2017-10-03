@@ -3,6 +3,7 @@ package com.example.android.popcorn.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.Utilities;
 import com.example.android.popcorn.model.Movie;
+import com.example.android.popcorn.ui.GlideApp;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -43,6 +45,10 @@ public class DetailFragment extends Fragment {
     private void fetchParcelable() {
         Intent detailIntent = getActivity().getIntent();
         Movie movie = detailIntent.getParcelableExtra(Utilities.PARCELABLE_MOVIE_KEY);
+
+        Log.v(LOG_TAG, "Backdrop url: " + movie.getBackdropPath());
+
+        GlideApp.with(getContext()).load(movie.getBackdropPath()).into(mBackdrop);
     }
 
 }
