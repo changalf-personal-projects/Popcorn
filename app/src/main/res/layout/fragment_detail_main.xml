@@ -18,7 +18,7 @@
             android:id="@+id/backdrop_poster" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -26,19 +26,49 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/movie_poster"
-                android:layout_marginTop="@dimen/detail_poster_margin"
-                android:layout_marginLeft="@dimen/detail_poster_margin"
-                android:layout_marginStart="@dimen/detail_poster_margin" />
+                android:layout_margin="@dimen/detail_poster_margin" />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/rating" />
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/genres" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/title"
+                    android:layout_marginTop="@dimen/detail_title_top_margin"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/detail_title_size"
+                    android:textColor="@color/black" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/ic_rating"
+                        android:adjustViewBounds="true"
+                        android:maxWidth="@dimen/rating_icon_dims"
+                        android:maxHeight="@dimen/rating_icon_dims"
+                        android:layout_marginLeft="@dimen/detail_rating_icon_left_margin" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/rating"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/genres" />
+
+            </LinearLayout>
 
         </LinearLayout>
 

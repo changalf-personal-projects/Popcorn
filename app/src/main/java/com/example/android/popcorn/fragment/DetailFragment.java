@@ -3,7 +3,6 @@ package com.example.android.popcorn.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +27,7 @@ public class DetailFragment extends Fragment {
 
     @BindView(R.id.backdrop_poster) ImageView mBackdrop;
     @BindView(R.id.movie_poster) ImageView mPoster;
+    @BindView(R.id.title) TextView mTitle;
     @BindView(R.id.rating) TextView mRating;
     @BindView(R.id.genres) TextView mGenres;
 
@@ -48,6 +48,8 @@ public class DetailFragment extends Fragment {
 
         setBackdrop(movie);
         setPoster(movie);
+        setTitle(movie);
+        setRating(movie);
     }
 
     private void setBackdrop(Movie movie) {
@@ -55,8 +57,15 @@ public class DetailFragment extends Fragment {
     }
 
     private void setPoster(Movie movie) {
-        Log.v(LOG_TAG, "Detail poster url: " + movie.getDetailPosterPath());
         GlideApp.with(getContext()).load(movie.getDetailPosterPath()).into(mPoster);
+    }
+
+    private void setTitle(Movie movie) {
+        mTitle.setText(movie.getTitle());
+    }
+
+    private void setRating(Movie movie) {
+        mRating.setText(movie.getRating());
     }
 
 }
