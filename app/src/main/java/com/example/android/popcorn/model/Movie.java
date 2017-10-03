@@ -1,5 +1,8 @@
 package com.example.android.popcorn.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +10,7 @@ import java.util.List;
  * Created by alfredchang on 2017-09-21.
  */
 
-public class Movie {
+public class Movie implements Parcelable {
 
     private List<String> genres = new ArrayList<>();
     private String title;
@@ -18,6 +21,30 @@ public class Movie {
     private String releaseDate;
     private String posterPath;
     private String backdropPath;
+
+    protected Movie(Parcel in) {
+        genres = in.createStringArrayList();
+        title = in.readString();
+        runtime = in.readString();
+        rating = in.readString();
+        synopsis = in.readString();
+        id = in.readString();
+        releaseDate = in.readString();
+        posterPath = in.readString();
+        backdropPath = in.readString();
+    }
+
+    public static final Creator<Movie> CREATOR = new Creator<Movie>() {
+        @Override
+        public Movie createFromParcel(Parcel in) {
+            return new Movie(in);
+        }
+
+        @Override
+        public Movie[] newArray(int size) {
+            return new Movie[size];
+        }
+    };
 
     public List<String> getGenres() {
         return genres;
@@ -89,5 +116,24 @@ public class Movie {
 
     public void setBackdropPath(String backdropPath) {
         this.backdropPath = backdropPath;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeStringList(genres);
+        parcel.writeString(title);
+        parcel.writeString(runtime);
+        parcel.writeString(rating);
+        parcel.writeString(synopsis);
+        parcel.writeString(id);
+        parcel.writeString(releaseDate);
+        parcel.writeString(posterPath);
+        parcel.writeString(backdropPath);
+    }
+
+    // Method left alone because this class has no children.
+    @Override
+    public int describeContents() {
+        return hashCode();
     }
 }
