@@ -21,6 +21,8 @@
     <dimen name="detail_title_top_margin">15dp</dimen>
     <dimen name="detail_genres_left_margin">3dp</dimen>
     <dimen name="detail_genres_right_margin">15dp</dimen>
+    <dimen name="detail_rating_top_margin">15dp</dimen>
+    <dimen name="detail_runtime_left_margin">35dp</dimen>
     <!-- Negative margin to offset detail poster margin. -->
     <dimen name="detail_rating_icon_left_margin">-4dp</dimen>
 
@@ -28,5 +30,5 @@
     <dimen name="cardview_elevation">5dp</dimen>
 
     <!-- Widths and heights. -->
-    <dimen name="rating_icon_dims">20dp</dimen>
+    <dimen name="icon_dims">20dp</dimen>
 </resources>

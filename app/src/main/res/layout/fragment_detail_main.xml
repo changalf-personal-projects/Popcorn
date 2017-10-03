@@ -44,45 +44,56 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@mipmap/ic_rating"
-                        android:adjustViewBounds="true"
-                        android:maxWidth="@dimen/rating_icon_dims"
-                        android:maxHeight="@dimen/rating_icon_dims"
-                        android:layout_marginLeft="@dimen/detail_rating_icon_left_margin" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/rating"
-                        android:textColor="@color/black" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/runtime_label"
-                        android:textColor="@color/black" />
+                        android:layout_height="wrap_content">
 
-                    <TextView
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/ic_rating"
+                            android:adjustViewBounds="true"
+                            android:maxWidth="@dimen/icon_dims"
+                            android:maxHeight="@dimen/icon_dims"
+                            android:layout_marginLeft="@dimen/detail_rating_icon_left_margin" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/rating"
+                            android:textColor="@color/black" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/runtime"
-                        android:textColor="@color/black"
-                        android:layout_marginLeft="@dimen/detail_genres_left_margin"
-                        android:layout_marginStart="@dimen/detail_genres_left_margin"
-                        android:layout_marginRight="@dimen/detail_genres_right_margin"
-                        android:layout_marginEnd="@dimen/detail_genres_right_margin"/>
+                        android:orientation="horizontal"
+                        android:layout_marginLeft="@dimen/detail_runtime_left_margin"
+                        android:layout_marginStart="@dimen/detail_runtime_left_margin">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/ic_runtime"
+                            android:adjustViewBounds="true"
+                            android:maxWidth="@dimen/icon_dims"
+                            android:maxHeight="@dimen/icon_dims" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/runtime"
+                            android:textColor="@color/black"
+                            android:layout_marginLeft="@dimen/detail_genres_left_margin"
+                            android:layout_marginStart="@dimen/detail_genres_left_margin"
+                            android:layout_marginRight="@dimen/detail_genres_right_margin"
+                            android:layout_marginEnd="@dimen/detail_genres_right_margin"/>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 

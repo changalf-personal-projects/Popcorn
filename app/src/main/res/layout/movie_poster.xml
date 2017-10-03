@@ -48,8 +48,8 @@
                     android:id="@+id/rating_icon"
                     android:src="@mipmap/ic_rating"
                     android:adjustViewBounds="true"
-                    android:maxWidth="@dimen/rating_icon_dims"
-                    android:maxHeight="@dimen/rating_icon_dims"
+                    android:maxWidth="@dimen/icon_dims"
+                    android:maxHeight="@dimen/icon_dims"
                     android:layout_marginLeft="@dimen/cardview_rating_icon_left_margin"
                     android:layout_marginStart="@dimen/cardview_rating_icon_left_margin" />
 
