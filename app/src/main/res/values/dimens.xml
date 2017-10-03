@@ -16,6 +16,7 @@
     <dimen name="cardview_genre_bottom_margin">15dp</dimen>
     <dimen name="cardview_title_top_margin">10dp</dimen>
     <dimen name="cardview_rating_icon_left_margin">6dp</dimen>
+    <dimen name="detail_poster_margin">15dp</dimen>
 
     <!-- Elevations. -->
     <dimen name="cardview_elevation">5dp</dimen>

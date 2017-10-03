@@ -37,18 +37,26 @@ public class DetailFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_detail_main, container, false);
         ButterKnife.bind(this, rootView);
 
-        fetchParcelable();
+        retrieveParcelable();
 
         return rootView;
     }
 
-    private void fetchParcelable() {
+    private void retrieveParcelable() {
         Intent detailIntent = getActivity().getIntent();
         Movie movie = detailIntent.getParcelableExtra(Utilities.PARCELABLE_MOVIE_KEY);
 
-        Log.v(LOG_TAG, "Backdrop url: " + movie.getBackdropPath());
+        setBackdrop(movie);
+        setPoster(movie);
+    }
 
+    private void setBackdrop(Movie movie) {
         GlideApp.with(getContext()).load(movie.getBackdropPath()).into(mBackdrop);
+    }
+
+    private void setPoster(Movie movie) {
+        Log.v(LOG_TAG, "Detail poster url: " + movie.getDetailPosterPath());
+        GlideApp.with(getContext()).load(movie.getDetailPosterPath()).into(mPoster);
     }
 
 }

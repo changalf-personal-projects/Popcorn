@@ -20,6 +20,7 @@ public class Movie implements Parcelable {
     private String id;
     private String releaseDate;
     private String posterPath;
+    private String detailPosterPath;
     private String backdropPath;
 
     public Movie() {
@@ -35,6 +36,7 @@ public class Movie implements Parcelable {
         id = in.readString();
         releaseDate = in.readString();
         posterPath = in.readString();
+        detailPosterPath = in.readString();
         backdropPath = in.readString();
     }
 
@@ -114,6 +116,14 @@ public class Movie implements Parcelable {
         this.posterPath = posterPath;
     }
 
+    public String getDetailPosterPath() {
+        return detailPosterPath;
+    }
+
+    public void setDetailPosterPath(String detailPosterPath) {
+        this.detailPosterPath = detailPosterPath;
+    }
+
     public String getBackdropPath() {
         return backdropPath;
     }
@@ -132,6 +142,7 @@ public class Movie implements Parcelable {
         parcel.writeString(id);
         parcel.writeString(releaseDate);
         parcel.writeString(posterPath);
+        parcel.writeString(detailPosterPath);
         parcel.writeString(backdropPath);
     }
 
