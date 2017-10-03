@@ -3,6 +3,7 @@ package com.example.android.popcorn.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +34,8 @@ public class DetailFragment extends Fragment {
     @BindView(R.id.movie_poster) ImageView mPoster;
     @BindView(R.id.title) TextView mTitle;
     @BindView(R.id.rating) TextView mRating;
+    @BindView(R.id.runtime) TextView mRuntime;
+    @BindView(R.id.release) TextView mRelease;
     @BindView(R.id.genres) TextView mGenres;
     @BindView(R.id.cast) TextView mCast;
 
@@ -55,6 +58,8 @@ public class DetailFragment extends Fragment {
         setPoster(movie);
         setTitle(movie);
         setRating(movie);
+        setRuntime(movie);
+        setRelease(movie);
         setGenres(movie);
     }
 
@@ -74,6 +79,16 @@ public class DetailFragment extends Fragment {
         double rating = roundToNearestTenth(movie);
         String ratingAsString = convertDoubleToString(rating);
         mRating.setText(getActivity().getResources().getString(R.string.rating_out_of_ten, ratingAsString));
+    }
+
+    private void setRuntime(Movie movie) {
+        Log.v(LOG_TAG, "Runtime: " + movie.getRuntime());
+        mRuntime.setText(movie.getRuntime());
+    }
+
+    private void setRelease(Movie movie) {
+        Log.v(LOG_TAG, "Release date: " + movie.getReleaseDate());
+        mRuntime.setText(movie.getReleaseDate());
     }
 
     private void setGenres(Movie movie) {

@@ -5,4 +5,6 @@ package com.example.android.popcorn.model;
  */
 
 public class Review {
+
+    // TODO: Use "append_to_response" in TMDB.
 }

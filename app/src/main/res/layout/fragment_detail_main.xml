@@ -71,6 +71,52 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="@string/runtime_label"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/runtime"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="@dimen/detail_genres_left_margin"
+                        android:layout_marginStart="@dimen/detail_genres_left_margin"
+                        android:layout_marginRight="@dimen/detail_genres_right_margin"
+                        android:layout_marginEnd="@dimen/detail_genres_right_margin"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/release_label"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/release"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="@dimen/detail_genres_left_margin"
+                        android:layout_marginStart="@dimen/detail_genres_left_margin"
+                        android:layout_marginRight="@dimen/detail_genres_right_margin"
+                        android:layout_marginEnd="@dimen/detail_genres_right_margin"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="@string/genre_label"
                         android:textColor="@color/black" />
 

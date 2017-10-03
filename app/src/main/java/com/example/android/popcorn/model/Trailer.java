@@ -5,4 +5,7 @@ package com.example.android.popcorn.model;
  */
 
 public class Trailer {
+
+    // TODO: Use "append_to_response" in TMDB.
+
 }
