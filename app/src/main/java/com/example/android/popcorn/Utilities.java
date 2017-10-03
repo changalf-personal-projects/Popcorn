@@ -11,6 +11,7 @@ import java.util.List;
 public class Utilities {
     private static final String LOG_TAG = Utilities.class.getSimpleName();
     private static final int MAX_GENRES_ALLOWED = 2;
+    public static final String PARCELABLE_MOVIE_KEY = "movie";
 
     public static boolean hasPosterPath(Movie movie) {
         return movie.getPosterPath() != null;
