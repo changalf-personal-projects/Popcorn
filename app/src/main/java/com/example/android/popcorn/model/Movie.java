@@ -22,6 +22,10 @@ public class Movie implements Parcelable {
     private String posterPath;
     private String backdropPath;
 
+    public Movie() {
+
+    }
+
     protected Movie(Parcel in) {
         genres = in.createStringArrayList();
         title = in.readString();

@@ -43,6 +43,7 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
 
     private final String LOG_TAG = PopularFragment.class.getSimpleName();
     private final int LAYOUT_COL_SPAN = 2;
+    private final String PARCELABLE_MOVIE_KEY = "movie";
 
     private FragmentComponent mFragmentComponent;
     private PosterRecyclerViewAdapter mRecyclerAdapter;
@@ -144,6 +145,7 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
     @Override
     public void onMovieClick(Movie movie) {
         Intent detailIntent = new Intent(getContext(), DetailActivity.class);
+        detailIntent.putExtra(PARCELABLE_MOVIE_KEY, movie);
         startActivity(detailIntent);
     }
 }
