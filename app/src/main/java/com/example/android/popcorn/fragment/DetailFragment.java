@@ -34,6 +34,7 @@ public class DetailFragment extends Fragment {
     @BindView(R.id.title) TextView mTitle;
     @BindView(R.id.rating) TextView mRating;
     @BindView(R.id.genres) TextView mGenres;
+    @BindView(R.id.cast) TextView mCast;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
