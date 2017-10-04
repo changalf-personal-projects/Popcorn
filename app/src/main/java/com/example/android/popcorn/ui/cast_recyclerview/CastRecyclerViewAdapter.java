@@ -43,12 +43,22 @@ public class CastRecyclerViewAdapter extends RecyclerView.Adapter<CastRecyclerVi
 
     @Override
     public void onBindViewHolder(CastViewHolder holder, int position) {
-
+        Cast cast = mCast.get(position);
+        onBindProfilePicture(cast);
+        onBindMemberName(cast);
     }
 
     @Override
     public int getItemCount() {
         return 0;
+    }
+
+    private void onBindProfilePicture(Cast cast) {
+
+    }
+
+    private void onBindMemberName(Cast cast) {
+
     }
 
     public class CastViewHolder extends RecyclerView.ViewHolder {
