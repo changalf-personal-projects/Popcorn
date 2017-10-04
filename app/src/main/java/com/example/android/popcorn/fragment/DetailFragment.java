@@ -3,7 +3,6 @@ package com.example.android.popcorn.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.example.android.popcorn.Utilities.convertDoubleToString;
+import static com.example.android.popcorn.Utilities.formatDate;
 import static com.example.android.popcorn.Utilities.formatGenres;
 import static com.example.android.popcorn.Utilities.roundToNearestTenth;
 
@@ -82,12 +82,10 @@ public class DetailFragment extends Fragment {
     }
 
     private void setRuntime(Movie movie) {
-        Log.v(LOG_TAG, "Runtime: " + movie.getRuntime());
-        mRuntime.setText(movie.getRuntime());
+        mRuntime.setText(getActivity().getResources().getString(R.string.runtime_plus_minutes, movie.getRuntime()));
     }
 
     private void setRelease(Movie movie) {
-        Log.v(LOG_TAG, "Release date: " + movie.getReleaseDate());
         mRelease.setText(movie.getReleaseDate());
     }
 

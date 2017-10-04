@@ -2,6 +2,9 @@ package com.example.android.popcorn;
 
 import com.example.android.popcorn.model.Movie;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -39,5 +42,18 @@ public class Utilities {
         final int SECOND_LAST_CHAR = genres.length() - 1;
 
         return genres.substring(SECOND_CHAR, SECOND_LAST_CHAR);
+    }
+
+    // TODO: Complete formatDate().
+    // TODO: Use Calendar instance instead.
+    public static String formatDate(String releaseDate) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMMMM dd, yyyy");
+        try {
+            Date date = simpleDateFormat.parse(releaseDate);
+            return date.toString();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 }
