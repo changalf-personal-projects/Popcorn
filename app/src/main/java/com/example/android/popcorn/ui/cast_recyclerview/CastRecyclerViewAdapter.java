@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.model.Cast;
+import com.example.android.popcorn.ui.GlideApp;
 
 import java.util.List;
 
@@ -54,11 +55,13 @@ public class CastRecyclerViewAdapter extends RecyclerView.Adapter<CastRecyclerVi
     }
 
     private void onBindProfilePicture(Cast cast, CastViewHolder holder) {
-
+        if (cast.getProfilePath() != null) {
+            GlideApp.with(mContext).load(cast.getProfilePath()).into(holder.mProfilePicture);
+        }
     }
 
     private void onBindMemberName(Cast cast, CastViewHolder holder) {
-
+        holder.mMemberName.setText(cast.getName());
     }
 
     public class CastViewHolder extends RecyclerView.ViewHolder {

@@ -35,6 +35,7 @@ import butterknife.ButterKnife;
 import static com.example.android.popcorn.Utilities.convertDoubleToString;
 import static com.example.android.popcorn.Utilities.formatGenres;
 import static com.example.android.popcorn.Utilities.roundToNearestTenth;
+import static com.example.android.popcorn.networking.UrlCreator.createImageUrl;
 import static com.example.android.popcorn.networking.UrlCreator.createUrlWithAppendedResponse;
 
 /**
@@ -131,7 +132,8 @@ public class DetailFragment extends Fragment {
         for (LoganCastsTemplate.Credits.Cast result: castLogan.getCredits().getCast()) {
             Cast cast = new Cast();
             cast.setName(result.getName());
-            cast.setProfilePath(result.getProfilePath());
+            cast.setProfilePath(createImageUrl(result.getProfilePath(), UriTerms.CAST_PROFILE_PICTURE_SIZE));
+            Log.v(LOG_TAG, "Profile picture path: " + cast.getProfilePath());
             casts.add(cast);
         }
 

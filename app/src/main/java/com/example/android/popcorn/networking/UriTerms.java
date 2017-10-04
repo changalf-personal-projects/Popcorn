@@ -30,6 +30,9 @@ public class UriTerms {
     public static final String TMDB_LANGUAGE = "language";
     public static final String TMDB_PAGE = "page";
 
+    // Cast member stuff.
+    public static final String CAST_PROFILE_PICTURE_SIZE = "w92";
+
     // Main url to get movie id (plus queries).
     public static final String MOVIE_BASE_URL = "https://api.themoviedb.org/3/movie/";
 
