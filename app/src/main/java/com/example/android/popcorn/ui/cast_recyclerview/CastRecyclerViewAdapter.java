@@ -50,7 +50,7 @@ public class CastRecyclerViewAdapter extends RecyclerView.Adapter<CastRecyclerVi
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mCast.size();
     }
 
     private void onBindProfilePicture(Cast cast) {
