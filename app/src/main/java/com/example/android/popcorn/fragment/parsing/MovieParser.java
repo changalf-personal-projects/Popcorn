@@ -24,6 +24,11 @@ public class MovieParser {
         return (LoganDetailsTemplate) parseData(response, LoganDetailsTemplate.class);
     }
 
+    // Using movie id and appending credits as response, get the cast details.
+    public static LoganCastTemplate parseJsonCastData(String response) {
+        return (LoganCastTemplate) parseData(response, LoganCastTemplate.class);
+    }
+
     private static MovieLogan parseData(String response, Class template) {
         MovieLogan movieLogan = null;
         try {
