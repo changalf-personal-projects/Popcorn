@@ -130,7 +130,8 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/detail_release_and_genres_margin">
 
                     <TextView
                         android:layout_width="wrap_content"

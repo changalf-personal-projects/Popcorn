@@ -9,7 +9,7 @@
     <dimen name="detail_title_size">20sp</dimen>
     <dimen name="cardview_title_size">22sp</dimen>
 
-    <!--Margins. -->
+    <!-- Random margins. -->
     <dimen name="tabs_and_posters_divider">105dp</dimen>
     <dimen name="linearlayout_left_margin">4dp</dimen>
     <dimen name="cardview_margin">14dp</dimen>
@@ -17,12 +17,15 @@
     <dimen name="cardview_genre_bottom_margin">15dp</dimen>
     <dimen name="cardview_title_top_margin">10dp</dimen>
     <dimen name="cardview_rating_icon_left_margin">6dp</dimen>
+
+    <!-- Detail view margins. -->
     <dimen name="detail_poster_margin">15dp</dimen>
     <dimen name="detail_title_top_margin">15dp</dimen>
     <dimen name="detail_text_left_margin">3dp</dimen>
     <dimen name="detail_genres_right_margin">15dp</dimen>
     <dimen name="detail_rating_top_margin">15dp</dimen>
     <dimen name="detail_runtime_left_margin">35dp</dimen>
+    <dimen name="detail_release_and_genres_margin">15dp</dimen>
     <!-- Negative margin to offset detail poster margin. -->
     <dimen name="detail_rating_left_margin">-4dp</dimen>
     <dimen name="detail_release_left_margin">-3dp</dimen>
