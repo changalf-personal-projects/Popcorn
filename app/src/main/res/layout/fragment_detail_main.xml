@@ -179,15 +179,11 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/cast"
-                    android:textColor="@color/black"
-                    android:layout_marginLeft="@dimen/detail_text_left_margin"
-                    android:layout_marginStart="@dimen/detail_text_left_margin"
-                    android:layout_marginRight="@dimen/detail_genres_right_margin"
-                    android:layout_marginEnd="@dimen/detail_genres_right_margin" />
+                    android:id="@+id/recycler_view"
+                    android:scrollbars="vertical" />
 
             </LinearLayout>
 

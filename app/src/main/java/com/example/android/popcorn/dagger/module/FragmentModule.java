@@ -2,7 +2,7 @@ package com.example.android.popcorn.dagger.module;
 
 import com.example.android.popcorn.fragment.PopularFragment;
 import com.example.android.popcorn.model.Movie;
-import com.example.android.popcorn.ui.PosterRecyclerViewAdapter;
+import com.example.android.popcorn.ui.poster_recyclerview.PosterRecyclerViewAdapter;
 
 import java.util.List;
 

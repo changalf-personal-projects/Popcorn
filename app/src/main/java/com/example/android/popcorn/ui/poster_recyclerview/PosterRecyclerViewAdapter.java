@@ -1,4 +1,4 @@
-package com.example.android.popcorn.ui;
+package com.example.android.popcorn.ui.poster_recyclerview;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.model.Movie;
+import com.example.android.popcorn.ui.GlideApp;
 
 import java.util.List;
 

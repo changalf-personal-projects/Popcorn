@@ -25,8 +25,8 @@ import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.networking.RequestQueueSingleton;
 import com.example.android.popcorn.networking.UriTerms;
 import com.example.android.popcorn.networking.UrlCreator;
-import com.example.android.popcorn.ui.OnMovieClickListener;
-import com.example.android.popcorn.ui.PosterRecyclerViewAdapter;
+import com.example.android.popcorn.ui.poster_recyclerview.OnMovieClickListener;
+import com.example.android.popcorn.ui.poster_recyclerview.PosterRecyclerViewAdapter;
 
 import java.util.List;
 
