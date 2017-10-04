@@ -19,6 +19,7 @@ public class UriTerms {
     public static final String LANGUAGE = "en-US";
     public static final String PAGE = "1";
     public static final String CREDITS = "credits";
+    public static final String VIDEOS = "videos";
 
     // Poster url stuff.
     public static final String POSTER_BASE_URL = "http://image.tmdb.org/t/p/";

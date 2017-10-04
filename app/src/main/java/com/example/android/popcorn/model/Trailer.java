@@ -6,6 +6,14 @@ package com.example.android.popcorn.model;
 
 public class Trailer {
 
-    // TODO: Use "append_to_response" in TMDB.
+    private String key;
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
 
 }
