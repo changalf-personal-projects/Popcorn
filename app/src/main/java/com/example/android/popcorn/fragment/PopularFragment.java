@@ -16,7 +16,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.android.popcorn.DetailActivity;
 import com.example.android.popcorn.R;
-import com.example.android.popcorn.UriTerms;
 import com.example.android.popcorn.Utilities;
 import com.example.android.popcorn.dagger.component.FragmentComponent;
 import com.example.android.popcorn.fragment.parsing.LoganDetailsTemplate;
@@ -24,16 +23,17 @@ import com.example.android.popcorn.fragment.parsing.LoganIdTemplate;
 import com.example.android.popcorn.fragment.parsing.MovieParser;
 import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.networking.RequestQueueSingleton;
+import com.example.android.popcorn.networking.UriTerms;
 import com.example.android.popcorn.networking.UrlCreator;
 import com.example.android.popcorn.ui.OnMovieClickListener;
 import com.example.android.popcorn.ui.PosterRecyclerViewAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.android.popcorn.model.MoviesSingleton.getSingletonMovies;
 import static com.example.android.popcorn.networking.UrlCreator.createUrl;
 
 /**
@@ -57,7 +57,7 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         ButterKnife.bind(this, rootView);
 
-        mListOfMovies = new ArrayList<>();
+        mListOfMovies = getSingletonMovies();
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), LAYOUT_COL_SPAN);
         mRecyclerView.setLayoutManager(layoutManager);
 

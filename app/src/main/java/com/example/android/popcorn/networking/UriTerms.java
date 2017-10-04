@@ -1,4 +1,4 @@
-package com.example.android.popcorn;
+package com.example.android.popcorn.networking;
 
 /**
  * Created by alfredchang on 2017-09-20.

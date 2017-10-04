@@ -3,7 +3,6 @@ package com.example.android.popcorn.networking;
 import android.net.Uri;
 
 import com.example.android.popcorn.BuildConfig;
-import com.example.android.popcorn.UriTerms;
 
 /**
  * Created by alfredchang on 2017-09-26.
@@ -40,6 +39,11 @@ public class UrlCreator {
 
     // Request for movie reviews.
     public static String createReviewUrl() {
+        return "";
+    }
+
+    // To be able to watch trailers.
+    public static String createYoutubeUrl() {
         return "";
     }
 }

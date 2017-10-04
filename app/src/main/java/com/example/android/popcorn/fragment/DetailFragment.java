@@ -15,7 +15,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.android.popcorn.R;
-import com.example.android.popcorn.UriTerms;
+import com.example.android.popcorn.networking.UriTerms;
 import com.example.android.popcorn.Utilities;
 import com.example.android.popcorn.fragment.parsing.LoganCastsTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganTrailersTemplate;
@@ -61,7 +61,7 @@ public class DetailFragment extends Fragment {
         ButterKnife.bind(this, rootView);
 
         Movie movie = getParcelableDetails();
-        retrieveParcelable(movie);
+        setParcelableDetailsIntoViews(movie);
         fetchJsonCast(movie);
         fetchJsonTrailers(movie);
 
@@ -74,7 +74,7 @@ public class DetailFragment extends Fragment {
         return movie;
     }
 
-    private void retrieveParcelable(Movie movie) {
+    private void setParcelableDetailsIntoViews(Movie movie) {
         setBackdrop(movie);
         setPoster(movie);
         setTitle(movie);

@@ -15,6 +15,7 @@ import com.example.android.popcorn.fragment.CurrentFragment;
 import com.example.android.popcorn.fragment.FavouriteFragment;
 import com.example.android.popcorn.fragment.PopularFragment;
 import com.example.android.popcorn.fragment.TopFragment;
+import com.example.android.popcorn.networking.UriTerms;
 import com.example.android.popcorn.ui.MovieCollectionPagerAdapter;
 
 import butterknife.BindView;
