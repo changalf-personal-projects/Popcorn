@@ -17,6 +17,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.UriTerms;
 import com.example.android.popcorn.Utilities;
+import com.example.android.popcorn.fragment.parsing.LoganCastTemplate;
 import com.example.android.popcorn.fragment.parsing.MovieParser;
 import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.ui.GlideApp;
