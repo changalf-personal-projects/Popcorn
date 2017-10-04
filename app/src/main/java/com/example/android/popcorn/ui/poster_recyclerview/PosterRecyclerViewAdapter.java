@@ -76,21 +76,21 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
     }
 
     private void onBindTitle(Movie movie, PosterViewHolder holder) {
-        holder.title.setText(movie.getTitle());
+        holder.mTitle.setText(movie.getTitle());
     }
 
     private void onBindRating(Movie movie, PosterViewHolder holder) {
         double rating = roundToNearestTenth(movie);
         String ratingAsString = convertDoubleToString(rating);
-        holder.rating.setText(mContext.getResources().getString(R.string.rating_out_of_ten, ratingAsString));
+        holder.mRating.setText(mContext.getResources().getString(R.string.rating_out_of_ten, ratingAsString));
     }
 
     private void onBindGenres(Movie movie, PosterViewHolder holder) {
         List<String> genres = movie.getGenres();
         if (hasAtLeastOneGenre(genres)) {
-            holder.genres.setText(genres.get(FIRST_GENRE));
+            holder.mGenres.setText(genres.get(FIRST_GENRE));
         } else {
-            holder.genres.setText(NO_GENRE);
+            holder.mGenres.setText(NO_GENRE);
         }
     }
 
@@ -102,9 +102,9 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
     public class PosterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         @BindView(R.id.movie_poster) ImageView mPoster;
-        @BindView(R.id.title) TextView title;
-        @BindView(R.id.rating) TextView rating;
-        @BindView(R.id.genres) TextView genres;
+        @BindView(R.id.title) TextView mTitle;
+        @BindView(R.id.rating) TextView mRating;
+        @BindView(R.id.genres) TextView mGenres;
 
         public PosterViewHolder(View itemView) {
             super(itemView);
