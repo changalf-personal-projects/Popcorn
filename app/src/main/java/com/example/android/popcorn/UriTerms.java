@@ -18,6 +18,7 @@ public class UriTerms {
     public static final String CURRENT = "current";
     public static final String LANGUAGE = "en-US";
     public static final String PAGE = "1";
+    public static final String CREDITS = "credits";
 
     // Poster url stuff.
     public static final String POSTER_BASE_URL = "http://image.tmdb.org/t/p/";
@@ -33,5 +34,5 @@ public class UriTerms {
 
     // Normally, looking for the movie details means we have to first get the movie id and then use
     // that id to get the details.  But with "append_to_response", this can be done in one request.
-    public static final String APPEND_REQUEST = "append_to_response";
+    public static final String APPEND_TO_RESPONSE = "append_to_response";
 }

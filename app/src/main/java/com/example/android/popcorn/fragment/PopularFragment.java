@@ -80,7 +80,7 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e(LOG_TAG, "Respone error (fetchJsonId): " + error);
+                Log.e(LOG_TAG, "Response error (fetchJsonId): " + error);
             }
         });
 

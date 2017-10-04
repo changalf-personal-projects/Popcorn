@@ -25,6 +25,14 @@ public class UrlCreator {
         return UriTerms.POSTER_BASE_URL.concat(size).concat(path);
     }
 
+    public static String createUrlWithAppendedResponse(String id, String parameterToAppend) {
+        return Uri.parse(UriTerms.MOVIE_BASE_URL).buildUpon()
+                .appendPath(id)
+                .appendQueryParameter(UriTerms.TMDB_API_KEY, BuildConfig.MOVIE_DP_API_KEY)
+                .appendQueryParameter(UriTerms.APPEND_TO_RESPONSE, parameterToAppend)
+                .build().toString();
+    }
+
     // Request for movie trailers.
     public static String createTrailerUrl() {
         return "";

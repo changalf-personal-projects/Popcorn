@@ -3,14 +3,21 @@ package com.example.android.popcorn.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.example.android.popcorn.R;
+import com.example.android.popcorn.UriTerms;
 import com.example.android.popcorn.Utilities;
+import com.example.android.popcorn.fragment.parsing.MovieParser;
 import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.ui.GlideApp;
 
@@ -18,9 +25,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.example.android.popcorn.Utilities.convertDoubleToString;
-import static com.example.android.popcorn.Utilities.formatDate;
 import static com.example.android.popcorn.Utilities.formatGenres;
 import static com.example.android.popcorn.Utilities.roundToNearestTenth;
+import static com.example.android.popcorn.networking.UrlCreator.createUrlWithAppendedResponse;
 
 /**
  * Created by alfredchang on 2017-09-27.
@@ -61,6 +68,24 @@ public class DetailFragment extends Fragment {
         setRuntime(movie);
         setRelease(movie);
         setGenres(movie);
+    }
+
+    private void fetchJsonCast(Movie movie) {
+        String url = createUrlWithAppendedResponse(movie.getId(), UriTerms.CREDITS);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        LoganCastTemplate castLogan = MovieParser.parseJsonCastData(response);
+                        saveMovieCast(castLogan);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(LOG_TAG, "Response error (fetchJsonCast): " + error);
+            }
+        });
     }
 
     private void setBackdrop(Movie movie) {
