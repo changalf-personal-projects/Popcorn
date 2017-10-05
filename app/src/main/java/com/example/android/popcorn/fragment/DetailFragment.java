@@ -15,19 +15,16 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.android.popcorn.R;
-import com.example.android.popcorn.networking.UriTerms;
 import com.example.android.popcorn.Utilities;
 import com.example.android.popcorn.fragment.parsing.LoganCastsTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganTrailersTemplate;
 import com.example.android.popcorn.fragment.parsing.MovieParser;
+import com.example.android.popcorn.model.Cast;
 import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.model.Trailer;
-import com.example.android.popcorn.model.Cast;
 import com.example.android.popcorn.networking.RequestQueueSingleton;
+import com.example.android.popcorn.networking.UriTerms;
 import com.example.android.popcorn.ui.GlideApp;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -125,31 +122,23 @@ public class DetailFragment extends Fragment {
     }
 
     private void saveMovieCast(Movie movie, LoganCastsTemplate castLogan) {
-        List<Cast> casts = new ArrayList<>();
-
-        Log.v(LOG_TAG, "Profile path size: " + castLogan.getCredits().getCast().size());
         for (LoganCastsTemplate.Credits.Cast result: castLogan.getCredits().getCast()) {
+            String profilePath = result.getProfilePath();
             Cast cast = new Cast();
             cast.setName(result.getName());
-            cast.setProfilePath(createImageUrl(result.getProfilePath(), UriTerms.CAST_PROFILE_PICTURE_SIZE));
-            Log.v(LOG_TAG, "Saved profile path size: " + movie.getCast().size());
-            Log.v(LOG_TAG, "Profile picture path: " + cast.getProfilePath());
-            casts.add(cast);
+            if (profilePath != null) {
+                cast.setProfilePath(createImageUrl(profilePath, UriTerms.CAST_PROFILE_PICTURE_SIZE));
+            }
+            movie.setCast(cast);
         }
-
-        movie.setCast(casts);
     }
 
     private void saveMovieTrailers(Movie movie, LoganTrailersTemplate trailerLogan) {
-        List<Trailer> trailers = new ArrayList<>();
-
         for (LoganTrailersTemplate.Videos.Results result: trailerLogan.getVideos().getResults()) {
             Trailer trailer = new Trailer();
             trailer.setKey(result.getKey());
-            trailers.add(trailer);
+            movie.setTrailers(trailer);
         }
-
-        movie.setTrailers(trailers);
     }
 
     private void setBackdrop(Movie movie) {
