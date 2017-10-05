@@ -53,7 +53,6 @@ public class DetailFragment extends Fragment {
     @BindView(R.id.runtime) TextView mRuntime;
     @BindView(R.id.release) TextView mRelease;
     @BindView(R.id.genres) TextView mGenres;
-    @BindView(R.id.cast) TextView mCast;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -92,7 +91,6 @@ public class DetailFragment extends Fragment {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.v(LOG_TAG, "Response: " + response);
                         LoganCastsTemplate castLogan = MovieParser.parseJsonCastData(response);
                         saveMovieCast(movie, castLogan);
                     }
@@ -129,15 +127,17 @@ public class DetailFragment extends Fragment {
     private void saveMovieCast(Movie movie, LoganCastsTemplate castLogan) {
         List<Cast> casts = new ArrayList<>();
 
+        Log.v(LOG_TAG, "Profile path size: " + castLogan.getCredits().getCast().size());
         for (LoganCastsTemplate.Credits.Cast result: castLogan.getCredits().getCast()) {
             Cast cast = new Cast();
             cast.setName(result.getName());
             cast.setProfilePath(createImageUrl(result.getProfilePath(), UriTerms.CAST_PROFILE_PICTURE_SIZE));
+            Log.v(LOG_TAG, "Saved profile path size: " + movie.getCast().size());
             Log.v(LOG_TAG, "Profile picture path: " + cast.getProfilePath());
             casts.add(cast);
         }
 
-        movie.setCasts(casts);
+        movie.setCast(casts);
     }
 
     private void saveMovieTrailers(Movie movie, LoganTrailersTemplate trailerLogan) {
