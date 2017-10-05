@@ -163,7 +163,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -177,7 +178,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/synopsis" />
+                android:id="@+id/synopsis"
+                android:layout_marginLeft="@dimen/detail_synopsis__left_and_right_margin"
+                android:layout_marginStart="@dimen/detail_synopsis__left_and_right_margin"
+                android:layout_marginRight="@dimen/detail_synopsis__left_and_right_margin"
+                android:layout_marginEnd="@dimen/detail_synopsis__left_and_right_margin"
+                android:layout_marginBottom="@dimen/detail_synopsis_top_and_bottom_margin" />
 
         </LinearLayout>
 

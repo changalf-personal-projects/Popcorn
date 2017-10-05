@@ -3,8 +3,8 @@
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="@dimen/detail_cast_image_top_margin"
-    android:layout_marginLeft="@dimen/detail_cast_image_and_name_margin"
-    android:layout_marginStart="@dimen/detail_cast_image_and_name_margin">
+    android:layout_marginLeft="@dimen/detail_cast_image_left_margin"
+    android:layout_marginStart="@dimen/detail_cast_image_left_margin">
 
     <ImageView
         android:layout_width="wrap_content"

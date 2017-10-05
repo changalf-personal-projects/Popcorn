@@ -31,10 +31,12 @@
     <dimen name="detail_runtime_left_margin">35dp</dimen>
     <dimen name="detail_release_and_genres_margin">15dp</dimen>
     <dimen name="detail_label_margin">12dp</dimen>
-    <dimen name="detail_cast_image_and_name_margin">22dp</dimen>
+    <dimen name="detail_cast_image_left_margin">22dp</dimen>
     <dimen name="detail_cast_image_top_margin">10dp</dimen>
     <dimen name="detail_cast_name_left_margin">25dp</dimen>
     <dimen name="detail_cast_name_top_margin">10dp</dimen>
+    <dimen name="detail_synopsis__left_and_right_margin">22dp</dimen>
+    <dimen name="detail_synopsis_top_and_bottom_margin">15dp</dimen>
     <!-- Negative margin to offset detail poster margin. -->
     <dimen name="detail_rating_left_margin">-4dp</dimen>
     <dimen name="detail_release_left_margin">-3dp</dimen>
