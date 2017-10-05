@@ -142,6 +142,7 @@ public class DetailFragment extends Fragment {
             }
             movie.setCast(cast);
         }
+        attachAdapter(movie);
     }
 
     private void saveMovieTrailers(Movie movie, LoganTrailersTemplate trailerLogan) {
@@ -182,8 +183,9 @@ public class DetailFragment extends Fragment {
         mGenres.setText(formatGenres(movie.getGenres().toString()));
     }
 
-    private void setCast(Movie movie) {
-
+    private void attachAdapter(Movie movie) {
+        mRecyclerAdapter = new CastRecyclerViewAdapter(getActivity(), movie.getCast());
+        mRecyclerView.setAdapter(mRecyclerAdapter);
     }
 
 }
