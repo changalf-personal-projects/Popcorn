@@ -3,11 +3,14 @@ package com.example.android.popcorn.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -25,6 +28,7 @@ import com.example.android.popcorn.model.Trailer;
 import com.example.android.popcorn.networking.RequestQueueSingleton;
 import com.example.android.popcorn.networking.UriTerms;
 import com.example.android.popcorn.ui.GlideApp;
+import com.example.android.popcorn.ui.cast_recyclerview.CastRecyclerViewAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -43,6 +47,8 @@ public class DetailFragment extends Fragment {
 
     private final String LOG_TAG = DetailFragment.class.getSimpleName();
 
+    private CastRecyclerViewAdapter mRecyclerAdapter;
+
     @BindView(R.id.backdrop_poster) ImageView mBackdrop;
     @BindView(R.id.movie_poster) ImageView mPoster;
     @BindView(R.id.title) TextView mTitle;
@@ -50,12 +56,17 @@ public class DetailFragment extends Fragment {
     @BindView(R.id.runtime) TextView mRuntime;
     @BindView(R.id.release) TextView mRelease;
     @BindView(R.id.genres) TextView mGenres;
+    @BindView(R.id.recycler_view) RecyclerView mRecyclerView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View rootView = inflater.inflate(R.layout.fragment_detail_main, container, false);
         ButterKnife.bind(this, rootView);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),
+                LinearLayout.VERTICAL, false);
+        mRecyclerView.setLayoutManager(layoutManager);
 
         Movie movie = getParcelableDetails();
         setParcelableDetailsIntoViews(movie);
