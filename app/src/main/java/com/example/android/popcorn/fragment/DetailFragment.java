@@ -2,6 +2,7 @@ package com.example.android.popcorn.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.LinearSnapHelper;
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -19,6 +21,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.android.popcorn.CastDetailsActivity;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.Utilities;
 import com.example.android.popcorn.fragment.parsing.LoganCastTemplate;
@@ -31,6 +34,8 @@ import com.example.android.popcorn.networking.RequestQueueSingleton;
 import com.example.android.popcorn.networking.UriTerms;
 import com.example.android.popcorn.ui.GlideApp;
 import com.example.android.popcorn.ui.cast_recyclerview.CastRecyclerViewAdapter;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -60,6 +65,7 @@ public class DetailFragment extends Fragment {
     @BindView(R.id.genres) TextView mGenres;
     @BindView(R.id.synopsis) TextView mSynopsis;
     @BindView(R.id.recycler_view) RecyclerView mRecyclerView;
+    @BindView(R.id.cast_button) Button mCastButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -75,8 +81,25 @@ public class DetailFragment extends Fragment {
         setParcelableDetailsIntoViews(movie);
         fetchJsonCast(movie);
         fetchJsonTrailers(movie);
+        onClickButtons(movie);
 
         return rootView;
+    }
+
+    private void onClickButtons(Movie movie) {
+        onClickCastButton(movie);
+    }
+
+    private void onClickCastButton(final Movie movie) {
+        mCastButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent castIntent = new Intent(getActivity(), CastDetailsActivity.class);
+                castIntent.putParcelableArrayListExtra(Utilities.PARCELABLE_CAST_KEY,
+                        (ArrayList<? extends Parcelable>) movie.getCast());
+                startActivity(castIntent);
+            }
+        });
     }
 
     private Movie getParcelableDetails() {

@@ -201,6 +201,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/cast_button"
                 android:paddingLeft="@dimen/cast_button_left_right_padding"
                 android:paddingStart="@dimen/cast_button_left_right_padding"
                 android:paddingRight="@dimen/cast_button_left_right_padding"

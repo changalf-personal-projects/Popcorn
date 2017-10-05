@@ -14,6 +14,7 @@ import java.util.List;
 public class Utilities {
 
     public static final String PARCELABLE_MOVIE_KEY = "movie";
+    public static final String PARCELABLE_CAST_KEY = "cast";
     private static final String LOG_TAG = Utilities.class.getSimpleName();
 
     public static boolean hasPosterPath(Movie movie) {
