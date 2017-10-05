@@ -34,7 +34,7 @@ public class CastRecyclerViewAdapter extends RecyclerView.Adapter<CastRecyclerVi
     @Override
     public CastViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         mContext = parent.getContext();
-        int castLayoutId = R.layout.movie_cast;
+        int castLayoutId = R.layout.movie_trailers;
         LayoutInflater layoutInflater = LayoutInflater.from(mContext);
         View view = layoutInflater.inflate(castLayoutId, parent, false);
         CastViewHolder castViewHolder = new CastViewHolder(view);

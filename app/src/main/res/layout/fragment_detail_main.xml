@@ -150,10 +150,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/detail_synopsis_bottom_margin"
-                android:layout_marginEnd="@dimen/detail_synopsis__left_and_right_margin"
-                android:layout_marginLeft="@dimen/detail_synopsis__left_and_right_margin"
-                android:layout_marginRight="@dimen/detail_synopsis__left_and_right_margin"
-                android:layout_marginStart="@dimen/detail_synopsis__left_and_right_margin" />
+                android:layout_marginEnd="@dimen/detail_synopsis_left_and_right_margin"
+                android:layout_marginLeft="@dimen/detail_synopsis_left_and_right_margin"
+                android:layout_marginRight="@dimen/detail_synopsis_left_and_right_margin"
+                android:layout_marginStart="@dimen/detail_synopsis_left_and_right_margin" />
 
         </LinearLayout>
 
@@ -169,10 +169,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/detail_label_margin"
-                android:text="@string/cast_label"
+                android:text="@string/trailers_label"
                 android:textColor="@color/black"
                 android:textSize="@dimen/detail_label_size"
                 android:textStyle="bold" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/trailer_button_left_right_padding"
+                android:paddingStart="@dimen/trailer_button_left_right_padding"
+                android:paddingRight="@dimen/trailer_button_left_right_padding"
+                android:paddingEnd="@dimen/trailer_button_left_right_padding"
+                android:text="@string/view_trailers"
+                android:textColor="@color/white"
+                android:layout_gravity="center"
+                android:background="@color/trailers_button_color"
+                android:layout_marginBottom="@dimen/detail_trailer_button_bottom_margin" />
+
+            <include layout="@layout/detail_divider" />
 
             <FrameLayout
                 android:layout_width="wrap_content"

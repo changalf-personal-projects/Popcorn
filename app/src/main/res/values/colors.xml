@@ -3,6 +3,9 @@
     <color name="colorPrimary">#008000</color>
     <color name="colorPrimaryDark">#006600</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="trailers_button_color">#0066CC</color>
+    <color name="cast_button_color">#0059B3</color>
+    <color name="reviews_button_color">#004D99</color>
 
     <!-- Colors for various uses. -->
     <color name="white">#FFFFFF</color>
