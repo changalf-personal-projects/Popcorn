@@ -10,9 +10,9 @@ import java.util.List;
  */
 
 @JsonObject
-public class LoganCastsTemplate extends MovieLogan {
+public class LoganCastTemplate extends MovieLogan {
 
-    private final String LOG_TAG = LoganCastsTemplate.class.getSimpleName();
+    private final String LOG_TAG = LoganCastTemplate.class.getSimpleName();
 
     @JsonField
     private Credits credits;
@@ -48,6 +48,9 @@ public class LoganCastsTemplate extends MovieLogan {
             @JsonField(name = "profile_path")
             private String profilePath;
 
+            @JsonField
+            private String character;
+
             public String getName() {
                 return name;
             }
@@ -62,6 +65,14 @@ public class LoganCastsTemplate extends MovieLogan {
 
             public void setProfilePath(String profilePath) {
                 this.profilePath = profilePath;
+            }
+
+            public String getCharacter() {
+                return character;
+            }
+
+            public void setCharacter(String character) {
+                this.character = character;
             }
         }
     }

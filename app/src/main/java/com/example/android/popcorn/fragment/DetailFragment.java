@@ -19,7 +19,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.Utilities;
-import com.example.android.popcorn.fragment.parsing.LoganCastsTemplate;
+import com.example.android.popcorn.fragment.parsing.LoganCastTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganTrailersTemplate;
 import com.example.android.popcorn.fragment.parsing.MovieParser;
 import com.example.android.popcorn.model.Cast;
@@ -99,7 +99,7 @@ public class DetailFragment extends Fragment {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        LoganCastsTemplate castLogan = MovieParser.parseJsonCastData(response);
+                        LoganCastTemplate castLogan = MovieParser.parseJsonCastData(response);
                         saveMovieCast(movie, castLogan);
                     }
                 }, new Response.ErrorListener() {
@@ -132,8 +132,8 @@ public class DetailFragment extends Fragment {
         RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
     }
 
-    private void saveMovieCast(Movie movie, LoganCastsTemplate castLogan) {
-        for (LoganCastsTemplate.Credits.Cast result: castLogan.getCredits().getCast()) {
+    private void saveMovieCast(Movie movie, LoganCastTemplate castLogan) {
+        for (LoganCastTemplate.Credits.Cast result: castLogan.getCredits().getCast()) {
             String profilePath = result.getProfilePath();
             Cast cast = new Cast();
             cast.setName(result.getName());
