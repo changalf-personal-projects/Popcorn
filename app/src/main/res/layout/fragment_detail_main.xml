@@ -42,30 +42,35 @@
                     android:textSize="@dimen/detail_title_size"
                     android:textColor="@color/black" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                <!--<LinearLayout-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="horizontal">-->
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
 
-                        <ImageView
+                        <!--<ImageView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:src="@mipmap/ic_rating"-->
+                            <!--android:adjustViewBounds="true"-->
+                            <!--android:maxWidth="@dimen/icon_dims"-->
+                            <!--android:maxHeight="@dimen/icon_dims"-->
+                            <!--android:layout_marginLeft="@dimen/detail_rating_left_margin"-->
+                            <!--android:layout_marginStart="@dimen/detail_rating_left_margin" />-->
+
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@mipmap/ic_rating"
-                            android:adjustViewBounds="true"
-                            android:maxWidth="@dimen/icon_dims"
-                            android:maxHeight="@dimen/icon_dims"
-                            android:layout_marginLeft="@dimen/detail_rating_left_margin"
-                            android:layout_marginStart="@dimen/detail_rating_left_margin" />
+                            android:text="@string/rating_label"
+                            android:textColor="@color/black" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/rating"
-                            android:textColor="@color/black"
                             android:layout_marginLeft="@dimen/detail_text_left_margin"
                             android:layout_marginStart="@dimen/detail_text_left_margin" />
 
@@ -74,56 +79,60 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginLeft="@dimen/detail_runtime_left_margin"
-                        android:layout_marginStart="@dimen/detail_runtime_left_margin">
+                        android:orientation="horizontal">
 
-                        <ImageView
+                        <!--<ImageView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:src="@mipmap/ic_runtime"-->
+                            <!--android:adjustViewBounds="true"-->
+                            <!--android:maxWidth="@dimen/icon_dims"-->
+                            <!--android:maxHeight="@dimen/icon_dims" />-->
+
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@mipmap/ic_runtime"
-                            android:adjustViewBounds="true"
-                            android:maxWidth="@dimen/icon_dims"
-                            android:maxHeight="@dimen/icon_dims" />
+                            android:text="@string/runtime_label"
+                            android:textColor="@color/black" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/runtime"
-                            android:textColor="@color/black"
                             android:layout_marginLeft="@dimen/detail_text_left_margin"
-                            android:layout_marginStart="@dimen/detail_text_left_margin"
-                            android:layout_marginRight="@dimen/detail_genres_right_margin"
-                            android:layout_marginEnd="@dimen/detail_genres_right_margin"/>
+                            android:layout_marginStart="@dimen/detail_text_left_margin" />
 
                     </LinearLayout>
 
-                </LinearLayout>
+                <!--</LinearLayout>-->
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <ImageView
+                    <!--<ImageView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:src="@mipmap/ic_release"-->
+                        <!--android:adjustViewBounds="true"-->
+                        <!--android:maxWidth="@dimen/icon_dims"-->
+                        <!--android:maxHeight="@dimen/icon_dims"-->
+                        <!--android:layout_marginLeft="@dimen/detail_release_left_margin"-->
+                        <!--android:layout_marginStart="@dimen/detail_release_left_margin" />-->
+
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@mipmap/ic_release"
-                        android:adjustViewBounds="true"
-                        android:maxWidth="@dimen/icon_dims"
-                        android:maxHeight="@dimen/icon_dims"
-                        android:layout_marginLeft="@dimen/detail_release_left_margin"
-                        android:layout_marginStart="@dimen/detail_release_left_margin" />
+                        android:text="@string/release_label"
+                        android:textColor="@color/black" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/release"
-                        android:textColor="@color/black"
                         android:layout_marginLeft="@dimen/detail_text_left_margin"
-                        android:layout_marginStart="@dimen/detail_text_left_margin"
-                        android:layout_marginRight="@dimen/detail_genres_right_margin"
-                        android:layout_marginEnd="@dimen/detail_genres_right_margin"/>
+                        android:layout_marginStart="@dimen/detail_text_left_margin" />
 
                 </LinearLayout>
 
@@ -143,7 +152,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/genres"
-                        android:textColor="@color/black"
                         android:layout_marginLeft="@dimen/detail_text_left_margin"
                         android:layout_marginStart="@dimen/detail_text_left_margin"
                         android:layout_marginRight="@dimen/detail_genres_right_margin"
@@ -180,7 +188,7 @@
                 android:layout_marginStart="@dimen/detail_synopsis__left_and_right_margin"
                 android:layout_marginRight="@dimen/detail_synopsis__left_and_right_margin"
                 android:layout_marginEnd="@dimen/detail_synopsis__left_and_right_margin"
-                android:layout_marginBottom="@dimen/detail_synopsis_top_and_bottom_margin" />
+                android:layout_marginBottom="@dimen/detail_synopsis_bottom_margin" />
 
         </LinearLayout>
 

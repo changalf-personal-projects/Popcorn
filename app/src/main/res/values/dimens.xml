@@ -25,7 +25,7 @@
     <!-- Detail view margins. -->
     <dimen name="detail_poster_margin">15dp</dimen>
     <dimen name="detail_title_top_margin">15dp</dimen>
-    <dimen name="detail_text_left_margin">3dp</dimen>
+    <dimen name="detail_text_left_margin">5dp</dimen>
     <dimen name="detail_genres_right_margin">15dp</dimen>
     <dimen name="detail_rating_top_margin">15dp</dimen>
     <dimen name="detail_runtime_left_margin">35dp</dimen>
@@ -36,7 +36,8 @@
     <dimen name="detail_cast_name_left_margin">25dp</dimen>
     <dimen name="detail_cast_name_top_margin">10dp</dimen>
     <dimen name="detail_synopsis__left_and_right_margin">22dp</dimen>
-    <dimen name="detail_synopsis_top_and_bottom_margin">15dp</dimen>
+    <dimen name="detail_synopsis_top_margin">15dp</dimen>
+    <dimen name="detail_synopsis_bottom_margin">20dp</dimen>
     <!-- Negative margin to offset detail poster margin. -->
     <dimen name="detail_rating_left_margin">-4dp</dimen>
     <dimen name="detail_release_left_margin">-3dp</dimen>
