@@ -3,23 +3,23 @@
 
     <item android:shape="rectangle">
         <shape android:shape="rectangle">
-            <corners android:radius="@dimen/trailer_button_corner_radius" />
-            <stroke android:width="@dimen/trailer_button_stroke_width" android:color="@color/trailers_button_color" />
+            <corners android:radius="@dimen/button_corner_radius" />
+            <stroke android:width="@dimen/button_stroke_width" android:color="@color/trailers_button_color" />
             <gradient android:startColor="@color/trailers_button_color" android:endColor="@color/trailers_button_color" />
         </shape>
     </item>
 
     <item android:state_focused="true">
         <shape android:shape="rectangle">
-            <corners android:radius="@dimen/trailer_button_corner_radius" />
-            <stroke android:width="@dimen/trailer_button_stroke_width" android:color="@color/greenTest" />
+            <corners android:radius="@dimen/button_corner_radius" />
+            <stroke android:width="@dimen/button_stroke_width" android:color="@color/greenTest" />
         </shape>
     </item>
 
     <item android:state_pressed="true">
         <shape android:shape="rectangle">
-            <corners android:radius="@dimen/trailer_button_corner_radius" />
-            <stroke android:width="@dimen/trailer_button_stroke_width" android:color="@color/blueTest" />
+            <corners android:radius="@dimen/button_corner_radius" />
+            <stroke android:width="@dimen/button_stroke_width" android:color="@color/blueTest" />
         </shape>
     </item>
 

@@ -51,7 +51,7 @@
 
     <!-- Trailer button design. -->
     <dimen name="trailer_button_left_right_padding">50dp</dimen>
-    <dimen name="trailer_button_corner_radius">10dp</dimen>
-    <dimen name="trailer_button_stroke_width">5dp</dimen>
+    <dimen name="button_corner_radius">5dp</dimen>
+    <dimen name="button_stroke_width">5dp</dimen>
 
 </resources>
