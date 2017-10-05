@@ -4,8 +4,8 @@
     <item android:shape="rectangle">
         <shape android:shape="rectangle">
             <corners android:radius="@dimen/trailer_button_corner_radius" />
-            <stroke android:width="@dimen/trailer_button_stroke_width" android:color="@color/lightGreenTest" />
-            <gradient android:angle="-90" />
+            <stroke android:width="@dimen/trailer_button_stroke_width" android:color="@color/trailers_button_color" />
+            <gradient android:startColor="@color/trailers_button_color" android:endColor="@color/trailers_button_color" />
         </shape>
     </item>
 
@@ -13,7 +13,6 @@
         <shape android:shape="rectangle">
             <corners android:radius="@dimen/trailer_button_corner_radius" />
             <stroke android:width="@dimen/trailer_button_stroke_width" android:color="@color/greenTest" />
-            <gradient android:angle="-90" />
         </shape>
     </item>
 
@@ -21,7 +20,6 @@
         <shape android:shape="rectangle">
             <corners android:radius="@dimen/trailer_button_corner_radius" />
             <stroke android:width="@dimen/trailer_button_stroke_width" android:color="@color/blueTest" />
-            <gradient android:angle="-90" />
         </shape>
     </item>
 
