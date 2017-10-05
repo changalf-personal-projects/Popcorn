@@ -5,17 +5,17 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:id="@+id/container"
         tools:context="com.example.android.popcorn.BuildConfig"
         tools:ignore="MergeRootFrame">
 
         <ImageView
+            android:id="@+id/backdrop_poster"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/backdrop_poster" />
+            android:layout_height="wrap_content" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -23,9 +23,9 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:id="@+id/movie_poster"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/movie_poster"
                 android:layout_margin="@dimen/detail_poster_margin" />
 
             <LinearLayout
@@ -34,103 +34,28 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/title"
                     android:layout_marginTop="@dimen/detail_title_top_margin"
-                    android:textStyle="bold"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/detail_title_size"
-                    android:textColor="@color/black" />
-
-                <!--<LinearLayout-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:orientation="horizontal">-->
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <!--<ImageView-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:src="@mipmap/ic_rating"-->
-                            <!--android:adjustViewBounds="true"-->
-                            <!--android:maxWidth="@dimen/icon_dims"-->
-                            <!--android:maxHeight="@dimen/icon_dims"-->
-                            <!--android:layout_marginLeft="@dimen/detail_rating_left_margin"-->
-                            <!--android:layout_marginStart="@dimen/detail_rating_left_margin" />-->
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/rating_label"
-                            android:textColor="@color/black" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/rating"
-                            android:layout_marginLeft="@dimen/detail_text_left_margin"
-                            android:layout_marginStart="@dimen/detail_text_left_margin" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <!--<ImageView-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:src="@mipmap/ic_runtime"-->
-                            <!--android:adjustViewBounds="true"-->
-                            <!--android:maxWidth="@dimen/icon_dims"-->
-                            <!--android:maxHeight="@dimen/icon_dims" />-->
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/runtime_label"
-                            android:textColor="@color/black" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/runtime"
-                            android:layout_marginLeft="@dimen/detail_text_left_margin"
-                            android:layout_marginStart="@dimen/detail_text_left_margin" />
-
-                    </LinearLayout>
-
-                <!--</LinearLayout>-->
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <!--<ImageView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:src="@mipmap/ic_release"-->
-                        <!--android:adjustViewBounds="true"-->
-                        <!--android:maxWidth="@dimen/icon_dims"-->
-                        <!--android:maxHeight="@dimen/icon_dims"-->
-                        <!--android:layout_marginLeft="@dimen/detail_release_left_margin"-->
-                        <!--android:layout_marginStart="@dimen/detail_release_left_margin" />-->
+                    android:layout_height="wrap_content">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/release_label"
+                        android:text="@string/rating_label"
                         android:textColor="@color/black" />
 
                     <TextView
+                        android:id="@+id/rating"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/release"
                         android:layout_marginLeft="@dimen/detail_text_left_margin"
                         android:layout_marginStart="@dimen/detail_text_left_margin" />
 
@@ -139,8 +64,48 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="@dimen/detail_release_and_genres_margin">
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/runtime_label"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/runtime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/detail_text_left_margin"
+                        android:layout_marginStart="@dimen/detail_text_left_margin" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/release_label"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/release"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/detail_text_left_margin"
+                        android:layout_marginStart="@dimen/detail_text_left_margin" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/detail_release_and_genres_margin"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -149,13 +114,13 @@
                         android:textColor="@color/black" />
 
                     <TextView
+                        android:id="@+id/genres"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/genres"
+                        android:layout_marginEnd="@dimen/detail_genres_right_margin"
                         android:layout_marginLeft="@dimen/detail_text_left_margin"
-                        android:layout_marginStart="@dimen/detail_text_left_margin"
                         android:layout_marginRight="@dimen/detail_genres_right_margin"
-                        android:layout_marginEnd="@dimen/detail_genres_right_margin"/>
+                        android:layout_marginStart="@dimen/detail_text_left_margin" />
 
                 </LinearLayout>
 
@@ -174,21 +139,21 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/detail_label_margin"
                 android:text="@string/synopsis_label"
                 android:textColor="@color/black"
-                android:textStyle="bold"
                 android:textSize="@dimen/detail_label_size"
-                android:layout_margin="@dimen/detail_label_margin" />
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/synopsis"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/synopsis"
-                android:layout_marginLeft="@dimen/detail_synopsis__left_and_right_margin"
-                android:layout_marginStart="@dimen/detail_synopsis__left_and_right_margin"
-                android:layout_marginRight="@dimen/detail_synopsis__left_and_right_margin"
+                android:layout_marginBottom="@dimen/detail_synopsis_bottom_margin"
                 android:layout_marginEnd="@dimen/detail_synopsis__left_and_right_margin"
-                android:layout_marginBottom="@dimen/detail_synopsis_bottom_margin" />
+                android:layout_marginLeft="@dimen/detail_synopsis__left_and_right_margin"
+                android:layout_marginRight="@dimen/detail_synopsis__left_and_right_margin"
+                android:layout_marginStart="@dimen/detail_synopsis__left_and_right_margin" />
 
         </LinearLayout>
 
@@ -203,22 +168,22 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/detail_label_margin"
                 android:text="@string/cast_label"
                 android:textColor="@color/black"
-                android:textStyle="bold"
                 android:textSize="@dimen/detail_label_size"
-                android:layout_margin="@dimen/detail_label_margin" />
+                android:textStyle="bold" />
 
             <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
                 <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/recycler_view"
-                    android:scrollbars="vertical"
-                    android:isScrollContainer="false" />
+                    android:isScrollContainer="false"
+                    android:scrollbars="vertical" />
 
             </FrameLayout>
 
