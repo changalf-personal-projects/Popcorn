@@ -24,7 +24,12 @@
                 android:resource="@xml/searchable" />
         </activity>
         <activity android:name=".DetailActivity"
-            android:theme="@style/DetailAppTheme" />
+            android:theme="@style/DetailAppTheme"
+            android:parentActivityName=".MainActivity">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.example.android.popcorn.MainActivity" />
+        </activity>
         <activity
             android:name=".SearchActivity"
             android:label="@string/action_search">

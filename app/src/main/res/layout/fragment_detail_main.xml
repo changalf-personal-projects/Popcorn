@@ -155,11 +155,8 @@
 
         </LinearLayout>
 
-        <!-- TODO: Refactor View into own class -->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/detail_divider_height"
-            android:background="@color/black" />
+        <!-- Divider. -->
+        <include layout="@layout/detail_divider" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -187,10 +184,8 @@
 
         </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/detail_divider_height"
-            android:background="@color/black" />
+        <!-- Divider. -->
+        <include layout="@layout/detail_divider" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -214,7 +209,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/recycler_view"
-                    android:scrollbars="vertical" />
+                    android:scrollbars="vertical"
+                    android:isScrollContainer="false" />
 
             </FrameLayout>
 

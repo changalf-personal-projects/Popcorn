@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SnapHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,7 +68,7 @@ public class DetailFragment extends Fragment {
         ButterKnife.bind(this, rootView);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),
-                LinearLayout.VERTICAL, false);
+                LinearLayout.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(layoutManager);
 
         Movie movie = getParcelableDetails();
@@ -191,7 +193,9 @@ public class DetailFragment extends Fragment {
     }
 
     private void attachAdapter(Movie movie) {
+        SnapHelper snapHelper = new LinearSnapHelper();
         mRecyclerAdapter = new CastRecyclerViewAdapter(getActivity(), movie.getCast());
+        snapHelper.attachToRecyclerView(mRecyclerView);
         mRecyclerView.setAdapter(mRecyclerAdapter);
     }
 
