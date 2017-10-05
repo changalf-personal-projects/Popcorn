@@ -9,6 +9,7 @@
     <string name="cast_label">Cast</string>
     <string name="synopsis_label">Synopsis</string>
     <string name="trailers_label">Trailers</string>
+    <string name="reviews_label">Reviews</string>
 
     <!-- Button labels. -->
     <string name="view_trailers">Watch Trailers</string>
