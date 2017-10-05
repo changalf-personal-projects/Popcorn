@@ -187,7 +187,7 @@ public class DetailFragment extends Fragment {
     }
 
     private void setSynopsis(Movie movie) {
-
+        mSynopsis.setText(movie.getSynopsis());
     }
 
     private void attachAdapter(Movie movie) {
