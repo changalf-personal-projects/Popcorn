@@ -12,6 +12,7 @@ public class Cast implements Parcelable {
 
     private String name;
     private String profilePath;
+    private String character;
 
     public Cast() {
 
@@ -20,6 +21,7 @@ public class Cast implements Parcelable {
     protected Cast(Parcel in) {
         name = in.readString();
         profilePath = in.readString();
+        character = in.readString();
     }
 
     public static final Creator<Cast> CREATOR = new Creator<Cast>() {
@@ -50,10 +52,19 @@ public class Cast implements Parcelable {
         this.profilePath = profilePath;
     }
 
+    public String getCharacter() {
+        return character;
+    }
+
+    public void setCharacter(String character) {
+        this.character = character;
+    }
+
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(name);
         parcel.writeString(profilePath);
+        parcel.writeString(character);
     }
 
     @Override
