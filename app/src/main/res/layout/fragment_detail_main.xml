@@ -155,10 +155,30 @@
 
         </LinearLayout>
 
+        <!-- TODO: Refactor View into own class -->
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/detail_divider_height"
             android:background="@color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/synopsis_label"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="@dimen/detail_label_size"
+                android:layout_margin="@dimen/detail_label_margin" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -171,8 +191,8 @@
                 android:text="@string/cast_label"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:textSize="@dimen/detail_cast_label_size"
-                android:layout_margin="@dimen/detail_cast_label_margin" />
+                android:textSize="@dimen/detail_label_size"
+                android:layout_margin="@dimen/detail_label_margin" />
 
             <FrameLayout
                 android:layout_width="wrap_content"

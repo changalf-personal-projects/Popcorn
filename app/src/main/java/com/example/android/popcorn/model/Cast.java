@@ -7,7 +7,6 @@ import android.os.Parcelable;
  * Created by alfredchang on 2017-10-02.
  */
 
-// TODO: Get cast info.
 public class Cast implements Parcelable {
 
     private String name;
