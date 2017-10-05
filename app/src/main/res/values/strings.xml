@@ -12,7 +12,7 @@
     <string name="rating_out_of_ten">%1$s/10</string>
     <string name="runtime_plus_minutes">%1$s minutes</string>
     <string name="search_hint">Movie Title</string>
-    <string name="member_as_character">%1$s.....%2$s</string>
+    <string name="member_as_character">%1$s ......... as %2$s</string>
 
     <!-- Test strings. -->
     <string name="test_string">Test</string>

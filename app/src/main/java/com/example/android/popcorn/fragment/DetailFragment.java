@@ -137,6 +137,7 @@ public class DetailFragment extends Fragment {
             String profilePath = result.getProfilePath();
             Cast cast = new Cast();
             cast.setName(result.getName());
+            cast.setCharacter(result.getCharacter());
             if (profilePath != null) {
                 cast.setProfilePath(createImageUrl(profilePath, UriTerms.CAST_PROFILE_PICTURE_SIZE));
             }

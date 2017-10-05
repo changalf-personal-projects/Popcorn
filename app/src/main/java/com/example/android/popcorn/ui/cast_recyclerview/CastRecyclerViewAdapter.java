@@ -61,13 +61,14 @@ public class CastRecyclerViewAdapter extends RecyclerView.Adapter<CastRecyclerVi
     }
 
     private void onBindMemberName(Cast cast, CastViewHolder holder) {
-        holder.mMemberName.setText(cast.getName());
+        holder.mMemberName.setText(mContext.getResources().getString(R.string.member_as_character,
+                cast.getName(), cast.getCharacter()));
     }
 
     public class CastViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.cast_member_image) ImageView mProfilePicture;
-        @BindView(R.id.cast_member_name) TextView mMemberName;
+        @BindView(R.id.cast_member_as_character) TextView mMemberName;
 
         public CastViewHolder(View itemView) {
             super(itemView);
