@@ -184,7 +184,7 @@
                 android:text="@string/view_trailers"
                 android:textColor="@color/white"
                 android:layout_gravity="center"
-                android:background="@color/trailers_button_color"
+                android:background="@drawable/trailer_button"
                 android:layout_marginBottom="@dimen/detail_trailer_button_bottom_margin" />
 
             <include layout="@layout/detail_divider" />
