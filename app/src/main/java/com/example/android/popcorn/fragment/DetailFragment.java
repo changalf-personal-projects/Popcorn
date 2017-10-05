@@ -56,6 +56,7 @@ public class DetailFragment extends Fragment {
     @BindView(R.id.runtime) TextView mRuntime;
     @BindView(R.id.release) TextView mRelease;
     @BindView(R.id.genres) TextView mGenres;
+    @BindView(R.id.synopsis) TextView mSynopsis;
     @BindView(R.id.recycler_view) RecyclerView mRecyclerView;
 
     @Override
@@ -90,6 +91,7 @@ public class DetailFragment extends Fragment {
         setRuntime(movie);
         setRelease(movie);
         setGenres(movie);
+        setSynopsis(movie);
     }
 
     private void fetchJsonCast(final Movie movie) {
@@ -182,6 +184,10 @@ public class DetailFragment extends Fragment {
 
     private void setGenres(Movie movie) {
         mGenres.setText(formatGenres(movie.getGenres().toString()));
+    }
+
+    private void setSynopsis(Movie movie) {
+
     }
 
     private void attachAdapter(Movie movie) {
