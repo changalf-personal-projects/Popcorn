@@ -19,7 +19,7 @@
     </style>
 
     <!-- Theme for cast details view -->
-    <style name="CastDetailAppTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
+    <style name="CastDetailAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="windowActionBar">true</item>
         <item name="windowNoTitle">false</item>
     </style>

@@ -44,7 +44,8 @@
         <activity
             android:name=".CastDetailsActivity"
             android:label="@string/cast_heading"
-            android:theme="@style/CastDetailAppTheme">
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".DetailActivity">
         </activity>
 
     </application>

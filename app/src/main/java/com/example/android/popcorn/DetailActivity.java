@@ -11,6 +11,7 @@ import com.example.android.popcorn.fragment.DetailFragment;
  * Created by alfredchang on 2017-09-27.
  */
 
+// Extend AppCompatActivity for back button.
 public class DetailActivity extends FragmentActivity {
 
     @Override
