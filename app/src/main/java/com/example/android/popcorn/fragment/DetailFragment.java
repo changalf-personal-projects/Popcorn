@@ -21,7 +21,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.example.android.popcorn.CastDetailsActivity;
+import com.example.android.popcorn.CastDetailActivity;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.Utilities;
 import com.example.android.popcorn.fragment.parsing.LoganCastTemplate;
@@ -94,7 +94,7 @@ public class DetailFragment extends Fragment {
         mCastButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent castIntent = new Intent(getActivity(), CastDetailsActivity.class);
+                Intent castIntent = new Intent(getActivity(), CastDetailActivity.class);
                 castIntent.putParcelableArrayListExtra(Utilities.PARCELABLE_CAST_KEY,
                         (ArrayList<? extends Parcelable>) movie.getCast());
                 startActivity(castIntent);

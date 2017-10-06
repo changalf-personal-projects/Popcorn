@@ -42,7 +42,7 @@
                 android:resource="@xml/searchable" />
         </activity>
         <activity
-            android:name=".CastDetailsActivity"
+            android:name=".CastDetailActivity"
             android:label="@string/cast_heading"
             android:theme="@style/AppTheme"
             android:parentActivityName=".DetailActivity">
