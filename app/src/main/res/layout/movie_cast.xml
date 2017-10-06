@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/detail_cast_image_top_margin"
-    android:layout_marginLeft="@dimen/detail_cast_image_left_margin"
-    android:layout_marginStart="@dimen/detail_cast_image_left_margin">
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-    <ImageView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/cast_member_image" />
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/detail_cast_member_top_margin"
+        android:layout_marginLeft="@dimen/detail_cast_member_left_margin"
+        android:layout_marginStart="@dimen/detail_cast_member_left_margin"
+        android:layout_marginBottom="@dimen/detail_cast_member_bottom_margin">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/cast_member_as_character"
-        android:textColor="@color/black"
-        android:layout_marginTop="@dimen/detail_cast_name_top_margin"
-        android:layout_marginLeft="@dimen/detail_cast_name_left_margin"
-        android:layout_marginStart="@dimen/detail_cast_name_left_margin" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cast_member_image" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cast_member_as_character"
+            android:textColor="@color/black"
+            android:layout_marginTop="@dimen/detail_cast_name_top_margin"
+            android:layout_marginLeft="@dimen/detail_cast_name_left_margin"
+            android:layout_marginStart="@dimen/detail_cast_name_left_margin" />
+
+    </LinearLayout>
 
 </LinearLayout>
