@@ -4,17 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.LinearSnapHelper;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SnapHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -33,7 +28,6 @@ import com.example.android.popcorn.model.Trailer;
 import com.example.android.popcorn.networking.RequestQueueSingleton;
 import com.example.android.popcorn.networking.UriTerms;
 import com.example.android.popcorn.ui.GlideApp;
-import com.example.android.popcorn.ui.cast_recyclerview.CastRecyclerViewAdapter;
 
 import java.util.ArrayList;
 
@@ -54,8 +48,6 @@ public class DetailFragment extends Fragment {
 
     private final String LOG_TAG = DetailFragment.class.getSimpleName();
 
-    private CastRecyclerViewAdapter mRecyclerAdapter;
-
     @BindView(R.id.backdrop_poster) ImageView mBackdrop;
     @BindView(R.id.movie_poster) ImageView mPoster;
     @BindView(R.id.title) TextView mTitle;
@@ -64,7 +56,6 @@ public class DetailFragment extends Fragment {
     @BindView(R.id.release) TextView mRelease;
     @BindView(R.id.genres) TextView mGenres;
     @BindView(R.id.synopsis) TextView mSynopsis;
-    @BindView(R.id.recycler_view) RecyclerView mRecyclerView;
     @BindView(R.id.cast_button) Button mCastButton;
 
     @Override
@@ -72,10 +63,6 @@ public class DetailFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
         View rootView = inflater.inflate(R.layout.fragment_detail_main, container, false);
         ButterKnife.bind(this, rootView);
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),
-                LinearLayout.HORIZONTAL, false);
-        mRecyclerView.setLayoutManager(layoutManager);
 
         Movie movie = getParcelableDetails();
         setParcelableDetailsIntoViews(movie);
@@ -94,10 +81,10 @@ public class DetailFragment extends Fragment {
         mCastButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent castIntent = new Intent(getActivity(), CastDetailActivity.class);
-                castIntent.putParcelableArrayListExtra(Utilities.PARCELABLE_CAST_KEY,
+                Intent castDetailIntent = new Intent(getActivity(), CastDetailActivity.class);
+                castDetailIntent.putParcelableArrayListExtra(Utilities.PARCELABLE_CAST_KEY,
                         (ArrayList<? extends Parcelable>) movie.getCast());
-                startActivity(castIntent);
+                startActivity(castDetailIntent);
             }
         });
     }
@@ -170,7 +157,6 @@ public class DetailFragment extends Fragment {
             }
             movie.setCast(cast);
         }
-        attachAdapter(movie);
     }
 
     private void saveMovieTrailers(Movie movie, LoganTrailersTemplate trailerLogan) {
@@ -214,12 +200,4 @@ public class DetailFragment extends Fragment {
     private void setSynopsis(Movie movie) {
         mSynopsis.setText(movie.getSynopsis());
     }
-
-    private void attachAdapter(Movie movie) {
-        SnapHelper snapHelper = new LinearSnapHelper();
-        mRecyclerAdapter = new CastRecyclerViewAdapter(getActivity(), movie.getCast());
-        snapHelper.attachToRecyclerView(mRecyclerView);
-        mRecyclerView.setAdapter(mRecyclerAdapter);
-    }
-
 }
