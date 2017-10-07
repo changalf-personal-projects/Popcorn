@@ -65,6 +65,10 @@ public class DetailFragment extends Fragment {
         ButterKnife.bind(this, rootView);
 
         Movie movie = getParcelableDetails();
+
+        // TODO: Movie object is null after pressing back from CastDetailFragment.
+        Log.v(LOG_TAG, "Movie is null? " + movie);
+
         setParcelableDetailsIntoViews(movie);
         fetchJsonCast(movie);
         fetchJsonTrailers(movie);
@@ -82,6 +86,7 @@ public class DetailFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent castDetailIntent = new Intent(getActivity(), CastDetailActivity.class);
+                castDetailIntent.putExtra(Utilities.PARCELABLE_MOVIE_KEY, movie);
                 castDetailIntent.putParcelableArrayListExtra(Utilities.PARCELABLE_CAST_KEY,
                         (ArrayList<? extends Parcelable>) movie.getCast());
                 startActivity(castDetailIntent);

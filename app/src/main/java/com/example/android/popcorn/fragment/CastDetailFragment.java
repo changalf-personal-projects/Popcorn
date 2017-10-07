@@ -25,6 +25,8 @@ import butterknife.ButterKnife;
 
 public class CastDetailFragment extends Fragment {
 
+    private final String LOG_TAG = CastDetailFragment.class.getSimpleName();
+
     private CastRecyclerViewAdapter mRecyclerAdapter;
 
     @BindView(R.id.recycler_view) RecyclerView mRecyclerView;
@@ -39,13 +41,13 @@ public class CastDetailFragment extends Fragment {
                 LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(layoutManager);
 
-        List<Cast> castMembers = getParcelableDetails();
+        List<Cast> castMembers = getParcelableCastDetails();
         attachToAdapter(castMembers);
 
         return rootView;
     }
 
-    private List<Cast> getParcelableDetails() {
+    private List<Cast> getParcelableCastDetails() {
         Intent castDetailIntent = getActivity().getIntent();
         List<Cast> castMembers = castDetailIntent.getParcelableArrayListExtra(Utilities.PARCELABLE_CAST_KEY);
         return castMembers;
