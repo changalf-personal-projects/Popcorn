@@ -158,9 +158,12 @@ public class DetailFragment extends Fragment {
             Cast cast = new Cast();
             cast.setName(result.getName());
             cast.setCharacter(result.getCharacter());
+            cast.setId(result.getId());
+
             if (profilePath != null) {
                 cast.setProfilePath(createImageUrl(profilePath, UriTerms.CAST_PROFILE_PICTURE_SIZE));
             }
+
             movie.setCast(cast);
         }
     }
