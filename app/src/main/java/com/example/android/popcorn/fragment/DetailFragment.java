@@ -119,6 +119,7 @@ public class DetailFragment extends Fragment {
                     @Override
                     public void onResponse(String response) {
                         LoganCastTemplate castLogan = MovieParser.parseJsonCastData(response);
+                        Log.v(LOG_TAG, "Cast id: " + response);
                         saveMovieCast(movie, castLogan);
                     }
                 }, new Response.ErrorListener() {
