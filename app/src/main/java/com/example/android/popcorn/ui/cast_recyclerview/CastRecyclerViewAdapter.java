@@ -25,6 +25,7 @@ public class CastRecyclerViewAdapter extends RecyclerView.Adapter<CastRecyclerVi
 
     private Context mContext;
     private List<Cast> mCast;
+    private OnCastMemberClickListener mClickListener;
 
     public CastRecyclerViewAdapter(Context context, List<Cast> cast) {
         mContext = context;
@@ -65,7 +66,7 @@ public class CastRecyclerViewAdapter extends RecyclerView.Adapter<CastRecyclerVi
                 cast.getName(), cast.getCharacter()));
     }
 
-    public class CastViewHolder extends RecyclerView.ViewHolder {
+    public class CastViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         @BindView(R.id.cast_member_image) ImageView mProfilePicture;
         @BindView(R.id.cast_member_as_character) TextView mMemberName;
@@ -73,6 +74,12 @@ public class CastRecyclerViewAdapter extends RecyclerView.Adapter<CastRecyclerVi
         public CastViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            mClickListener.onClick(mCast.get(getAdapterPosition()));
         }
     }
 }
