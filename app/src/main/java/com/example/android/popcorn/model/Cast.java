@@ -12,6 +12,7 @@ public class Cast implements Parcelable {
     private String name;
     private String profilePath;
     private String character;
+    private String id;
 
     public Cast() {
 
@@ -57,6 +58,14 @@ public class Cast implements Parcelable {
 
     public void setCharacter(String character) {
         this.character = character;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     @Override
