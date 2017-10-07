@@ -22,6 +22,7 @@ public class Cast implements Parcelable {
         name = in.readString();
         profilePath = in.readString();
         character = in.readString();
+        id = in.readString();
     }
 
     public static final Creator<Cast> CREATOR = new Creator<Cast>() {
@@ -73,6 +74,7 @@ public class Cast implements Parcelable {
         parcel.writeString(name);
         parcel.writeString(profilePath);
         parcel.writeString(character);
+        parcel.writeString(id);
     }
 
     @Override
