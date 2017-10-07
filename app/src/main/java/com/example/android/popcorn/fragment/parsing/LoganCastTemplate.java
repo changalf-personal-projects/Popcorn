@@ -51,6 +51,9 @@ public class LoganCastTemplate extends MovieLogan {
             @JsonField
             private String character;
 
+            @JsonField
+            private String id;
+
             public String getName() {
                 return name;
             }
@@ -73,6 +76,14 @@ public class LoganCastTemplate extends MovieLogan {
 
             public void setCharacter(String character) {
                 this.character = character;
+            }
+
+            public String getId() {
+                return id;
+            }
+
+            public void setId(String id) {
+                this.id = id;
             }
         }
     }
