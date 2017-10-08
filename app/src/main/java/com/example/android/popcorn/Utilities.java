@@ -13,9 +13,11 @@ import java.util.List;
 
 public class Utilities {
 
+    private static final String LOG_TAG = Utilities.class.getSimpleName();
+
     public static final String PARCELABLE_MOVIE_KEY = "movie";
     public static final String PARCELABLE_CAST_KEY = "cast";
-    private static final String LOG_TAG = Utilities.class.getSimpleName();
+    public static final String PARCELABLE_CAST_MEMBER_KEY = "cast member";
 
     public static boolean hasPosterPath(Movie movie) {
         return movie.getPosterPath() != null;

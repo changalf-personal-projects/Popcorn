@@ -9,10 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.android.popcorn.CastMmeberDetailActivity;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.Utilities;
 import com.example.android.popcorn.model.Cast;
 import com.example.android.popcorn.ui.cast_recyclerview.CastRecyclerViewAdapter;
+import com.example.android.popcorn.ui.cast_recyclerview.OnCastMemberClickListener;
 
 import java.util.List;
 
@@ -23,7 +25,7 @@ import butterknife.ButterKnife;
  * Created by alfredchang on 2017-10-06.
  */
 
-public class CastDetailFragment extends Fragment {
+public class CastDetailFragment extends Fragment implements OnCastMemberClickListener {
 
     private final String LOG_TAG = CastDetailFragment.class.getSimpleName();
 
@@ -56,5 +58,12 @@ public class CastDetailFragment extends Fragment {
     private void attachToAdapter(List<Cast> castMembers) {
         mRecyclerAdapter = new CastRecyclerViewAdapter(getActivity(), castMembers);
         mRecyclerView.setAdapter(mRecyclerAdapter);
+    }
+
+    @Override
+    public void onClick(Cast castMember) {
+        Intent castMemberDetailsIntent = new Intent(getActivity(), CastMmeberDetailActivity.class);
+        castMemberDetailsIntent.putExtra(Utilities.PARCELABLE_CAST_MEMBER_KEY, castMember);
+        startActivity(castMemberDetailsIntent);
     }
 }
