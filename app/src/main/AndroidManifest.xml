@@ -23,12 +23,13 @@
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
         </activity>
-        <activity android:name=".DetailActivity"
-            android:theme="@style/DetailAppTheme"
-            android:parentActivityName=".MainActivity">
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.example.android.popcorn.MainActivity" />
+        <activity
+            android:name=".DetailActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/DetailAppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.android.popcorn.MainActivity" />
         </activity>
         <activity
             android:name=".SearchActivity"
@@ -46,7 +47,11 @@
             android:label="@string/cast_heading"
             android:theme="@style/CastDetailAppTheme">
         </activity>
-
+        <activity
+            android:name=".SingleCastMemberDetailActivity"
+            android:label="@string/cast_member_heading"
+            android:theme="@style/CastDetailAppTheme">
+        </activity>
     </application>
 
 </manifest>
