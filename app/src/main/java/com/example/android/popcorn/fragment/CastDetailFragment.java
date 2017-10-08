@@ -56,7 +56,7 @@ public class CastDetailFragment extends Fragment implements OnCastMemberClickLis
     }
 
     private void attachToAdapter(List<Cast> castMembers) {
-        mRecyclerAdapter = new CastRecyclerViewAdapter(getActivity(), castMembers);
+        mRecyclerAdapter = new CastRecyclerViewAdapter(getActivity(), castMembers, this);
         mRecyclerView.setAdapter(mRecyclerAdapter);
     }
 

@@ -27,9 +27,10 @@ public class CastRecyclerViewAdapter extends RecyclerView.Adapter<CastRecyclerVi
     private List<Cast> mCast;
     private OnCastMemberClickListener mClickListener;
 
-    public CastRecyclerViewAdapter(Context context, List<Cast> cast) {
+    public CastRecyclerViewAdapter(Context context, List<Cast> cast, OnCastMemberClickListener clickListener) {
         mContext = context;
         mCast = cast;
+        mClickListener = clickListener;
     }
 
     @Override
