@@ -9,7 +9,7 @@ import com.example.android.popcorn.fragment.CastDetailFragment;
  * Created by alfredchang on 2017-10-05.
  */
 
-public class CastMemberDetailActivity extends AppCompatActivity {
+public class CastMembersDetailActivity extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
