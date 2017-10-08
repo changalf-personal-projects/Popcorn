@@ -14,7 +14,7 @@ public class SingleCastMemberDetailActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cast_main);
+        setContentView(R.layout.activity_single_cast_member_main);
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().add(R.id.container,
