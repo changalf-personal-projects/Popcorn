@@ -1,4 +1,4 @@
-package com.example.android.popcorn.fragment.parsing;
+package com.example.android.popcorn.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
