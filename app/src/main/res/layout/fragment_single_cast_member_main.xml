@@ -19,16 +19,20 @@
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-        <ImageView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/green_rectangle_height"
-            android:background="@color/colorPrimary" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/cast_member_profile_picture" />
+            android:orientation="vertical"
+            android:background="@color/colorPrimary"
+            android:id="@+id/green_space" />
 
     </android.support.design.widget.AppBarLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cast_member_profile_picture"
+        app:layout_anchor="@id/green_space"
+        app:layout_anchorGravity="center|bottom" />
 
 </android.support.design.widget.CoordinatorLayout>

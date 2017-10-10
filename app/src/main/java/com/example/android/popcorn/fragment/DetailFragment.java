@@ -161,7 +161,7 @@ public class DetailFragment extends Fragment {
 
             if (profilePath != null) {
                 cast.setThumbnail(createImageUrl(profilePath, UriTerms.IMAGE_SIZE_W92));
-                cast.setProfilePath(createImageUrl(profilePath, UriTerms.IMAGE_SIZE_W185));
+                cast.setProfilePath(createImageUrl(profilePath, UriTerms.IMAGE_SIZE_W342));
             }
 
             movie.setCast(cast);

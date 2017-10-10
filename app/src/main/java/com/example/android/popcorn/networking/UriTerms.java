@@ -24,6 +24,7 @@ public class UriTerms {
     // Image sizes.
     public static final String IMAGE_SIZE_W92 = "w92";
     public static final String IMAGE_SIZE_W185 = "w185";
+    public static final String IMAGE_SIZE_W250 = "w250";
     public static final String IMAGE_SIZE_W342 = "w342";
     public static final String POSTER_SIZE_W500 = "w500";
 
