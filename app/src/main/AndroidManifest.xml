@@ -49,8 +49,7 @@
         </activity>
         <activity
             android:name=".SingleCastMemberDetailActivity"
-            android:label="@string/cast_member_heading"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/CastDetailAppTheme">
         </activity>
     </application>
 

@@ -7,32 +7,41 @@
     android:fitsSystemWindows="true"
     tools:context="com.example.android.popcorn.MainActivity">
 
-    <android.support.design.widget.AppBarLayout
+    <!--<android.support.design.widget.AppBarLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:theme="@style/AppTheme.AppBarOverlay"-->
+        <!--android:id="@+id/appbar_layout">-->
+
+        <!--<android.support.v7.widget.Toolbar-->
+            <!--android:id="@+id/toolbar"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="?attr/actionBarSize"-->
+            <!--android:background="?attr/colorPrimary"-->
+            <!--app:popupTheme="@style/AppTheme.PopupOverlay" />-->
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="@dimen/green_rectangle_height"
+        android:id="@+id/green_space"
+        android:background="@color/profile_picture_background">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        <View
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            android:layout_height="@dimen/line_height"
+            android:background="@color/profile_picture_line_color"
+            android:layout_gravity="center" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/green_rectangle_height"
-            android:orientation="vertical"
-            android:background="@color/colorPrimary"
-            android:id="@+id/green_space" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cast_member_profile_picture"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/profile_picture_margin"
+            android:layout_marginBottom="@dimen/profile_picture_margin" />
 
-    </android.support.design.widget.AppBarLayout>
+    </FrameLayout>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/cast_member_profile_picture"
-        app:layout_anchor="@id/green_space"
-        app:layout_anchorGravity="center|bottom" />
+    <!--</android.support.design.widget.AppBarLayout>-->
 
 </android.support.design.widget.CoordinatorLayout>

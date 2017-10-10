@@ -21,6 +21,7 @@
 
     <!-- Divider dimensions. -->
     <dimen name="layout_height_quarter">0.25dp</dimen>
+    <dimen name="line_height">0.5dp</dimen>
 
     <!-- Detail view margins. -->
     <dimen name="detail_poster_margin">15dp</dimen>
@@ -44,6 +45,9 @@
     <dimen name="detail_rating_left_margin">-4dp</dimen>
     <dimen name="detail_release_left_margin">-3dp</dimen>
 
+    <!-- Profile picture margins. -->
+    <dimen name="profile_picture_margin">10dp</dimen>
+
     <!-- Elevations. -->
     <dimen name="cardview_elevation">5dp</dimen>
 
@@ -58,7 +62,7 @@
     <dimen name="button_stroke_width">5dp</dimen>
 
     <!-- Everything else. -->
-    <dimen name="green_rectangle_height">30dp</dimen>
+    <dimen name="green_rectangle_height">250dp</dimen>
     <dimen name="zero_dp">0dp</dimen>
 
 </resources>
