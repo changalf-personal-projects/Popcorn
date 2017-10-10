@@ -25,6 +25,7 @@ public class SingleCastDetailFragment extends Fragment {
 
     @BindView(R.id.cast_member_profile_picture) ImageView mProfilePicture;
     @BindView(R.id.cast_member_name) TextView mName;
+    @BindView(R.id.birthday) TextView mBirthday;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -36,6 +37,7 @@ public class SingleCastDetailFragment extends Fragment {
 
         setProfilePicture(castMember);
         setName(castMember);
+        setBirthday(castMember);
 
         return rootView;
     }
@@ -57,6 +59,10 @@ public class SingleCastDetailFragment extends Fragment {
 
     private void setName(Cast castMember) {
         mName.setText(castMember.getName());
+    }
+
+    private void setBirthday(Cast castMember) {
+
     }
 
 }

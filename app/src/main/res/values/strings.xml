@@ -13,6 +13,7 @@
     <string name="cast_heading">Cast</string>
     <string name="cast_member_heading">Cast Member</string>
     <string name="biography_subheading">Biography</string>
+    <string name="birth_date">Birthday:</string>
 
     <!-- Button labels. -->
     <string name="view_trailers">Watch Trailers</string>
