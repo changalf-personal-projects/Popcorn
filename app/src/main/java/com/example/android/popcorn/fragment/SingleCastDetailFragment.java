@@ -6,10 +6,15 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.Utilities;
 import com.example.android.popcorn.model.Cast;
+import com.example.android.popcorn.ui.GlideApp;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by alfredchang on 2017-10-08.
@@ -17,12 +22,17 @@ import com.example.android.popcorn.model.Cast;
 
 public class SingleCastDetailFragment extends Fragment {
 
+    @BindView(R.id.cast_member_profile_picture) ImageView mProfilePicture;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View rootView = inflater.inflate(R.layout.fragment_single_cast_member_main, container, false);
+        ButterKnife.bind(this, rootView);
 
         Cast castMember = getParcelableDetails();
+
+        setProfilePicture(castMember);
 
         return rootView;
     }
@@ -32,6 +42,14 @@ public class SingleCastDetailFragment extends Fragment {
         Intent castMemberDetailsIntent = getActivity().getIntent();
         Cast castMember = castMemberDetailsIntent.getParcelableExtra(Utilities.PARCELABLE_CAST_MEMBER_KEY);
         return castMember;
+    }
+
+    private void setProfilePicture(Cast castMember) {
+        String profilePath = castMember.getProfilePath();
+
+        if (profilePath != null) {
+            GlideApp.with(getActivity()).load(profilePath).circleCrop().into(mProfilePicture);
+        }
     }
 
 }
