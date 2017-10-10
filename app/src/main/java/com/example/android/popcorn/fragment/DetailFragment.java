@@ -160,7 +160,7 @@ public class DetailFragment extends Fragment {
             cast.setId(result.getId());
 
             if (profilePath != null) {
-                cast.setProfilePath(createImageUrl(profilePath, UriTerms.CAST_PROFILE_PICTURE_SIZE));
+                cast.setProfilePath(createImageUrl(profilePath, UriTerms.IMAGE_SIZE_W92));
             }
 
             movie.setCast(cast);

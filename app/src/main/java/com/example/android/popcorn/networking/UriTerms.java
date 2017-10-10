@@ -21,17 +21,18 @@ public class UriTerms {
     public static final String CREDITS = "credits";
     public static final String VIDEOS = "videos";
 
+    // Image sizes.
+    public static final String IMAGE_SIZE_W92 = "w92";
+    public static final String IMAGE_SIZE_W185 = "w185";
+    public static final String IMAGE_SIZE_W342 = "w342";
+    public static final String POSTER_SIZE_W500 = "w500";
+
     // Poster url stuff.
     public static final String POSTER_BASE_URL = "http://image.tmdb.org/t/p/";
-    public static final String POSTER_SIZE_W342 = "w342";
-    public static final String POSTER_SIZE_W500 = "w500";
     public static final String POSTER_SIZE_ORIGINAL = "original";
     public static final String TMDB_API_KEY = "api_key";
     public static final String TMDB_LANGUAGE = "language";
     public static final String TMDB_PAGE = "page";
-
-    // Cast member stuff.
-    public static final String CAST_PROFILE_PICTURE_SIZE = "w92";
 
     // Main url to get movie id (plus queries).
     public static final String MOVIE_BASE_URL = "https://api.themoviedb.org/3/movie/";
