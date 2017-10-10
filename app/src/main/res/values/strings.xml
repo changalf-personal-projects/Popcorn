@@ -12,6 +12,7 @@
     <string name="reviews_label">Reviews</string>
     <string name="cast_heading">Cast</string>
     <string name="cast_member_heading">Cast Member</string>
+    <string name="biography_subheading">Biography</string>
 
     <!-- Button labels. -->
     <string name="view_trailers">Watch Trailers</string>

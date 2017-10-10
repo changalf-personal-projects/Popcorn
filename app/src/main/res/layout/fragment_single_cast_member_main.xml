@@ -20,39 +20,64 @@
             <!--android:background="?attr/colorPrimary"-->
             <!--app:popupTheme="@style/AppTheme.PopupOverlay" />-->
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/green_rectangle_height"
-        android:id="@+id/green_space"
-        android:background="@color/profile_picture_background">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <View
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/line_height"
-            android:background="@color/profile_picture_line_color"
-            android:layout_gravity="center" />
+            android:layout_height="@dimen/green_rectangle_height"
+            android:id="@+id/green_space"
+            android:background="@color/profile_picture_background">
 
-        <ImageView
-            android:layout_width="wrap_content"
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_height"
+                android:background="@color/profile_picture_line_color"
+                android:layout_gravity="center" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cast_member_profile_picture"
+                android:layout_gravity="center"
+                android:background="@drawable/profile_picture_border"
+                android:padding="@dimen/profile_picture_padding" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cast_member_name"
+                android:textColor="@color/profile_picture_line_color"
+                android:textStyle="bold"
+                android:textSize="@dimen/cast_member_name_size"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/cast_member_name_top_margin"
+                android:maxLines="1" />
+
+        </FrameLayout>
+
+        <!--</android.support.design.widget.AppBarLayout>-->
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/cast_member_profile_picture"
-            android:layout_gravity="center"
-            android:background="@drawable/profile_picture_border"
-            android:padding="@dimen/profile_picture_padding" />
+            android:id="@+id/cast_member_details"
+            app:cardUseCompatPadding="true"
+            app:contentPaddingLeft="@dimen/biography_subheading_left_padding">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/cast_member_name"
-            android:textColor="@color/profile_picture_line_color"
-            android:textStyle="bold"
-            android:textSize="@dimen/cast_member_name_size"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/cast_member_name_top_margin"
-            android:maxLines="1" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/biography_subheading"
+                android:text="@string/biography_subheading"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/detail_title_size" />
 
-    </FrameLayout>
+        </android.support.v7.widget.CardView>
 
-    <!--</android.support.design.widget.AppBarLayout>-->
+    </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>
