@@ -58,7 +58,7 @@ public class CastRecyclerViewAdapter extends RecyclerView.Adapter<CastRecyclerVi
 
     private void onBindProfilePicture(Cast cast, CastViewHolder holder) {
         if (cast.getProfilePath() != null) {
-            GlideApp.with(mContext).load(cast.getProfilePath()).into(holder.mProfilePicture);
+            GlideApp.with(mContext).load(cast.getThumbnail()).into(holder.mProfilePicture);
         }
     }
 
