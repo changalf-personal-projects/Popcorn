@@ -37,8 +37,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/cast_member_profile_picture"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/profile_picture_margin"
-            android:layout_marginBottom="@dimen/profile_picture_margin" />
+            android:background="@drawable/profile_picture_border"
+            android:padding="@dimen/profile_picture_padding" />
 
     </FrameLayout>
 

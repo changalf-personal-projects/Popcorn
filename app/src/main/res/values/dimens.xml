@@ -45,8 +45,9 @@
     <dimen name="detail_rating_left_margin">-4dp</dimen>
     <dimen name="detail_release_left_margin">-3dp</dimen>
 
-    <!-- Profile picture margins. -->
+    <!-- Profile picture margins and paddings. -->
     <dimen name="profile_picture_margin">10dp</dimen>
+    <dimen name="profile_picture_padding">5dp</dimen>
 
     <!-- Elevations. -->
     <dimen name="cardview_elevation">5dp</dimen>
