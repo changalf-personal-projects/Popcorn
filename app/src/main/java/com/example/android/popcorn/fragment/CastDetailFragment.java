@@ -78,7 +78,7 @@ public class CastDetailFragment extends Fragment implements OnCastMemberClickLis
         startActivity(singleCastMemberDetailsIntent);
     }
 
-    private void fetchJsonMemberDetails(Cast castMember) {
+    private void fetchJsonMemberDetails(final Cast castMember) {
         String url = createUrl(castMember.getId());
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -86,6 +86,7 @@ public class CastDetailFragment extends Fragment implements OnCastMemberClickLis
                     @Override
                     public void onResponse(String response) {
                         LoganCastMemberDetailTemplate castMemberLogan = MovieParser.parseJsonCastMemberData(response);
+                        saveCastMemberDetails(castMember, castMemberLogan);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -95,5 +96,12 @@ public class CastDetailFragment extends Fragment implements OnCastMemberClickLis
         });
 
         RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
+    }
+
+    private void saveCastMemberDetails(Cast castMember, LoganCastMemberDetailTemplate castMemberLogan) {
+        castMember.setBirthday(castMemberLogan.getBirthday());
+        castMember.setDeathday(castMemberLogan.getDeathDate());
+        castMember.setBiography(castMemberLogan.getBiography());
+        castMember.setBirthplace(castMemberLogan.getBirthPlace());
     }
 }

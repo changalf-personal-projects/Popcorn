@@ -62,7 +62,7 @@ public class SingleCastDetailFragment extends Fragment {
     }
 
     private void setBirthday(Cast castMember) {
-
+        mBirthday.setText(castMember.getBirthday());
     }
 
 }

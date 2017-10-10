@@ -118,7 +118,7 @@ public class DetailFragment extends Fragment {
                     @Override
                     public void onResponse(String response) {
                         LoganCastTemplate castLogan = MovieParser.parseJsonCastData(response);
-                        saveMovieCast(movie, castLogan);
+                        saveMovieCastId(movie, castLogan);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -150,7 +150,7 @@ public class DetailFragment extends Fragment {
         RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
     }
 
-    private void saveMovieCast(Movie movie, LoganCastTemplate castLogan) {
+    private void saveMovieCastId(Movie movie, LoganCastTemplate castLogan) {
         for (LoganCastTemplate.Credits.Cast result: castLogan.getCredits().getCast()) {
             String profilePath = result.getProfilePath();
             Cast cast = new Cast();
