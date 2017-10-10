@@ -131,7 +131,7 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
         movie.setRating(movieLogan.getVoteAverage());
         movie.setSynopsis(movieLogan.getSynopsis());
         movie.setReleaseDate(movieLogan.getRelease());
-        movie.setPosterPath(UrlCreator.createImageUrl(movieLogan.getPosterPath(), UriTerms.POSTER_SIZE_W500));
+        movie.setPosterPath(UrlCreator.createImageUrl(movieLogan.getPosterPath(), UriTerms.IMAGE_SIZE_W500));
         movie.setDetailPosterPath(UrlCreator.createImageUrl(movieLogan.getPosterPath(), UriTerms.IMAGE_SIZE_W342));
         movie.setBackdropPath(UrlCreator.createImageUrl(movieLogan.getBackdropPath(), UriTerms.POSTER_SIZE_ORIGINAL));
 

@@ -4,7 +4,7 @@
     android:shape="oval"
     android:thickness="50dp">
 
-    <!--<solid android:color="@color/profile_picture_line_color" />-->
+    <solid android:color="@color/white" />
 
     <size
         android:width="100dp"
