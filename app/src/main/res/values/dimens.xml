@@ -9,6 +9,7 @@
     <dimen name="cardview_title_size">22sp</dimen>
     <dimen name="detail_title_size">20sp</dimen>
     <dimen name="detail_label_size">15sp</dimen>
+    <dimen name="cast_member_name_size">25sp</dimen>
 
     <!-- Random margins. -->
     <dimen name="tabs_and_posters_divider">105dp</dimen>
@@ -18,6 +19,7 @@
     <dimen name="cardview_genre_bottom_margin">15dp</dimen>
     <dimen name="cardview_title_top_margin">10dp</dimen>
     <dimen name="cardview_rating_icon_left_margin">6dp</dimen>
+    <dimen name="cast_member_name_top_margin">80dp</dimen>
 
     <!-- Divider dimensions. -->
     <dimen name="layout_height_quarter">0.25dp</dimen>

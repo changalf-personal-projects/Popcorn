@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.Utilities;
@@ -23,6 +24,7 @@ import butterknife.ButterKnife;
 public class SingleCastDetailFragment extends Fragment {
 
     @BindView(R.id.cast_member_profile_picture) ImageView mProfilePicture;
+    @BindView(R.id.cast_member_name) TextView mName;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -33,6 +35,7 @@ public class SingleCastDetailFragment extends Fragment {
         Cast castMember = getParcelableDetails();
 
         setProfilePicture(castMember);
+        setName(castMember);
 
         return rootView;
     }
@@ -50,6 +53,10 @@ public class SingleCastDetailFragment extends Fragment {
         if (profilePath != null) {
             GlideApp.with(getActivity()).load(profilePath).circleCrop().into(mProfilePicture);
         }
+    }
+
+    private void setName(Cast castMember) {
+        mName.setText(castMember.getName());
     }
 
 }
