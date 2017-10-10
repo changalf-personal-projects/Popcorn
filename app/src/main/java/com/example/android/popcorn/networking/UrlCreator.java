@@ -32,6 +32,14 @@ public class UrlCreator {
                 .build().toString();
     }
 
+    public static String createCastMemberDetailUrl(String id) {
+        return Uri.parse(UriTerms.PERSON_BASE_URL).buildUpon()
+                .appendPath(id)
+                .appendQueryParameter(UriTerms.TMDB_API_KEY, BuildConfig.MOVIE_DP_API_KEY)
+                .appendQueryParameter(UriTerms.TMDB_LANGUAGE, UriTerms.LANGUAGE)
+                .build().toString();
+    }
+
     // Request for movie trailers.
     public static String createTrailerUrl() {
         return "";

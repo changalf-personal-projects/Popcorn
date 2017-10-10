@@ -23,6 +23,8 @@ import butterknife.ButterKnife;
 
 public class SingleCastDetailFragment extends Fragment {
 
+    private final String LOG_TAG = SingleCastDetailFragment.class.getSimpleName();
+
     @BindView(R.id.cast_member_profile_picture) ImageView mProfilePicture;
     @BindView(R.id.cast_member_name) TextView mName;
     @BindView(R.id.birthday) TextView mBirthday;

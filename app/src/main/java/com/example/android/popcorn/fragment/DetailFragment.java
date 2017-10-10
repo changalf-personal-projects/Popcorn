@@ -19,6 +19,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.example.android.popcorn.CastMembersDetailActivity;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.Utilities;
+import com.example.android.popcorn.fragment.parsing.LoganCastMemberDetailTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganCastTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganTrailersTemplate;
 import com.example.android.popcorn.fragment.parsing.MovieParser;
@@ -37,6 +38,7 @@ import butterknife.ButterKnife;
 import static com.example.android.popcorn.Utilities.convertDoubleToString;
 import static com.example.android.popcorn.Utilities.formatGenres;
 import static com.example.android.popcorn.Utilities.roundToNearestTenth;
+import static com.example.android.popcorn.networking.UrlCreator.createCastMemberDetailUrl;
 import static com.example.android.popcorn.networking.UrlCreator.createImageUrl;
 import static com.example.android.popcorn.networking.UrlCreator.createUrlWithAppendedResponse;
 
@@ -65,9 +67,6 @@ public class DetailFragment extends Fragment {
         ButterKnife.bind(this, rootView);
 
         Movie movie = getParcelableDetails();
-
-        // TODO: Movie object is null after pressing back from CastDetailFragment.
-        Log.v(LOG_TAG, "Movie is null? " + movie);
 
         setParcelableDetailsIntoViews(movie);
         fetchJsonCast(movie);
@@ -160,10 +159,40 @@ public class DetailFragment extends Fragment {
 
             if (profilePath != null) {
                 cast.setThumbnail(createImageUrl(profilePath, UriTerms.IMAGE_SIZE_W92));
+                cast.setProfilePath(createImageUrl(profilePath, UriTerms.IMAGE_SIZE_W185));
             }
 
-            movie.setCast(cast);
+            fetchJsonMemberDetails(cast, movie);
         }
+    }
+
+    private void fetchJsonMemberDetails(final Cast cast, final Movie movie) {
+        String url = createCastMemberDetailUrl(cast.getId());
+        Log.v(LOG_TAG, "Formed url: " + url);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        LoganCastMemberDetailTemplate castMemberLogan = MovieParser.parseJsonCastMemberData(response);
+                        saveCastMemberDetails(cast, movie, castMemberLogan);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(LOG_TAG, "Response error (fetchJsonMemberDetails): " + error);
+            }
+        });
+
+        RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
+    }
+
+    private void saveCastMemberDetails(Cast cast, Movie movie, LoganCastMemberDetailTemplate castMemberLogan) {
+        cast.setBirthday(castMemberLogan.getBirthday());
+        cast.setDeathday(castMemberLogan.getDeathDate());
+        cast.setBiography(castMemberLogan.getBiography());
+        cast.setBirthplace(castMemberLogan.getBirthPlace());
+        movie.setCast(cast);
     }
 
     private void saveMovieTrailers(Movie movie, LoganTrailersTemplate trailerLogan) {

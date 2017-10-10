@@ -18,6 +18,8 @@ public class UriTerms {
     public static final String CURRENT = "current";
     public static final String LANGUAGE = "en-US";
     public static final String PAGE = "1";
+
+    //Query paths.
     public static final String CREDITS = "credits";
     public static final String VIDEOS = "videos";
 
@@ -34,8 +36,9 @@ public class UriTerms {
     public static final String TMDB_LANGUAGE = "language";
     public static final String TMDB_PAGE = "page";
 
-    // Main url to get movie id (plus queries).
+    // Main urls.
     public static final String MOVIE_BASE_URL = "https://api.themoviedb.org/3/movie/";
+    public static final String PERSON_BASE_URL = "https://api.themoviedb.org/3/person/";
 
     // Normally, looking for the movie details means we have to first get the movie id and then use
     // that id to get the details.  But with "append_to_response", this can be done in one request.
