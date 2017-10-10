@@ -10,6 +10,7 @@ public class CastMember {
     private String deathday;
     private String biography;
     private String birthplace;
+    private String profilePath;
 
     public String getBirthday() {
         return birthday;
@@ -41,5 +42,13 @@ public class CastMember {
 
     public void setBirthplace(String birthplace) {
         this.birthplace = birthplace;
+    }
+
+    public String getProfilePath() {
+        return profilePath;
+    }
+
+    public void setProfilePath(String profilePath) {
+        this.profilePath = profilePath;
     }
 }

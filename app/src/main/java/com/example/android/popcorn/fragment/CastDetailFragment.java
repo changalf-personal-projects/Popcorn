@@ -73,13 +73,13 @@ public class CastDetailFragment extends Fragment implements OnCastMemberClickLis
     @Override
     public void onClick(Cast castMember) {
         Intent singleCastMemberDetailsIntent = new Intent(getActivity(), SingleCastMemberDetailActivity.class);
+        fetchJsonMemberDetails(castMember);
         singleCastMemberDetailsIntent.putExtra(Utilities.PARCELABLE_CAST_MEMBER_KEY, castMember);
         startActivity(singleCastMemberDetailsIntent);
     }
 
     private void fetchJsonMemberDetails(Cast castMember) {
         String url = createUrl(castMember.getId());
-        Log.v(LOG_TAG, "Formed url:" + url);
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {

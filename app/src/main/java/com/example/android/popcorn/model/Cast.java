@@ -11,9 +11,13 @@ public class Cast implements Parcelable {
 
     private String name;
     private String thumbnail;
-    private String profilePath;
     private String character;
     private String id;
+    private String birthday;
+    private String deathday;
+    private String biography;
+    private String birthplace;
+    private String profilePath;
 
     public Cast() {
 
@@ -22,7 +26,6 @@ public class Cast implements Parcelable {
     protected Cast(Parcel in) {
         name = in.readString();
         thumbnail = in.readString();
-        profilePath = in.readString();
         character = in.readString();
         id = in.readString();
     }
@@ -55,14 +58,6 @@ public class Cast implements Parcelable {
         this.thumbnail = thumbnail;
     }
 
-    public String getProfilePath() {
-        return profilePath;
-    }
-
-    public void setProfilePath(String profilePath) {
-        this.profilePath = profilePath;
-    }
-
     public String getCharacter() {
         return character;
     }
@@ -79,11 +74,50 @@ public class Cast implements Parcelable {
         this.id = id;
     }
 
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getDeathday() {
+        return deathday;
+    }
+
+    public void setDeathday(String deathday) {
+        this.deathday = deathday;
+    }
+
+    public String getBiography() {
+        return biography;
+    }
+
+    public void setBiography(String biography) {
+        this.biography = biography;
+    }
+
+    public String getBirthplace() {
+        return birthplace;
+    }
+
+    public void setBirthplace(String birthplace) {
+        this.birthplace = birthplace;
+    }
+
+    public String getProfilePath() {
+        return profilePath;
+    }
+
+    public void setProfilePath(String profilePath) {
+        this.profilePath = profilePath;
+    }
+
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(name);
         parcel.writeString(thumbnail);
-        parcel.writeString(profilePath);
         parcel.writeString(character);
         parcel.writeString(id);
     }

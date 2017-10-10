@@ -118,7 +118,6 @@ public class DetailFragment extends Fragment {
                     @Override
                     public void onResponse(String response) {
                         LoganCastTemplate castLogan = MovieParser.parseJsonCastData(response);
-                        Log.v(LOG_TAG, "Cast id: " + response);
                         saveMovieCast(movie, castLogan);
                     }
                 }, new Response.ErrorListener() {
@@ -161,7 +160,6 @@ public class DetailFragment extends Fragment {
 
             if (profilePath != null) {
                 cast.setThumbnail(createImageUrl(profilePath, UriTerms.IMAGE_SIZE_W92));
-                cast.setProfilePath(createImageUrl(profilePath, UriTerms.IMAGE_SIZE_W342));
             }
 
             movie.setCast(cast);
