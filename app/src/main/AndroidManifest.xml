@@ -45,12 +45,12 @@
         <activity
             android:name=".CastMembersDetailActivity"
             android:label="@string/cast_heading"
-            android:theme="@style/CastDetailAppTheme">
+            android:theme="@style/AppTheme">
         </activity>
         <activity
             android:name=".SingleCastMemberDetailActivity"
             android:label="@string/cast_member_heading"
-            android:theme="@style/CastDetailAppTheme">
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
 
