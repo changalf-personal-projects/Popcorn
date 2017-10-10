@@ -5,14 +5,22 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.SingleCastMemberDetailActivity;
 import com.example.android.popcorn.Utilities;
+import com.example.android.popcorn.fragment.parsing.LoganCastMemberDetailTemplate;
+import com.example.android.popcorn.fragment.parsing.MovieParser;
 import com.example.android.popcorn.model.Cast;
+import com.example.android.popcorn.networking.RequestQueueSingleton;
 import com.example.android.popcorn.ui.cast_recyclerview.CastRecyclerViewAdapter;
 import com.example.android.popcorn.ui.cast_recyclerview.OnCastMemberClickListener;
 
@@ -20,6 +28,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.example.android.popcorn.networking.UrlCreator.createUrl;
 
 /**
  * Created by alfredchang on 2017-10-06.
@@ -65,5 +75,25 @@ public class CastDetailFragment extends Fragment implements OnCastMemberClickLis
         Intent singleCastMemberDetailsIntent = new Intent(getActivity(), SingleCastMemberDetailActivity.class);
         singleCastMemberDetailsIntent.putExtra(Utilities.PARCELABLE_CAST_MEMBER_KEY, castMember);
         startActivity(singleCastMemberDetailsIntent);
+    }
+
+    private void fetchJsonMemberDetails(Cast castMember) {
+        String url = createUrl(castMember.getId());
+        Log.v(LOG_TAG, "Formed url:" + url);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        LoganCastMemberDetailTemplate castMemberLogan = MovieParser.parseJsonCastMemberData(response);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(LOG_TAG, "Response error (fetchJsonMemberDetails): " + error);
+            }
+        });
+
+        RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
     }
 }

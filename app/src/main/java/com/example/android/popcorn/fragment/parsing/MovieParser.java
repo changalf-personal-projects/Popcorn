@@ -34,6 +34,11 @@ public class MovieParser {
         return (LoganTrailersTemplate) parseData(response, LoganTrailersTemplate.class);
     }
 
+    // Get cast member details from json data.
+    public static LoganCastMemberDetailTemplate parseJsonCastMemberData(String response) {
+        return (LoganCastMemberDetailTemplate) parseData(response, LoganCastMemberDetailTemplate.class);
+    }
+
     private static MovieLogan parseData(String response, Class template) {
         MovieLogan movieLogan = null;
         try {
