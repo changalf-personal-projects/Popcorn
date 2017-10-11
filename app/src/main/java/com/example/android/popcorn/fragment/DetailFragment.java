@@ -31,6 +31,7 @@ import com.example.android.popcorn.networking.UriTerms;
 import com.example.android.popcorn.ui.GlideApp;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -50,6 +51,8 @@ public class DetailFragment extends Fragment {
 
     private final String LOG_TAG = DetailFragment.class.getSimpleName();
 
+    private List<Cast> mListOfCastMembers;
+
     @BindView(R.id.backdrop_poster) ImageView mBackdrop;
     @BindView(R.id.movie_poster) ImageView mPoster;
     @BindView(R.id.title) TextView mTitle;
@@ -66,6 +69,7 @@ public class DetailFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_detail_main, container, false);
         ButterKnife.bind(this, rootView);
 
+        mListOfCastMembers = new ArrayList<>();
         Movie movie = getParcelableDetails();
 
         setParcelableDetailsIntoViews(movie);
@@ -90,23 +94,6 @@ public class DetailFragment extends Fragment {
                 startActivity(castDetailIntent);
             }
         });
-    }
-
-    private Movie getParcelableDetails() {
-        Intent detailIntent = getActivity().getIntent();
-        Movie movie = detailIntent.getParcelableExtra(Utilities.PARCELABLE_MOVIE_KEY);
-        return movie;
-    }
-
-    private void setParcelableDetailsIntoViews(Movie movie) {
-        setBackdrop(movie);
-        setPoster(movie);
-        setTitle(movie);
-        setRating(movie);
-        setRuntime(movie);
-        setRelease(movie);
-        setGenres(movie);
-        setSynopsis(movie);
     }
 
     private void fetchJsonCast(final Movie movie) {
@@ -149,23 +136,6 @@ public class DetailFragment extends Fragment {
         RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
     }
 
-    private void saveMovieCastId(Movie movie, LoganCastTemplate castLogan) {
-        for (LoganCastTemplate.Credits.Cast result: castLogan.getCredits().getCast()) {
-            String profilePath = result.getProfilePath();
-            Cast cast = new Cast();
-            cast.setName(result.getName());
-            cast.setCharacter(result.getCharacter());
-            cast.setId(result.getId());
-
-            if (profilePath != null) {
-                cast.setThumbnail(createImageUrl(profilePath, UriTerms.IMAGE_SIZE_W92));
-                cast.setProfilePath(createImageUrl(profilePath, UriTerms.IMAGE_SIZE_W185));
-            }
-
-            fetchJsonMemberDetails(cast, movie);
-        }
-    }
-
     private void fetchJsonMemberDetails(final Cast cast, final Movie movie) {
         String url = createCastMemberDetailUrl(cast.getId());
         Log.v(LOG_TAG, "Formed url: " + url);
@@ -187,6 +157,23 @@ public class DetailFragment extends Fragment {
         RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
     }
 
+    private void saveMovieCastId(Movie movie, LoganCastTemplate castLogan) {
+        for (LoganCastTemplate.Credits.Cast result: castLogan.getCredits().getCast()) {
+            String profilePath = result.getProfilePath();
+            Cast cast = new Cast();
+            cast.setName(result.getName());
+            cast.setCharacter(result.getCharacter());
+            cast.setId(result.getId());
+
+            if (profilePath != null) {
+                cast.setThumbnail(createImageUrl(profilePath, UriTerms.IMAGE_SIZE_W92));
+                cast.setProfilePath(createImageUrl(profilePath, UriTerms.IMAGE_SIZE_W185));
+            }
+
+            fetchJsonMemberDetails(cast, movie);
+        }
+    }
+
     private void saveCastMemberDetails(Cast cast, Movie movie, LoganCastMemberDetailTemplate castMemberLogan) {
         cast.setBirthday(castMemberLogan.getBirthday());
         cast.setDeathday(castMemberLogan.getDeathDate());
@@ -201,6 +188,23 @@ public class DetailFragment extends Fragment {
             trailer.setKey(result.getKey());
             movie.setTrailers(trailer);
         }
+    }
+
+    private Movie getParcelableDetails() {
+        Intent detailIntent = getActivity().getIntent();
+        Movie movie = detailIntent.getParcelableExtra(Utilities.PARCELABLE_MOVIE_KEY);
+        return movie;
+    }
+
+    private void setParcelableDetailsIntoViews(Movie movie) {
+        setBackdrop(movie);
+        setPoster(movie);
+        setTitle(movie);
+        setRating(movie);
+        setRuntime(movie);
+        setRelease(movie);
+        setGenres(movie);
+        setSynopsis(movie);
     }
 
     private void setBackdrop(Movie movie) {
