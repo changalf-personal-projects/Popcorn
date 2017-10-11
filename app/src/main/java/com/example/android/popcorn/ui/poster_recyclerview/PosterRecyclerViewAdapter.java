@@ -1,6 +1,7 @@
 package com.example.android.popcorn.ui.poster_recyclerview;
 
 import android.content.Context;
+import android.support.v7.graphics.Palette;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.ui.GlideApp;
+import com.github.florent37.glidepalette.GlidePalette;
 
 import java.util.List;
 
@@ -68,11 +70,27 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
         onBindGenres(movie, holder);
     }
 
-    private void onBindPoster(Movie movie, PosterViewHolder holder) {
+    private void onBindPoster(Movie movie, final PosterViewHolder holder) {
         if (isNotNullPath(movie)) {
-            GlideApp.with(mContext).load(movie.getPosterPath()).override(POSTER_WIDTH, POSTER_HEIGHT)
+            GlideApp.with(mContext).load(movie.getPosterPath())
+                    .listener(GlidePalette.with(movie.getPosterPath())
+                            .intoCallBack(new GlidePalette.CallBack() {
+                                @Override
+                                public void onPaletteLoaded(Palette palette) {
+                                    colorCardBackground(holder, palette.getDominantSwatch());
+                                }
+                            })
+                    )
+                    .override(POSTER_WIDTH, POSTER_HEIGHT)
                     .into(holder.mPoster);
         }
+    }
+
+    private void colorCardBackground(PosterViewHolder holder, Palette.Swatch swatch) {
+        holder.mLinearLayout.setBackgroundColor(swatch.getRgb());
+        holder.mTitle.setTextColor(swatch.getTitleTextColor());
+        holder.mRating.setTextColor(swatch.getBodyTextColor());
+        holder.mGenres.setTextColor(swatch.getBodyTextColor());
     }
 
     private void onBindTitle(Movie movie, PosterViewHolder holder) {
@@ -101,10 +119,15 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
 
     public class PosterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        @BindView(R.id.movie_poster) ImageView mPoster;
-        @BindView(R.id.title) TextView mTitle;
-        @BindView(R.id.rating) TextView mRating;
-        @BindView(R.id.genres) TextView mGenres;
+        @BindView(R.id.movie_poster)
+        ImageView mPoster;
+        @BindView(R.id.title)
+        TextView mTitle;
+        @BindView(R.id.rating)
+        TextView mRating;
+        @BindView(R.id.genres)
+        TextView mGenres;
+        @BindView(R.id.linear_layout) View mLinearLayout;
 
         public PosterViewHolder(View itemView) {
             super(itemView);
