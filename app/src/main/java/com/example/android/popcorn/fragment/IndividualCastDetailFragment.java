@@ -38,12 +38,18 @@ public class IndividualCastDetailFragment extends Fragment {
         ButterKnife.bind(this, rootView);
 
         Cast castMember = getParcelableDetails();
+        setParcelabeDetailIntoViews(castMember);
 
+        return rootView;
+    }
+
+    private void setParcelabeDetailIntoViews(Cast castMember) {
         setProfilePicture(castMember);
         setName(castMember);
         setBirthday(castMember);
-
-        return rootView;
+        setDeathday(castMember);
+        setBirthplace(castMember);
+        setBiography(castMember);
     }
 
     // Alt + enter if red lightbulb doesn't show up.
@@ -69,4 +75,15 @@ public class IndividualCastDetailFragment extends Fragment {
         mBirthday.setText(formatDate(castMember.getBirthday()));
     }
 
+    private void setDeathday(Cast castMember) {
+
+    }
+
+    private void setBirthplace(Cast castMember) {
+
+    }
+
+    private void setBiography(Cast castMember) {
+
+    }
 }
