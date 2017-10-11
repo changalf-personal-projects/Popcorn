@@ -7,6 +7,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import static com.example.android.popcorn.NullChecker.isNullDate;
+
 /**
  * Created by alfredchang on 2017-09-30.
  */
@@ -18,6 +20,8 @@ public class Utilities {
     public static final String PARCELABLE_MOVIE_KEY = "movie";
     public static final String PARCELABLE_CAST_KEY = "cast";
     public static final String PARCELABLE_CAST_MEMBER_KEY = "cast member";
+
+    private static final String NO_DATE = "No date available";
 
     public static boolean hasPosterPath(Movie movie) {
         return movie.getPosterPath() != null;
@@ -60,10 +64,15 @@ public class Utilities {
             e.printStackTrace();
         }
 
+        String formattedDate = "";
         // This is the format that we want the date to be.
         SimpleDateFormat newFormat = new SimpleDateFormat("MMMM d, yyyy");
         // Turn date into a string.
-        String formattedDate = newFormat.format(date);
+        if (isNullDate(date)) {
+            formattedDate = newFormat.format(date);
+        } else {
+            formattedDate = NO_DATE;
+        }
 
         return formattedDate;
     }
