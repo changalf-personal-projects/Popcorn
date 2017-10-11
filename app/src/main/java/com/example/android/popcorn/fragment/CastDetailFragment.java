@@ -55,6 +55,7 @@ public class CastDetailFragment extends Fragment implements OnCastMemberClickLis
 
         List<Cast> castMembers = getParcelableCastDetails();
         attachToAdapter(castMembers);
+        fetchJsonMemberDetails(castMembers);
 
         return rootView;
     }
@@ -77,33 +78,34 @@ public class CastDetailFragment extends Fragment implements OnCastMemberClickLis
         startActivity(singleCastMemberDetailsIntent);
     }
 
-    private void fetchJsonMemberDetails(final Cast cast, final Movie movie) {
-        String url = createCastMemberDetailUrl(cast.getId());
-        Log.v(LOG_TAG, "Formed url: " + url);
+    private void fetchJsonMemberDetails(List<Cast> castMembers) {
+        for (int i = 0; i < castMembers.size(); i++) {
+            final Cast castMember = castMembers.get(i);
+            String url = createCastMemberDetailUrl(castMember.getId());
+            Log.v(LOG_TAG, "Formed url: " + url);
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        LoganCastMemberDetailTemplate castMemberLogan = MovieParser.parseJsonCastMemberData(response);
-                        saveCastMemberDetails(cast, movie, castMemberLogan);
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e(LOG_TAG, "Response error (fetchJsonMemberDetails): " + error);
-            }
-        });
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            LoganCastMemberDetailTemplate castMemberLogan = MovieParser.parseJsonCastMemberData(response);
+                            saveCastMemberDetails(castMember, castMemberLogan);
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.e(LOG_TAG, "Response error (fetchJsonMemberDetails): " + error);
+                }
+            });
 
-        RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
+            RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
+        }
     }
 
-    private void saveCastMemberDetails(Cast cast, Movie movie, LoganCastMemberDetailTemplate castMemberLogan) {
-        cast.setBirthday(castMemberLogan.getBirthday());
-        cast.setDeathday(castMemberLogan.getDeathDate());
-        cast.setBiography(castMemberLogan.getBiography());
-        cast.setBirthplace(castMemberLogan.getBirthPlace());
-        movie.setCast(cast);
+    private void saveCastMemberDetails(Cast castMember, LoganCastMemberDetailTemplate castMemberLogan) {
+        castMember.setBirthday(castMemberLogan.getBirthday());
+        castMember.setDeathday(castMemberLogan.getDeathDate());
+        castMember.setBiography(castMemberLogan.getBiography());
+        castMember.setBirthplace(castMemberLogan.getBirthPlace());
     }
-
 }
