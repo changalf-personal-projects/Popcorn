@@ -141,8 +141,8 @@ public class Movie implements Parcelable {
         return castMembers;
     }
 
-    public void setCast(Cast member) {
-        castMembers.add(member);
+    public void setCast(List<Cast> castMembers) {
+        this.castMembers = castMembers;
     }
 
     public List<Trailer> getTrailers() {
