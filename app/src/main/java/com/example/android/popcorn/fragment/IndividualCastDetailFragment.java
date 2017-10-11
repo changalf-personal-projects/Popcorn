@@ -17,6 +17,7 @@ import com.example.android.popcorn.ui.GlideApp;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.android.popcorn.NullChecker.isNotNullString;
 import static com.example.android.popcorn.Utilities.formatDate;
 
 /**
@@ -26,10 +27,12 @@ import static com.example.android.popcorn.Utilities.formatDate;
 public class IndividualCastDetailFragment extends Fragment {
 
     private final String LOG_TAG = IndividualCastDetailFragment.class.getSimpleName();
+    private final String ALIVE = "N/A";
 
     @BindView(R.id.cast_member_profile_picture) ImageView mProfilePicture;
     @BindView(R.id.cast_member_name) TextView mName;
     @BindView(R.id.birthday) TextView mBirthday;
+    @BindView(R.id.death) TextView mDeath;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -76,7 +79,12 @@ public class IndividualCastDetailFragment extends Fragment {
     }
 
     private void setDeathday(Cast castMember) {
-
+        String death = castMember.getDeathday();
+        if (isNotNullString(death)) {
+            mDeath.setText(death);
+        } else {
+            mDeath.setText(ALIVE);
+        }
     }
 
     private void setBirthplace(Cast castMember) {
