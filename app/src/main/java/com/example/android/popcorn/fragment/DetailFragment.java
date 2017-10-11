@@ -152,37 +152,6 @@ public class DetailFragment extends Fragment {
         }
     }
 
-    // TODO: Move this method.
-//    private void fetchJsonMemberDetails(final Cast cast, final Movie movie) {
-//        String url = createCastMemberDetailUrl(cast.getId());
-//        Log.v(LOG_TAG, "Formed url: " + url);
-//
-//        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-//                new Response.Listener<String>() {
-//                    @Override
-//                    public void onResponse(String response) {
-//                        LoganCastMemberDetailTemplate castMemberLogan = MovieParser.parseJsonCastMemberData(response);
-//                        saveCastMemberDetails(cast, movie, castMemberLogan);
-//                    }
-//                }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Log.e(LOG_TAG, "Response error (fetchJsonMemberDetails): " + error);
-//            }
-//        });
-//
-//        RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
-//    }
-
-    // TODO: Move this method.
-//    private void saveCastMemberDetails(Cast cast, Movie movie, LoganCastMemberDetailTemplate castMemberLogan) {
-//        cast.setBirthday(castMemberLogan.getBirthday());
-//        cast.setDeathday(castMemberLogan.getDeathDate());
-//        cast.setBiography(castMemberLogan.getBiography());
-//        cast.setBirthplace(castMemberLogan.getBirthPlace());
-//        movie.setCast(cast);
-//    }
-
     private void saveMovieTrailers(Movie movie, LoganTrailersTemplate trailerLogan) {
         for (LoganTrailersTemplate.Videos.Results result: trailerLogan.getVideos().getResults()) {
             Trailer trailer = new Trailer();
