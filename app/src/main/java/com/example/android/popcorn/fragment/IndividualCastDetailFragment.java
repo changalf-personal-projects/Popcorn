@@ -21,9 +21,9 @@ import butterknife.ButterKnife;
  * Created by alfredchang on 2017-10-08.
  */
 
-public class SingleCastDetailFragment extends Fragment {
+public class IndividualCastDetailFragment extends Fragment {
 
-    private final String LOG_TAG = SingleCastDetailFragment.class.getSimpleName();
+    private final String LOG_TAG = IndividualCastDetailFragment.class.getSimpleName();
 
     @BindView(R.id.cast_member_profile_picture) ImageView mProfilePicture;
     @BindView(R.id.cast_member_name) TextView mName;

@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.android.popcorn.R;
-import com.example.android.popcorn.SingleCastMemberDetailActivity;
+import com.example.android.popcorn.IndividualCastDetailActivity;
 import com.example.android.popcorn.Utilities;
 import com.example.android.popcorn.model.Cast;
 import com.example.android.popcorn.ui.cast_recyclerview.CastRecyclerViewAdapter;
@@ -62,7 +62,7 @@ public class CastDetailFragment extends Fragment implements OnCastMemberClickLis
 
     @Override
     public void onClick(Cast castMember) {
-        Intent singleCastMemberDetailsIntent = new Intent(getActivity(), SingleCastMemberDetailActivity.class);
+        Intent singleCastMemberDetailsIntent = new Intent(getActivity(), IndividualCastDetailActivity.class);
         singleCastMemberDetailsIntent.putExtra(Utilities.PARCELABLE_CAST_MEMBER_KEY, castMember);
         startActivity(singleCastMemberDetailsIntent);
     }
