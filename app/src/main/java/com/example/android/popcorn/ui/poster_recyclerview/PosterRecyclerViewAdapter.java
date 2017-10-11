@@ -17,9 +17,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.android.popcorn.NullChecker.isNotNullPath;
 import static com.example.android.popcorn.Utilities.convertDoubleToString;
 import static com.example.android.popcorn.Utilities.hasAtLeastOneGenre;
-import static com.example.android.popcorn.Utilities.hasPosterPath;
 import static com.example.android.popcorn.Utilities.roundToNearestTenth;
 
 /**
@@ -69,7 +69,7 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
     }
 
     private void onBindPoster(Movie movie, PosterViewHolder holder) {
-        if (hasPosterPath(movie)) {
+        if (isNotNullPath(movie)) {
             GlideApp.with(mContext).load(movie.getPosterPath()).override(POSTER_WIDTH, POSTER_HEIGHT)
                     .into(holder.mPoster);
         }

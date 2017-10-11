@@ -1,5 +1,7 @@
 package com.example.android.popcorn;
 
+import com.example.android.popcorn.model.Movie;
+
 import java.util.Date;
 
 /**
@@ -8,11 +10,15 @@ import java.util.Date;
  */
 public class NullChecker {
 
-    public static boolean isNullGenres(String genres) {
-        return genres != null;
+    public static boolean isNotNullPath(Movie movie) {
+        return movie.getPosterPath() != null;
     }
 
-    public static boolean isNullDate(Date date) {
+    public static boolean isNotNullString(String input) {
+        return input != null;
+    }
+
+    public static boolean isNotNullDate(Date date) {
         return date != null;
     }
 }

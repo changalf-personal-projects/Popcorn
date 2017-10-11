@@ -54,8 +54,8 @@ public class CastDetailFragment extends Fragment implements OnCastMemberClickLis
         mRecyclerView.setLayoutManager(layoutManager);
 
         List<Cast> castMembers = getParcelableCastDetails();
-        attachToAdapter(castMembers);
         fetchJsonMemberDetails(castMembers);
+        attachToAdapter(castMembers);
 
         return rootView;
     }
