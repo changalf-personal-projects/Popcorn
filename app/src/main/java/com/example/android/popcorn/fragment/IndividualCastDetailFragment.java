@@ -17,6 +17,8 @@ import com.example.android.popcorn.ui.GlideApp;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.android.popcorn.Utilities.formatDate;
+
 /**
  * Created by alfredchang on 2017-10-08.
  */
@@ -64,7 +66,7 @@ public class IndividualCastDetailFragment extends Fragment {
     }
 
     private void setBirthday(Cast castMember) {
-        mBirthday.setText(castMember.getBirthday());
+        mBirthday.setText(formatDate(castMember.getBirthday()));
     }
 
 }

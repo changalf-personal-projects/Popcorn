@@ -61,7 +61,7 @@ public class Utilities {
         }
 
         // This is the format that we want the date to be.
-        SimpleDateFormat newFormat = new SimpleDateFormat("MMM dd, yyyy");
+        SimpleDateFormat newFormat = new SimpleDateFormat("MMMM d, yyyy");
         // Turn date into a string.
         String formattedDate = newFormat.format(date);
 
