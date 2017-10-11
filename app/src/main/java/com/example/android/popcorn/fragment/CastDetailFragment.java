@@ -82,7 +82,6 @@ public class CastDetailFragment extends Fragment implements OnCastMemberClickLis
         for (int i = 0; i < castMembers.size(); i++) {
             final Cast castMember = castMembers.get(i);
             String url = createCastMemberDetailUrl(castMember.getId());
-            Log.v(LOG_TAG, "Formed url: " + url);
 
             StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                     new Response.Listener<String>() {

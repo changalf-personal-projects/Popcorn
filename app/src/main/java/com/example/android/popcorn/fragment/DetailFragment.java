@@ -36,6 +36,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.example.android.popcorn.Utilities.convertDoubleToString;
+import static com.example.android.popcorn.Utilities.formatDate;
 import static com.example.android.popcorn.Utilities.formatGenres;
 import static com.example.android.popcorn.Utilities.roundToNearestTenth;
 import static com.example.android.popcorn.networking.UrlCreator.createImageUrl;
@@ -230,7 +231,7 @@ public class DetailFragment extends Fragment {
     }
 
     private void setRelease(Movie movie) {
-        mRelease.setText(movie.getReleaseDate());
+        mRelease.setText(formatDate(movie.getReleaseDate()));
     }
 
     private void setGenres(Movie movie) {

@@ -47,16 +47,24 @@ public class Utilities {
         return genres.substring(SECOND_CHAR, SECOND_LAST_CHAR);
     }
 
-    // TODO: Complete formatDate().
     // TODO: Use Calendar instance instead.
     public static String formatDate(String releaseDate) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMMMM dd, yyyy");
+        Date date = null;
+        // Start with the original format of releaseDate (ie. 2016-12-10).
+        SimpleDateFormat originalFormat = new SimpleDateFormat("yyyy-MM-dd");
+
         try {
-            Date date = simpleDateFormat.parse(releaseDate);
-            return date.toString();
+            // Get a new Date object from releaseDate.
+            date = originalFormat.parse(releaseDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return "";
+
+        // This is the format that we want the date to be.
+        SimpleDateFormat newFormat = new SimpleDateFormat("MMM dd, yyyy");
+        // Turn date into a string.
+        String formattedDate = newFormat.format(date);
+
+        return formattedDate;
     }
 }
