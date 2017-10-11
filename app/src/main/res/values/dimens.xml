@@ -53,7 +53,11 @@
 
     <!-- Single cast member detail paddings and margins. -->
     <dimen name="biography_subheading_left_padding">10dp</dimen>
+    <dimen name="biography_subheading_right_padding">10dp</dimen>
     <dimen name="birthday_top_padding">20dp</dimen>
+    <dimen name="biography_description_top_margin">20dp</dimen>
+    <dimen name="cardview_content_top_margin">20dp</dimen>
+    <dimen name="cardview_content_bottom_margin">20dp</dimen>
 
     <!-- Elevations. -->
     <dimen name="cardview_elevation">5dp</dimen>

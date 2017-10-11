@@ -15,6 +15,7 @@
     <string name="biography_subheading">Biography</string>
     <string name="birth_date">Birthday:</string>
     <string name="death_date">Death:</string>
+    <string name="place_of_birth">Place of birth:</string>
 
     <!-- Button labels. -->
     <string name="view_trailers">Watch Trailers</string>

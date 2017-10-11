@@ -3,6 +3,7 @@ package com.example.android.popcorn.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import com.example.android.popcorn.ui.GlideApp;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.android.popcorn.EmptyChecker.isNotEmptyString;
 import static com.example.android.popcorn.NullChecker.isNotNullString;
 import static com.example.android.popcorn.Utilities.formatDate;
 
@@ -27,12 +29,15 @@ import static com.example.android.popcorn.Utilities.formatDate;
 public class IndividualCastDetailFragment extends Fragment {
 
     private final String LOG_TAG = IndividualCastDetailFragment.class.getSimpleName();
-    private final String ALIVE = "N/A";
+    private final String NOT_AVAILABLE = "N/A";
+    private final String NO_BIOGRAPHY = "Biography unavailable";
 
     @BindView(R.id.cast_member_profile_picture) ImageView mProfilePicture;
     @BindView(R.id.cast_member_name) TextView mName;
     @BindView(R.id.birthday) TextView mBirthday;
     @BindView(R.id.death) TextView mDeath;
+    @BindView(R.id.place_of_birth) TextView mPlaceOfBirth;
+    @BindView(R.id.biography_description) TextView mBiography;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -81,17 +86,28 @@ public class IndividualCastDetailFragment extends Fragment {
     private void setDeathday(Cast castMember) {
         String death = castMember.getDeathday();
         if (isNotNullString(death)) {
-            mDeath.setText(death);
+            mDeath.setText(formatDate(death));
         } else {
-            mDeath.setText(ALIVE);
+            mDeath.setText(NOT_AVAILABLE);
         }
     }
 
     private void setBirthplace(Cast castMember) {
-
+        String placeOfBirth = castMember.getBirthplace();
+        if (isNotNullString(placeOfBirth)) {
+            mPlaceOfBirth.setText(castMember.getBirthplace());
+        } else {
+            mPlaceOfBirth.setText(NOT_AVAILABLE);
+        }
     }
 
     private void setBiography(Cast castMember) {
-
+        String biography = castMember.getBiography();
+        Log.v(LOG_TAG, "Biography: " + biography);
+        if (isNotNullString(biography) && isNotEmptyString(biography)) {
+            mBiography.setText(castMember.getBiography());
+        } else {
+            mBiography.setText(NO_BIOGRAPHY);
+        }
     }
 }

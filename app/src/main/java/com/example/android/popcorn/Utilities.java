@@ -24,7 +24,7 @@ public class Utilities {
     public static final String PARCELABLE_CAST_KEY = "cast";
     public static final String PARCELABLE_CAST_MEMBER_KEY = "cast member";
 
-    private static final String NOT_AVAILABLE = "Not available";
+    private static final String NOT_AVAILABLE = "N/A";
 
     public static double roundToNearestTenth(Movie movie) {
         String rating = movie.getRating();
