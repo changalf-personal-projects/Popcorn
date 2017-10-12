@@ -78,7 +78,7 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
                             .intoCallBack(new GlidePalette.CallBack() {
                                 @Override
                                 public void onPaletteLoaded(Palette palette) {
-                                    bindColorToCardView(holder, palette.getDominantSwatch());
+                                    onBindColorToCardView(holder, palette.getDominantSwatch());
                                 }
                             })
                     )
@@ -88,7 +88,7 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
         }
     }
 
-    private void bindColorToCardView(PosterViewHolder holder, Palette.Swatch swatch) {
+    private void onBindColorToCardView(PosterViewHolder holder, Palette.Swatch swatch) {
         holder.mLinearLayout.setBackgroundColor(swatch.getRgb());
         holder.mTitle.setTextColor(swatch.getTitleTextColor());
         holder.mRating.setTextColor(swatch.getBodyTextColor());
