@@ -103,10 +103,12 @@ public class IndividualCastDetailFragment extends Fragment {
 
     private void setBiography(Cast castMember) {
         String biography = castMember.getBiography();
+        // Returns an empty string.
         Log.v(LOG_TAG, "Biography: " + biography);
         if (isNotNullString(biography) && isNotEmptyString(biography)) {
             mBiography.setText(castMember.getBiography());
         } else {
+            Log.v(LOG_TAG, "Enters else statement (It -> Jeremy Ray Taylor.");
             mBiography.setText(NO_BIOGRAPHY);
         }
     }
