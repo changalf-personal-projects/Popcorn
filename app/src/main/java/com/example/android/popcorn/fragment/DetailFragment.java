@@ -16,6 +16,8 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.example.android.popcorn.CastDetailActivity;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.Utilities;
@@ -178,11 +180,17 @@ public class DetailFragment extends Fragment {
     }
 
     private void setBackdrop(Movie movie) {
-        GlideApp.with(getContext()).load(movie.getBackdropPath()).into(mBackdrop);
+        GlideApp.with(getContext()).load(movie.getBackdropPath())
+                .transition(DrawableTransitionOptions.withCrossFade())
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                .into(mBackdrop);
     }
 
     private void setPoster(Movie movie) {
-        GlideApp.with(getContext()).load(movie.getDetailPosterPath()).into(mPoster);
+        GlideApp.with(getContext()).load(movie.getDetailPosterPath())
+                .transition(DrawableTransitionOptions.withCrossFade())
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                .into(mPoster);
     }
 
     private void setTitle(Movie movie) {

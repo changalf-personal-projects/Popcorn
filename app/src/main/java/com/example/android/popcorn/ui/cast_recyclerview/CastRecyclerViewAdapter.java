@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.model.Cast;
 import com.example.android.popcorn.ui.GlideApp;
@@ -24,6 +26,7 @@ import butterknife.ButterKnife;
 public class CastRecyclerViewAdapter extends RecyclerView.Adapter<CastRecyclerViewAdapter.CastViewHolder> {
 
     private final String LOG_TAG = CastRecyclerViewAdapter.class.getSimpleName();
+    private final int CROSSFADE_TIME = 250;
 
     private Context mContext;
     private List<Cast> mCast;
@@ -60,7 +63,10 @@ public class CastRecyclerViewAdapter extends RecyclerView.Adapter<CastRecyclerVi
 
     private void onBindProfilePicture(Cast cast, CastViewHolder holder) {
         if (cast.getProfilePath() != null) {
-            GlideApp.with(mContext).load(cast.getThumbnail()).into(holder.mProfilePicture);
+            GlideApp.with(mContext).load(cast.getThumbnail())
+                    .transition(DrawableTransitionOptions.withCrossFade(CROSSFADE_TIME))
+                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                    .into(holder.mProfilePicture);
         }
     }
 

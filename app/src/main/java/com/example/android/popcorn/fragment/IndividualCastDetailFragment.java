@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.Utilities;
 import com.example.android.popcorn.model.Cast;
@@ -31,6 +33,7 @@ public class IndividualCastDetailFragment extends Fragment {
     private final String LOG_TAG = IndividualCastDetailFragment.class.getSimpleName();
     private final String NOT_AVAILABLE = "N/A";
     private final String NO_BIOGRAPHY = "Biography unavailable";
+    private final int CROSSFADE_TIME = 400;
 
     @BindView(R.id.cast_member_profile_picture) ImageView mProfilePicture;
     @BindView(R.id.cast_member_name) TextView mName;
@@ -71,7 +74,10 @@ public class IndividualCastDetailFragment extends Fragment {
         String profilePath = castMember.getProfilePath();
 
         if (profilePath != null) {
-            GlideApp.with(getActivity()).load(profilePath).circleCrop().into(mProfilePicture);
+            GlideApp.with(getActivity()).load(profilePath).circleCrop()
+                    .transition(DrawableTransitionOptions.withCrossFade(CROSSFADE_TIME))
+                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                    .into(mProfilePicture);
         }
     }
 
