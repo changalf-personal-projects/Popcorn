@@ -83,6 +83,7 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
                                 }
                             })
                     )
+                    .placeholder(R.drawable.poster_placeholder)
                     .override(POSTER_WIDTH, POSTER_HEIGHT)
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)

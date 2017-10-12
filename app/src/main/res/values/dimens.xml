@@ -47,6 +47,10 @@
     <dimen name="detail_rating_left_margin">-4dp</dimen>
     <dimen name="detail_release_left_margin">-3dp</dimen>
 
+    <!-- Poster width and height. -->
+    <dimen name="poster_width">700dp</dimen>
+    <dimen name="poster_height">800dp</dimen>
+
     <!-- Profile picture margins and paddings. -->
     <dimen name="profile_picture_margin">10dp</dimen>
     <dimen name="profile_picture_padding">5dp</dimen>

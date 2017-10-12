@@ -15,6 +15,7 @@
     <color name="cardview_background">#F2F2F2</color>
     <color name="profile_picture_background">#1ACBAB</color>
     <color name="profile_picture_line_color">#C00000</color>
+    <color name="placeholder_color">#BFBFBF</color>
 
     <!-- Colors for debugging background. -->
     <color name="blackTest">#000000</color>
