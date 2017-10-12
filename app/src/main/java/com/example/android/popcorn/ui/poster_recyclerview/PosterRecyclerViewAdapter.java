@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.ui.GlideApp;
@@ -82,6 +83,7 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
                             })
                     )
                     .override(POSTER_WIDTH, POSTER_HEIGHT)
+                    .transition(DrawableTransitionOptions.withCrossFade(500))
                     .into(holder.mPoster);
         }
     }
