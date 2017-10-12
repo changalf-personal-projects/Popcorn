@@ -8,17 +8,17 @@
     tools:context="com.example.android.popcorn.MainActivity">
 
     <!--<android.support.design.widget.AppBarLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:theme="@style/AppTheme.AppBarOverlay"-->
-        <!--android:id="@+id/appbar_layout">-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:theme="@style/AppTheme.AppBarOverlay"-->
+    <!--android:id="@+id/appbar_layout">-->
 
-        <!--<android.support.v7.widget.Toolbar-->
-            <!--android:id="@+id/toolbar"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="?attr/actionBarSize"-->
-            <!--android:background="?attr/colorPrimary"-->
-            <!--app:popupTheme="@style/AppTheme.PopupOverlay" />-->
+    <!--<android.support.v7.widget.Toolbar-->
+    <!--android:id="@+id/toolbar"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="?attr/actionBarSize"-->
+    <!--android:background="?attr/colorPrimary"-->
+    <!--app:popupTheme="@style/AppTheme.PopupOverlay" />-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,139 +26,145 @@
         android:orientation="vertical">
 
         <FrameLayout
+            android:id="@+id/green_space"
             android:layout_width="match_parent"
             android:layout_height="@dimen/green_rectangle_height"
-            android:id="@+id/green_space"
             android:background="@color/profile_picture_background">
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/line_height"
-                android:background="@color/profile_picture_line_color"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                android:background="@color/profile_picture_line_color" />
 
             <ImageView
+                android:id="@+id/cast_member_profile_picture"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/cast_member_profile_picture"
                 android:layout_gravity="center"
                 android:background="@drawable/profile_picture_border"
                 android:padding="@dimen/profile_picture_padding" />
 
             <TextView
+                android:id="@+id/cast_member_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/cast_member_name"
-                android:textColor="@color/profile_picture_line_color"
-                android:textStyle="bold"
-                android:textSize="@dimen/cast_member_name_size"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/cast_member_name_top_margin"
-                android:maxLines="1" />
+                android:maxLines="1"
+                android:textColor="@color/profile_picture_line_color"
+                android:textSize="@dimen/cast_member_name_size"
+                android:textStyle="bold" />
 
         </FrameLayout>
 
         <!--</android.support.design.widget.AppBarLayout>-->
 
-        <android.support.v7.widget.CardView
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/cast_member_details"
-            app:cardUseCompatPadding="true"
-            app:contentPaddingLeft="@dimen/biography_subheading_left_padding"
-            app:contentPaddingRight="@dimen/biography_subheading_right_padding">
+            android:layout_height="match_parent">
 
-            <LinearLayout
+            <android.support.v7.widget.CardView
+                android:id="@+id/cast_member_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="@dimen/cardview_content_top_margin"
-                android:layout_marginBottom="@dimen/cardview_content_bottom_margin">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/biography_subheading"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/detail_title_size" />
+                app:cardUseCompatPadding="true"
+                app:contentPaddingLeft="@dimen/biography_subheading_left_padding"
+                app:contentPaddingRight="@dimen/biography_subheading_right_padding">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingTop="@dimen/birthday_top_padding">
+                    android:layout_marginBottom="@dimen/cardview_content_bottom_margin"
+                    android:layout_marginTop="@dimen/cardview_content_top_margin"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/birth_date"
-                        android:textColor="@color/black" />
+                        android:text="@string/biography_subheading"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/detail_title_size"
+                        android:textStyle="bold" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/birthday"
-                        android:layout_marginLeft="@dimen/detail_text_left_margin"
-                        android:layout_marginStart="@dimen/detail_text_left_margin" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/death_date"
-                        android:textColor="@color/black" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/death"
-                        android:layout_marginLeft="@dimen/detail_text_left_margin"
-                        android:layout_marginStart="@dimen/detail_text_left_margin" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/place_of_birth"
-                        android:textColor="@color/black" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/place_of_birth"
-                        android:layout_marginLeft="@dimen/detail_text_left_margin"
-                        android:layout_marginStart="@dimen/detail_text_left_margin" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/biography_description_top_margin">
-
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/biography_description" />
+                        android:orientation="horizontal"
+                        android:paddingTop="@dimen/birthday_top_padding">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/birth_date"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:id="@+id/birthday"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/detail_text_left_margin"
+                            android:layout_marginStart="@dimen/detail_text_left_margin" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/death_date"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:id="@+id/death"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/detail_text_left_margin"
+                            android:layout_marginStart="@dimen/detail_text_left_margin" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/place_of_birth"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:id="@+id/place_of_birth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/detail_text_left_margin"
+                            android:layout_marginStart="@dimen/detail_text_left_margin" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/biography_description_top_margin">
+
+                        <TextView
+                            android:id="@+id/biography_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
-            </LinearLayout>
+            </android.support.v7.widget.CardView>
 
-        </android.support.v7.widget.CardView>
+        </ScrollView>
 
     </LinearLayout>
 
