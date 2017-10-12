@@ -34,6 +34,7 @@ public class IndividualCastDetailFragment extends Fragment {
     private final String NOT_AVAILABLE = "N/A";
     private final String NO_BIOGRAPHY = "Biography unavailable";
     private final int CROSSFADE_TIME = 400;
+    private final int PROFILE_PIC_DIMS = 400;
 
     @BindView(R.id.cast_member_profile_picture) ImageView mProfilePicture;
     @BindView(R.id.cast_member_name) TextView mName;
@@ -75,6 +76,7 @@ public class IndividualCastDetailFragment extends Fragment {
 
         if (profilePath != null) {
             GlideApp.with(getActivity()).load(profilePath).circleCrop()
+                    .override(PROFILE_PIC_DIMS, PROFILE_PIC_DIMS)
                     .transition(DrawableTransitionOptions.withCrossFade(CROSSFADE_TIME))
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .into(mProfilePicture);
