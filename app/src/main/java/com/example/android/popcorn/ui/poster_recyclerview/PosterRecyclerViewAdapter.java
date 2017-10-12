@@ -37,9 +37,10 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
     // Approximate dimensions.
     private final int POSTER_WIDTH = 700;
     private final int POSTER_HEIGHT = 800;
+
+    private final int CROSSFADE_TIME = 450;
     private final int FIRST_GENRE = 0;
     private final String NO_GENRE = "No genre";
-    private final String NO_RATING = "-/10";
 
     private Context mContext;
     private List<Movie> mListOfMovies;
@@ -83,9 +84,8 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
                                 }
                             })
                     )
-                    .placeholder(R.drawable.poster_placeholder)
                     .override(POSTER_WIDTH, POSTER_HEIGHT)
-                    .transition(DrawableTransitionOptions.withCrossFade())
+                    .transition(DrawableTransitionOptions.withCrossFade(CROSSFADE_TIME))
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .into(holder.mPoster);
         }

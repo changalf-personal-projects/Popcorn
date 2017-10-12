@@ -52,7 +52,7 @@ public class DetailFragment extends Fragment {
 
     private final String LOG_TAG = DetailFragment.class.getSimpleName();
     private final int BACKDROP_CROSSFADE_TIME = 200;
-    private final int POSTER_CROSSFADE_TIME = 800;
+    private final int POSTER_CROSSFADE_TIME = 700;
 
     private List<Cast> mListOfCastMembers;
 
