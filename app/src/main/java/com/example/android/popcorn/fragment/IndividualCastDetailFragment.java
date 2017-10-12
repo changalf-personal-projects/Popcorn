@@ -33,7 +33,7 @@ public class IndividualCastDetailFragment extends Fragment {
     private final String LOG_TAG = IndividualCastDetailFragment.class.getSimpleName();
     private final String NOT_AVAILABLE = "N/A";
     private final String NO_BIOGRAPHY = "Biography unavailable";
-    private final int CROSSFADE_TIME = 400;
+    private final int CROSSFADE_TIME = 500;
     private final int PROFILE_PIC_DIMS = 400;
 
     @BindView(R.id.cast_member_profile_picture) ImageView mProfilePicture;

@@ -51,6 +51,8 @@ import static com.example.android.popcorn.networking.UrlCreator.createUrlWithApp
 public class DetailFragment extends Fragment {
 
     private final String LOG_TAG = DetailFragment.class.getSimpleName();
+    private final int BACKDROP_CROSSFADE_TIME = 200;
+    private final int POSTER_CROSSFADE_TIME = 800;
 
     private List<Cast> mListOfCastMembers;
 
@@ -181,14 +183,14 @@ public class DetailFragment extends Fragment {
 
     private void setBackdrop(Movie movie) {
         GlideApp.with(getContext()).load(movie.getBackdropPath())
-                .transition(DrawableTransitionOptions.withCrossFade())
+                .transition(DrawableTransitionOptions.withCrossFade(BACKDROP_CROSSFADE_TIME))
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .into(mBackdrop);
     }
 
     private void setPoster(Movie movie) {
         GlideApp.with(getContext()).load(movie.getDetailPosterPath())
-                .transition(DrawableTransitionOptions.withCrossFade())
+                .transition(DrawableTransitionOptions.withCrossFade(POSTER_CROSSFADE_TIME))
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .into(mPoster);
     }
