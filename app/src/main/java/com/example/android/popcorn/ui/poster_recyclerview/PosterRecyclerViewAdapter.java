@@ -83,7 +83,7 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
                             })
                     )
                     .override(POSTER_WIDTH, POSTER_HEIGHT)
-                    .transition(DrawableTransitionOptions.withCrossFade(500))
+                    .transition(DrawableTransitionOptions.withCrossFade())
                     .into(holder.mPoster);
         }
     }
