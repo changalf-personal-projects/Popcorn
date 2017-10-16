@@ -128,6 +128,20 @@
 
                 </LinearLayout>
 
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/trailer_button"
+                    android:paddingLeft="@dimen/trailer_button_left_right_padding"
+                    android:paddingStart="@dimen/trailer_button_left_right_padding"
+                    android:paddingRight="@dimen/trailer_button_left_right_padding"
+                    android:paddingEnd="@dimen/trailer_button_left_right_padding"
+                    android:text="@string/view_trailers"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:background="@drawable/trailer_button"
+                    android:layout_marginBottom="@dimen/detail_button_bottom_margin" />
+
             </LinearLayout>
 
         </LinearLayout>
@@ -170,30 +184,30 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/detail_label_margin"
-                android:text="@string/trailers_label"
-                android:textColor="@color/white"
-                android:textSize="@dimen/detail_label_size"
-                android:textStyle="bold" />
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_margin="@dimen/detail_label_margin"-->
+                <!--android:text="@string/trailers_label"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:textSize="@dimen/detail_label_size"-->
+                <!--android:textStyle="bold" />-->
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/trailer_button"
-                android:paddingLeft="@dimen/trailer_button_left_right_padding"
-                android:paddingStart="@dimen/trailer_button_left_right_padding"
-                android:paddingRight="@dimen/trailer_button_left_right_padding"
-                android:paddingEnd="@dimen/trailer_button_left_right_padding"
-                android:text="@string/view_trailers"
-                android:textColor="@color/white"
-                android:layout_gravity="center"
-                android:background="@drawable/trailer_button"
-                android:layout_marginBottom="@dimen/detail_button_bottom_margin" />
+            <!--<Button-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:id="@+id/trailer_button"-->
+                <!--android:paddingLeft="@dimen/trailer_button_left_right_padding"-->
+                <!--android:paddingStart="@dimen/trailer_button_left_right_padding"-->
+                <!--android:paddingRight="@dimen/trailer_button_left_right_padding"-->
+                <!--android:paddingEnd="@dimen/trailer_button_left_right_padding"-->
+                <!--android:text="@string/view_trailers"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:background="@drawable/trailer_button"-->
+                <!--android:layout_marginBottom="@dimen/detail_button_bottom_margin" />-->
 
-            <include layout="@layout/detail_divider" />
+            <!--<include layout="@layout/detail_divider" />-->
 
             <TextView
                 android:layout_width="wrap_content"
