@@ -109,7 +109,8 @@ public class DetailFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent trailerIntent = new Intent(getActivity(), TrailerActivity.class);
-                trailerIntent.putExtra(Utilities.PARCELABLE_TRAILER_KEY, (Parcelable) mListOfTrailers);
+                trailerIntent.putExtra(Utilities.PARCELABLE_TRAILER_KEY,
+                        (ArrayList<? extends Parcelable>) mListOfTrailers);
                 startActivity(trailerIntent);
             }
         });
