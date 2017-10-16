@@ -143,7 +143,7 @@ public class DetailFragment extends Fragment {
                     @Override
                     public void onResponse(String response) {
                         LoganTrailersTemplate trailerLogan = MovieParser.parseJsonTrailersData(response);
-                        saveMovieTrailers(movie, trailerLogan);
+                        saveMovieTrailers(trailerLogan);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -172,7 +172,7 @@ public class DetailFragment extends Fragment {
         }
     }
 
-    private void saveMovieTrailers(Movie movie, LoganTrailersTemplate trailerLogan) {
+    private void saveMovieTrailers(LoganTrailersTemplate trailerLogan) {
         for (LoganTrailersTemplate.Videos.Results result: trailerLogan.getVideos().getResults()) {
             Trailer trailer = new Trailer();
             trailer.setKey(result.getKey());

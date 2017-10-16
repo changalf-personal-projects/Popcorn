@@ -3,6 +3,8 @@ package com.example.android.popcorn;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.example.android.popcorn.fragment.TrailerFragment;
+
 /**
  * Created by alfredchang on 2017-10-15.
  */
