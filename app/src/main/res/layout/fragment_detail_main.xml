@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:background="@color/colorPrimary"
         tools:context="com.example.android.popcorn.BuildConfig"
         tools:ignore="MergeRootFrame">
 
@@ -38,7 +39,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/detail_title_top_margin"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/detail_title_size"
                     android:textStyle="bold" />
 
@@ -50,14 +51,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/rating_label"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/white" />
 
                     <TextView
                         android:id="@+id/rating"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/detail_text_left_margin"
-                        android:layout_marginStart="@dimen/detail_text_left_margin" />
+                        android:layout_marginStart="@dimen/detail_text_left_margin"
+                        android:textColor="@color/detail_font_color" />
 
                 </LinearLayout>
 
@@ -70,14 +72,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/runtime_label"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/white" />
 
                     <TextView
                         android:id="@+id/runtime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/detail_text_left_margin"
-                        android:layout_marginStart="@dimen/detail_text_left_margin" />
+                        android:layout_marginStart="@dimen/detail_text_left_margin"
+                        android:textColor="@color/detail_font_color" />
 
                 </LinearLayout>
 
@@ -90,28 +93,28 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/release_label"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/white" />
 
                     <TextView
                         android:id="@+id/release"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/detail_text_left_margin"
-                        android:layout_marginStart="@dimen/detail_text_left_margin" />
+                        android:layout_marginStart="@dimen/detail_text_left_margin"
+                        android:textColor="@color/detail_font_color" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/detail_release_and_genres_margin"
                     android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/genre_label"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/white" />
 
                     <TextView
                         android:id="@+id/genres"
@@ -120,7 +123,8 @@
                         android:layout_marginEnd="@dimen/detail_genres_right_margin"
                         android:layout_marginLeft="@dimen/detail_text_left_margin"
                         android:layout_marginRight="@dimen/detail_genres_right_margin"
-                        android:layout_marginStart="@dimen/detail_text_left_margin" />
+                        android:layout_marginStart="@dimen/detail_text_left_margin"
+                        android:textColor="@color/detail_font_color" />
 
                 </LinearLayout>
 
@@ -141,7 +145,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/detail_label_margin"
                 android:text="@string/synopsis_label"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="@dimen/detail_label_size"
                 android:textStyle="bold" />
 
@@ -153,7 +157,8 @@
                 android:layout_marginEnd="@dimen/detail_synopsis_left_and_right_margin"
                 android:layout_marginLeft="@dimen/detail_synopsis_left_and_right_margin"
                 android:layout_marginRight="@dimen/detail_synopsis_left_and_right_margin"
-                android:layout_marginStart="@dimen/detail_synopsis_left_and_right_margin" />
+                android:layout_marginStart="@dimen/detail_synopsis_left_and_right_margin"
+                android:textColor="@color/detail_font_color" />
 
         </LinearLayout>
 
@@ -170,7 +175,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/detail_label_margin"
                 android:text="@string/trailers_label"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="@dimen/detail_label_size"
                 android:textStyle="bold" />
 
@@ -195,7 +200,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/detail_label_margin"
                 android:text="@string/cast_label"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="@dimen/detail_label_size"
                 android:textStyle="bold" />
 
@@ -220,7 +225,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/detail_label_margin"
                 android:text="@string/reviews_label"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="@dimen/detail_label_size"
                 android:textStyle="bold" />
 
