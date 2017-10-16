@@ -176,7 +176,7 @@ public class DetailFragment extends Fragment {
         for (LoganTrailersTemplate.Videos.Results result: trailerLogan.getVideos().getResults()) {
             Trailer trailer = new Trailer();
             trailer.setKey(result.getKey());
-            movie.setTrailers(trailer);
+            mListOfTrailers.add(trailer);
         }
     }
 

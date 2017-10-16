@@ -23,7 +23,6 @@ public class Movie implements Parcelable {
     private String detailPosterPath;
     private String backdropPath;
 
-    private List<Trailer> trailers = new ArrayList<>();
     private List<Review> reviews = new ArrayList<>();
 
     public Movie() {
@@ -133,14 +132,6 @@ public class Movie implements Parcelable {
 
     public void setBackdropPath(String backdropPath) {
         this.backdropPath = backdropPath;
-    }
-
-    public List<Trailer> getTrailers() {
-        return trailers;
-    }
-
-    public void setTrailers(Trailer trailer) {
-        trailers.add(trailer);
     }
 
     public List<Review> getReviews() {
