@@ -84,6 +84,8 @@
     <!-- Button design. -->
     <dimen name="trailer_button_side_padding">30dp</dimen>
     <dimen name="trailer_button_height">30dp</dimen>
+    <dimen name="trailer_button_top_margin">10dp</dimen>
+    <dimen name="trailer_button_right_margin">7dp</dimen>
     <dimen name="cast_button_left_right_padding">72dp</dimen>
     <dimen name="review_button_left_right_padding">60dp</dimen>
     <dimen name="button_corner_radius">2dp</dimen>
