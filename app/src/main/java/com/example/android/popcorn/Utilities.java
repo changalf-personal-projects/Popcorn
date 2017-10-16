@@ -23,6 +23,7 @@ public class Utilities {
     public static final String PARCELABLE_MOVIE_KEY = "movie";
     public static final String PARCELABLE_CAST_KEY = "cast";
     public static final String PARCELABLE_CAST_MEMBER_KEY = "cast member";
+    public static final String PARCELABLE_TRAILER_KEY = "trailers";
 
     private static final String NOT_AVAILABLE = "N/A";
 

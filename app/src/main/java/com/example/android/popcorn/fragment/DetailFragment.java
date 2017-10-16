@@ -20,6 +20,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.example.android.popcorn.CastDetailActivity;
 import com.example.android.popcorn.R;
+import com.example.android.popcorn.TrailerActivity;
 import com.example.android.popcorn.Utilities;
 import com.example.android.popcorn.fragment.parsing.LoganCastTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganTrailersTemplate;
@@ -55,6 +56,7 @@ public class DetailFragment extends Fragment {
     private final int POSTER_CROSSFADE_TIME = 700;
 
     private List<Cast> mListOfCastMembers;
+    private List<Trailer> mListOfTrailers;
 
     @BindView(R.id.backdrop_poster) ImageView mBackdrop;
     @BindView(R.id.movie_poster) ImageView mPoster;
@@ -65,6 +67,7 @@ public class DetailFragment extends Fragment {
     @BindView(R.id.genres) TextView mGenres;
     @BindView(R.id.synopsis) TextView mSynopsis;
     @BindView(R.id.cast_button) Button mCastButton;
+    @BindView(R.id.trailer_button) Button mTrailerButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -73,6 +76,7 @@ public class DetailFragment extends Fragment {
         ButterKnife.bind(this, rootView);
 
         mListOfCastMembers = new ArrayList<>();
+        mListOfTrailers = new ArrayList<>();
         Movie movie = getParcelableDetails();
 
         setParcelableDetailsIntoViews(movie);
@@ -85,6 +89,7 @@ public class DetailFragment extends Fragment {
 
     private void onClickButtons() {
         onClickCastButton();
+        onClickTrailerButton();
     }
 
     private void onClickCastButton() {
@@ -95,6 +100,17 @@ public class DetailFragment extends Fragment {
                 castDetailIntent.putParcelableArrayListExtra(Utilities.PARCELABLE_CAST_KEY,
                         (ArrayList<? extends Parcelable>) mListOfCastMembers);
                 startActivity(castDetailIntent);
+            }
+        });
+    }
+
+    private void onClickTrailerButton() {
+        mTrailerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent trailerIntent = new Intent(getActivity(), TrailerActivity.class);
+                trailerIntent.putExtra(Utilities.PARCELABLE_TRAILER_KEY, (Parcelable) mListOfTrailers);
+                startActivity(trailerIntent);
             }
         });
     }

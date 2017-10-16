@@ -177,6 +177,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/trailer_button"
                 android:paddingLeft="@dimen/trailer_button_left_right_padding"
                 android:paddingStart="@dimen/trailer_button_left_right_padding"
                 android:paddingRight="@dimen/trailer_button_left_right_padding"
