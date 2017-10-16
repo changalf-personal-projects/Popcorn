@@ -51,6 +51,11 @@
             android:name=".IndividualCastDetailActivity"
             android:theme="@style/CastDetailAppTheme">
         </activity>
+        <activity
+            android:name=".TrailerActivity"
+            android:label="@string/trailers_label"
+            android:theme="@style/AppTheme" >
+        </activity>
     </application>
 
 </manifest>
