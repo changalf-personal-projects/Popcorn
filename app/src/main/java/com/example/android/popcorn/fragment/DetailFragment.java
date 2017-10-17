@@ -103,7 +103,7 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
         attachToAdapter();
         setParcelableDetailsIntoViews(movie);
         fetchJsonTrailers(movie);
-        onClickButtons();
+        onClickTrailerButton();
 
         return rootView;
     }
@@ -124,10 +124,6 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
         Intent singleCastMemberDetailsIntent = new Intent(getActivity(), IndividualCastDetailActivity.class);
         singleCastMemberDetailsIntent.putExtra(Utilities.PARCELABLE_CAST_MEMBER_KEY, castMember);
         startActivity(singleCastMemberDetailsIntent);
-    }
-
-    private void onClickButtons() {
-        onClickTrailerButton();
     }
 
     private void onClickTrailerButton() {
