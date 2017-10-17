@@ -21,9 +21,11 @@ import com.example.android.popcorn.dagger.component.FragmentComponent;
 import com.example.android.popcorn.fragment.parsing.LoganCastTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganDetailsTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganIdTemplate;
+import com.example.android.popcorn.fragment.parsing.LoganReviewTemplate;
 import com.example.android.popcorn.fragment.parsing.MovieParser;
 import com.example.android.popcorn.model.Cast;
 import com.example.android.popcorn.model.Movie;
+import com.example.android.popcorn.model.Review;
 import com.example.android.popcorn.networking.RequestQueueSingleton;
 import com.example.android.popcorn.networking.UriTerms;
 import com.example.android.popcorn.ui.poster_recyclerview.OnMovieClickListener;
@@ -122,7 +124,7 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
                         @Override
                         public void onResponse(String response) {
                             LoganCastTemplate castLogan = MovieParser.parseJsonCastData(response);
-                            saveMovieCastId(movie, castLogan);
+                            saveMovieCast(movie, castLogan);
                         }
                     }, new Response.ErrorListener() {
                 @Override
@@ -144,7 +146,9 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-
+                            Log.v(LOG_TAG, "Response: " + response);
+                            LoganReviewTemplate reviewLogan = MovieParser.parseJsonReviewsData(response);
+                            saveMovieReview(movie, reviewLogan);
                         }
                     }, new Response.ErrorListener() {
                 @Override
@@ -168,14 +172,14 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
         fetchJsonReviews();
     }
 
-    private void saveMovieCastId(Movie movie, LoganCastTemplate castLogan) {
+    private void saveMovieCast(Movie movie, LoganCastTemplate castLogan) {
         for (LoganCastTemplate.Credits.Cast result : castLogan.getCredits().getCast()) {
-            String profilePath = result.getProfilePath();
             Cast cast = new Cast();
             cast.setName(result.getName());
             cast.setCharacter(result.getCharacter());
             cast.setId(result.getId());
 
+            String profilePath = result.getProfilePath();
             if (profilePath != null) {
                 cast.setProfilePath(createImageUrl(profilePath, UriTerms.IMAGE_SIZE_W185));
             }
@@ -202,6 +206,17 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
         movie.setBackdropPath(createImageUrl(movieLogan.getBackdropPath(), UriTerms.POSTER_SIZE_ORIGINAL));
 
         attachAdapter();
+    }
+
+    private void saveMovieReview(Movie movie, LoganReviewTemplate reviewLogan) {
+        for (LoganReviewTemplate.Reviews.Results result: reviewLogan.getReviews().getResults()) {
+            Review review = new Review();
+            review.setAuthor(result.getAuthor());
+            review.setContent(result.getContent());
+            movie.setReviews(review);
+        }
+
+        Log.v(LOG_TAG, "Movie review: " + movie.getReviews().get(0));
     }
 
     private void attachAdapter() {
