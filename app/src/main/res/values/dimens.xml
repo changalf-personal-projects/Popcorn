@@ -95,5 +95,6 @@
     <!-- Everything else. -->
     <dimen name="green_rectangle_height">250dp</dimen>
     <dimen name="zero_dp">0dp</dimen>
+    <dimen name="max_lines_review">12</dimen>
 
 </resources>
