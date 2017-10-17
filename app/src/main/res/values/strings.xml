@@ -21,6 +21,7 @@
     <string name="view_trailers">Watch Trailers</string>
     <string name="view_cast">View Cast</string>
     <string name="read_reviews">Read Reviews</string>
+    <string name="add_review">Add Review</string>
 
     <!-- Placeholder strings. -->
     <string name="genre_plus_comma">%1$s, </string>

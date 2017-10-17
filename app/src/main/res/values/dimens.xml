@@ -11,6 +11,7 @@
     <dimen name="detail_label_size">15sp</dimen>
     <dimen name="cast_character_size">12sp</dimen>
     <dimen name="cast_member_name_size">25sp</dimen>
+    <dimen name="add_review_font_size">12sp</dimen>
 
     <!-- Random margins. -->
     <dimen name="tabs_and_posters_divider">105dp</dimen>
@@ -94,6 +95,8 @@
     <dimen name="trailer_button_right_margin">7dp</dimen>
     <dimen name="cast_button_left_right_padding">72dp</dimen>
     <dimen name="review_button_left_right_padding">60dp</dimen>
+    <dimen name="add_review_button_height">22dp</dimen>
+    <dimen name="add_review_button_margin">12dp</dimen>
     <dimen name="button_corner_radius">2dp</dimen>
     <dimen name="button_stroke_width">5dp</dimen>
 
