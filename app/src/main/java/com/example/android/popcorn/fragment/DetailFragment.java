@@ -127,21 +127,8 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     }
 
     private void onClickButtons() {
-//        onClickCastButton();
         onClickTrailerButton();
     }
-
-//    private void onClickCastButton() {
-//        mCastButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent castDetailIntent = new Intent(getActivity(), CastDetailActivity.class);
-//                castDetailIntent.putParcelableArrayListExtra(Utilities.PARCELABLE_CAST_KEY,
-//                        (ArrayList<? extends Parcelable>) mListOfCastMembers);
-//                startActivity(castDetailIntent);
-//            }
-//        });
-//    }
 
     private void onClickTrailerButton() {
         mTrailerButton.setOnClickListener(new View.OnClickListener() {
