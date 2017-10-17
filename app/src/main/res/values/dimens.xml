@@ -43,6 +43,10 @@
     <dimen name="detail_synopsis_left_and_right_margin">22dp</dimen>
     <dimen name="detail_synopsis_top_margin">15dp</dimen>
     <dimen name="detail_synopsis_bottom_margin">20dp</dimen>
+    <dimen name="detail_review_header_bottom_margin">2dp</dimen>
+    <dimen name="detail_review_side_margin">22dp</dimen>
+    <dimen name="detail_review_bottom_margin">22dp</dimen>
+    <dimen name="detail_review_author_bottom_margin">5dp</dimen>
     <dimen name="detail_button_bottom_margin">20dp</dimen>
     <!-- Negative margin to offset detail poster margin. -->
     <dimen name="detail_rating_left_margin">-4dp</dimen>

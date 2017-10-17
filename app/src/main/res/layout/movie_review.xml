@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/detail_review_side_margin"
+    android:layout_marginStart="@dimen/detail_review_side_margin"
+    android:layout_marginRight="@dimen/detail_review_side_margin"
+    android:layout_marginEnd="@dimen/detail_review_side_margin">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/author"
         android:textColor="@color/detail_font_color"
-        android:textStyle="italic" />
+        android:textStyle="italic|bold"
+        android:layout_marginBottom="@dimen/detail_review_author_bottom_margin" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -16,6 +21,7 @@
         android:id="@+id/content"
         android:textColor="@color/detail_font_color"
         android:maxLines="12"
-        android:ellipsize="end"/>
+        android:ellipsize="end"
+        android:layout_marginBottom="@dimen/detail_review_bottom_margin" />
 
 </LinearLayout>
