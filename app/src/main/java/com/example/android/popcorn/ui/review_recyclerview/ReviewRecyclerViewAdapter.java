@@ -41,7 +41,17 @@ public class ReviewRecyclerViewAdapter extends RecyclerView.Adapter<ReviewRecycl
 
     @Override
     public void onBindViewHolder(ReviewViewHolder holder, int position) {
+        Review review = mReviews.get(position);
+        onBindAuthor(review, holder);
+        onBindContent(review, holder);
+    }
 
+    private void onBindAuthor(Review review, ReviewViewHolder holder) {
+        holder.mAuthor.setText(review.getAuthor());
+    }
+
+    private void onBindContent(Review review, ReviewViewHolder holder) {
+        holder.mContent.setText(review.getContent());
     }
 
     @Override
@@ -51,13 +61,12 @@ public class ReviewRecyclerViewAdapter extends RecyclerView.Adapter<ReviewRecycl
 
     public class ReviewViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.author) TextView author;
-        @BindView(R.id.content) TextView content;
+        @BindView(R.id.author) TextView mAuthor;
+        @BindView(R.id.content) TextView mContent;
 
         public ReviewViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
     }
-
 }
