@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/content"
         android:textColor="@color/detail_font_color"
-        android:maxLines="@dimen/max_lines_review"
+        android:maxLines="12"
         android:ellipsize="end"/>
 
 </LinearLayout>

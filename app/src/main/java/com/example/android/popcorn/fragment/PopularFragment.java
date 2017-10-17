@@ -215,8 +215,6 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
             review.setContent(result.getContent());
             movie.setReviews(review);
         }
-
-        Log.v(LOG_TAG, "Movie review: " + movie.getReviews().get(0));
     }
 
     private void attachAdapter() {

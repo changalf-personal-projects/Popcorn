@@ -33,7 +33,8 @@ public class CastRecyclerViewAdapter extends RecyclerView.Adapter<CastRecyclerVi
     private OnCastMemberClickListener mClickListener;
 
     public CastRecyclerViewAdapter(Context context, List<Cast> cast, OnCastMemberClickListener clickListener) {
-        mContext = context;     // TODO: Remove this line? (already in onCreateViewHolder)
+        // Context needs to be passed in constructor in order for Parcelable to work.
+        mContext = context;
         mCast = cast;
         mClickListener = clickListener;
     }

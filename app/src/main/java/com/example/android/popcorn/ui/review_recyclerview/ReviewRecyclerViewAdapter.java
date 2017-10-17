@@ -21,10 +21,13 @@ import butterknife.ButterKnife;
 
 public class ReviewRecyclerViewAdapter extends RecyclerView.Adapter<ReviewRecyclerViewAdapter.ReviewViewHolder> {
 
+    private final String NO_REVIEWS = "No reviews available.";
+
     private Context mContext;
     private List<Review> mReviews;
 
-    public ReviewRecyclerViewAdapter(List<Review> reviews) {
+    public ReviewRecyclerViewAdapter(Context context, List<Review> reviews) {
+        mContext = context;
         mReviews = reviews;
     }
 
@@ -42,8 +45,13 @@ public class ReviewRecyclerViewAdapter extends RecyclerView.Adapter<ReviewRecycl
     @Override
     public void onBindViewHolder(ReviewViewHolder holder, int position) {
         Review review = mReviews.get(position);
-        onBindAuthor(review, holder);
-        onBindContent(review, holder);
+
+        if (review != null) {
+            onBindAuthor(review, holder);
+            onBindContent(review, holder);
+        } else {
+            holder.mContent.setText(NO_REVIEWS);
+        }
     }
 
     private void onBindAuthor(Review review, ReviewViewHolder holder) {

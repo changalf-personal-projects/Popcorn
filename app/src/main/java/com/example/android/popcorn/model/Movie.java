@@ -42,6 +42,7 @@ public class Movie implements Parcelable {
         detailPosterPath = in.readString();
         backdropPath = in.readString();
         in.readList(cast, Cast.class.getClassLoader());
+        in.readList(reviews, Review.class.getClassLoader());
     }
 
     public static final Creator<Movie> CREATOR = new Creator<Movie>() {
@@ -165,6 +166,7 @@ public class Movie implements Parcelable {
         parcel.writeString(detailPosterPath);
         parcel.writeString(backdropPath);
         parcel.writeList(cast);
+        parcel.writeList(reviews);
     }
 
     // Method left alone because this class has no children.

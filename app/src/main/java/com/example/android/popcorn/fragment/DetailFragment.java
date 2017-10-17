@@ -35,6 +35,7 @@ import com.example.android.popcorn.networking.UriTerms;
 import com.example.android.popcorn.ui.GlideApp;
 import com.example.android.popcorn.ui.cast_recyclerview.CastRecyclerViewAdapter;
 import com.example.android.popcorn.ui.cast_recyclerview.OnCastMemberClickListener;
+import com.example.android.popcorn.ui.review_recyclerview.ReviewRecyclerViewAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,6 +63,7 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     private List<Trailer> mListOfTrailers;
 
     private CastRecyclerViewAdapter mCastRecyclerAdapter;
+    private ReviewRecyclerViewAdapter mRecyclerViewAdapter;
 
     @BindView(R.id.backdrop_poster)
     ImageView mBackdrop;
@@ -83,6 +85,8 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     Button mTrailerButton;
     @BindView(R.id.cast_recycler_view)
     RecyclerView mCastRecyclerView;
+    @BindView(R.id.review_recycler_view)
+    RecyclerView mReviewRecyclerView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -90,7 +94,8 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
         View rootView = inflater.inflate(R.layout.fragment_detail_main, container, false);
         ButterKnife.bind(this, rootView);
 
-        setupRecyclerView();
+        setupCastRecyclerView();
+        setupReviewRecyclerView();
 
         mListOfTrailers = new ArrayList<>();
         Movie movie = getParcelableDetails();
@@ -103,15 +108,27 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
         return rootView;
     }
 
-    private void setupRecyclerView() {
+    private void setupCastRecyclerView() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),
                 LinearLayoutManager.HORIZONTAL, false);
         mCastRecyclerView.setLayoutManager(layoutManager);
     }
 
-    private void attachToAdapter(Movie movie) {
+    private void setupReviewRecyclerView() {
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),
+                LinearLayoutManager.VERTICAL, false);
+        mReviewRecyclerView.setLayoutManager(layoutManager);
+    }
+
+    private void attachToCastAdapter(Movie movie) {
         mCastRecyclerAdapter = new CastRecyclerViewAdapter(getActivity(), movie.getCast(), this);
         mCastRecyclerView.setAdapter(mCastRecyclerAdapter);
+    }
+
+    private void attachToReviewAdapter(Movie movie) {
+        Log.v(LOG_TAG, "Movie title and reviews size: " + movie.getTitle() + " " + movie.getReviews().size());
+        mRecyclerViewAdapter = new ReviewRecyclerViewAdapter(getActivity(), movie.getReviews());
+        mReviewRecyclerView.setAdapter(mRecyclerViewAdapter);
     }
 
     @Override
@@ -207,7 +224,8 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
         setRelease(movie);
         setGenres(movie);
         setSynopsis(movie);
-        attachToAdapter(movie);
+        attachToCastAdapter(movie);
+        attachToReviewAdapter(movie);
     }
 
     private void setBackdrop(Movie movie) {
