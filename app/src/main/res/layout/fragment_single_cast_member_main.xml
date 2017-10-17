@@ -29,7 +29,7 @@
             android:id="@+id/green_space"
             android:layout_width="match_parent"
             android:layout_height="@dimen/green_rectangle_height"
-            android:background="@color/profile_picture_background">
+            android:background="@color/colorPrimaryDark">
 
             <View
                 android:layout_width="match_parent"

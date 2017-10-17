@@ -14,7 +14,7 @@
     <color name="very_light_grey">#E8E8E8</color>
     <color name="cardview_background">#F2F2F2</color>
     <color name="profile_picture_background">#1ACBAB</color>
-    <color name="profile_picture_line_color">#C00000</color>
+    <color name="profile_picture_line_color">#FF0000</color>
     <color name="placeholder_color">#BFBFBF</color>
     <color name="detail_font_color">#CCCCCC</color>
 
