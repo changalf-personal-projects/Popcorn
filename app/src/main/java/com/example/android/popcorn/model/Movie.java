@@ -41,7 +41,7 @@ public class Movie implements Parcelable {
         posterPath = in.readString();
         detailPosterPath = in.readString();
         backdropPath = in.readString();
-        cast = in.readArrayList(null);
+        in.readList(cast, Cast.class.getClassLoader());
     }
 
     public static final Creator<Movie> CREATOR = new Creator<Movie>() {

@@ -18,13 +18,14 @@ import com.example.android.popcorn.DetailActivity;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.Utilities;
 import com.example.android.popcorn.dagger.component.FragmentComponent;
+import com.example.android.popcorn.fragment.parsing.LoganCastTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganDetailsTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganIdTemplate;
 import com.example.android.popcorn.fragment.parsing.MovieParser;
+import com.example.android.popcorn.model.Cast;
 import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.networking.RequestQueueSingleton;
 import com.example.android.popcorn.networking.UriTerms;
-import com.example.android.popcorn.networking.UrlCreator;
 import com.example.android.popcorn.ui.poster_recyclerview.OnMovieClickListener;
 import com.example.android.popcorn.ui.poster_recyclerview.PosterRecyclerViewAdapter;
 
@@ -34,7 +35,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.example.android.popcorn.model.MoviesSingleton.getSingletonMovies;
+import static com.example.android.popcorn.networking.UrlCreator.createImageUrl;
 import static com.example.android.popcorn.networking.UrlCreator.createUrl;
+import static com.example.android.popcorn.networking.UrlCreator.createUrlWithAppendedResponse;
 
 /**
  * Created by alfredchang on 2017-09-16.
@@ -109,6 +112,29 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
         }
     }
 
+    private void fetchJsonCast() {
+        for (int i = 0; i < mListOfMovies.size(); i++) {
+            final Movie movie = mListOfMovies.get(i);
+            String url = createUrlWithAppendedResponse(movie.getId(), UriTerms.CREDITS);
+
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            LoganCastTemplate castLogan = MovieParser.parseJsonCastData(response);
+                            saveMovieCastId(movie, castLogan);
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.e(LOG_TAG, "Response error (fetchJsonCast): " + error);
+                }
+            });
+
+            RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
+        }
+    }
+
     private void saveMovieId(LoganIdTemplate movieLogan) {
         for (LoganIdTemplate.Results result: movieLogan.getResults()) {
             Movie movie = new Movie();
@@ -116,6 +142,24 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
             mListOfMovies.add(movie);
         }
         fetchJsonDetails();
+        fetchJsonCast();
+    }
+
+    private void saveMovieCastId(Movie movie, LoganCastTemplate castLogan) {
+        for (LoganCastTemplate.Credits.Cast result : castLogan.getCredits().getCast()) {
+            String profilePath = result.getProfilePath();
+            Cast cast = new Cast();
+            cast.setName(result.getName());
+            cast.setCharacter(result.getCharacter());
+            cast.setId(result.getId());
+
+            if (profilePath != null) {
+                cast.setThumbnail(createImageUrl(profilePath, UriTerms.IMAGE_SIZE_W185));
+                cast.setProfilePath(createImageUrl(profilePath, UriTerms.IMAGE_SIZE_W185));
+            }
+
+            movie.getCast().add(cast);
+        }
     }
 
     // AttachAdapter method needs to be done after all required info has been saved to movie object.
@@ -131,9 +175,9 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
         movie.setRating(movieLogan.getVoteAverage());
         movie.setSynopsis(movieLogan.getSynopsis());
         movie.setReleaseDate(movieLogan.getRelease());
-        movie.setPosterPath(UrlCreator.createImageUrl(movieLogan.getPosterPath(), UriTerms.IMAGE_SIZE_W500));
-        movie.setDetailPosterPath(UrlCreator.createImageUrl(movieLogan.getPosterPath(), UriTerms.IMAGE_SIZE_W342));
-        movie.setBackdropPath(UrlCreator.createImageUrl(movieLogan.getBackdropPath(), UriTerms.POSTER_SIZE_ORIGINAL));
+        movie.setPosterPath(createImageUrl(movieLogan.getPosterPath(), UriTerms.IMAGE_SIZE_W500));
+        movie.setDetailPosterPath(createImageUrl(movieLogan.getPosterPath(), UriTerms.IMAGE_SIZE_W342));
+        movie.setBackdropPath(createImageUrl(movieLogan.getBackdropPath(), UriTerms.POSTER_SIZE_ORIGINAL));
 
         attachAdapter();
     }

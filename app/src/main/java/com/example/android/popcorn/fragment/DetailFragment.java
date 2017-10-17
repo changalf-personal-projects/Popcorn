@@ -24,7 +24,6 @@ import com.example.android.popcorn.IndividualCastDetailActivity;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.TrailerActivity;
 import com.example.android.popcorn.Utilities;
-import com.example.android.popcorn.fragment.parsing.LoganCastTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganTrailersTemplate;
 import com.example.android.popcorn.fragment.parsing.MovieParser;
 import com.example.android.popcorn.model.Cast;
@@ -46,7 +45,6 @@ import static com.example.android.popcorn.Utilities.convertDoubleToString;
 import static com.example.android.popcorn.Utilities.formatDate;
 import static com.example.android.popcorn.Utilities.formatGenres;
 import static com.example.android.popcorn.Utilities.roundToNearestTenth;
-import static com.example.android.popcorn.networking.UrlCreator.createImageUrl;
 import static com.example.android.popcorn.networking.UrlCreator.createUrlWithAppendedResponse;
 
 /**
@@ -99,8 +97,7 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
         mListOfTrailers = new ArrayList<>();
         Movie movie = getParcelableDetails();
 
-        fetchJsonCast(movie);
-        attachToAdapter();
+//        fetchJsonCast(movie);
         setParcelableDetailsIntoViews(movie);
         fetchJsonTrailers(movie);
         onClickTrailerButton();
@@ -114,8 +111,8 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
         mCastRecyclerView.setLayoutManager(layoutManager);
     }
 
-    private void attachToAdapter() {
-        mCastRecyclerAdapter = new CastRecyclerViewAdapter(getActivity(), mListOfCastMembers, this);
+    private void attachToAdapter(Movie movie) {
+        mCastRecyclerAdapter = new CastRecyclerViewAdapter(getActivity(), movie.getCast(), this);
         mCastRecyclerView.setAdapter(mCastRecyclerAdapter);
     }
 
@@ -138,25 +135,25 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
         });
     }
 
-    private void fetchJsonCast(final Movie movie) {
-        String url = createUrlWithAppendedResponse(movie.getId(), UriTerms.CREDITS);
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        LoganCastTemplate castLogan = MovieParser.parseJsonCastData(response);
-                        saveMovieCastId(castLogan);
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e(LOG_TAG, "Response error (fetchJsonCast): " + error);
-            }
-        });
-
-        RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
-    }
+//    private void fetchJsonCast(final Movie movie) {
+//        String url = createUrlWithAppendedResponse(movie.getId(), UriTerms.CREDITS);
+//
+//        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+//                new Response.Listener<String>() {
+//                    @Override
+//                    public void onResponse(String response) {
+//                        LoganCastTemplate castLogan = MovieParser.parseJsonCastData(response);
+//                        saveMovieCastId(castLogan);
+//                    }
+//                }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                Log.e(LOG_TAG, "Response error (fetchJsonCast): " + error);
+//            }
+//        });
+//
+//        RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
+//    }
 
     private void fetchJsonTrailers(final Movie movie) {
         String url = createUrlWithAppendedResponse(movie.getId(), UriTerms.VIDEOS);
@@ -178,22 +175,22 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
         RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
     }
 
-    private void saveMovieCastId(LoganCastTemplate castLogan) {
-        for (LoganCastTemplate.Credits.Cast result : castLogan.getCredits().getCast()) {
-            String profilePath = result.getProfilePath();
-            Cast cast = new Cast();
-            cast.setName(result.getName());
-            cast.setCharacter(result.getCharacter());
-            cast.setId(result.getId());
-
-            if (profilePath != null) {
-                cast.setThumbnail(createImageUrl(profilePath, UriTerms.IMAGE_SIZE_W185));
-                cast.setProfilePath(createImageUrl(profilePath, UriTerms.IMAGE_SIZE_W185));
-            }
-
-            mListOfCastMembers.add(cast);
-        }
-    }
+//    private void saveMovieCastId(LoganCastTemplate castLogan) {
+//        for (LoganCastTemplate.Credits.Cast result : castLogan.getCredits().getCast()) {
+//            String profilePath = result.getProfilePath();
+//            Cast cast = new Cast();
+//            cast.setName(result.getName());
+//            cast.setCharacter(result.getCharacter());
+//            cast.setId(result.getId());
+//
+//            if (profilePath != null) {
+//                cast.setThumbnail(createImageUrl(profilePath, UriTerms.IMAGE_SIZE_W185));
+//                cast.setProfilePath(createImageUrl(profilePath, UriTerms.IMAGE_SIZE_W185));
+//            }
+//
+//            mListOfCastMembers.add(cast);
+//        }
+//    }
 
     private void saveMovieTrailers(LoganTrailersTemplate trailerLogan) {
         for (LoganTrailersTemplate.Videos.Results result : trailerLogan.getVideos().getResults()) {
@@ -218,6 +215,7 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
         setRelease(movie);
         setGenres(movie);
         setSynopsis(movie);
+        attachToAdapter(movie);
     }
 
     private void setBackdrop(Movie movie) {

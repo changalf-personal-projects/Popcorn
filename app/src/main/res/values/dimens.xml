@@ -37,7 +37,7 @@
     <dimen name="detail_label_margin">12dp</dimen>
     <dimen name="detail_cast_member_left_margin">22dp</dimen>
     <dimen name="detail_cast_member_top_margin">10dp</dimen>
-    <dimen name="detail_cast_member_bottom_margin">10dp</dimen>
+    <dimen name="detail_cast_member_bottom_margin">12dp</dimen>
     <dimen name="detail_cast_name_left_margin">25dp</dimen>
     <dimen name="detail_cast_name_top_margin">10dp</dimen>
     <dimen name="detail_synopsis_left_and_right_margin">22dp</dimen>
