@@ -25,6 +25,7 @@
     <!-- Divider dimensions. -->
     <dimen name="layout_height_quarter">0.25dp</dimen>
     <dimen name="line_height">0.5dp</dimen>
+    <dimen name="review_divider_height">0.1dp</dimen>
 
     <!-- Detail view margins. -->
     <dimen name="detail_poster_margin">15dp</dimen>
