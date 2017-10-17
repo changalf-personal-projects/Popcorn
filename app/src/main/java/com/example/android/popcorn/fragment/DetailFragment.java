@@ -59,17 +59,27 @@ public class DetailFragment extends Fragment {
     private List<Cast> mListOfCastMembers;
     private List<Trailer> mListOfTrailers;
 
-    @BindView(R.id.backdrop_poster) ImageView mBackdrop;
-    @BindView(R.id.movie_poster) ImageView mPoster;
-    @BindView(R.id.title) TextView mTitle;
-    @BindView(R.id.rating) TextView mRating;
-    @BindView(R.id.runtime) TextView mRuntime;
-    @BindView(R.id.release) TextView mRelease;
-    @BindView(R.id.genres) TextView mGenres;
-    @BindView(R.id.synopsis) TextView mSynopsis;
-//    @BindView(R.id.cast_button) Button mCastButton;
-    @BindView(R.id.trailer_button) Button mTrailerButton;
-    @BindView(R.id.cast_recycler_view) RecyclerView mCastRecyclerView;
+    @BindView(R.id.backdrop_poster)
+    ImageView mBackdrop;
+    @BindView(R.id.movie_poster)
+    ImageView mPoster;
+    @BindView(R.id.title)
+    TextView mTitle;
+    @BindView(R.id.rating)
+    TextView mRating;
+    @BindView(R.id.runtime)
+    TextView mRuntime;
+    @BindView(R.id.release)
+    TextView mRelease;
+    @BindView(R.id.genres)
+    TextView mGenres;
+    @BindView(R.id.synopsis)
+    TextView mSynopsis;
+    //    @BindView(R.id.cast_button) Button mCastButton;
+    @BindView(R.id.trailer_button)
+    Button mTrailerButton;
+    @BindView(R.id.cast_recycler_view)
+    RecyclerView mCastRecyclerView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -167,7 +177,7 @@ public class DetailFragment extends Fragment {
     }
 
     private void saveMovieCastId(LoganCastTemplate castLogan) {
-        for (LoganCastTemplate.Credits.Cast result: castLogan.getCredits().getCast()) {
+        for (LoganCastTemplate.Credits.Cast result : castLogan.getCredits().getCast()) {
             String profilePath = result.getProfilePath();
             Cast cast = new Cast();
             cast.setName(result.getName());
@@ -184,7 +194,7 @@ public class DetailFragment extends Fragment {
     }
 
     private void saveMovieTrailers(LoganTrailersTemplate trailerLogan) {
-        for (LoganTrailersTemplate.Videos.Results result: trailerLogan.getVideos().getResults()) {
+        for (LoganTrailersTemplate.Videos.Results result : trailerLogan.getVideos().getResults()) {
             Trailer trailer = new Trailer();
             trailer.setKey(result.getKey());
             mListOfTrailers.add(trailer);
@@ -247,4 +257,5 @@ public class DetailFragment extends Fragment {
     private void setSynopsis(Movie movie) {
         mSynopsis.setText(movie.getSynopsis());
     }
+
 }
