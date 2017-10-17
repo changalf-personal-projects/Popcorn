@@ -18,7 +18,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
-import com.example.android.popcorn.CastDetailActivity;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.TrailerActivity;
 import com.example.android.popcorn.Utilities;
@@ -66,7 +65,7 @@ public class DetailFragment extends Fragment {
     @BindView(R.id.release) TextView mRelease;
     @BindView(R.id.genres) TextView mGenres;
     @BindView(R.id.synopsis) TextView mSynopsis;
-    @BindView(R.id.cast_button) Button mCastButton;
+//    @BindView(R.id.cast_button) Button mCastButton;
     @BindView(R.id.trailer_button) Button mTrailerButton;
 
     @Override
@@ -88,21 +87,21 @@ public class DetailFragment extends Fragment {
     }
 
     private void onClickButtons() {
-        onClickCastButton();
+//        onClickCastButton();
         onClickTrailerButton();
     }
 
-    private void onClickCastButton() {
-        mCastButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent castDetailIntent = new Intent(getActivity(), CastDetailActivity.class);
-                castDetailIntent.putParcelableArrayListExtra(Utilities.PARCELABLE_CAST_KEY,
-                        (ArrayList<? extends Parcelable>) mListOfCastMembers);
-                startActivity(castDetailIntent);
-            }
-        });
-    }
+//    private void onClickCastButton() {
+//        mCastButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent castDetailIntent = new Intent(getActivity(), CastDetailActivity.class);
+//                castDetailIntent.putParcelableArrayListExtra(Utilities.PARCELABLE_CAST_KEY,
+//                        (ArrayList<? extends Parcelable>) mListOfCastMembers);
+//                startActivity(castDetailIntent);
+//            }
+//        });
+//    }
 
     private void onClickTrailerButton() {
         mTrailerButton.setOnClickListener(new View.OnClickListener() {
