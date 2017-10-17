@@ -24,6 +24,7 @@ import com.example.android.popcorn.IndividualCastDetailActivity;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.TrailerActivity;
 import com.example.android.popcorn.Utilities;
+import com.example.android.popcorn.fragment.parsing.LoganCastMemberDetailTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganTrailersTemplate;
 import com.example.android.popcorn.fragment.parsing.MovieParser;
 import com.example.android.popcorn.model.Cast;
@@ -45,6 +46,7 @@ import static com.example.android.popcorn.Utilities.convertDoubleToString;
 import static com.example.android.popcorn.Utilities.formatDate;
 import static com.example.android.popcorn.Utilities.formatGenres;
 import static com.example.android.popcorn.Utilities.roundToNearestTenth;
+import static com.example.android.popcorn.networking.UrlCreator.createCastMemberDetailUrl;
 import static com.example.android.popcorn.networking.UrlCreator.createUrlWithAppendedResponse;
 
 /**
@@ -94,6 +96,7 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
         Movie movie = getParcelableDetails();
 
         setParcelableDetailsIntoViews(movie);
+        fetchJsonCastMemberDetails(movie);
         fetchJsonTrailers(movie);
         onClickTrailerButton();
 
@@ -130,6 +133,30 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
         });
     }
 
+    private void fetchJsonCastMemberDetails(Movie movie) {
+        List<Cast> cast = movie.getCast();
+        for (int i = 0; i < cast.size(); i++) {
+            final Cast castMember = cast.get(i);
+            String url = createCastMemberDetailUrl(castMember.getId());
+
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            LoganCastMemberDetailTemplate castMemberLogan = MovieParser.parseJsonCastMemberData(response);
+                            saveCastMemberDetails(castMember, castMemberLogan);
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.e(LOG_TAG, "Response error (fetchJsonCastMemberDetails): " + error);
+                }
+            });
+
+            RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
+        }
+    }
+
     private void fetchJsonTrailers(final Movie movie) {
         String url = createUrlWithAppendedResponse(movie.getId(), UriTerms.VIDEOS);
 
@@ -148,6 +175,13 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
         });
 
         RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
+    }
+
+    private void saveCastMemberDetails(Cast castMember, LoganCastMemberDetailTemplate castMemberLogan) {
+        castMember.setBirthday(castMemberLogan.getBirthday());
+        castMember.setDeathday(castMemberLogan.getDeathDate());
+        castMember.setBiography(castMemberLogan.getBiography());
+        castMember.setBirthplace(castMemberLogan.getBirthPlace());
     }
 
     private void saveMovieTrailers(LoganTrailersTemplate trailerLogan) {
