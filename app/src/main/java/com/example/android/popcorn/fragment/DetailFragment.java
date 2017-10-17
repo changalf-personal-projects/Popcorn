@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -67,12 +69,15 @@ public class DetailFragment extends Fragment {
     @BindView(R.id.synopsis) TextView mSynopsis;
 //    @BindView(R.id.cast_button) Button mCastButton;
     @BindView(R.id.trailer_button) Button mTrailerButton;
+    @BindView(R.id.cast_recycler_view) RecyclerView mCastRecyclerView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View rootView = inflater.inflate(R.layout.fragment_detail_main, container, false);
         ButterKnife.bind(this, rootView);
+
+        setupRecyclerView();
 
         mListOfCastMembers = new ArrayList<>();
         mListOfTrailers = new ArrayList<>();
@@ -84,6 +89,12 @@ public class DetailFragment extends Fragment {
         onClickButtons();
 
         return rootView;
+    }
+
+    private void setupRecyclerView() {
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),
+                LinearLayoutManager.HORIZONTAL, false);
+        mCastRecyclerView.setLayoutManager(layoutManager);
     }
 
     private void onClickButtons() {

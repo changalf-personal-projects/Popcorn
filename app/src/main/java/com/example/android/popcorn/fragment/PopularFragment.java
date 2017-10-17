@@ -49,7 +49,7 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
     private PosterRecyclerViewAdapter mRecyclerAdapter;
     private List<Movie> mListOfMovies;
 
-    @BindView(R.id.recycler_view) RecyclerView mRecyclerView;
+    @BindView(R.id.cast_recycler_view) RecyclerView mRecyclerView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

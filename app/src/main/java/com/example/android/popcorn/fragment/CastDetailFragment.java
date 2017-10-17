@@ -41,7 +41,7 @@ public class CastDetailFragment extends Fragment implements OnCastMemberClickLis
 
     private CastRecyclerViewAdapter mRecyclerAdapter;
 
-    @BindView(R.id.recycler_view) RecyclerView mRecyclerView;
+    @BindView(R.id.cast_recycler_view) RecyclerView mRecyclerView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
