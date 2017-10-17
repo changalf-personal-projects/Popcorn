@@ -9,8 +9,6 @@ import android.os.Parcelable;
 
 public class Review implements Parcelable {
 
-    // TODO: Use "append_to_response" in TMDB.
-
     private String author;
     private String content;
 

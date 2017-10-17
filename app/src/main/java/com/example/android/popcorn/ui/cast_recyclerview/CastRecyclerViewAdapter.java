@@ -33,7 +33,7 @@ public class CastRecyclerViewAdapter extends RecyclerView.Adapter<CastRecyclerVi
     private OnCastMemberClickListener mClickListener;
 
     public CastRecyclerViewAdapter(Context context, List<Cast> cast, OnCastMemberClickListener clickListener) {
-        mContext = context;
+        mContext = context;     // TODO: Remove this line? (already in onCreateViewHolder)
         mCast = cast;
         mClickListener = clickListener;
     }

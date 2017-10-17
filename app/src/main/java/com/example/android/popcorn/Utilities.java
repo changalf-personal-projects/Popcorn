@@ -57,7 +57,6 @@ public class Utilities {
         return formattedGenres;
     }
 
-    // TODO: Use Calendar instance instead.
     public static String formatDate(String releaseDate) {
         Date date = null;
         String formattedDate = NOT_AVAILABLE;
