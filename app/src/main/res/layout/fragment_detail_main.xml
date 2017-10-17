@@ -138,6 +138,7 @@
                     android:paddingEnd="@dimen/trailer_button_side_padding"
                     android:layout_marginTop="@dimen/trailer_button_top_margin"
                     android:layout_marginRight="@dimen/trailer_button_right_margin"
+                    android:layout_marginEnd="@dimen/trailer_button_right_margin"
                     android:text="@string/view_trailers"
                     android:textColor="@color/white"
                     android:layout_gravity="center"

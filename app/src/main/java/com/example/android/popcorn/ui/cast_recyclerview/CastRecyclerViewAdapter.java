@@ -54,6 +54,7 @@ public class CastRecyclerViewAdapter extends RecyclerView.Adapter<CastRecyclerVi
         Cast cast = mCast.get(position);
         onBindProfilePicture(cast, holder);
         onBindMemberName(cast, holder);
+        onBindCharacterName(cast, holder);
     }
 
     @Override
@@ -74,10 +75,15 @@ public class CastRecyclerViewAdapter extends RecyclerView.Adapter<CastRecyclerVi
         holder.mMemberName.setText(cast.getName());
     }
 
+    private void onBindCharacterName(Cast cast, CastViewHolder holder) {
+        holder.mCharacterName.setText(cast.getCharacter());
+    }
+
     public class CastViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         @BindView(R.id.cast_member_image) ImageView mProfilePicture;
-        @BindView(R.id.cast_member_as_character) TextView mMemberName;
+        @BindView(R.id.cast_member_name) TextView mMemberName;
+        @BindView(R.id.cast_member_character) TextView mCharacterName;
 
         public CastViewHolder(View itemView) {
             super(itemView);
