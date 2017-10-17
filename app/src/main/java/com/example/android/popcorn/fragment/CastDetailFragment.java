@@ -1,3 +1,4 @@
+/*
 package com.example.android.popcorn.fragment;
 
 import android.content.Intent;
@@ -31,9 +32,11 @@ import butterknife.ButterKnife;
 
 import static com.example.android.popcorn.networking.UrlCreator.createCastMemberDetailUrl;
 
+*/
 /**
  * Created by alfredchang on 2017-10-06.
- */
+ *//*
+
 
 public class CastDetailFragment extends Fragment implements OnCastMemberClickListener {
 
@@ -108,3 +111,4 @@ public class CastDetailFragment extends Fragment implements OnCastMemberClickLis
         castMember.setBirthplace(castMemberLogan.getBirthPlace());
     }
 }
+*/

@@ -10,7 +10,6 @@ import android.os.Parcelable;
 public class Cast implements Parcelable {
 
     private String name;
-    private String thumbnail;
     private String profilePath;
     private String character;
     private String id;
@@ -25,7 +24,6 @@ public class Cast implements Parcelable {
 
     protected Cast(Parcel in) {
         name = in.readString();
-        thumbnail = in.readString();
         profilePath = in.readString();
         character = in.readString();
         id = in.readString();
@@ -53,14 +51,6 @@ public class Cast implements Parcelable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getThumbnail() {
-        return thumbnail;
-    }
-
-    public void setThumbnail(String thumbnail) {
-        this.thumbnail = thumbnail;
     }
 
     public String getProfilePath() {
@@ -122,7 +112,6 @@ public class Cast implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(name);
-        parcel.writeString(thumbnail);
         parcel.writeString(profilePath);
         parcel.writeString(character);
         parcel.writeString(id);
