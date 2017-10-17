@@ -195,31 +195,11 @@
                 android:textSize="@dimen/detail_label_size"
                 android:textStyle="bold" />
 
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/cast_recycler_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:scrollbars="horizontal" />
-
-            </HorizontalScrollView>
-
-            <!--<Button-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:id="@+id/cast_button"-->
-                <!--android:paddingLeft="@dimen/cast_button_left_right_padding"-->
-                <!--android:paddingStart="@dimen/cast_button_left_right_padding"-->
-                <!--android:paddingRight="@dimen/cast_button_left_right_padding"-->
-                <!--android:paddingEnd="@dimen/cast_button_left_right_padding"-->
-                <!--android:text="@string/view_cast"-->
-                <!--android:textColor="@color/white"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:background="@drawable/cast_button"-->
-                <!--android:layout_marginBottom="@dimen/detail_button_bottom_margin" />-->
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/cast_recycler_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scrollbars="horizontal" />
 
             <include layout="@layout/detail_divider" />
 

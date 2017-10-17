@@ -71,8 +71,7 @@ public class CastRecyclerViewAdapter extends RecyclerView.Adapter<CastRecyclerVi
     }
 
     private void onBindMemberName(Cast cast, CastViewHolder holder) {
-        holder.mMemberName.setText(mContext.getResources().getString(R.string.member_as_character,
-                cast.getName(), cast.getCharacter()));
+        holder.mMemberName.setText(cast.getName());
     }
 
     public class CastViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

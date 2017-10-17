@@ -20,6 +20,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+import com.example.android.popcorn.IndividualCastDetailActivity;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.TrailerActivity;
 import com.example.android.popcorn.Utilities;
@@ -32,6 +33,8 @@ import com.example.android.popcorn.model.Trailer;
 import com.example.android.popcorn.networking.RequestQueueSingleton;
 import com.example.android.popcorn.networking.UriTerms;
 import com.example.android.popcorn.ui.GlideApp;
+import com.example.android.popcorn.ui.cast_recyclerview.CastRecyclerViewAdapter;
+import com.example.android.popcorn.ui.cast_recyclerview.OnCastMemberClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,14 +53,17 @@ import static com.example.android.popcorn.networking.UrlCreator.createUrlWithApp
  * Created by alfredchang on 2017-09-27.
  */
 
-public class DetailFragment extends Fragment {
+public class DetailFragment extends Fragment implements OnCastMemberClickListener {
 
     private final String LOG_TAG = DetailFragment.class.getSimpleName();
     private final int BACKDROP_CROSSFADE_TIME = 200;
+    private final int THUMBNAIL_CROSSFADE_TIME = 350;
     private final int POSTER_CROSSFADE_TIME = 700;
 
     private List<Cast> mListOfCastMembers;
     private List<Trailer> mListOfTrailers;
+
+    private CastRecyclerViewAdapter mCastRecyclerAdapter;
 
     @BindView(R.id.backdrop_poster)
     ImageView mBackdrop;
@@ -93,8 +99,9 @@ public class DetailFragment extends Fragment {
         mListOfTrailers = new ArrayList<>();
         Movie movie = getParcelableDetails();
 
-        setParcelableDetailsIntoViews(movie);
         fetchJsonCast(movie);
+        attachToAdapter();
+        setParcelableDetailsIntoViews(movie);
         fetchJsonTrailers(movie);
         onClickButtons();
 
@@ -105,6 +112,18 @@ public class DetailFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),
                 LinearLayoutManager.HORIZONTAL, false);
         mCastRecyclerView.setLayoutManager(layoutManager);
+    }
+
+    private void attachToAdapter() {
+        mCastRecyclerAdapter = new CastRecyclerViewAdapter(getActivity(), mListOfCastMembers, this);
+        mCastRecyclerView.setAdapter(mCastRecyclerAdapter);
+    }
+
+    @Override
+    public void onClick(Cast castMember) {
+        Intent singleCastMemberDetailsIntent = new Intent(getActivity(), IndividualCastDetailActivity.class);
+        singleCastMemberDetailsIntent.putExtra(Utilities.PARCELABLE_CAST_MEMBER_KEY, castMember);
+        startActivity(singleCastMemberDetailsIntent);
     }
 
     private void onClickButtons() {
@@ -185,7 +204,7 @@ public class DetailFragment extends Fragment {
             cast.setId(result.getId());
 
             if (profilePath != null) {
-                cast.setThumbnail(createImageUrl(profilePath, UriTerms.IMAGE_SIZE_W92));
+                cast.setThumbnail(createImageUrl(profilePath, UriTerms.IMAGE_SIZE_W185));
                 cast.setProfilePath(createImageUrl(profilePath, UriTerms.IMAGE_SIZE_W185));
             }
 
@@ -219,14 +238,14 @@ public class DetailFragment extends Fragment {
     }
 
     private void setBackdrop(Movie movie) {
-        GlideApp.with(getContext()).load(movie.getBackdropPath())
+        GlideApp.with(getActivity()).load(movie.getBackdropPath())
                 .transition(DrawableTransitionOptions.withCrossFade(BACKDROP_CROSSFADE_TIME))
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .into(mBackdrop);
     }
 
     private void setPoster(Movie movie) {
-        GlideApp.with(getContext()).load(movie.getDetailPosterPath())
+        GlideApp.with(getActivity()).load(movie.getDetailPosterPath())
                 .transition(DrawableTransitionOptions.withCrossFade(POSTER_CROSSFADE_TIME))
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .into(mPoster);
@@ -258,4 +277,15 @@ public class DetailFragment extends Fragment {
         mSynopsis.setText(movie.getSynopsis());
     }
 
+//    private void setCast() {
+//        for (int i = 0; i < mListOfCastMembers.size(); i++) {
+//            String thumbnail = mListOfCastMembers.get(i).getThumbnail();
+//            if (thumbnail != null) {
+//                GlideApp.with(getActivity()).load(thumbnail)
+//                        .transition(DrawableTransitionOptions.withCrossFade(THUMBNAIL_CROSSFADE_TIME))
+//                        .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+//                        .into(m)
+//            }
+//        }
+//    }
 }
