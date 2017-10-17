@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/author"
-        android:textColor="@color/detail_font_color"
+        android:textColor="@color/white"
         android:textStyle="italic|bold"
         android:layout_marginBottom="@dimen/detail_review_author_bottom_margin" />
 
