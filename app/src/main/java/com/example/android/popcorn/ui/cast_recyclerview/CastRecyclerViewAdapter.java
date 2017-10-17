@@ -64,7 +64,7 @@ public class CastRecyclerViewAdapter extends RecyclerView.Adapter<CastRecyclerVi
 
     private void onBindProfilePicture(Cast cast, CastViewHolder holder) {
         if (cast.getProfilePath() != null) {
-            GlideApp.with(mContext).load(cast.getThumbnail())
+            GlideApp.with(mContext).load(cast.getProfilePath())
                     .transition(DrawableTransitionOptions.withCrossFade(CROSSFADE_TIME))
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .into(holder.mProfilePicture);

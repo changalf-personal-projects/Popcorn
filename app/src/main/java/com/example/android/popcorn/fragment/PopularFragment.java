@@ -154,7 +154,6 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
             cast.setId(result.getId());
 
             if (profilePath != null) {
-                cast.setThumbnail(createImageUrl(profilePath, UriTerms.IMAGE_SIZE_W185));
                 cast.setProfilePath(createImageUrl(profilePath, UriTerms.IMAGE_SIZE_W185));
             }
 
