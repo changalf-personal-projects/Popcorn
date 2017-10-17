@@ -22,6 +22,7 @@ public class UriTerms {
     //Query paths.
     public static final String CREDITS = "credits";
     public static final String VIDEOS = "videos";
+    public static final String REVIEWS = "reviews";
 
     // Image sizes.
     public static final String IMAGE_SIZE_W92 = "w92";

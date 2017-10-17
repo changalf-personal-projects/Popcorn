@@ -135,6 +135,28 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
         }
     }
 
+    private void fetchJsonReviews() {
+        for (int i = 0; i < mListOfMovies.size(); i++) {
+            final Movie movie = mListOfMovies.get(i);
+            String url = createUrlWithAppendedResponse(movie.getId(), UriTerms.REVIEWS);
+
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.e(LOG_TAG, "Response error (fetchJsonReviews): " + error);
+                }
+            });
+
+            RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
+        }
+    }
+
     private void saveMovieId(LoganIdTemplate movieLogan) {
         for (LoganIdTemplate.Results result: movieLogan.getResults()) {
             Movie movie = new Movie();
@@ -143,6 +165,7 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
         }
         fetchJsonDetails();
         fetchJsonCast();
+        fetchJsonReviews();
     }
 
     private void saveMovieCastId(Movie movie, LoganCastTemplate castLogan) {
