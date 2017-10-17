@@ -55,10 +55,8 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
 
     private final String LOG_TAG = DetailFragment.class.getSimpleName();
     private final int BACKDROP_CROSSFADE_TIME = 200;
-    private final int THUMBNAIL_CROSSFADE_TIME = 350;
     private final int POSTER_CROSSFADE_TIME = 700;
 
-    private List<Cast> mListOfCastMembers;
     private List<Trailer> mListOfTrailers;
 
     private CastRecyclerViewAdapter mCastRecyclerAdapter;
@@ -79,7 +77,6 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     TextView mGenres;
     @BindView(R.id.synopsis)
     TextView mSynopsis;
-    //    @BindView(R.id.cast_button) Button mCastButton;
     @BindView(R.id.trailer_button)
     Button mTrailerButton;
     @BindView(R.id.cast_recycler_view)
@@ -93,11 +90,9 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
 
         setupRecyclerView();
 
-        mListOfCastMembers = new ArrayList<>();
         mListOfTrailers = new ArrayList<>();
         Movie movie = getParcelableDetails();
 
-//        fetchJsonCast(movie);
         setParcelableDetailsIntoViews(movie);
         fetchJsonTrailers(movie);
         onClickTrailerButton();
@@ -135,26 +130,6 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
         });
     }
 
-//    private void fetchJsonCast(final Movie movie) {
-//        String url = createUrlWithAppendedResponse(movie.getId(), UriTerms.CREDITS);
-//
-//        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-//                new Response.Listener<String>() {
-//                    @Override
-//                    public void onResponse(String response) {
-//                        LoganCastTemplate castLogan = MovieParser.parseJsonCastData(response);
-//                        saveMovieCastId(castLogan);
-//                    }
-//                }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Log.e(LOG_TAG, "Response error (fetchJsonCast): " + error);
-//            }
-//        });
-//
-//        RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
-//    }
-
     private void fetchJsonTrailers(final Movie movie) {
         String url = createUrlWithAppendedResponse(movie.getId(), UriTerms.VIDEOS);
 
@@ -174,23 +149,6 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
 
         RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
     }
-
-//    private void saveMovieCastId(LoganCastTemplate castLogan) {
-//        for (LoganCastTemplate.Credits.Cast result : castLogan.getCredits().getCast()) {
-//            String profilePath = result.getProfilePath();
-//            Cast cast = new Cast();
-//            cast.setName(result.getName());
-//            cast.setCharacter(result.getCharacter());
-//            cast.setId(result.getId());
-//
-//            if (profilePath != null) {
-//                cast.setThumbnail(createImageUrl(profilePath, UriTerms.IMAGE_SIZE_W185));
-//                cast.setProfilePath(createImageUrl(profilePath, UriTerms.IMAGE_SIZE_W185));
-//            }
-//
-//            mListOfCastMembers.add(cast);
-//        }
-//    }
 
     private void saveMovieTrailers(LoganTrailersTemplate trailerLogan) {
         for (LoganTrailersTemplate.Videos.Results result : trailerLogan.getVideos().getResults()) {
@@ -258,15 +216,4 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
         mSynopsis.setText(movie.getSynopsis());
     }
 
-//    private void setCast() {
-//        for (int i = 0; i < mListOfCastMembers.size(); i++) {
-//            String thumbnail = mListOfCastMembers.get(i).getThumbnail();
-//            if (thumbnail != null) {
-//                GlideApp.with(getActivity()).load(thumbnail)
-//                        .transition(DrawableTransitionOptions.withCrossFade(THUMBNAIL_CROSSFADE_TIME))
-//                        .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-//                        .into(m)
-//            }
-//        }
-//    }
 }
