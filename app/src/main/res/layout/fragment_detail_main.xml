@@ -216,18 +216,24 @@
             android:textSize="@dimen/detail_label_size"
             android:textStyle="bold" />
 
-        <Button
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/review_recycler_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/review_button_left_right_padding"
-            android:paddingStart="@dimen/review_button_left_right_padding"
-            android:paddingRight="@dimen/review_button_left_right_padding"
-            android:paddingEnd="@dimen/review_button_left_right_padding"
-            android:text="@string/read_reviews"
-            android:textColor="@color/white"
-            android:layout_gravity="center"
-            android:background="@drawable/review_button"
-            android:layout_marginBottom="@dimen/detail_button_bottom_margin" />
+            android:scrollbars="vertical" />
+
+        <!--<Button-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:paddingLeft="@dimen/review_button_left_right_padding"-->
+            <!--android:paddingStart="@dimen/review_button_left_right_padding"-->
+            <!--android:paddingRight="@dimen/review_button_left_right_padding"-->
+            <!--android:paddingEnd="@dimen/review_button_left_right_padding"-->
+            <!--android:text="@string/read_reviews"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:background="@drawable/review_button"-->
+            <!--android:layout_marginBottom="@dimen/detail_button_bottom_margin" />-->
 
     </LinearLayout>
 
