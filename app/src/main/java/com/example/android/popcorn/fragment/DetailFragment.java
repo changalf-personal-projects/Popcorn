@@ -62,6 +62,7 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     private final int POSTER_CROSSFADE_TIME = 700;
 
     private List<Trailer> mListOfTrailers;
+    private boolean mIsPressedFlag = false;
 
     private CastRecyclerViewAdapter mCastRecyclerAdapter;
     private ReviewRecyclerViewAdapter mRecyclerViewAdapter;
@@ -130,7 +131,6 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     }
 
     private void attachToReviewAdapter(Movie movie) {
-        Log.v(LOG_TAG, "Movie title and reviews size: " + movie.getTitle() + " " + movie.getReviews().size());
         mRecyclerViewAdapter = new ReviewRecyclerViewAdapter(getActivity(), movie.getReviews());
         mReviewRecyclerView.setAdapter(mRecyclerViewAdapter);
     }
@@ -155,10 +155,17 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     }
 
     private void onClickFavouriteButton() {
+        // TODO: Button will reset to unliked if current fragment is destroyed.
         mFavouriteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mFavouriteButton.setBackgroundResource(R.mipmap.ic_favourited);
+                if (!mIsPressedFlag) {
+                    mFavouriteButton.setBackgroundResource(R.mipmap.ic_favourited);
+                    mIsPressedFlag = true;
+                } else {
+                    mFavouriteButton.setBackgroundResource(R.mipmap.ic_favourite);
+                    mIsPressedFlag = false;
+                }
             }
         });
     }
