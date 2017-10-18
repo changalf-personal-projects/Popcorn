@@ -25,6 +25,7 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/favourite_button"
                 android:background="@mipmap/ic_favourite"
                 android:layout_gravity="right|end|bottom"
                 android:layout_marginRight="@dimen/favourite_button_right_margin"
