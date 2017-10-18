@@ -99,6 +99,8 @@
     <dimen name="add_review_button_margin">12dp</dimen>
     <dimen name="button_corner_radius">2dp</dimen>
     <dimen name="button_stroke_width">5dp</dimen>
+    <dimen name="favourite_button_right_margin">8dp</dimen>
+    <dimen name="favourite_button_bottom_margin">5dp</dimen>
 
     <!-- Everything else. -->
     <dimen name="green_rectangle_height">250dp</dimen>
