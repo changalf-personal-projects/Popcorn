@@ -4,9 +4,7 @@
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorPrimaryDark2">#13A087</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="trailers_button_color">#0066CC</color>
-    <color name="cast_button_color">#0059B3</color>
-    <color name="reviews_button_color">#004D99</color>
+    <color name="button_color">#0066CC</color>
 
     <!-- Colors for various uses. -->
     <color name="white">#FFFFFF</color>

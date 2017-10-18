@@ -122,6 +122,7 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     private void setupReviewRecyclerView() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),
                 LinearLayoutManager.VERTICAL, false);
+        mReviewRecyclerView.setNestedScrollingEnabled(false);
         mReviewRecyclerView.setLayoutManager(layoutManager);
     }
 
