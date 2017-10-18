@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/review"
     android:layout_marginLeft="@dimen/detail_review_side_margin"
     android:layout_marginStart="@dimen/detail_review_side_margin"
     android:layout_marginRight="@dimen/detail_review_side_margin"
