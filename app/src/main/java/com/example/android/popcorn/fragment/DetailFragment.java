@@ -107,6 +107,7 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
         fetchJsonCastMemberDetails(movie);
         fetchJsonTrailers(movie);
         onClickTrailerButton();
+        onClickFavouriteButton();
 
         return rootView;
     }
@@ -149,6 +150,15 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
                 trailerIntent.putExtra(Utilities.PARCELABLE_TRAILER_KEY,
                         (ArrayList<? extends Parcelable>) mListOfTrailers);
                 startActivity(trailerIntent);
+            }
+        });
+    }
+
+    private void onClickFavouriteButton() {
+        mFavouriteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mFavouriteButton.setBackgroundResource(R.mipmap.ic_favourited);
             }
         });
     }
