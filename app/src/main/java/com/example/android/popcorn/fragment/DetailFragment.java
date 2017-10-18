@@ -22,6 +22,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.example.android.popcorn.IndividualCastDetailActivity;
+import com.example.android.popcorn.IndividualReviewActivity;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.TrailerActivity;
 import com.example.android.popcorn.Utilities;
@@ -30,12 +31,14 @@ import com.example.android.popcorn.fragment.parsing.LoganTrailersTemplate;
 import com.example.android.popcorn.fragment.parsing.MovieParser;
 import com.example.android.popcorn.model.Cast;
 import com.example.android.popcorn.model.Movie;
+import com.example.android.popcorn.model.Review;
 import com.example.android.popcorn.model.Trailer;
 import com.example.android.popcorn.networking.RequestQueueSingleton;
 import com.example.android.popcorn.networking.UriTerms;
 import com.example.android.popcorn.ui.GlideApp;
 import com.example.android.popcorn.ui.cast_recyclerview.CastRecyclerViewAdapter;
 import com.example.android.popcorn.ui.cast_recyclerview.OnCastMemberClickListener;
+import com.example.android.popcorn.ui.review_recyclerview.OnReviewClickListener;
 import com.example.android.popcorn.ui.review_recyclerview.ReviewRecyclerViewAdapter;
 
 import java.util.ArrayList;
@@ -55,7 +58,7 @@ import static com.example.android.popcorn.networking.UrlCreator.createUrlWithApp
  * Created by alfredchang on 2017-09-27.
  */
 
-public class DetailFragment extends Fragment implements OnCastMemberClickListener {
+public class DetailFragment extends Fragment implements OnCastMemberClickListener, OnReviewClickListener {
 
     private final String LOG_TAG = DetailFragment.class.getSimpleName();
     private final int BACKDROP_CROSSFADE_TIME = 200;
@@ -132,7 +135,7 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     }
 
     private void attachToReviewAdapter(Movie movie) {
-        mRecyclerViewAdapter = new ReviewRecyclerViewAdapter(getActivity(), movie.getReviews());
+        mRecyclerViewAdapter = new ReviewRecyclerViewAdapter(getActivity(), movie.getReviews(), this);
         mReviewRecyclerView.setAdapter(mRecyclerViewAdapter);
     }
 
@@ -141,6 +144,13 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
         Intent singleCastMemberDetailsIntent = new Intent(getActivity(), IndividualCastDetailActivity.class);
         singleCastMemberDetailsIntent.putExtra(Utilities.PARCELABLE_CAST_MEMBER_KEY, castMember);
         startActivity(singleCastMemberDetailsIntent);
+    }
+
+    @Override
+    public void onClick(Review review) {
+        Intent reviewIntent = new Intent(getActivity(), IndividualReviewActivity.class);
+        reviewIntent.putExtra(Utilities.PARCELABLE_REVIEW_KEY, review);
+        startActivity(reviewIntent);
     }
 
     private void onClickTrailerButton() {
@@ -288,5 +298,4 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     private void setSynopsis(Movie movie) {
         mSynopsis.setText(movie.getSynopsis());
     }
-
 }

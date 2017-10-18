@@ -25,10 +25,12 @@ public class ReviewRecyclerViewAdapter extends RecyclerView.Adapter<ReviewRecycl
 
     private Context mContext;
     private List<Review> mReviews;
+    private OnReviewClickListener mClickListener;
 
-    public ReviewRecyclerViewAdapter(Context context, List<Review> reviews) {
+    public ReviewRecyclerViewAdapter(Context context, List<Review> reviews, OnReviewClickListener clickListener) {
         mContext = context;
         mReviews = reviews;
+        mClickListener = clickListener;
     }
 
     @Override
@@ -67,7 +69,7 @@ public class ReviewRecyclerViewAdapter extends RecyclerView.Adapter<ReviewRecycl
         return mReviews.size();
     }
 
-    public class ReviewViewHolder extends RecyclerView.ViewHolder {
+    public class ReviewViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         @BindView(R.id.author) TextView mAuthor;
         @BindView(R.id.content) TextView mContent;
@@ -75,6 +77,12 @@ public class ReviewRecyclerViewAdapter extends RecyclerView.Adapter<ReviewRecycl
         public ReviewViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            mClickListener.onClick(mReviews.get(getAdapterPosition()));
         }
     }
 }

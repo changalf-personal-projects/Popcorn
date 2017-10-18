@@ -223,7 +223,7 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
     }
 
     @Override
-    public void onMovieClick(Movie movie) {
+    public void onClick(Movie movie) {
         Intent detailIntent = new Intent(getActivity(), DetailActivity.class);
         detailIntent.putExtra(Utilities.PARCELABLE_MOVIE_KEY, movie);
         startActivity(detailIntent);

@@ -142,7 +142,7 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
 
         @Override
         public void onClick(View view) {
-            mClickListener.onMovieClick(mListOfMovies.get(getAdapterPosition()));
+            mClickListener.onClick(mListOfMovies.get(getAdapterPosition()));
         }
     }
 }

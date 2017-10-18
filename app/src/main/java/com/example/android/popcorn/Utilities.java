@@ -21,7 +21,7 @@ public class Utilities {
     private static final String LOG_TAG = Utilities.class.getSimpleName();
 
     public static final String PARCELABLE_MOVIE_KEY = "movie";
-    public static final String PARCELABLE_CAST_KEY = "cast";
+    public static final String PARCELABLE_REVIEW_KEY = "review";
     public static final String PARCELABLE_CAST_MEMBER_KEY = "cast member";
     public static final String PARCELABLE_TRAILER_KEY = "trailers";
 
