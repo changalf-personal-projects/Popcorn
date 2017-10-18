@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -83,6 +84,8 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     TextView mSynopsis;
     @BindView(R.id.trailer_button)
     Button mTrailerButton;
+    @BindView(R.id.favourite_button)
+    ImageButton mFavouriteButton;
     @BindView(R.id.cast_recycler_view)
     RecyclerView mCastRecyclerView;
     @BindView(R.id.review_recycler_view)
