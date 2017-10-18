@@ -8,5 +8,5 @@ import com.example.android.popcorn.model.Movie;
 
 public interface OnMovieClickListener {
 
-    public void onMovieClick(Movie movie);
+    void onMovieClick(Movie movie);
 }

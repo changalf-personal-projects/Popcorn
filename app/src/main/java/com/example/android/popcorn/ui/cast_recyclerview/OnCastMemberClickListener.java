@@ -8,5 +8,5 @@ import com.example.android.popcorn.model.Cast;
 
 public interface OnCastMemberClickListener {
 
-    public void onClick(Cast castMember);
+    void onClick(Cast castMember);
 }
