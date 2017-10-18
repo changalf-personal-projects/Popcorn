@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -83,6 +84,8 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     TextView mGenres;
     @BindView(R.id.synopsis)
     TextView mSynopsis;
+    @BindView(R.id.review)
+    LinearLayout mReview;
     @BindView(R.id.trailer_button)
     Button mTrailerButton;
     @BindView(R.id.favourite_button)
