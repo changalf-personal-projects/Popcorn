@@ -43,18 +43,18 @@
                 android:resource="@xml/searchable" />
         </activity>
         <activity
-            android:name=".CastDetailActivity"
-            android:label="@string/cast_heading"
-            android:theme="@style/AppTheme">
-        </activity>
-        <activity
             android:name=".IndividualCastDetailActivity"
             android:theme="@style/CastDetailAppTheme">
         </activity>
         <activity
             android:name=".TrailerActivity"
             android:label="@string/trailers_label"
-            android:theme="@style/AppTheme" >
+            android:theme="@style/AppTheme">
+        </activity>
+        <activity
+            android:name=".IndividualReviewActivity"
+            android:label="Review"
+            android:theme="@style/AppTheme">
         </activity>
     </application>
 
