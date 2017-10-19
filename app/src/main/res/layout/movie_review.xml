@@ -8,7 +8,7 @@
     android:layout_marginEnd="@dimen/detail_review_side_margin">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/author"
         android:textColor="@color/white"
@@ -16,7 +16,7 @@
         android:layout_marginBottom="@dimen/detail_review_author_bottom_margin" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/content"
         android:textColor="@color/detail_font_color"
