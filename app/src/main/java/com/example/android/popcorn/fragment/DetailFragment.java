@@ -63,6 +63,8 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     private final String LOG_TAG = DetailFragment.class.getSimpleName();
     private final int BACKDROP_CROSSFADE_TIME = 200;
     private final int POSTER_CROSSFADE_TIME = 700;
+    private final String EMPTY_STRING = "";
+    public static final String NO_REVIEWS_MESSAGE = "No reviews posted yet.";
 
     private List<Trailer> mListOfTrailers;
     private boolean mIsPressedFlag = false;
@@ -135,7 +137,17 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     }
 
     private void attachToReviewAdapter(Movie movie) {
-        mRecyclerViewAdapter = new ReviewRecyclerViewAdapter(getActivity(), movie.getReviews(), this);
+        List<Review> reviews = movie.getReviews();
+
+        // Hacky way of printing message indicating no reviews posted yet.
+        if (reviews.size() == 0) {
+            Review emptyReview = new Review();
+            emptyReview.setAuthor(EMPTY_STRING);
+            emptyReview.setContent(NO_REVIEWS_MESSAGE);
+            reviews.add(emptyReview);
+        }
+
+        mRecyclerViewAdapter = new ReviewRecyclerViewAdapter(getActivity(), reviews, this);
         mReviewRecyclerView.setAdapter(mRecyclerViewAdapter);
     }
 
