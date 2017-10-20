@@ -40,6 +40,11 @@ public class ViewBinder {
                         .transition(DrawableTransitionOptions.withCrossFade(crossFadeTime))
                         .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                         .into(view);
+            } else {
+                GlideApp.with(context).load(imagePath)
+                        .transition(DrawableTransitionOptions.withCrossFade(crossFadeTime))
+                        .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                        .into(view);
             }
         }
     }
