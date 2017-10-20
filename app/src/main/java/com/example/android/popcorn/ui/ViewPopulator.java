@@ -18,11 +18,11 @@ import static com.example.android.popcorn.Utilities.formatGenres;
 import static com.example.android.popcorn.Utilities.roundToNearestTenth;
 
 /**
- * Class that holds all methods that bind views.
+ * Class that holds all methods that populate views.
  */
-public class ViewSetter {
+public class ViewPopulator {
 
-    public static void setImageToView(Context context, String imagePath, int crossFadeTime, ImageView view) {
+    public static void populateImageView(Context context, String imagePath, int crossFadeTime, ImageView view) {
         if (imagePath != null) {
             GlideApp.with(context).load(imagePath)
                     .transition(DrawableTransitionOptions.withCrossFade(crossFadeTime))
@@ -31,8 +31,8 @@ public class ViewSetter {
         }
     }
 
-    public static void setImageWithCustomSizeToView(Context context, String imagePath, ImageView view,
-                                                    int width, int height, int crossFadeTime, boolean isCircleCropped) {
+    public static void populateCustomImageView(Context context, String imagePath, ImageView view,
+                                               int width, int height, int crossFadeTime, boolean isCircleCropped) {
         if (imagePath != null) {
             if (isCircleCropped) {
                 GlideApp.with(context).load(imagePath).circleCrop()
@@ -49,33 +49,29 @@ public class ViewSetter {
         }
     }
 
-    public static void setTextToView(String content, TextView view) {
+    public static void populateTextView(String content, TextView view) {
         view.setText(content);
     }
 
-    public static void setRatingToView(Context context, String content, TextView view) {
+    public static void populateRatingTextView(Context context, String content, TextView view) {
         double rating = roundToNearestTenth(content);
         String ratingAsString = convertDoubleToString(rating);
         view.setText(context.getResources().getString(R.string.rating_out_of_ten, ratingAsString));
     }
 
-    public static void setRuntimeToView(Context context, String content, TextView view) {
+    public static void populateRuntimeTextView(Context context, String content, TextView view) {
         view.setText(context.getResources().getString(R.string.runtime_plus_minutes, content));
     }
 
-    public static void setReleaseToView(String content, TextView view) {
-        view.setText(formatDate(content));
-    }
-
-    public static void setGenresToView(List<String> content, TextView view) {
+    public static void populateGenresToTextView(List<String> content, TextView view) {
         view.setText(formatGenres(content.toString()));
     }
 
-    public static void setDateToView(String content, TextView view) {
+    public static void populateDateToTextView(String content, TextView view) {
         view.setText(formatDate(content));
     }
 
-    public static void setBirthPlaceToView(String content, String message, TextView view) {
+    public static void populateBirthPlaceToTextView(String content, String message, TextView view) {
         if (isNotNullString(content)) {
             view.setText(content);
         } else {
@@ -83,7 +79,7 @@ public class ViewSetter {
         }
     }
 
-    public static void setBiographyToView(String content, String message, TextView view) {
+    public static void populateBiographyToTextView(String content, String message, TextView view) {
         if (isNotNullString(content) && isNotEmptyString(content)) {
             view.setText(content);
         } else {

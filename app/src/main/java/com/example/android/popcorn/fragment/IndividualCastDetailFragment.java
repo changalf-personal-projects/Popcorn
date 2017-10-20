@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.Utilities;
 import com.example.android.popcorn.model.Cast;
-import com.example.android.popcorn.ui.ViewSetter;
+import com.example.android.popcorn.ui.ViewPopulator;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -52,13 +52,13 @@ public class IndividualCastDetailFragment extends Fragment {
     }
 
     private void setParcelabeDetailIntoViews(Cast castMember) {
-        ViewSetter.setImageWithCustomSizeToView(getActivity(), castMember.getProfilePath(), mProfilePicture,
+        ViewPopulator.populateCustomImageView(getActivity(), castMember.getProfilePath(), mProfilePicture,
                 PROFILE_PIC_WIDTH, PROFILE_PIC_HEIGHT, PROFILE_PIC_CROSSFADE_TIME, SHOULD_CIRCLE_CROP);
-        ViewSetter.setTextToView(castMember.getName(), mName);
-        ViewSetter.setDateToView(castMember.getBirthday(), mBirthday);
-        ViewSetter.setDateToView(castMember.getDeathday(), mDeath);
-        ViewSetter.setBirthPlaceToView(castMember.getBirthplace(), NOT_AVAILABLE, mPlaceOfBirth);
-        ViewSetter.setBiographyToView(castMember.getBiography(), NO_BIOGRAPHY, mBiography);
+        ViewPopulator.populateTextView(castMember.getName(), mName);
+        ViewPopulator.populateDateToTextView(castMember.getBirthday(), mBirthday);
+        ViewPopulator.populateDateToTextView(castMember.getDeathday(), mDeath);
+        ViewPopulator.populateBirthPlaceToTextView(castMember.getBirthplace(), NOT_AVAILABLE, mPlaceOfBirth);
+        ViewPopulator.populateBiographyToTextView(castMember.getBiography(), NO_BIOGRAPHY, mBiography);
     }
 
     // Alt + enter if red lightbulb doesn't show up.
