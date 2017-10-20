@@ -9,19 +9,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.Utilities;
 import com.example.android.popcorn.model.Cast;
-import com.example.android.popcorn.ui.GlideApp;
+import com.example.android.popcorn.ui.ViewBinder;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static com.example.android.popcorn.EmptyChecker.isNotEmptyString;
-import static com.example.android.popcorn.NullChecker.isNotNullString;
-import static com.example.android.popcorn.Utilities.formatDate;
 
 /**
  * Created by alfredchang on 2017-10-08.
@@ -30,10 +24,6 @@ import static com.example.android.popcorn.Utilities.formatDate;
 public class IndividualCastDetailFragment extends Fragment {
 
     private final String LOG_TAG = IndividualCastDetailFragment.class.getSimpleName();
-    private final String NOT_AVAILABLE = "N/A";
-    private final String NO_BIOGRAPHY = "Biography unavailable";
-    private final int CROSSFADE_TIME = 500;
-    private final int PROFILE_PIC_DIMS = 400;
 
     @BindView(R.id.cast_member_profile_picture) ImageView mProfilePicture;
     @BindView(R.id.cast_member_name) TextView mName;
@@ -55,12 +45,12 @@ public class IndividualCastDetailFragment extends Fragment {
     }
 
     private void setParcelabeDetailIntoViews(Cast castMember) {
-        setProfilePicture(castMember);
-        setName(castMember);
-        setBirthday(castMember);
-        setDeathday(castMember);
-        setBirthplace(castMember);
-        setBiography(castMember);
+        ViewBinder.setProfilePicToView(getActivity(), castMember.getProfilePath(), mProfilePicture);
+        ViewBinder.setTextToView(castMember.getName(), mName);
+        ViewBinder.setDateToView(castMember.getBirthday(), mBirthday);
+        ViewBinder.setDateToView(castMember.getDeathday(), mDeath);
+        ViewBinder.setBirthPlaceToView(castMember.getBirthplace(), mPlaceOfBirth);
+        ViewBinder.setBiographyToView(castMember.getBiography(), mBiography);
     }
 
     // Alt + enter if red lightbulb doesn't show up.
@@ -68,52 +58,5 @@ public class IndividualCastDetailFragment extends Fragment {
         Intent castMemberDetailsIntent = getActivity().getIntent();
         Cast castMember = castMemberDetailsIntent.getParcelableExtra(Utilities.PARCELABLE_CAST_MEMBER_KEY);
         return castMember;
-    }
-
-    private void setProfilePicture(Cast castMember) {
-        String profilePath = castMember.getProfilePath();
-
-        if (profilePath != null) {
-            GlideApp.with(getActivity()).load(profilePath).circleCrop()
-                    .override(PROFILE_PIC_DIMS, PROFILE_PIC_DIMS)
-                    .transition(DrawableTransitionOptions.withCrossFade(CROSSFADE_TIME))
-                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                    .into(mProfilePicture);
-        }
-    }
-
-    private void setName(Cast castMember) {
-        mName.setText(castMember.getName());
-    }
-
-    private void setBirthday(Cast castMember) {
-        mBirthday.setText(formatDate(castMember.getBirthday()));
-    }
-
-    private void setDeathday(Cast castMember) {
-        String death = castMember.getDeathday();
-        if (isNotNullString(death)) {
-            mDeath.setText(formatDate(death));
-        } else {
-            mDeath.setText(NOT_AVAILABLE);
-        }
-    }
-
-    private void setBirthplace(Cast castMember) {
-        String placeOfBirth = castMember.getBirthplace();
-        if (isNotNullString(placeOfBirth)) {
-            mPlaceOfBirth.setText(castMember.getBirthplace());
-        } else {
-            mPlaceOfBirth.setText(NOT_AVAILABLE);
-        }
-    }
-
-    private void setBiography(Cast castMember) {
-        String biography = castMember.getBiography();
-        if (isNotNullString(biography) && isNotEmptyString(biography)) {
-            mBiography.setText(castMember.getBiography());
-        } else {
-            mBiography.setText(NO_BIOGRAPHY);
-        }
     }
 }
