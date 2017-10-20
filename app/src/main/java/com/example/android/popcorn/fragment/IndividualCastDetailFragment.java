@@ -25,6 +25,13 @@ public class IndividualCastDetailFragment extends Fragment {
 
     private final String LOG_TAG = IndividualCastDetailFragment.class.getSimpleName();
 
+    private final String NOT_AVAILABLE = "N/A";
+    private final String NO_BIOGRAPHY = "Biography unavailable";
+    private final int PROFILE_PIC_CROSSFADE_TIME = 500;
+    private final int PROFILE_PIC_WIDTH = 400;
+    private final int PROFILE_PIC_HEIGHT = 400;
+    private final boolean SHOULD_CIRCLE_CROP = true;
+
     @BindView(R.id.cast_member_profile_picture) ImageView mProfilePicture;
     @BindView(R.id.cast_member_name) TextView mName;
     @BindView(R.id.birthday) TextView mBirthday;
@@ -45,12 +52,13 @@ public class IndividualCastDetailFragment extends Fragment {
     }
 
     private void setParcelabeDetailIntoViews(Cast castMember) {
-        ViewBinder.setProfilePicToView(getActivity(), castMember.getProfilePath(), mProfilePicture);
+        ViewBinder.setImageWithCustomSizeToView(getActivity(), castMember.getProfilePath(), mProfilePicture,
+                PROFILE_PIC_WIDTH, PROFILE_PIC_HEIGHT, PROFILE_PIC_CROSSFADE_TIME, SHOULD_CIRCLE_CROP);
         ViewBinder.setTextToView(castMember.getName(), mName);
         ViewBinder.setDateToView(castMember.getBirthday(), mBirthday);
         ViewBinder.setDateToView(castMember.getDeathday(), mDeath);
-        ViewBinder.setBirthPlaceToView(castMember.getBirthplace(), mPlaceOfBirth);
-        ViewBinder.setBiographyToView(castMember.getBiography(), mBiography);
+        ViewBinder.setBirthPlaceToView(castMember.getBirthplace(), NOT_AVAILABLE, mPlaceOfBirth);
+        ViewBinder.setBiographyToView(castMember.getBiography(), NO_BIOGRAPHY, mBiography);
     }
 
     // Alt + enter if red lightbulb doesn't show up.
