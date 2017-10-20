@@ -140,7 +140,7 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
         List<Review> reviews = movie.getReviews();
 
         // Hacky way of printing message indicating no reviews posted yet.  Better solution is
-        // to switch layouts.
+        // to switch layouts.  Doesn't always seem to work.
         if (reviews.size() == 0) {
             Review emptyReview = new Review();
             emptyReview.setAuthor(EMPTY_STRING);
