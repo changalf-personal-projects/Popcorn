@@ -2,8 +2,6 @@ package com.example.android.popcorn;
 
 import android.util.Log;
 
-import com.example.android.popcorn.model.Movie;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -27,8 +25,7 @@ public class Utilities {
 
     private static final String NOT_AVAILABLE = "N/A";
 
-    public static double roundToNearestTenth(Movie movie) {
-        String rating = movie.getRating();
+    public static double roundToNearestTenth(String rating) {
         if (rating == null) {
             return 0.0;
         } else {

@@ -103,7 +103,7 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
     }
 
     private void onBindRating(Movie movie, PosterViewHolder holder) {
-        double rating = roundToNearestTenth(movie);
+        double rating = roundToNearestTenth(movie.getRating());
         String ratingAsString = convertDoubleToString(rating);
         holder.mRating.setText(mContext.getResources().getString(R.string.rating_out_of_ten, ratingAsString));
     }

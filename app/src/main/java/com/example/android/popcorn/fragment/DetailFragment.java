@@ -45,10 +45,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.example.android.popcorn.Utilities.convertDoubleToString;
 import static com.example.android.popcorn.Utilities.formatDate;
 import static com.example.android.popcorn.Utilities.formatGenres;
-import static com.example.android.popcorn.Utilities.roundToNearestTenth;
 import static com.example.android.popcorn.networking.UrlCreator.createCastMemberDetailUrl;
 import static com.example.android.popcorn.networking.UrlCreator.createUrlWithAppendedResponse;
 
@@ -261,16 +259,16 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     private void setParcelableDetailsIntoViews(Movie movie) {
 //        setBackdrop(movie);
 //        setPoster(movie);
-        ViewBinder.setImageToView(getActivity(), movie.getBackdropPath(), BACKDROP_CROSSFADE_TIME,
-                mBackdrop);
-        ViewBinder.setImageToView(getActivity(), movie.getPosterPath(), POSTER_CROSSFADE_TIME,
-                mPoster);
-        setTitle(movie);
-        setRating(movie);
-        setRuntime(movie);
-        setRelease(movie);
-        setGenres(movie);
-        setSynopsis(movie);
+//        setTitle(movie);
+//        setRating(movie);
+//        setRuntime(movie);
+//        setRelease(movie);
+//        setGenres(movie);
+//        setSynopsis(movie);
+        ViewBinder.setImageToView(getActivity(), movie.getBackdropPath(), BACKDROP_CROSSFADE_TIME, mBackdrop);
+        ViewBinder.setImageToView(getActivity(), movie.getPosterPath(), POSTER_CROSSFADE_TIME, mPoster);
+        ViewBinder.setTextToView(movie.getTitle(), mTitle);
+        ViewBinder.setRatingToView(getActivity(), movie.getRating(), mRating);
         attachToCastAdapter(movie);
         attachToReviewAdapter(movie);
     }
@@ -289,15 +287,15 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
 //                .into(mPoster);
 //    }
 
-    private void setTitle(Movie movie) {
-        mTitle.setText(movie.getTitle());
-    }
-
-    private void setRating(Movie movie) {
-        double rating = roundToNearestTenth(movie);
-        String ratingAsString = convertDoubleToString(rating);
-        mRating.setText(getActivity().getResources().getString(R.string.rating_out_of_ten, ratingAsString));
-    }
+//    private void setTitle(Movie movie) {
+//        mTitle.setText(movie.getTitle());
+//    }
+//
+//    private void setRating(Movie movie) {
+//        double rating = roundToNearestTenth(movie);
+//        String ratingAsString = convertDoubleToString(rating);
+//        mRating.setText(getActivity().getResources().getString(R.string.rating_out_of_ten, ratingAsString));
+//    }
 
     private void setRuntime(Movie movie) {
         mRuntime.setText(getActivity().getResources().getString(R.string.runtime_plus_minutes, movie.getRuntime()));
