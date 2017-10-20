@@ -20,7 +20,7 @@ import static com.example.android.popcorn.Utilities.roundToNearestTenth;
 /**
  * Class that holds all methods that bind views.
  */
-public class ViewBinder {
+public class ViewSetter {
 
     public static void setImageToView(Context context, String imagePath, int crossFadeTime, ImageView view) {
         if (imagePath != null) {

@@ -33,7 +33,7 @@ import com.example.android.popcorn.model.Review;
 import com.example.android.popcorn.model.Trailer;
 import com.example.android.popcorn.networking.RequestQueueSingleton;
 import com.example.android.popcorn.networking.UriTerms;
-import com.example.android.popcorn.ui.ViewBinder;
+import com.example.android.popcorn.ui.ViewSetter;
 import com.example.android.popcorn.ui.cast_recyclerview.CastRecyclerViewAdapter;
 import com.example.android.popcorn.ui.cast_recyclerview.OnCastMemberClickListener;
 import com.example.android.popcorn.ui.review_recyclerview.OnReviewClickListener;
@@ -255,14 +255,14 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     }
 
     private void setParcelableDetailsIntoViews(Movie movie) {
-        ViewBinder.setImageToView(getActivity(), movie.getBackdropPath(), BACKDROP_CROSSFADE_TIME, mBackdrop);
-        ViewBinder.setImageToView(getActivity(), movie.getPosterPath(), POSTER_CROSSFADE_TIME, mPoster);
-        ViewBinder.setTextToView(movie.getTitle(), mTitle);
-        ViewBinder.setRatingToView(getActivity(), movie.getRating(), mRating);
-        ViewBinder.setRuntimeToView(getActivity(), movie.getRuntime(), mRuntime);
-        ViewBinder.setReleaseToView(movie.getReleaseDate(), mRelease);
-        ViewBinder.setGenresToView(movie.getGenres(), mGenres);
-        ViewBinder.setTextToView(movie.getSynopsis(), mSynopsis);
+        ViewSetter.setImageToView(getActivity(), movie.getBackdropPath(), BACKDROP_CROSSFADE_TIME, mBackdrop);
+        ViewSetter.setImageToView(getActivity(), movie.getPosterPath(), POSTER_CROSSFADE_TIME, mPoster);
+        ViewSetter.setTextToView(movie.getTitle(), mTitle);
+        ViewSetter.setRatingToView(getActivity(), movie.getRating(), mRating);
+        ViewSetter.setRuntimeToView(getActivity(), movie.getRuntime(), mRuntime);
+        ViewSetter.setReleaseToView(movie.getReleaseDate(), mRelease);
+        ViewSetter.setGenresToView(movie.getGenres(), mGenres);
+        ViewSetter.setTextToView(movie.getSynopsis(), mSynopsis);
 
         attachToCastAdapter(movie);
         attachToReviewAdapter(movie);
