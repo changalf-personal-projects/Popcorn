@@ -255,15 +255,6 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     }
 
     private void setParcelableDetailsIntoViews(Movie movie) {
-//        setBackdrop(movie);
-//        setPoster(movie);
-//        setTitle(movie);
-//        setRating(movie);
-//        setRuntime(movie);
-//        setRelease(movie);
-//        setGenres(movie);
-//        setSynopsis(movie);
-
         ViewBinder.setImageToView(getActivity(), movie.getBackdropPath(), BACKDROP_CROSSFADE_TIME, mBackdrop);
         ViewBinder.setImageToView(getActivity(), movie.getPosterPath(), POSTER_CROSSFADE_TIME, mPoster);
         ViewBinder.setTextToView(movie.getTitle(), mTitle);
@@ -276,44 +267,4 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
         attachToCastAdapter(movie);
         attachToReviewAdapter(movie);
     }
-
-//    private void setBackdrop(Movie movie) {
-//        GlideApp.with(getActivity()).load(movie.getBackdropPath())
-//                .transition(DrawableTransitionOptions.withCrossFade(BACKDROP_CROSSFADE_TIME))
-//                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-//                .into(mBackdrop);
-//    }
-//
-//    private void setPoster(Movie movie) {
-//        GlideApp.with(getActivity()).load(movie.getDetailPosterPath())
-//                .transition(DrawableTransitionOptions.withCrossFade(POSTER_CROSSFADE_TIME))
-//                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-//                .into(mPoster);
-//    }
-
-//    private void setTitle(Movie movie) {
-//        mTitle.setText(movie.getTitle());
-//    }
-//
-//    private void setRating(Movie movie) {
-//        double rating = roundToNearestTenth(movie);
-//        String ratingAsString = convertDoubleToString(rating);
-//        mRating.setText(getActivity().getResources().getString(R.string.rating_out_of_ten, ratingAsString));
-//    }
-
-//    private void setRuntime(Movie movie) {
-//        mRuntime.setText(getActivity().getResources().getString(R.string.runtime_plus_minutes, movie.getRuntime()));
-//    }
-
-//    private void setRelease(Movie movie) {
-//        mRelease.setText(formatDate(movie.getReleaseDate()));
-//    }
-
-//    private void setGenres(Movie movie) {
-//        mGenres.setText(formatGenres(movie.getGenres().toString()));
-//    }
-
-//    private void setSynopsis(Movie movie) {
-//        mSynopsis.setText(movie.getSynopsis());
-//    }
 }
