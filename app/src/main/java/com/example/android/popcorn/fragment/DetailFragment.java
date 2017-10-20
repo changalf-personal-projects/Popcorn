@@ -19,8 +19,6 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.example.android.popcorn.IndividualCastDetailActivity;
 import com.example.android.popcorn.IndividualReviewActivity;
 import com.example.android.popcorn.R;
@@ -35,7 +33,7 @@ import com.example.android.popcorn.model.Review;
 import com.example.android.popcorn.model.Trailer;
 import com.example.android.popcorn.networking.RequestQueueSingleton;
 import com.example.android.popcorn.networking.UriTerms;
-import com.example.android.popcorn.ui.GlideApp;
+import com.example.android.popcorn.ui.ViewBinder;
 import com.example.android.popcorn.ui.cast_recyclerview.CastRecyclerViewAdapter;
 import com.example.android.popcorn.ui.cast_recyclerview.OnCastMemberClickListener;
 import com.example.android.popcorn.ui.review_recyclerview.OnReviewClickListener;
@@ -261,8 +259,12 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     }
 
     private void setParcelableDetailsIntoViews(Movie movie) {
-        setBackdrop(movie);
-        setPoster(movie);
+//        setBackdrop(movie);
+//        setPoster(movie);
+        ViewBinder.setImageToView(getActivity(), movie.getBackdropPath(), BACKDROP_CROSSFADE_TIME,
+                mBackdrop);
+        ViewBinder.setImageToView(getActivity(), movie.getPosterPath(), POSTER_CROSSFADE_TIME,
+                mPoster);
         setTitle(movie);
         setRating(movie);
         setRuntime(movie);
@@ -273,19 +275,19 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
         attachToReviewAdapter(movie);
     }
 
-    private void setBackdrop(Movie movie) {
-        GlideApp.with(getActivity()).load(movie.getBackdropPath())
-                .transition(DrawableTransitionOptions.withCrossFade(BACKDROP_CROSSFADE_TIME))
-                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                .into(mBackdrop);
-    }
-
-    private void setPoster(Movie movie) {
-        GlideApp.with(getActivity()).load(movie.getDetailPosterPath())
-                .transition(DrawableTransitionOptions.withCrossFade(POSTER_CROSSFADE_TIME))
-                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                .into(mPoster);
-    }
+//    private void setBackdrop(Movie movie) {
+//        GlideApp.with(getActivity()).load(movie.getBackdropPath())
+//                .transition(DrawableTransitionOptions.withCrossFade(BACKDROP_CROSSFADE_TIME))
+//                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+//                .into(mBackdrop);
+//    }
+//
+//    private void setPoster(Movie movie) {
+//        GlideApp.with(getActivity()).load(movie.getDetailPosterPath())
+//                .transition(DrawableTransitionOptions.withCrossFade(POSTER_CROSSFADE_TIME))
+//                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+//                .into(mPoster);
+//    }
 
     private void setTitle(Movie movie) {
         mTitle.setText(movie.getTitle());
