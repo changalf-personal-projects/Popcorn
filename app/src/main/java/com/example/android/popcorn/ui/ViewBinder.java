@@ -8,7 +8,11 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.example.android.popcorn.R;
 
+import java.util.List;
+
 import static com.example.android.popcorn.Utilities.convertDoubleToString;
+import static com.example.android.popcorn.Utilities.formatDate;
+import static com.example.android.popcorn.Utilities.formatGenres;
 import static com.example.android.popcorn.Utilities.roundToNearestTenth;
 
 /**
@@ -32,4 +36,18 @@ public class ViewBinder {
         String ratingAsString = convertDoubleToString(rating);
         view.setText(context.getResources().getString(R.string.rating_out_of_ten, ratingAsString));
     }
+
+    public static void setRuntimeToView(Context context, String content, TextView view) {
+        view.setText(context.getResources().getString(R.string.runtime_plus_minutes, content));
+    }
+
+    public static void setReleaseToView(String content, TextView view) {
+        view.setText(formatDate(content));
+    }
+
+    public static void setGenresToView(List<String> content, TextView view) {
+        view.setText(formatGenres(content.toString()));
+    }
+
+
 }

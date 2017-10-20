@@ -45,8 +45,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.example.android.popcorn.Utilities.formatDate;
-import static com.example.android.popcorn.Utilities.formatGenres;
 import static com.example.android.popcorn.networking.UrlCreator.createCastMemberDetailUrl;
 import static com.example.android.popcorn.networking.UrlCreator.createUrlWithAppendedResponse;
 
@@ -265,10 +263,16 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
 //        setRelease(movie);
 //        setGenres(movie);
 //        setSynopsis(movie);
+
         ViewBinder.setImageToView(getActivity(), movie.getBackdropPath(), BACKDROP_CROSSFADE_TIME, mBackdrop);
         ViewBinder.setImageToView(getActivity(), movie.getPosterPath(), POSTER_CROSSFADE_TIME, mPoster);
         ViewBinder.setTextToView(movie.getTitle(), mTitle);
         ViewBinder.setRatingToView(getActivity(), movie.getRating(), mRating);
+        ViewBinder.setRuntimeToView(getActivity(), movie.getRuntime(), mRuntime);
+        ViewBinder.setReleaseToView(movie.getReleaseDate(), mRelease);
+        ViewBinder.setGenresToView(movie.getGenres(), mGenres);
+        ViewBinder.setTextToView(movie.getSynopsis(), mSynopsis);
+
         attachToCastAdapter(movie);
         attachToReviewAdapter(movie);
     }
@@ -297,19 +301,19 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
 //        mRating.setText(getActivity().getResources().getString(R.string.rating_out_of_ten, ratingAsString));
 //    }
 
-    private void setRuntime(Movie movie) {
-        mRuntime.setText(getActivity().getResources().getString(R.string.runtime_plus_minutes, movie.getRuntime()));
-    }
+//    private void setRuntime(Movie movie) {
+//        mRuntime.setText(getActivity().getResources().getString(R.string.runtime_plus_minutes, movie.getRuntime()));
+//    }
 
-    private void setRelease(Movie movie) {
-        mRelease.setText(formatDate(movie.getReleaseDate()));
-    }
+//    private void setRelease(Movie movie) {
+//        mRelease.setText(formatDate(movie.getReleaseDate()));
+//    }
 
-    private void setGenres(Movie movie) {
-        mGenres.setText(formatGenres(movie.getGenres().toString()));
-    }
+//    private void setGenres(Movie movie) {
+//        mGenres.setText(formatGenres(movie.getGenres().toString()));
+//    }
 
-    private void setSynopsis(Movie movie) {
-        mSynopsis.setText(movie.getSynopsis());
-    }
+//    private void setSynopsis(Movie movie) {
+//        mSynopsis.setText(movie.getSynopsis());
+//    }
 }
