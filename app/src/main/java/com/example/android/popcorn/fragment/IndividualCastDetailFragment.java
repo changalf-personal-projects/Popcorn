@@ -45,7 +45,7 @@ public class IndividualCastDetailFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_single_cast_member_main, container, false);
         ButterKnife.bind(this, rootView);
 
-        Cast castMember = getParcelableDetails();
+        Cast castMember = getParcelableCastMember();
         setParcelabeDetailIntoViews(castMember);
 
         return rootView;
@@ -62,9 +62,9 @@ public class IndividualCastDetailFragment extends Fragment {
     }
 
     // Alt + enter if red lightbulb doesn't show up.
-    private Cast getParcelableDetails() {
-        Intent castMemberDetailsIntent = getActivity().getIntent();
-        Cast castMember = castMemberDetailsIntent.getParcelableExtra(Utilities.PARCELABLE_CAST_MEMBER_KEY);
+    private Cast getParcelableCastMember() {
+        Intent castMemberIntent = getActivity().getIntent();
+        Cast castMember = castMemberIntent.getParcelableExtra(Utilities.PARCELABLE_CAST_MEMBER_KEY);
         return castMember;
     }
 }

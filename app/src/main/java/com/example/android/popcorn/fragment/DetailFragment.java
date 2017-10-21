@@ -101,7 +101,7 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
         setupReviewRecyclerView();
 
         mListOfTrailers = new ArrayList<>();
-        Movie movie = getParcelableDetails();
+        Movie movie = getParcelableMovie();
 
         setParcelableDetailsIntoViews(movie);
         fetchJsonCastMemberDetails(movie);
@@ -248,9 +248,9 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
         }
     }
 
-    private Movie getParcelableDetails() {
-        Intent detailIntent = getActivity().getIntent();
-        Movie movie = detailIntent.getParcelableExtra(Utilities.PARCELABLE_MOVIE_KEY);
+    private Movie getParcelableMovie() {
+        Intent movieIntent = getActivity().getIntent();
+        Movie movie = movieIntent.getParcelableExtra(Utilities.PARCELABLE_MOVIE_KEY);
         return movie;
     }
 
