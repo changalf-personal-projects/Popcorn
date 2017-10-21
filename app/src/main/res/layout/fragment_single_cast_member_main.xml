@@ -27,7 +27,6 @@
         android:orientation="vertical">
 
         <FrameLayout
-            android:id="@+id/green_space"
             android:layout_width="match_parent"
             android:layout_height="@dimen/green_rectangle_height"
             android:background="@color/colorPrimaryDark">
@@ -36,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/line_height"
                 android:layout_gravity="center"
-                android:background="@color/profile_picture_line_color" />
+                android:background="@color/image_border_color" />
 
             <ImageView
                 android:id="@+id/cast_member_profile_picture"
@@ -44,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@drawable/profile_picture_border"
-                android:padding="@dimen/profile_picture_padding" />
+                android:padding="@dimen/image_padding" />
 
             <TextView
                 android:id="@+id/cast_member_name"
@@ -53,7 +52,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/cast_member_name_top_margin"
                 android:maxLines="1"
-                android:textColor="@color/profile_picture_line_color"
+                android:textColor="@color/image_border_color"
                 android:textSize="@dimen/cast_member_name_size"
                 android:textStyle="bold" />
 

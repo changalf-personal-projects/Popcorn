@@ -1,18 +1,14 @@
 package com.example.android.popcorn.ui.review_recyclerview;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.android.popcorn.R;
-import com.example.android.popcorn.fragment.DetailFragment;
 import com.example.android.popcorn.model.Review;
 
 import java.util.List;
@@ -66,10 +62,9 @@ public class ReviewRecyclerViewAdapter extends RecyclerView.Adapter<ReviewRecycl
     }
 
     private void onBindContent(Review review, ReviewViewHolder holder) {
-        if (review.getContent().equals(DetailFragment.NO_REVIEWS_MESSAGE)) {
-            Log.v(LOG_TAG, "I'm in here!");
-            holder.mContent.setGravity(Gravity.CENTER);
-        }
+//        if (review.getContent().equals(DetailFragment.NO_REVIEWS_MESSAGE)) {
+//            holder.mContent.setGravity(Gravity.CENTER);
+//        }
         holder.mContent.setText(review.getContent());
     }
 
@@ -80,8 +75,10 @@ public class ReviewRecyclerViewAdapter extends RecyclerView.Adapter<ReviewRecycl
 
     public class ReviewViewHolder extends ViewHolder implements View.OnClickListener {
 
-        @Nullable @BindView(R.id.author) TextView mAuthor;
-        @Nullable @BindView(R.id.content) TextView mContent;
+//        @Nullable
+        @BindView(R.id.author) TextView mAuthor;
+//        @Nullable
+        @BindView(R.id.content) TextView mContent;
 
         public ReviewViewHolder(View itemView) {
             super(itemView);

@@ -55,9 +55,11 @@
     <dimen name="detail_release_left_margin">-3dp</dimen>
 
     <!-- Single review fragment layout. -->
-    <dimen name="review_background_height">125dp</dimen>
+    <dimen name="review_background_height">275dp</dimen>
     <dimen name="review_movie_poster_background_width">122dp</dimen>
     <dimen name="review_movie_poster_background_height">178dp</dimen>
+    <dimen name="review_movie_poster_border_width">130dp</dimen>
+    <dimen name="review_movie_poster_border_height">188dp</dimen>
 
     <!-- Poster width and height. -->
     <dimen name="poster_width">700dp</dimen>
@@ -75,11 +77,12 @@
     <dimen name="thumbnail_width">92dp</dimen>
     <dimen name="thumbnail_height">100dp</dimen>
 
-    <!-- Profile picture margins and paddings. -->
+    <!-- Image margins and paddings. -->
     <dimen name="profile_picture_margin">10dp</dimen>
-    <dimen name="profile_picture_padding">5dp</dimen>
+    <dimen name="image_padding">5dp</dimen>
 
     <!-- Single cast member detail paddings and margins. -->
+    <dimen name="profile_picture_border_dims">100dp</dimen>
     <dimen name="biography_subheading_left_padding">10dp</dimen>
     <dimen name="biography_subheading_right_padding">10dp</dimen>
     <dimen name="birthday_top_padding">20dp</dimen>

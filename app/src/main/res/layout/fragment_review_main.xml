@@ -4,46 +4,32 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="@dimen/review_background_height"
+            android:background="@color/colorPrimaryDark">
 
             <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/review_background_height"
-                android:background="@color/colorPrimaryDark" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/movie_poster"
+                android:background="@drawable/review_movie_poster_border"
+                android:layout_gravity="center"
+                android:padding="@dimen/image_padding" />
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/review_background_height"
-                android:background="@color/colorPrimaryDark" />
-
-        </LinearLayout>
+        </FrameLayout>
 
         <!--<FrameLayout-->
             <!--android:layout_width="@dimen/review_movie_poster_background_width"-->
             <!--android:layout_height="@dimen/review_movie_poster_background_height"-->
             <!--android:layout_gravity="center">-->
 
-            <ImageView
-                android:layout_width="@dimen/review_movie_poster_background_width"
-                android:layout_height="@dimen/review_movie_poster_background_height"
-                android:background="@color/white"
-                android:layout_gravity="center" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/movie_poster"
-                android:layout_gravity="center" />
+        <!--<ImageView-->
+            <!--android:layout_width="@dimen/review_movie_poster_background_width"-->
+            <!--android:layout_height="@dimen/review_movie_poster_background_height"-->
+            <!--android:background="@color/white"-->
+            <!--android:layout_gravity="center" />-->
 
         <!--</FrameLayout>-->
-
-    </FrameLayout>
 
 </LinearLayout>
