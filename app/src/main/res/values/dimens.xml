@@ -56,6 +56,8 @@
 
     <!-- Single review fragment layout. -->
     <dimen name="review_background_height">125dp</dimen>
+    <dimen name="review_movie_poster_background_width">122dp</dimen>
+    <dimen name="review_movie_poster_background_height">178dp</dimen>
 
     <!-- Poster width and height. -->
     <dimen name="poster_width">700dp</dimen>

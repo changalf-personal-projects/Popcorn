@@ -25,11 +25,24 @@
 
         </LinearLayout>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/movie_poster"
-            android:layout_gravity="center" />
+        <!--<FrameLayout-->
+            <!--android:layout_width="@dimen/review_movie_poster_background_width"-->
+            <!--android:layout_height="@dimen/review_movie_poster_background_height"-->
+            <!--android:layout_gravity="center">-->
+
+            <ImageView
+                android:layout_width="@dimen/review_movie_poster_background_width"
+                android:layout_height="@dimen/review_movie_poster_background_height"
+                android:background="@color/white"
+                android:layout_gravity="center" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/movie_poster"
+                android:layout_gravity="center" />
+
+        <!--</FrameLayout>-->
 
     </FrameLayout>
 
