@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.Utilities;
@@ -26,6 +27,8 @@ public class IndividualReviewFragment extends Fragment {
     private final int POSTER_CROSSFADE_TIME = 300;
 
     @BindView(R.id.movie_poster) ImageView mMoviePoster;
+    @BindView(R.id.review_author) TextView mReviewAuthor;
+    @BindView(R.id.review_content) TextView mReviewContent;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
@@ -54,5 +57,7 @@ public class IndividualReviewFragment extends Fragment {
 
     private void setParcelableDetailsIntoViews(Movie movie, Review review) {
         ViewPopulator.populateImageView(getActivity(), movie.getDetailPosterPath(), POSTER_CROSSFADE_TIME, mMoviePoster);
+        ViewPopulator.populateTextView(review.getAuthor(), mReviewAuthor);
+        ViewPopulator.populateTextView(review.getContent(), mReviewContent);
     }
 }

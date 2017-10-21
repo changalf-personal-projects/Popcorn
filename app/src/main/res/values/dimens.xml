@@ -60,6 +60,7 @@
     <dimen name="review_movie_poster_background_height">178dp</dimen>
     <dimen name="review_movie_poster_border_width">126dp</dimen>
     <dimen name="review_movie_poster_border_height">184dp</dimen>
+    <dimen name="cardview_review_content_side_padding">10dp</dimen>
 
     <!-- Poster width and height. -->
     <dimen name="poster_width">700dp</dimen>
