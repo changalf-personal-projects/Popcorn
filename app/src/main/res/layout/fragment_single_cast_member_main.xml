@@ -31,11 +31,7 @@
             android:layout_height="@dimen/green_rectangle_height"
             android:background="@color/colorPrimaryDark">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/line_height"
-                android:layout_gravity="center"
-                android:background="@color/image_border_color" />
+            <include layout="@layout/red_detail_divider" />
 
             <ImageView
                 android:id="@+id/cast_member_profile_picture"
