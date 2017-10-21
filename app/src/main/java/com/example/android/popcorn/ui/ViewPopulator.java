@@ -1,6 +1,7 @@
 package com.example.android.popcorn.ui;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,8 +23,11 @@ import static com.example.android.popcorn.Utilities.roundToNearestTenth;
  */
 public class ViewPopulator {
 
+    private final static String LOG_TAG = ViewPopulator.class.getSimpleName();
+
     public static void populateImageView(Context context, String imagePath, int crossFadeTime, ImageView view) {
         if (imagePath != null) {
+            Log.v(LOG_TAG, "Image path: " + imagePath);
             GlideApp.with(context).load(imagePath)
                     .transition(DrawableTransitionOptions.withCrossFade(crossFadeTime))
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
