@@ -55,6 +55,7 @@ public class ViewPopulator {
         view.setText(content);
     }
 
+    // TODO: Combine next three methods bu passing string resource as a parameter.
     public static void populateRatingTextView(Context context, String content, TextView view) {
         double rating = roundToNearestTenth(content);
         String ratingAsString = convertDoubleToString(rating);
@@ -63,6 +64,10 @@ public class ViewPopulator {
 
     public static void populateRuntimeTextView(Context context, String content, TextView view) {
         view.setText(context.getResources().getString(R.string.runtime_plus_minutes, content));
+    }
+
+    public static void populateAuthorTextView(Context context, String content, TextView view) {
+        view.setText(context.getResources().getString(R.string.review_author_label, content));
     }
 
     public static void populateGenresToTextView(List<String> content, TextView view) {
