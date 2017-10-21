@@ -1,7 +1,6 @@
 package com.example.android.popcorn.ui;
 
 import android.content.Context;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,7 +26,6 @@ public class ViewPopulator {
 
     public static void populateImageView(Context context, String imagePath, int crossFadeTime, ImageView view) {
         if (imagePath != null) {
-            Log.v(LOG_TAG, "Image path: " + imagePath);
             GlideApp.with(context).load(imagePath)
                     .transition(DrawableTransitionOptions.withCrossFade(crossFadeTime))
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
