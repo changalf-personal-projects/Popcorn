@@ -156,7 +156,9 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
 
     @Override
     public void onClick(Review review) {
+        Movie movie = getParcelableMovie();
         Intent reviewIntent = new Intent(getActivity(), IndividualReviewActivity.class);
+        reviewIntent.putExtra(Utilities.PARCELABLE_MOVIE_KEY, movie);
         reviewIntent.putExtra(Utilities.PARCELABLE_REVIEW_KEY, review);
         startActivity(reviewIntent);
     }

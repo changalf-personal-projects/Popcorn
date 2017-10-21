@@ -55,7 +55,7 @@
     <dimen name="detail_release_left_margin">-3dp</dimen>
 
     <!-- Single review fragment layout. -->
-    <dimen name="review_background_height">175dp</dimen>
+    <dimen name="review_background_height">125dp</dimen>
 
     <!-- Poster width and height. -->
     <dimen name="poster_width">700dp</dimen>

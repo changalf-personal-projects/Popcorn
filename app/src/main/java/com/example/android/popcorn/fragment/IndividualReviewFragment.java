@@ -10,7 +10,9 @@ import android.widget.ImageView;
 
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.Utilities;
+import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.model.Review;
+import com.example.android.popcorn.ui.ViewPopulator;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,6 +23,8 @@ import butterknife.ButterKnife;
 
 public class IndividualReviewFragment extends Fragment {
 
+    private final int POSTER_CROSSFADE_TIME = 300;
+
     @BindView(R.id.movie_poster) ImageView mMoviePoster;
 
     @Override
@@ -29,14 +33,26 @@ public class IndividualReviewFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_review_main, parent, false);
         ButterKnife.bind(this, rootView);
 
-        Review review = getParcelableReview();
+        Intent intent = getActivity().getIntent();
+        Movie movie = getParcelableMovie(intent);
+        Review review = getParcelableReview(intent);
+
+        setParcelableDetailsIntoViews(movie, review);
 
         return rootView;
     }
 
-    private Review getParcelableReview() {
-        Intent reviewIntent = getActivity().getIntent();
-        Review review = reviewIntent.getParcelableExtra(Utilities.PARCELABLE_REVIEW_KEY);
+    private Movie getParcelableMovie(Intent intent) {
+        Movie movie = intent.getParcelableExtra(Utilities.PARCELABLE_MOVIE_KEY);
+        return movie;
+    }
+
+    private Review getParcelableReview(Intent intent) {
+        Review review = intent.getParcelableExtra(Utilities.PARCELABLE_REVIEW_KEY);
         return review;
+    }
+
+    private void setParcelableDetailsIntoViews(Movie movie, Review review) {
+        ViewPopulator.populateImageView(getActivity(), movie.getDetailPosterPath(), POSTER_CROSSFADE_TIME, mMoviePoster);
     }
 }
