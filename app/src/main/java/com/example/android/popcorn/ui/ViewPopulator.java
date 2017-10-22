@@ -55,7 +55,6 @@ public class ViewPopulator {
         view.setText(content);
     }
 
-    // TODO: Combine next three methods bu passing string resource as a parameter.
     public static void populateRatingTextView(Context context, String content, TextView view) {
         double rating = roundToNearestTenth(content);
         String ratingAsString = convertDoubleToString(rating);
