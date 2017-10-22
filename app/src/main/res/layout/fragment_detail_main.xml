@@ -212,6 +212,14 @@
                 android:layout_margin="@dimen/detail_trailers_margin"
                 android:textSize="@dimen/detail_label_size" />
 
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/trailers_recycler_view"
+                android:scrollbars="horizontal">
+
+            </android.support.v7.widget.RecyclerView>
+
         </LinearLayout>
 
         <include layout="@layout/detail_divider" />

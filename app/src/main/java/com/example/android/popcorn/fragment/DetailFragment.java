@@ -86,7 +86,7 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     Button mTrailerButton;
     @BindView(R.id.favourite_button)
     ImageButton mFavouriteButton;
-    @BindView(R.id.cast_recycler_view)
+    @BindView(R.id.cast_recyclerview)
     RecyclerView mCastRecyclerView;
     @BindView(R.id.review_recycler_view)
     RecyclerView mReviewRecyclerView;
