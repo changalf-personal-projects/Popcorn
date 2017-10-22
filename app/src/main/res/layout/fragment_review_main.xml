@@ -5,22 +5,22 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/review_background_height"
-            android:background="@color/colorPrimaryDark">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/review_background_height"
+        android:background="@color/colorPrimaryDark">
 
-            <include layout="@layout/red_detail_divider" />
+        <include layout="@layout/red_detail_divider" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/movie_poster"
-                android:background="@drawable/review_movie_poster_border"
-                android:layout_gravity="center"
-                android:padding="@dimen/image_padding" />
+        <ImageView
+            android:id="@+id/movie_poster"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/review_movie_poster_border"
+            android:padding="@dimen/image_padding" />
 
-        </FrameLayout>
+    </FrameLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -35,23 +35,23 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_height="match_parent"
                 android:layout_marginBottom="@dimen/cardview_review_content_side_padding"
-                android:layout_marginTop="@dimen/cardview_review_content_side_padding">
+                android:layout_marginTop="@dimen/cardview_review_content_side_padding"
+                android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/review_author"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/review_author"
                     android:textColor="@color/black"
                     android:textStyle="italic|bold" />
 
                 <TextView
+                    android:id="@+id/review_content"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/review_content"
-                    android:layout_marginTop="20dp"/>
+                    android:layout_marginTop="20dp" />
 
             </LinearLayout>
 
