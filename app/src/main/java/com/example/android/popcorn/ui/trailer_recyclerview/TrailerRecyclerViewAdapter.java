@@ -42,6 +42,11 @@ public class TrailerRecyclerViewAdapter extends RecyclerView.Adapter<TrailerRecy
 
     @Override
     public void onBindViewHolder(TrailerViewHolder holder, int position) {
+        Trailer trailer = mTrailers.get(position);
+        onBindTrailerThumbnail(trailer, holder);
+    }
+
+    private void onBindTrailerThumbnail(Trailer trailer, TrailerViewHolder holder) {
 
     }
 
