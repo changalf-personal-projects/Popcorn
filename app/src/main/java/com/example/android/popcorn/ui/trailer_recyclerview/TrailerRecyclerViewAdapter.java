@@ -6,11 +6,15 @@ import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.model.Trailer;
 
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by alfredchang on 2017-10-22.
@@ -48,8 +52,11 @@ public class TrailerRecyclerViewAdapter extends RecyclerView.Adapter<TrailerRecy
 
     public class TrailerViewHolder extends ViewHolder {
 
+        @BindView(R.id.trailer_thumbnail) ImageView mTrailerThumbnail;
+
         public TrailerViewHolder(View itemView) {
             super(itemView);
+            ButterKnife.bind(this, itemView);
         }
 
     }
