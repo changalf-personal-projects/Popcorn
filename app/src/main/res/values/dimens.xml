@@ -37,6 +37,7 @@
     <dimen name="detail_runtime_left_margin">35dp</dimen>
     <dimen name="detail_release_and_genres_margin">15dp</dimen>
     <dimen name="detail_label_margin">12dp</dimen>
+    <dimen name="detail_trailers_margin">12dp</dimen>
     <dimen name="detail_cast_member_left_margin">22dp</dimen>
     <dimen name="detail_cast_member_top_margin">10dp</dimen>
     <dimen name="detail_cast_member_bottom_margin">12dp</dimen>
