@@ -36,7 +36,7 @@ public class TrailerRecyclerViewAdapter extends RecyclerView.Adapter<TrailerRecy
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mTrailers.size();
     }
 
     public class TrailerViewHolder extends ViewHolder {
