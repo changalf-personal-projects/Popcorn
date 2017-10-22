@@ -66,10 +66,6 @@ public class ViewPopulator {
         view.setText(context.getResources().getString(R.string.runtime_plus_minutes, content));
     }
 
-    public static void populateAuthorTextView(Context context, String content, TextView view) {
-        view.setText(context.getResources().getString(R.string.review_author_label, content));
-    }
-
     public static void populateGenresToTextView(List<String> content, TextView view) {
         view.setText(formatGenres(content.toString()));
     }

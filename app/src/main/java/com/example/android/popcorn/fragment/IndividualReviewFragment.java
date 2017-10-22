@@ -57,7 +57,7 @@ public class IndividualReviewFragment extends Fragment {
 
     private void setParcelableDetailsIntoViews(Movie movie, Review review) {
         ViewPopulator.populateImageView(getActivity(), movie.getDetailPosterPath(), POSTER_CROSSFADE_TIME, mMoviePoster);
-        ViewPopulator.populateAuthorTextView(getActivity(), review.getAuthor(), mReviewAuthor);
+        ViewPopulator.populateTextView(review.getAuthor(), mReviewAuthor);
         ViewPopulator.populateTextView(review.getContent(), mReviewContent);
     }
 }

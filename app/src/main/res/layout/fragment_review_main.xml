@@ -40,23 +40,12 @@
                 android:layout_marginBottom="@dimen/cardview_review_content_side_padding"
                 android:layout_marginTop="@dimen/cardview_review_content_side_padding">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:text="@string/review_author_label" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/review_author" />
-
-                </LinearLayout>
+                    android:id="@+id/review_author"
+                    android:textColor="@color/black"
+                    android:textStyle="italic|bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
