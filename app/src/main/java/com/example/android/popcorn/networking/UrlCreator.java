@@ -40,18 +40,11 @@ public class UrlCreator {
                 .build().toString();
     }
 
-    // Request for movie trailers.
-    public static String createTrailerUrl() {
-        return "";
-    }
-
-    // Request for movie reviews.
-    public static String createReviewUrl() {
-        return "";
-    }
-
-    // To be able to watch trailers.
-    public static String createYoutubeUrl() {
-        return "";
+    // Method to create url that wil fetch the trailer thumbnail from Youtube.
+    public static String createYoutubeThumbnailUrl(String id) {
+        return Uri.parse(UriTerms.YOUTUBE_THUMBNAIL_URL).buildUpon()
+                .appendPath(id)
+                .appendPath(UriTerms.YOUTUBE_THUMBNAIL_RESOLUTION)
+                .build().toString();
     }
 }
