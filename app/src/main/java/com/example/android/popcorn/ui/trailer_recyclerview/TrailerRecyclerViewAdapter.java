@@ -3,9 +3,11 @@ package com.example.android.popcorn.ui.trailer_recyclerview;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.android.popcorn.R;
 import com.example.android.popcorn.model.Trailer;
 
 import java.util.List;
@@ -26,7 +28,12 @@ public class TrailerRecyclerViewAdapter extends RecyclerView.Adapter<TrailerRecy
 
     @Override
     public TrailerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return null;
+        mContext = parent.getContext();
+        LayoutInflater layoutInflater = LayoutInflater.from(mContext);
+        View view = layoutInflater.inflate(R.layout.movie_trailer, parent);
+        TrailerViewHolder trailerViewHolder = new TrailerViewHolder(view);
+
+        return trailerViewHolder;
     }
 
     @Override
