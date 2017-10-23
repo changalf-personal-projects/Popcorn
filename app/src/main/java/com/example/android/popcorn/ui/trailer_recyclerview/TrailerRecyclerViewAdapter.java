@@ -32,9 +32,10 @@ public class TrailerRecyclerViewAdapter extends RecyclerView.Adapter<TrailerRecy
     private List<Trailer> mTrailers;
     private OnTrailerClickListener mClickListener;
 
-    public TrailerRecyclerViewAdapter(Context context, List<Trailer> trailers) {
+    public TrailerRecyclerViewAdapter(Context context, List<Trailer> trailers, OnTrailerClickListener clickListener) {
         mContext = context;
         mTrailers = trailers;
+        mClickListener = clickListener;
     }
 
     @Override
