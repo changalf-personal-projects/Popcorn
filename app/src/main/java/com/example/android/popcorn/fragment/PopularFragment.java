@@ -22,10 +22,12 @@ import com.example.android.popcorn.fragment.parsing.LoganCastTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganDetailsTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganIdTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganReviewTemplate;
+import com.example.android.popcorn.fragment.parsing.LoganTrailersTemplate;
 import com.example.android.popcorn.fragment.parsing.MovieParser;
 import com.example.android.popcorn.model.Cast;
 import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.model.Review;
+import com.example.android.popcorn.model.Trailer;
 import com.example.android.popcorn.networking.RequestQueueSingleton;
 import com.example.android.popcorn.networking.UriTerms;
 import com.example.android.popcorn.ui.poster_recyclerview.OnMovieClickListener;
@@ -158,6 +160,34 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
             });
 
             RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
+        }
+    }
+
+    private void fetchJsonTrailers(final Movie movie) {
+        String url = createUrlWithAppendedResponse(movie.getId(), UriTerms.VIDEOS);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        LoganTrailersTemplate trailerLogan = MovieParser.parseJsonTrailersData(response);
+                        saveMovieTrailers(movie, trailerLogan);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(LOG_TAG, "Response error (fetchJsonCast): " + error);
+            }
+        });
+
+        RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
+    }
+
+    private void saveMovieTrailers(Movie movie, LoganTrailersTemplate trailerLogan) {
+        for (LoganTrailersTemplate.Videos.Results result : trailerLogan.getVideos().getResults()) {
+            Trailer trailer = new Trailer();
+            trailer.setKey(result.getKey());
+            movie.getTrailers().add(trailer);
         }
     }
 
