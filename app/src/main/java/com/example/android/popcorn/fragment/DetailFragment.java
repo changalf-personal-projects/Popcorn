@@ -223,7 +223,7 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
                     @Override
                     public void onResponse(String response) {
                         LoganTrailersTemplate trailerLogan = MovieParser.parseJsonTrailersData(response);
-                        saveMovieTrailers(trailerLogan);
+                        saveMovieTrailers(movie, trailerLogan);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -242,11 +242,11 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
         castMember.setBirthplace(castMemberLogan.getBirthPlace());
     }
 
-    private void saveMovieTrailers(LoganTrailersTemplate trailerLogan) {
+    private void saveMovieTrailers(Movie movie, LoganTrailersTemplate trailerLogan) {
         for (LoganTrailersTemplate.Videos.Results result : trailerLogan.getVideos().getResults()) {
             Trailer trailer = new Trailer();
             trailer.setKey(result.getKey());
-            mListOfTrailers.add(trailer);
+            movie.getTrailers().add(trailer);
         }
     }
 
