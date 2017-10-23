@@ -38,6 +38,7 @@ import com.example.android.popcorn.ui.cast_recyclerview.CastRecyclerViewAdapter;
 import com.example.android.popcorn.ui.cast_recyclerview.OnCastMemberClickListener;
 import com.example.android.popcorn.ui.review_recyclerview.OnReviewClickListener;
 import com.example.android.popcorn.ui.review_recyclerview.ReviewRecyclerViewAdapter;
+import com.example.android.popcorn.ui.trailer_recyclerview.TrailerRecyclerViewAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +65,8 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     private boolean mIsPressedFlag = false;
 
     private CastRecyclerViewAdapter mCastRecyclerAdapter;
-    private ReviewRecyclerViewAdapter mRecyclerViewAdapter;
+    private ReviewRecyclerViewAdapter mReviewRecyclerAdapter;
+    private TrailerRecyclerViewAdapter mTrailerRecyclerAdapter;
 
     @BindView(R.id.backdrop_poster)
     ImageView mBackdrop;
@@ -143,8 +145,8 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
             reviews.add(emptyReview);
         }
 
-        mRecyclerViewAdapter = new ReviewRecyclerViewAdapter(getActivity(), reviews, this);
-        mReviewRecyclerView.setAdapter(mRecyclerViewAdapter);
+        mReviewRecyclerAdapter = new ReviewRecyclerViewAdapter(getActivity(), reviews, this);
+        mReviewRecyclerView.setAdapter(mReviewRecyclerAdapter);
     }
 
     @Override
