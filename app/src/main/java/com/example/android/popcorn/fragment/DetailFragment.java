@@ -150,7 +150,6 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     }
 
     private void attachToTrailerAdapter(Movie movie) {
-        Log.v(LOG_TAG, "Trailer adapter attached!");
         mTrailerRecyclerAdapter = new TrailerRecyclerViewAdapter(getActivity(), movie.getTrailers());
         mTrailerRecyclerView.setAdapter(mTrailerRecyclerAdapter);
     }

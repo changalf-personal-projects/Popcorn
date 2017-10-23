@@ -163,24 +163,27 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
         }
     }
 
-    private void fetchJsonTrailers(final Movie movie) {
-        String url = createUrlWithAppendedResponse(movie.getId(), UriTerms.VIDEOS);
+    private void fetchJsonTrailers() {
+        for (int i = 0; i < mListOfMovies.size(); i++) {
+            final Movie movie = mListOfMovies.get(i);
+            String url = createUrlWithAppendedResponse(movie.getId(), UriTerms.VIDEOS);
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        LoganTrailersTemplate trailerLogan = MovieParser.parseJsonTrailersData(response);
-                        saveMovieTrailers(movie, trailerLogan);
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e(LOG_TAG, "Response error (fetchJsonCast): " + error);
-            }
-        });
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            LoganTrailersTemplate trailerLogan = MovieParser.parseJsonTrailersData(response);
+                            saveMovieTrailers(movie, trailerLogan);
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.e(LOG_TAG, "Response error (fetchJsonCast): " + error);
+                }
+            });
 
-        RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
+            RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
+        }
     }
 
     private void saveMovieTrailers(Movie movie, LoganTrailersTemplate trailerLogan) {
@@ -200,6 +203,7 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
         fetchJsonDetails();
         fetchJsonCast();
         fetchJsonReviews();
+        fetchJsonTrailers();
     }
 
     private void saveMovieCast(Movie movie, LoganCastTemplate castLogan) {
