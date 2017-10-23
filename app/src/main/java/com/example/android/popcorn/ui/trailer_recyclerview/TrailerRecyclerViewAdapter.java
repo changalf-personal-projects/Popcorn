@@ -27,6 +27,8 @@ import static com.example.android.popcorn.networking.UrlCreator.createYoutubeThu
 public class TrailerRecyclerViewAdapter extends RecyclerView.Adapter<TrailerRecyclerViewAdapter.TrailerViewHolder> {
 
     private final String LOG_TAG = TrailerRecyclerViewAdapter.class.getSimpleName();
+    private final int TRAILER_THUMBNAIL_WIDTH = 300;
+    private final int TRAILER_THUMBNAIL_HEIGHT = 200;
 
     private Context mContext;
     private List<Trailer> mTrailers;
