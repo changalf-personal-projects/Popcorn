@@ -3,7 +3,6 @@ package com.example.android.popcorn.ui.trailer_recyclerview;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,16 +54,12 @@ public class TrailerRecyclerViewAdapter extends RecyclerView.Adapter<TrailerRecy
 
     private void onBindTrailerThumbnail(Trailer trailer, TrailerViewHolder holder) {
         String thumbnailUrl = createYoutubeThumbnailUrl(trailer.getKey());
-        Log.v(LOG_TAG, "Thumbnail url: " + thumbnailUrl);
-
         GlideApp.with(mContext).load(thumbnailUrl).diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .into(holder.mTrailerThumbnail);
-        holder.mTrailerThumbnail.setImageResource(R.drawable.poster_placeholder);
     }
 
     @Override
     public int getItemCount() {
-        Log.v(LOG_TAG, "List of trailers count: " + mTrailers.size());
         return mTrailers.size();
     }
 

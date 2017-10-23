@@ -103,7 +103,6 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
 
         setParcelableDetailsIntoViews(movie);
         fetchJsonCastMemberDetails(movie);
-//        fetchJsonTrailers(movie);
 //        onClickTrailerButton();
         onClickFavouriteButton();
 
@@ -229,40 +228,12 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
         }
     }
 
-//    private void fetchJsonTrailers(final Movie movie) {
-//        String url = createUrlWithAppendedResponse(movie.getId(), UriTerms.VIDEOS);
-//
-//        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-//                new Response.Listener<String>() {
-//                    @Override
-//                    public void onResponse(String response) {
-//                        LoganTrailersTemplate trailerLogan = MovieParser.parseJsonTrailersData(response);
-//                        saveMovieTrailers(movie, trailerLogan);
-//                    }
-//                }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Log.e(LOG_TAG, "Response error (fetchJsonCast): " + error);
-//            }
-//        });
-//
-//        RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
-//    }
-
     private void saveCastMemberDetails(Cast castMember, LoganCastMemberDetailTemplate castMemberLogan) {
         castMember.setBirthday(castMemberLogan.getBirthday());
         castMember.setDeathday(castMemberLogan.getDeathDate());
         castMember.setBiography(castMemberLogan.getBiography());
         castMember.setBirthplace(castMemberLogan.getBirthPlace());
     }
-
-//    private void saveMovieTrailers(Movie movie, LoganTrailersTemplate trailerLogan) {
-//        for (LoganTrailersTemplate.Videos.Results result : trailerLogan.getVideos().getResults()) {
-//            Trailer trailer = new Trailer();
-//            trailer.setKey(result.getKey());
-//            movie.getTrailers().add(trailer);
-//        }
-//    }
 
     private Movie getParcelableMovie() {
         Intent movieIntent = getActivity().getIntent();

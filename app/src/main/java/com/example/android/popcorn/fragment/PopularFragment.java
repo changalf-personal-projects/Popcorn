@@ -148,7 +148,6 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            Log.v(LOG_TAG, "Response: " + response);
                             LoganReviewTemplate reviewLogan = MovieParser.parseJsonReviewsData(response);
                             saveMovieReview(movie, reviewLogan);
                         }
