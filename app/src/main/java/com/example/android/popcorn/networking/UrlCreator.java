@@ -44,7 +44,7 @@ public class UrlCreator {
     public static String createYoutubeThumbnailUrl(String id) {
         return Uri.parse(UriTerms.YOUTUBE_THUMBNAIL_URL).buildUpon()
                 .appendPath(id)
-                .appendPath(UriTerms.YOUTUBE_THUMBNAIL_RESOLUTION)
+                .appendPath(UriTerms.YOUTUBE_THUMBNAIL_HIGHRES)
                 .build().toString();
     }
 }

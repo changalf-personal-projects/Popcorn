@@ -25,6 +25,7 @@ public class Movie implements Parcelable {
 
     private List<Cast> cast = new ArrayList<>();
     private List<Review> reviews = new ArrayList<>();
+    private List<Trailer> trailers = new ArrayList<>();
 
     public Movie() {
 
@@ -151,6 +152,14 @@ public class Movie implements Parcelable {
 
     public void setReviews(Review review) {
         reviews.add(review);
+    }
+
+    public List<Trailer> getTrailers() {
+        return trailers;
+    }
+
+    public void setTrailers(List<Trailer> trailers) {
+        this.trailers = trailers;
     }
 
     @Override
