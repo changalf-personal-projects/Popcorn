@@ -65,7 +65,7 @@ public class TrailerRecyclerViewAdapter extends RecyclerView.Adapter<TrailerRecy
         return mTrailers.size();
     }
 
-    public class TrailerViewHolder extends ViewHolder {
+    public class TrailerViewHolder extends ViewHolder implements View.OnClickListener {
 
         @BindView(R.id.trailer_thumbnail)
         ImageView mTrailerThumbnail;
@@ -73,6 +73,12 @@ public class TrailerRecyclerViewAdapter extends RecyclerView.Adapter<TrailerRecy
         public TrailerViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            mClickListener.onClick(mTrailers.get(getAdapterPosition()));
         }
     }
 }
