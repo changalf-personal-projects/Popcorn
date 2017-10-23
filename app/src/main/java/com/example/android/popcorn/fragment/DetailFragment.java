@@ -92,6 +92,8 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     RecyclerView mCastRecyclerView;
     @BindView(R.id.review_recycler_view)
     RecyclerView mReviewRecyclerView;
+    @BindView(R.id.trailer_recycler_view)
+    RecyclerView mTrailerRecyclerView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
