@@ -2,7 +2,6 @@ package com.example.android.popcorn.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -22,7 +21,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.example.android.popcorn.IndividualCastDetailActivity;
 import com.example.android.popcorn.IndividualReviewActivity;
 import com.example.android.popcorn.R;
-import com.example.android.popcorn.TrailerActivity;
 import com.example.android.popcorn.Utilities;
 import com.example.android.popcorn.fragment.parsing.LoganCastMemberDetailTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganTrailersTemplate;
@@ -40,7 +38,6 @@ import com.example.android.popcorn.ui.review_recyclerview.OnReviewClickListener;
 import com.example.android.popcorn.ui.review_recyclerview.ReviewRecyclerViewAdapter;
 import com.example.android.popcorn.ui.trailer_recyclerview.TrailerRecyclerViewAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -61,7 +58,6 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     private static final String EMPTY_STRING = "";
     public static final String NO_REVIEWS_MESSAGE = "No reviews posted yet.";
 
-    private List<Trailer> mListOfTrailers;
     private boolean mIsPressedFlag = false;
 
     private CastRecyclerViewAdapter mCastRecyclerAdapter;
@@ -104,13 +100,12 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
         setupCastRecyclerView();
         setupReviewRecyclerView();
 
-        mListOfTrailers = new ArrayList<>();
         Movie movie = getParcelableMovie();
 
         setParcelableDetailsIntoViews(movie);
         fetchJsonCastMemberDetails(movie);
         fetchJsonTrailers(movie);
-        onClickTrailerButton();
+//        onClickTrailerButton();
         onClickFavouriteButton();
 
         return rootView;
@@ -151,6 +146,10 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
         mReviewRecyclerView.setAdapter(mReviewRecyclerAdapter);
     }
 
+    private void attachToTrailerAdapter(Movie movie) {
+
+    }
+
     @Override
     public void onClick(Cast castMember) {
         Intent singleCastMemberDetailsIntent = new Intent(getActivity(), IndividualCastDetailActivity.class);
@@ -167,17 +166,17 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
         startActivity(reviewIntent);
     }
 
-    private void onClickTrailerButton() {
-        mTrailerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent trailerIntent = new Intent(getActivity(), TrailerActivity.class);
-                trailerIntent.putExtra(Utilities.PARCELABLE_TRAILER_KEY,
-                        (ArrayList<? extends Parcelable>) mListOfTrailers);
-                startActivity(trailerIntent);
-            }
-        });
-    }
+//    private void onClickTrailerButton() {
+//        mTrailerButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent trailerIntent = new Intent(getActivity(), TrailerActivity.class);
+//                trailerIntent.putExtra(Utilities.PARCELABLE_TRAILER_KEY,
+//                        (ArrayList<? extends Parcelable>) mListOfTrailers);
+//                startActivity(trailerIntent);
+//            }
+//        });
+//    }
 
     private void onClickFavouriteButton() {
         // TODO: Button will reset to unliked if current fragment is destroyed.
