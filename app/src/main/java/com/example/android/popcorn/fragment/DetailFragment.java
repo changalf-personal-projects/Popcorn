@@ -4,9 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SnapHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -154,8 +152,8 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
         mTrailerRecyclerAdapter = new TrailerRecyclerViewAdapter(getActivity(), movie.getTrailers());
 
         // Achieve the "snapping" effect.
-        SnapHelper snapHelper = new LinearSnapHelper();
-        snapHelper.attachToRecyclerView(mTrailerRecyclerView);
+//        SnapHelper snapHelper = new LinearSnapHelper();
+//        snapHelper.attachToRecyclerView(mTrailerRecyclerView);
 
         mTrailerRecyclerView.setAdapter(mTrailerRecyclerAdapter);
     }
