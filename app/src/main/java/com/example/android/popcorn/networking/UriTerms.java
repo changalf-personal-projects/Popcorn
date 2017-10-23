@@ -41,7 +41,8 @@ public class UriTerms {
     public static final String MOVIE_BASE_URL = "https://api.themoviedb.org/3/movie/";
     public static final String PERSON_BASE_URL = "https://api.themoviedb.org/3/person/";
     public static final String YOUTUBE_THUMBNAIL_URL = "https://img.youtube.com/vi/";
-    public static final String YOUTUBE_THUMBNAIL_RESOLUTION = "/maxresdefault.jpg";
+    public static final String YOUTUBE_THUMBNAIL_HIGHRES = "/hqdefault.jpg";
+    public static final String YOUTUBE_THUMBNAIL_MAXRES = "/maxresdefault.jpg";
 
     // Normally, looking for the movie details means we have to first get the movie id and then use
     // that id to get the details.  But with "append_to_response", this can be done in one request.
