@@ -99,6 +99,7 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
 
         setupCastRecyclerView();
         setupReviewRecyclerView();
+        setupTrailerRecyclerView();
 
         Movie movie = getParcelableMovie();
 
@@ -124,6 +125,12 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
         mReviewRecyclerView.setLayoutManager(layoutManager);
     }
 
+    private void setupTrailerRecyclerView() {
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),
+                LinearLayoutManager.HORIZONTAL, false);
+        mTrailerRecyclerView.setLayoutManager(layoutManager);
+    }
+
     private void attachToCastAdapter(Movie movie) {
         mCastRecyclerAdapter = new CastRecyclerViewAdapter(getActivity(), movie.getCast(), this);
         mCastRecyclerView.setAdapter(mCastRecyclerAdapter);
@@ -147,7 +154,8 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     }
 
     private void attachToTrailerAdapter(Movie movie) {
-
+        mTrailerRecyclerAdapter = new TrailerRecyclerViewAdapter(getActivity(), movie.getTrailers());
+        mTrailerRecyclerView.setAdapter(mTrailerRecyclerAdapter);
     }
 
     @Override
