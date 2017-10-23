@@ -27,12 +27,14 @@ import com.example.android.popcorn.fragment.parsing.MovieParser;
 import com.example.android.popcorn.model.Cast;
 import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.model.Review;
+import com.example.android.popcorn.model.Trailer;
 import com.example.android.popcorn.networking.RequestQueueSingleton;
 import com.example.android.popcorn.ui.ViewPopulator;
 import com.example.android.popcorn.ui.cast_recyclerview.CastRecyclerViewAdapter;
 import com.example.android.popcorn.ui.cast_recyclerview.OnCastMemberClickListener;
 import com.example.android.popcorn.ui.review_recyclerview.OnReviewClickListener;
 import com.example.android.popcorn.ui.review_recyclerview.ReviewRecyclerViewAdapter;
+import com.example.android.popcorn.ui.trailer_recyclerview.OnTrailerClickListener;
 import com.example.android.popcorn.ui.trailer_recyclerview.TrailerRecyclerViewAdapter;
 
 import java.util.List;
@@ -46,7 +48,7 @@ import static com.example.android.popcorn.networking.UrlCreator.createCastMember
  * Created by alfredchang on 2017-09-27.
  */
 
-public class DetailFragment extends Fragment implements OnCastMemberClickListener, OnReviewClickListener {
+public class DetailFragment extends Fragment implements OnCastMemberClickListener, OnReviewClickListener, OnTrailerClickListener {
 
     private final String LOG_TAG = DetailFragment.class.getSimpleName();
     private final int BACKDROP_CROSSFADE_TIME = 200;
@@ -149,7 +151,7 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     }
 
     private void attachToTrailerAdapter(Movie movie) {
-        mTrailerRecyclerAdapter = new TrailerRecyclerViewAdapter(getActivity(), movie.getTrailers());
+        mTrailerRecyclerAdapter = new TrailerRecyclerViewAdapter(getActivity(), movie.getTrailers(), this);
 
         // Achieve the "snapping" effect.
 //        SnapHelper snapHelper = new LinearSnapHelper();
@@ -172,6 +174,11 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
         reviewIntent.putExtra(Utilities.PARCELABLE_MOVIE_KEY, movie);
         reviewIntent.putExtra(Utilities.PARCELABLE_REVIEW_KEY, review);
         startActivity(reviewIntent);
+    }
+
+    @Override
+    public void onClick(Trailer trailer) {
+
     }
 
 //    private void onClickTrailerButton() {
