@@ -1,7 +1,6 @@
 package com.example.android.popcorn.fragment;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -43,9 +42,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.example.android.popcorn.Utilities.canReceiveImplicitIntent;
 import static com.example.android.popcorn.networking.UrlCreator.createCastMemberDetailUrl;
-import static com.example.android.popcorn.networking.UrlCreator.createYoutubeVideoUrl;
 
 /**
  * Created by alfredchang on 2017-09-27.
@@ -184,14 +181,14 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     // Play trailer in a different app.
     @Override
     public void onClick(Trailer trailer) {
-        Uri trailerUri = createYoutubeVideoUrl(trailer.getKey());
-        Log.v(LOG_TAG, "Trailer uri: " + trailerUri);
-        Intent playTrailerIntent = new Intent(Intent.ACTION_VIEW, trailerUri);
-
-        // Check that an available app exists.
-        if (canReceiveImplicitIntent(getActivity(), playTrailerIntent)) {
-            startActivity(playTrailerIntent);
-        }
+//        Uri trailerUri = createYoutubeVideoUrl(trailer.getKey());
+//        Log.v(LOG_TAG, "Trailer uri: " + trailerUri);
+//        Intent playTrailerIntent = new Intent(Intent.ACTION_VIEW, trailerUri);
+//
+//        // Check that an available app exists.
+//        if (canReceiveImplicitIntent(getActivity(), playTrailerIntent)) {
+//            startActivity(playTrailerIntent);
+//        }
     }
 
 //    private void onClickTrailerButton() {
