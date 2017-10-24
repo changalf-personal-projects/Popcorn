@@ -43,6 +43,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.android.popcorn.Utilities.canReceiveImplicitIntent;
 import static com.example.android.popcorn.networking.UrlCreator.createCastMemberDetailUrl;
 import static com.example.android.popcorn.networking.UrlCreator.createYoutubeVideoUrl;
 
@@ -187,7 +188,7 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
         Intent playTrailerIntent = new Intent(Intent.ACTION_VIEW, trailerUri);
 
         // Check that an available app exists.
-        if (playTrailerIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+        if (canReceiveImplicitIntent(getActivity(), playTrailerIntent)) {
             startActivity(playTrailerIntent);
         }
     }

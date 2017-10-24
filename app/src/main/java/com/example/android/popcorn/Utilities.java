@@ -1,5 +1,8 @@
 package com.example.android.popcorn;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.util.Log;
 
 import java.text.ParseException;
@@ -78,5 +81,12 @@ public class Utilities {
         }
 
         return formattedDate;
+    }
+
+    public static boolean canReceiveImplicitIntent(Context context, Intent intent) {
+        PackageManager packageManager = context.getPackageManager();
+        List listOfReceivers = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+
+        return listOfReceivers.size() >= 1;
     }
 }
