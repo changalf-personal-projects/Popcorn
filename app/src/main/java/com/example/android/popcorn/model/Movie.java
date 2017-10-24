@@ -6,6 +6,8 @@ import android.os.Parcelable;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.android.popcorn.model.TrailerIdsSingleton.getSingletonTrailerIds;
+
 /**
  * Created by alfredchang on 2017-09-21.
  */
@@ -26,7 +28,7 @@ public class Movie implements Parcelable {
     private List<Cast> cast = new ArrayList<>();
     private List<Review> reviews = new ArrayList<>();
     private List<Trailer> trailers = new ArrayList<>();
-    private List<String> trailerIds = new ArrayList<>();
+    private List<String> trailerIds = getSingletonTrailerIds();
 
     public Movie() {
 
