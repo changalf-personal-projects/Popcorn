@@ -10,6 +10,9 @@ import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayer.Provider;
+import com.google.android.youtube.player.YouTubePlayerView;
+
+import butterknife.BindView;
 
 /**
  * Created by alfredchang on 2017-10-23.
@@ -19,10 +22,14 @@ public class YoutubePlayerActivity extends YouTubeBaseActivity implements YouTub
 
     private final String LOG_TAG = YoutubePlayerActivity.class.getSimpleName();
 
+    @BindView(R.id.youtube_player) YouTubePlayerView mYtPlayer;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_youtube_player);
+
+        mYtPlayer.initialize(BuildConfig.YOUTUBE_DATA_API_KEY, this);
     }
 
     @Override
