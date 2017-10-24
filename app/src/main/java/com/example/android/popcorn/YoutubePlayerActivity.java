@@ -23,8 +23,7 @@ import static com.example.android.popcorn.model.MoviesSingleton.getSingletonMovi
  * Created by alfredchang on 2017-10-23.
  */
 
-public class YoutubePlayerActivity extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener,
-        YouTubePlayer.OnFullscreenListener {
+public class YoutubePlayerActivity extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
 
     private final String LOG_TAG = YoutubePlayerActivity.class.getSimpleName();
     private final int REQUEST_CODE = 1;
@@ -48,7 +47,6 @@ public class YoutubePlayerActivity extends YouTubeBaseActivity implements YouTub
 
         if (!shouldContinue) {
             youTubePlayer.setFullscreen(true);
-            youTubePlayer.setOnFullscreenListener(this);
             youTubePlayer.loadVideos(trailerIds);
         }
 
@@ -64,11 +62,6 @@ public class YoutubePlayerActivity extends YouTubeBaseActivity implements YouTub
         } else {
             Toast.makeText(this, youTubeInitializationResult.toString(), Toast.LENGTH_LONG).show();
         }
-    }
-
-    @Override
-    public void onFullscreen(boolean b) {
-
     }
 
     private List<String> getTrailerIdsFromMovies(List<Movie> movies) {
