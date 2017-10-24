@@ -12,17 +12,18 @@ public class UriTerms {
     public static final String CURRENT_MOVIES = "Current";
     public static final String FAVOURITE_MOVIES = "Favourite";
 
+    //Query paths.
+    public static final String CREDITS = "credits";
+    public static final String VIDEOS = "videos";
+    public static final String REVIEWS = "reviews";
+    public static final String YOUTUBE_V = "v";
+
     // Query terms.
     public static final String POPULAR = "popular";
     public static final String TOP = "top";
     public static final String CURRENT = "current";
     public static final String LANGUAGE = "en-US";
     public static final String PAGE = "1";
-
-    //Query paths.
-    public static final String CREDITS = "credits";
-    public static final String VIDEOS = "videos";
-    public static final String REVIEWS = "reviews";
 
     // Image sizes.
     public static final String IMAGE_SIZE_W92 = "w92";
@@ -40,6 +41,7 @@ public class UriTerms {
     // Main urls.
     public static final String MOVIE_BASE_URL = "https://api.themoviedb.org/3/movie/";
     public static final String PERSON_BASE_URL = "https://api.themoviedb.org/3/person/";
+    public static final String YOUTUBE_VIDEO_URL = "https://www.youtube.com/watch";
     public static final String YOUTUBE_THUMBNAIL_URL = "https://img.youtube.com/vi/";
     public static final String YOUTUBE_THUMBNAIL_HIGHRES = "mqdefault.jpg";
 

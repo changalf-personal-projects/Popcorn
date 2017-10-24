@@ -160,6 +160,7 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
         mTrailerRecyclerView.setAdapter(mTrailerRecyclerAdapter);
     }
 
+    // Display cast member details in a separate fragment.
     @Override
     public void onClick(Cast castMember) {
         Intent singleCastMemberDetailsIntent = new Intent(getActivity(), IndividualCastDetailActivity.class);
@@ -167,15 +168,17 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
         startActivity(singleCastMemberDetailsIntent);
     }
 
+    // Display individual review in a separate fragment.
     @Override
     public void onClick(Review review) {
         Movie movie = getParcelableMovie();
-        Intent reviewIntent = new Intent(getActivity(), IndividualReviewActivity.class);
-        reviewIntent.putExtra(Utilities.PARCELABLE_MOVIE_KEY, movie);
-        reviewIntent.putExtra(Utilities.PARCELABLE_REVIEW_KEY, review);
-        startActivity(reviewIntent);
+        Intent readReviewIntent = new Intent(getActivity(), IndividualReviewActivity.class);
+        readReviewIntent.putExtra(Utilities.PARCELABLE_MOVIE_KEY, movie);
+        readReviewIntent.putExtra(Utilities.PARCELABLE_REVIEW_KEY, review);
+        startActivity(readReviewIntent);
     }
 
+    // Play trailer in a different app.
     @Override
     public void onClick(Trailer trailer) {
 
