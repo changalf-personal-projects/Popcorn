@@ -43,6 +43,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.android.popcorn.model.TrailerIdsSingleton.getSingletonTrailerIds;
 import static com.example.android.popcorn.networking.UrlCreator.createCastMemberDetailUrl;
 
 /**
@@ -59,6 +60,7 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     public static final String NO_REVIEWS_MESSAGE = "No reviews posted yet.";
 
     private boolean mIsPressedFlag = false;
+    private List<String> mListOfTrailerIds;
 
     private CastRecyclerViewAdapter mCastRecyclerAdapter;
     private ReviewRecyclerViewAdapter mReviewRecyclerAdapter;
@@ -96,6 +98,8 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
         super.onCreateView(inflater, container, savedInstanceState);
         View rootView = inflater.inflate(R.layout.fragment_detail_main, container, false);
         ButterKnife.bind(this, rootView);
+
+        mListOfTrailerIds = getSingletonTrailerIds();
 
         setupCastRecyclerView();
         setupReviewRecyclerView();

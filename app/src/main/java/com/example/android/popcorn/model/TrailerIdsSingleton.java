@@ -15,7 +15,7 @@ public class TrailerIdsSingleton {
 
     }
 
-    public List<String> getSingletonTrailerIds() {
+    public static List<String> getSingletonTrailerIds() {
         if (singletonTrailerIds == null) {
             singletonTrailerIds = new ArrayList<String>();
         }
