@@ -55,6 +55,9 @@
             android:name=".IndividualReviewActivity"
             android:theme="@style/SingleReviewAppTheme">
         </activity>
+        <activity
+            android:name=".YoutubePlayerActivity">
+        </activity>
     </application>
 
 </manifest>
