@@ -22,6 +22,7 @@ import com.example.android.popcorn.IndividualCastDetailActivity;
 import com.example.android.popcorn.IndividualReviewActivity;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.Utilities;
+import com.example.android.popcorn.YoutubePlayerActivity;
 import com.example.android.popcorn.fragment.parsing.LoganCastMemberDetailTemplate;
 import com.example.android.popcorn.fragment.parsing.MovieParser;
 import com.example.android.popcorn.model.Cast;
@@ -190,7 +191,7 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
 //            startActivity(playTrailerIntent);
 //        }
 
-        Intent playerTrailerIntent = new Intent();
+        Intent playerTrailerIntent = new Intent(getActivity(), YoutubePlayerActivity.class);
         playerTrailerIntent.putExtra(Utilities.PARCELABLE_TRAILER_KEY, trailer);
         startActivity(playerTrailerIntent);
     }
