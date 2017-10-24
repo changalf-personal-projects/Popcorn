@@ -182,15 +182,6 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     // Play trailer in a different app.
     @Override
     public void onClick(Trailer trailer) {
-//        Uri trailerUri = createYoutubeVideoUrl(trailer.getKey());
-//        Log.v(LOG_TAG, "Trailer uri: " + trailerUri);
-//        Intent playTrailerIntent = new Intent(Intent.ACTION_VIEW, trailerUri);
-//
-//        // Check that an available app exists.
-//        if (canReceiveImplicitIntent(getActivity(), playTrailerIntent)) {
-//            startActivity(playTrailerIntent);
-//        }
-
         Intent playerTrailerIntent = new Intent(getActivity(), YoutubePlayerActivity.class);
         playerTrailerIntent.putExtra(Utilities.PARCELABLE_TRAILER_KEY, trailer);
         startActivity(playerTrailerIntent);
