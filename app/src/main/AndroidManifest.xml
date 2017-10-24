@@ -56,7 +56,8 @@
             android:theme="@style/SingleReviewAppTheme">
         </activity>
         <activity
-            android:name=".YoutubePlayerActivity">
+            android:name=".YoutubePlayerActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize">
         </activity>
     </application>
 
