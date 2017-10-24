@@ -23,7 +23,8 @@ import static com.example.android.popcorn.model.MoviesSingleton.getSingletonMovi
  * Created by alfredchang on 2017-10-23.
  */
 
-public class YoutubePlayerActivity extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
+public class YoutubePlayerActivity extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener,
+        YouTubePlayer.OnFullscreenListener {
 
     private final String LOG_TAG = YoutubePlayerActivity.class.getSimpleName();
     private final int REQUEST_CODE = 1;
@@ -41,13 +42,18 @@ public class YoutubePlayerActivity extends YouTubeBaseActivity implements YouTub
 
     @Override
     public void onInitializationSuccess(Provider provider, YouTubePlayer youTubePlayer, boolean shouldContinue) {
+        int timePaused = 0;
         List<Movie> movies = getSingletonMovies();
         List<String> trailerIds = getTrailerIdsFromMovies(movies);
 
         if (!shouldContinue) {
             youTubePlayer.setFullscreen(true);
+            youTubePlayer.setOnFullscreenListener(this);
             youTubePlayer.loadVideos(trailerIds);
         }
+
+        // If shouldContinue == true and isPlaying(), then loadVideo(id, timePaused) to continue playing
+        // video.
     }
 
     // Source: https://www.sitepoint.com/using-the-youtube-api-to-embed-video-in-an-android-app/.
@@ -58,6 +64,11 @@ public class YoutubePlayerActivity extends YouTubeBaseActivity implements YouTub
         } else {
             Toast.makeText(this, youTubeInitializationResult.toString(), Toast.LENGTH_LONG).show();
         }
+    }
+
+    @Override
+    public void onFullscreen(boolean b) {
+
     }
 
     private List<String> getTrailerIdsFromMovies(List<Movie> movies) {
