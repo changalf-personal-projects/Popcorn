@@ -49,9 +49,9 @@ public class UrlCreator {
     }
 
     // Method to create url that will play the trailer.
-    public static String createYoutubeVideoUrl(String id) {
+    public static Uri createYoutubeVideoUrl(String id) {
         return Uri.parse(UriTerms.YOUTUBE_VIDEO_URL).buildUpon()
                 .appendQueryParameter(UriTerms.YOUTUBE_V, id)
-                .build().toString();
+                .build();
     }
 }
