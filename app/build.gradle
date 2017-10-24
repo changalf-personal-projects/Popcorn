@@ -20,6 +20,9 @@ android {
     buildTypes.each {
         it.buildConfigField('String', 'MOVIE_DP_API_KEY', MyMovieDatabaseApiKey)
     }
+    buildTypes.each {
+        it.buildConfigField('String', 'YOUTUBE_DATA_API_KEY', MyYoutubeDataApiKey)
+    }
     configurations.all {
         resolutionStrategy.force 'com.google.code.findbugs:jsr305:1.3.9'
     }
