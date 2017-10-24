@@ -189,6 +189,10 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
 //        if (canReceiveImplicitIntent(getActivity(), playTrailerIntent)) {
 //            startActivity(playTrailerIntent);
 //        }
+
+        Intent playerTrailerIntent = new Intent();
+        playerTrailerIntent.putExtra(Utilities.PARCELABLE_TRAILER_KEY, trailer);
+        startActivity(playerTrailerIntent);
     }
 
 //    private void onClickTrailerButton() {
