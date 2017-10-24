@@ -1,10 +1,9 @@
 package com.example.android.popcorn;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
+import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.model.Trailer;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
@@ -12,8 +11,13 @@ import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayer.Provider;
 import com.google.android.youtube.player.YouTubePlayerView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.example.android.popcorn.model.MoviesSingleton.getSingletonMovies;
 
 /**
  * Created by alfredchang on 2017-10-23.
@@ -37,12 +41,12 @@ public class YoutubePlayerActivity extends YouTubeBaseActivity implements YouTub
 
     @Override
     public void onInitializationSuccess(Provider provider, YouTubePlayer youTubePlayer, boolean shouldContinue) {
-        Trailer trailer = getVideoIdFromParcelable();
-        String trailerId = getTrailerIdFromTrailer(trailer);
-        Log.v(LOG_TAG, "Trailer id: " + trailerId);
+        List<Movie> movies = getSingletonMovies();
+        List<String> trailerIds = getTrailerIdsFromMovies(movies);
+
         if (!shouldContinue) {
-            Toast.makeText(this, "Playing video...", Toast.LENGTH_SHORT).show();
-            youTubePlayer.loadVideo(trailerId);
+            youTubePlayer.setFullscreen(true);
+            youTubePlayer.loadVideos(trailerIds);
         }
     }
 
@@ -56,13 +60,16 @@ public class YoutubePlayerActivity extends YouTubeBaseActivity implements YouTub
         }
     }
 
-    private Trailer getVideoIdFromParcelable() {
-        Intent playTrailerIntent = getIntent();
-        Trailer trailer = playTrailerIntent.getParcelableExtra(Utilities.PARCELABLE_TRAILER_KEY);
-        return trailer;
-    }
+    private List<String> getTrailerIdsFromMovies(List<Movie> movies) {
+        List<String> ids = new ArrayList<>();
 
-    private String getTrailerIdFromTrailer(Trailer trailer) {
-        return trailer.getKey();
+        for (Movie movie: movies) {
+            for (Trailer trailer: movie.getTrailers()) {
+                // TODO: This will only play the trailers of the first movie in list of movies.
+                ids.add(trailer.getKey());
+            }
+        }
+
+        return ids;
     }
 }

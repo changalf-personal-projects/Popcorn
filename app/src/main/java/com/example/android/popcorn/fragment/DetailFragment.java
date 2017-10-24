@@ -54,6 +54,7 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     private final String LOG_TAG = DetailFragment.class.getSimpleName();
     private final int BACKDROP_CROSSFADE_TIME = 200;
     private final int POSTER_CROSSFADE_TIME = 700;
+    private final int EMPTY = 0;
     private static final String EMPTY_STRING = "";
     public static final String NO_REVIEWS_MESSAGE = "No reviews posted yet.";
 
@@ -139,7 +140,7 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
 
         // Hacky way of printing message indicating no reviews posted yet.  Better solution is
         // to switch layouts.  Doesn't always seem to work.
-        if (reviews.size() == 0) {
+        if (reviews.size() == EMPTY) {
             Review emptyReview = new Review();
             emptyReview.setAuthor(EMPTY_STRING);
             // This string will be used to signal onBindViewHolder() that there are no reviews yet.
@@ -152,12 +153,10 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     }
 
     private void attachToTrailerAdapter(Movie movie) {
-        mTrailerRecyclerAdapter = new TrailerRecyclerViewAdapter(getActivity(), movie.getTrailers(), this);
-
         // Achieve the "snapping" effect.
 //        SnapHelper snapHelper = new LinearSnapHelper();
 //        snapHelper.attachToRecyclerView(mTrailerRecyclerView);
-
+        mTrailerRecyclerAdapter = new TrailerRecyclerViewAdapter(getActivity(), movie.getTrailers(), this);
         mTrailerRecyclerView.setAdapter(mTrailerRecyclerAdapter);
     }
 
