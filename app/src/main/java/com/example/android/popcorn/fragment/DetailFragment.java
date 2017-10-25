@@ -38,6 +38,7 @@ import com.example.android.popcorn.ui.review_recyclerview.ReviewRecyclerViewAdap
 import com.example.android.popcorn.ui.trailer_recyclerview.OnTrailerClickListener;
 import com.example.android.popcorn.ui.trailer_recyclerview.TrailerRecyclerViewAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -63,6 +64,7 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     private CastRecyclerViewAdapter mCastRecyclerAdapter;
     private ReviewRecyclerViewAdapter mReviewRecyclerAdapter;
     private TrailerRecyclerViewAdapter mTrailerRecyclerAdapter;
+    private Movie movie;
 
     @BindView(R.id.backdrop_poster)
     ImageView mBackdrop;
@@ -101,7 +103,7 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
         setupReviewRecyclerView();
         setupTrailerRecyclerView();
 
-        Movie movie = getParcelableMovie();
+        movie = getParcelableMovie();
 
         setParcelableDetailsIntoViews(movie);
         fetchJsonCastMemberDetails(movie);
@@ -183,6 +185,7 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     public void onClick(Trailer trailer) {
         Intent playerTrailerIntent = new Intent(getActivity(), YoutubePlayerActivity.class);
         playerTrailerIntent.putExtra(Utilities.PARCELABLE_TRAILER_KEY, trailer);
+        playerTrailerIntent.putStringArrayListExtra(Utilities.PARCELABLE_TRAILER_IDS_KEY, (ArrayList<String>) movie.getTrailerIds());
         startActivity(playerTrailerIntent);
     }
 
