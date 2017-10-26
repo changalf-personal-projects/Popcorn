@@ -6,6 +6,8 @@ package com.example.android.popcorn.networking;
 
 public class UriTerms {
 
+    // TODO: Use enums for each category of strings.
+
     // Tab titles.
     public static final String POPULAR_MOVIES = "Popular";
     public static final String TOP_MOVIES = "Top";
