@@ -18,7 +18,7 @@
     <string name="place_of_birth">Place of birth:</string>
 
     <!-- Button labels. -->
-    <string name="view_trailers">Watch Trailers</string>
+    <string name="rate_movie">Rate Movie</string>
     <string name="view_cast">View Cast</string>
     <string name="read_reviews">Read Reviews</string>
     <string name="add_review">Add Review</string>
