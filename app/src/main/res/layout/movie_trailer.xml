@@ -33,6 +33,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:id="@+id/trailer_description"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:layout_marginLeft="@dimen/detail_trailer_description_side_margin"
+        android:layout_marginStart="@dimen/detail_trailer_description_side_margin"
+        android:layout_marginRight="@dimen/detail_trailer_description_side_margin"
+        android:layout_marginEnd="@dimen/detail_trailer_description_side_margin" />
 
 </LinearLayout>
