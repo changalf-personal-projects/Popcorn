@@ -52,7 +52,7 @@
     <dimen name="detail_review_author_bottom_margin">5dp</dimen>
     <dimen name="detail_trailer_side_margin">22dp</dimen>
     <dimen name="detail_trailer_bottom_margin">10dp</dimen>
-    <dimen name="detail_trailer_description_bottom_margin">10dp</dimen>
+    <dimen name="detail_trailer_description_bottom_margin">12dp</dimen>
     <dimen name="detail_button_bottom_margin">20dp</dimen>
     <!-- Negative margin to offset detail poster margin. -->
     <dimen name="detail_rating_left_margin">-4dp</dimen>
