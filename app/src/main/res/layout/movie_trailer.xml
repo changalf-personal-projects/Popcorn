@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="wrap_content"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:layout_marginLeft="@dimen/detail_trailer_side_margin"
-    android:layout_marginStart="@dimen/detail_trailer_side_margin"
-    android:layout_marginRight="@dimen/detail_trailer_side_margin"
-    android:layout_marginEnd="@dimen/detail_trailer_side_margin"
-    android:layout_marginBottom="@dimen/detail_trailer_bottom_margin">
+    android:orientation="vertical">
 
-    <ImageView
+    <FrameLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/trailer_thumbnail" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:background="@mipmap/ic_play" />
+        android:layout_marginLeft="@dimen/detail_trailer_side_margin"
+        android:layout_marginStart="@dimen/detail_trailer_side_margin"
+        android:layout_marginRight="@dimen/detail_trailer_side_margin"
+        android:layout_marginEnd="@dimen/detail_trailer_side_margin"
+        android:layout_marginBottom="@dimen/detail_trailer_bottom_margin">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/trailer_thumbnail" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@mipmap/ic_play" />
+
+    </FrameLayout>
 
     <TextView
         android:layout_width="wrap_content"
@@ -26,4 +34,4 @@
         android:id="@+id/trailer_description"
         android:textColor="@color/white" />
 
-</FrameLayout>
+</LinearLayout>

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.android.popcorn.R;
@@ -52,12 +53,17 @@ public class TrailerRecyclerViewAdapter extends RecyclerView.Adapter<TrailerRecy
     public void onBindViewHolder(TrailerViewHolder holder, int position) {
         Trailer trailer = mTrailers.get(position);
         onBindTrailerThumbnail(trailer, holder);
+        onBindTrailerDescription(trailer, holder);
     }
 
     private void onBindTrailerThumbnail(Trailer trailer, TrailerViewHolder holder) {
         String thumbnailUrl = createYoutubeThumbnailUrl(trailer.getKey());
         GlideApp.with(mContext).load(thumbnailUrl).diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .into(holder.mTrailerThumbnail);
+    }
+
+    private void onBindTrailerDescription(Trailer trailer, TrailerViewHolder holder) {
+        holder.mTrailerDescription.setText(trailer.getTrailerDescription());
     }
 
     @Override
@@ -69,6 +75,8 @@ public class TrailerRecyclerViewAdapter extends RecyclerView.Adapter<TrailerRecy
 
         @BindView(R.id.trailer_thumbnail)
         ImageView mTrailerThumbnail;
+        @BindView(R.id.trailer_description)
+        TextView mTrailerDescription;
 
         public TrailerViewHolder(View itemView) {
             super(itemView);
