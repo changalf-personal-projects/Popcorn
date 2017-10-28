@@ -6,7 +6,5 @@ package com.example.android.popcorn;
 
 public class EmptyChecker {
 
-    public static boolean isNotEmptyString(String input) {
-        return input != "";
-    }
+
 }

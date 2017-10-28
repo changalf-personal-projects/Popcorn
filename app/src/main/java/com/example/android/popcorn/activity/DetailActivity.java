@@ -1,4 +1,4 @@
-package com.example.android.popcorn;
+package com.example.android.popcorn.activity;
 
 import android.app.SearchManager;
 import android.content.Context;
@@ -8,6 +8,7 @@ import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.android.popcorn.R;
 import com.example.android.popcorn.fragment.DetailFragment;
 
 /**

@@ -1,4 +1,4 @@
-package com.example.android.popcorn;
+package com.example.android.popcorn.activity;
 
 import android.app.SearchManager;
 import android.content.Intent;

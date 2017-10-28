@@ -21,4 +21,8 @@ public class NullChecker {
     public static boolean isNotNullDate(Date date) {
         return date != null;
     }
+
+    public static boolean isNotEmptyString(String input) {
+        return input != "";
+    }
 }

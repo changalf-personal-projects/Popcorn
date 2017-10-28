@@ -10,7 +10,7 @@ import com.example.android.popcorn.R;
 
 import java.util.List;
 
-import static com.example.android.popcorn.EmptyChecker.isNotEmptyString;
+import static com.example.android.popcorn.NullChecker.isNotEmptyString;
 import static com.example.android.popcorn.NullChecker.isNotNullString;
 import static com.example.android.popcorn.Utilities.convertDoubleToString;
 import static com.example.android.popcorn.Utilities.formatDate;

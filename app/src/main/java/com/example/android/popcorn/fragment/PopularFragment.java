@@ -14,7 +14,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.example.android.popcorn.DetailActivity;
+import com.example.android.popcorn.activity.DetailActivity;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.Utilities;
 import com.example.android.popcorn.dagger.component.FragmentComponent;

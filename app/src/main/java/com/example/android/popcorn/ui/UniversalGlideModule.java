@@ -9,5 +9,5 @@ import com.bumptech.glide.module.AppGlideModule;
  */
 
 @GlideModule
-public class PosterGlideModule extends AppGlideModule {
+public class UniversalGlideModule extends AppGlideModule {
 }

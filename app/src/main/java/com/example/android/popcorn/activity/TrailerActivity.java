@@ -1,8 +1,9 @@
-package com.example.android.popcorn;
+package com.example.android.popcorn.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.example.android.popcorn.R;
 import com.example.android.popcorn.fragment.TrailerFragment;
 
 /**

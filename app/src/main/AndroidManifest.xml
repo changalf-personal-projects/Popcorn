@@ -24,7 +24,7 @@
                 android:resource="@xml/searchable" />
         </activity>
         <activity
-            android:name=".DetailActivity"
+            android:name=".activity.DetailActivity"
             android:parentActivityName=".MainActivity"
             android:theme="@style/DetailAppTheme">
             <meta-data
@@ -35,7 +35,7 @@
                 android:resource="@xml/searchable" />
         </activity>
         <activity
-            android:name=".SearchActivity"
+            android:name=".activity.SearchActivity"
             android:label="@string/action_search">
             <!--android:parentActivityName=".MainActivity">-->
             <intent-filter>
@@ -46,16 +46,16 @@
                 android:resource="@xml/searchable" />
         </activity>
         <activity
-            android:name=".IndividualCastDetailActivity"
+            android:name=".activity.IndividualCastDetailActivity"
             android:theme="@style/LargeTopImageAppTheme">
         </activity>
         <activity
-            android:name=".TrailerActivity"
+            android:name=".activity.TrailerActivity"
             android:label="@string/trailers_label"
             android:theme="@style/AppTheme">
         </activity>
         <activity
-            android:name=".IndividualReviewActivity"
+            android:name=".activity.IndividualReviewActivity"
             android:theme="@style/SingleReviewAppTheme">
         </activity>
         <activity
