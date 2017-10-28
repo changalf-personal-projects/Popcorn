@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -56,6 +57,7 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
     private PosterRecyclerViewAdapter mRecyclerAdapter;
     private List<Movie> mListOfMovies;
 
+    @BindView(R.id.progress_bar) ProgressBar mProgressBar;
     @BindView(R.id.cast_recyclerview) RecyclerView mRecyclerView;
 
     @Override
