@@ -35,17 +35,6 @@
                 android:layout_marginRight="@dimen/cardview_margin"
                 android:layout_marginEnd="@dimen/cardview_margin" />
 
-                <!--<ImageView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:id="@+id/rating_icon"-->
-                    <!--android:src="@mipmap/ic_rating"-->
-                    <!--android:adjustViewBounds="true"-->
-                    <!--android:maxWidth="@dimen/icon_dims"-->
-                    <!--android:maxHeight="@dimen/icon_dims"-->
-                    <!--android:layout_marginLeft="@dimen/cardview_rating_icon_left_margin"-->
-                    <!--android:layout_marginStart="@dimen/cardview_rating_icon_left_margin" />-->
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
