@@ -31,6 +31,7 @@
     <!-- Detail view margins. -->
     <dimen name="detail_poster_margin">15dp</dimen>
     <dimen name="detail_title_top_margin">15dp</dimen>
+    <dimen name="detail_title_bottom_margin">7dp</dimen>
     <dimen name="detail_text_left_margin">5dp</dimen>
     <dimen name="detail_genres_right_margin">15dp</dimen>
     <dimen name="detail_rating_top_margin">15dp</dimen>
@@ -102,10 +103,10 @@
     <dimen name="icon_dims">20dp</dimen>
 
     <!-- Button design. -->
-    <dimen name="trailer_button_side_padding">30dp</dimen>
-    <dimen name="trailer_button_height">30dp</dimen>
-    <dimen name="trailer_button_top_margin">10dp</dimen>
-    <dimen name="trailer_button_right_margin">7dp</dimen>
+    <dimen name="rate_movie_button_side_padding">30dp</dimen>
+    <dimen name="rate_movie_button_height">30dp</dimen>
+    <dimen name="rate_movie_button_top_margin">15dp</dimen>
+    <dimen name="rate_movie_button_right_margin">7dp</dimen>
     <dimen name="cast_button_left_right_padding">72dp</dimen>
     <dimen name="review_button_left_right_padding">60dp</dimen>
     <dimen name="add_review_button_height">26dp</dimen>
