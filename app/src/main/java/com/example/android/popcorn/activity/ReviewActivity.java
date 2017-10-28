@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.android.popcorn.R;
-import com.example.android.popcorn.fragment.parsing.ReviewFragment;
+import com.example.android.popcorn.fragment.ReviewFragment;
 
 /**
  * Created by alfredchang on 2017-10-28.
