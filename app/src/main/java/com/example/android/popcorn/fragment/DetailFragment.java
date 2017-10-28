@@ -189,18 +189,6 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
         startActivity(playerTrailerIntent);
     }
 
-//    private void onClickTrailerButton() {
-//        mTrailerButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent trailerIntent = new Intent(getActivity(), TrailerActivity.class);
-//                trailerIntent.putExtra(Utilities.PARCELABLE_TRAILER_KEY,
-//                        (ArrayList<? extends Parcelable>) mListOfTrailers);
-//                startActivity(trailerIntent);
-//            }
-//        });
-//    }
-
     private void onClickFavouriteButton() {
         // TODO: Button will reset to unliked if current fragment is destroyed.
         mFavouriteButton.setOnClickListener(new View.OnClickListener() {
