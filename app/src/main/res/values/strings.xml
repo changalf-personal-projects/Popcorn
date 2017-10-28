@@ -21,7 +21,7 @@
     <string name="rate_movie">Rate Movie</string>
     <string name="view_cast">View Cast</string>
     <string name="read_reviews">Read Reviews</string>
-    <string name="add_review">Add Review</string>
+    <string name="view_all_reviews">View All</string>
 
     <!-- Placeholder strings. -->
     <string name="genre_plus_comma">%1$s, </string>
