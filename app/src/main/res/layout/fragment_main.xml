@@ -10,11 +10,12 @@
     tools:context="com.example.android.popcorn.MainActivity">
 
     <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/progress_bar_dims"
+        android:layout_height="@dimen/progress_bar_dims"
         android:id="@+id/progress_bar"
         android:layout_gravity="center"
-        android:visibility="visible" />
+        android:visibility="visible"
+        android:background="@color/progress_bar_color" />
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"

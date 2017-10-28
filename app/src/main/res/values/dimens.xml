@@ -101,6 +101,7 @@
 
     <!-- Widths and heights. -->
     <dimen name="icon_dims">20dp</dimen>
+    <dimen name="progress_bar_dims">50dp</dimen>
 
     <!-- Button design. -->
     <dimen name="rate_movie_button_side_padding">30dp</dimen>

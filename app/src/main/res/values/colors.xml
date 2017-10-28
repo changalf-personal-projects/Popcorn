@@ -13,6 +13,7 @@
     <color name="cardview_background">#F2F2F2</color>
     <color name="profile_picture_background">#1ACBAB</color>
     <color name="image_border_color">#FF0000</color>
+    <color name="progress_bar_color">#FF0000</color>
     <color name="placeholder_color">#BFBFBF</color>
     <color name="detail_font_color">#CCCCCC</color>
 
