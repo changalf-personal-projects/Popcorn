@@ -4,23 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="@dimen/tabs_and_posters_divider"
     android:background="@color/colorPrimary"
+    android:paddingTop="@dimen/tabs_and_posters_divider"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.android.popcorn.MainActivity">
 
     <ProgressBar
+        android:id="@+id/progress_bar"
         android:layout_width="@dimen/progress_bar_dims"
         android:layout_height="@dimen/progress_bar_dims"
-        android:id="@+id/progress_bar"
-        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/progress_bar_top_margin"
         android:visibility="visible"
-        android:background="@color/progress_bar_color" />
+        android:layout_gravity="center_horizontal" />
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/cast_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/cast_recyclerview"
         android:scrollbars="vertical" />
 
 </FrameLayout>
