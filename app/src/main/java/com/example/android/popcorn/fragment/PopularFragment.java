@@ -189,6 +189,7 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
         for (LoganTrailersTemplate.Videos.Results result : trailerLogan.getVideos().getResults()) {
             Trailer trailer = new Trailer();
             trailer.setKey(result.getKey());
+            trailer.setTrailerDescription(result.getTrailerDescription());
             movie.setTrailerIds(result.getKey());
             movie.setTrailers(trailer);
         }
