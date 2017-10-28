@@ -54,8 +54,12 @@ public class LoganTrailersTemplate extends MovieLogan {
                 this.key = key;
             }
 
-            public String getName() {
-                return
+            public String getTrailerDescription() {
+                return trailerDescription;
+            }
+
+            public void setTrailerDescription(String trailerDescription) {
+                this.trailerDescription = trailerDescription;
             }
         }
     }
