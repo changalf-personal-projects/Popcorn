@@ -43,12 +43,19 @@ public class LoganTrailersTemplate extends MovieLogan {
             @JsonField
             private String key;
 
+            @JsonField (name = "name")
+            private String trailerDescription;
+
             public String getKey() {
                 return key;
             }
 
             public void setKey(String key) {
                 this.key = key;
+            }
+
+            public String getName() {
+                return
             }
         }
     }
