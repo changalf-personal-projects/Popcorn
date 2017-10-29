@@ -13,6 +13,12 @@
         tools:context="com.example.android.popcorn.BuildConfig"
         tools:ignore="MergeRootFrame">
 
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:id="@+id/back_arrow"
+            android:navigationIcon="?attr/homeAsUpIndicator" />
+
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">

@@ -53,7 +53,8 @@ import static com.example.android.popcorn.networking.UrlCreator.createCastMember
 public class DetailFragment extends Fragment implements OnCastMemberClickListener, OnReviewClickListener, OnTrailerClickListener {
 
     private final String LOG_TAG = DetailFragment.class.getSimpleName();
-    private final int BACKDROP_CROSSFADE_TIME = 200;
+    // Must pass a value to ViewPopulator.populateImageView(...), but don't want any crossfade time.
+    private final int BACKDROP_CROSSFADE_TIME = 0;
     private final int POSTER_CROSSFADE_TIME = 700;
     private final int EMPTY = 0;
     private static final String EMPTY_STRING = "";
