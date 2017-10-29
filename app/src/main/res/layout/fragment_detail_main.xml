@@ -1,295 +1,310 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="false"
+    tools:context="com.example.android.popcorn.MainActivity">
 
-    <LinearLayout
-        android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@color/colorPrimary"
-        tools:context="com.example.android.popcorn.BuildConfig"
-        tools:ignore="MergeRootFrame">
+    <!--<android.support.design.widget.AppBarLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:theme="@style/AppTheme.AppBarOverlay"-->
+        <!--android:background="@null">-->
 
         <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:id="@+id/back_arrow"
+            android:background="@android:color/transparent"
             android:navigationIcon="?attr/homeAsUpIndicator" />
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    <!--</android.support.design.widget.AppBarLayout>-->
 
-            <ImageView
-                android:id="@+id/backdrop_poster"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/favourite_button"
-                android:background="@mipmap/ic_favourite"
-                android:layout_gravity="right|end|bottom"
-                android:layout_marginRight="@dimen/favourite_button_right_margin"
-                android:layout_marginEnd="@dimen/favourite_button_right_margin"
-                android:layout_marginBottom="@dimen/favourite_button_bottom_margin" />
-
-        </FrameLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:id="@+id/container"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:background="@color/colorPrimary"
+            tools:context="com.example.android.popcorn.BuildConfig"
+            tools:ignore="MergeRootFrame">
 
-            <ImageView
-                android:id="@+id/movie_poster"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/detail_poster_margin" />
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/backdrop_poster"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/favourite_button"
+                    android:background="@mipmap/ic_favourite"
+                    android:layout_gravity="right|end|bottom"
+                    android:layout_marginRight="@dimen/favourite_button_right_margin"
+                    android:layout_marginEnd="@dimen/favourite_button_right_margin"
+                    android:layout_marginBottom="@dimen/favourite_button_bottom_margin" />
+
+            </FrameLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/title"
+                <ImageView
+                    android:id="@+id/movie_poster"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/detail_title_top_margin"
-                    android:layout_marginBottom="@dimen/detail_title_bottom_margin"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/detail_title_size"
-                    android:textStyle="bold" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/rating_label"
-                        android:textColor="@color/white" />
-
-                    <TextView
-                        android:id="@+id/rating"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/detail_text_left_margin"
-                        android:layout_marginStart="@dimen/detail_text_left_margin"
-                        android:textColor="@color/detail_font_color" />
-
-                </LinearLayout>
+                    android:layout_margin="@dimen/detail_poster_margin" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/runtime_label"
-                        android:textColor="@color/white" />
+                        android:layout_marginTop="@dimen/detail_title_top_margin"
+                        android:layout_marginBottom="@dimen/detail_title_bottom_margin"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/detail_title_size"
+                        android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/runtime"
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/rating_label"
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:id="@+id/rating"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/detail_text_left_margin"
+                            android:layout_marginStart="@dimen/detail_text_left_margin"
+                            android:textColor="@color/detail_font_color" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/detail_text_left_margin"
-                        android:layout_marginStart="@dimen/detail_text_left_margin"
-                        android:textColor="@color/detail_font_color" />
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/runtime_label"
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:id="@+id/runtime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/detail_text_left_margin"
+                            android:layout_marginStart="@dimen/detail_text_left_margin"
+                            android:textColor="@color/detail_font_color" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/release_label"
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:id="@+id/release"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/detail_text_left_margin"
+                            android:layout_marginStart="@dimen/detail_text_left_margin"
+                            android:textColor="@color/detail_font_color" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/genre_label"
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:id="@+id/genres"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/detail_genres_right_margin"
+                            android:layout_marginLeft="@dimen/detail_text_left_margin"
+                            android:layout_marginRight="@dimen/detail_genres_right_margin"
+                            android:layout_marginStart="@dimen/detail_text_left_margin"
+                            android:textColor="@color/detail_font_color" />
+
+                    </LinearLayout>
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/rate_movie_button_height"
+                        android:id="@+id/trailer_button"
+                        android:paddingLeft="@dimen/rate_movie_button_side_padding"
+                        android:paddingStart="@dimen/rate_movie_button_side_padding"
+                        android:paddingRight="@dimen/rate_movie_button_side_padding"
+                        android:paddingEnd="@dimen/rate_movie_button_side_padding"
+                        android:layout_marginTop="@dimen/rate_movie_button_top_margin"
+                        android:layout_marginRight="@dimen/rate_movie_button_right_margin"
+                        android:layout_marginEnd="@dimen/rate_movie_button_right_margin"
+                        android:text="@string/rate_movie"
+                        android:textColor="@color/white"
+                        android:layout_gravity="center"
+                        android:background="@drawable/trailer_button"
+                        android:layout_marginBottom="@dimen/detail_button_bottom_margin" />
 
                 </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/release_label"
-                        android:textColor="@color/white" />
-
-                    <TextView
-                        android:id="@+id/release"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/detail_text_left_margin"
-                        android:layout_marginStart="@dimen/detail_text_left_margin"
-                        android:textColor="@color/detail_font_color" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/genre_label"
-                        android:textColor="@color/white" />
-
-                    <TextView
-                        android:id="@+id/genres"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/detail_genres_right_margin"
-                        android:layout_marginLeft="@dimen/detail_text_left_margin"
-                        android:layout_marginRight="@dimen/detail_genres_right_margin"
-                        android:layout_marginStart="@dimen/detail_text_left_margin"
-                        android:textColor="@color/detail_font_color" />
-
-                </LinearLayout>
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/rate_movie_button_height"
-                    android:id="@+id/trailer_button"
-                    android:paddingLeft="@dimen/rate_movie_button_side_padding"
-                    android:paddingStart="@dimen/rate_movie_button_side_padding"
-                    android:paddingRight="@dimen/rate_movie_button_side_padding"
-                    android:paddingEnd="@dimen/rate_movie_button_side_padding"
-                    android:layout_marginTop="@dimen/rate_movie_button_top_margin"
-                    android:layout_marginRight="@dimen/rate_movie_button_right_margin"
-                    android:layout_marginEnd="@dimen/rate_movie_button_right_margin"
-                    android:text="@string/rate_movie"
-                    android:textColor="@color/white"
-                    android:layout_gravity="center"
-                    android:background="@drawable/trailer_button"
-                    android:layout_marginBottom="@dimen/detail_button_bottom_margin" />
 
             </LinearLayout>
 
-        </LinearLayout>
+            <!-- Divider. -->
+            <include layout="@layout/detail_divider" />
 
-        <!-- Divider. -->
-        <include layout="@layout/detail_divider" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/detail_label_margin"
-                android:text="@string/synopsis_label"
-                android:textColor="@color/white"
-                android:textSize="@dimen/detail_label_size"
-                android:textStyle="bold" />
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/synopsis"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/detail_label_margin"
+                    android:text="@string/synopsis_label"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/detail_label_size"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/synopsis"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/detail_synopsis_bottom_margin"
+                    android:layout_marginEnd="@dimen/detail_synopsis_left_and_right_margin"
+                    android:layout_marginLeft="@dimen/detail_synopsis_left_and_right_margin"
+                    android:layout_marginRight="@dimen/detail_synopsis_left_and_right_margin"
+                    android:layout_marginStart="@dimen/detail_synopsis_left_and_right_margin"
+                    android:textColor="@color/detail_font_color" />
+
+            </LinearLayout>
+
+            <!-- Divider. -->
+            <include layout="@layout/detail_divider" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/detail_synopsis_bottom_margin"
-                android:layout_marginEnd="@dimen/detail_synopsis_left_and_right_margin"
-                android:layout_marginLeft="@dimen/detail_synopsis_left_and_right_margin"
-                android:layout_marginRight="@dimen/detail_synopsis_left_and_right_margin"
-                android:layout_marginStart="@dimen/detail_synopsis_left_and_right_margin"
-                android:textColor="@color/detail_font_color" />
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/trailers_label"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:layout_margin="@dimen/detail_trailers_margin"
+                    android:textSize="@dimen/detail_label_size" />
 
-        <!-- Divider. -->
-        <include layout="@layout/detail_divider" />
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/trailer_recycler_view"
+                    android:scrollbars="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+                </android.support.v7.widget.RecyclerView>
 
-            <TextView
-                android:layout_width="wrap_content"
+            </LinearLayout>
+
+            <include layout="@layout/detail_divider" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/trailers_label"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:layout_margin="@dimen/detail_trailers_margin"
-                android:textSize="@dimen/detail_label_size" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/detail_label_margin"
+                    android:text="@string/cast_label"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/detail_label_size"
+                    android:textStyle="bold" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/cast_recycler_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="horizontal" />
+
+            </LinearLayout>
+
+            <!-- Divider -->
+            <include layout="@layout/detail_divider" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/detail_label_margin"
+                    android:text="@string/reviews_label"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/detail_label_size"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="@dimen/detail_review_header_bottom_margin" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/add_review_button_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="@dimen/add_review_button_margin"
+                    android:text="@string/view_all_reviews"
+                    android:textSize="@dimen/add_review_font_size"
+                    android:textColor="@color/white"
+                    android:background="@drawable/add_review_button" />
+
+            </RelativeLayout>
 
             <android.support.v7.widget.RecyclerView
+                android:id="@+id/review_recycler_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/trailer_recycler_view"
-                android:scrollbars="horizontal">
+                android:scrollbars="vertical" />
 
-            </android.support.v7.widget.RecyclerView>
-
-        </LinearLayout>
-
-        <include layout="@layout/detail_divider" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/detail_label_margin"
-                android:text="@string/cast_label"
-                android:textColor="@color/white"
-                android:textSize="@dimen/detail_label_size"
-                android:textStyle="bold" />
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/cast_recycler_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scrollbars="horizontal" />
-
-        </LinearLayout>
-
-        <!-- Divider -->
-        <include layout="@layout/detail_divider" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/detail_label_margin"
-                android:text="@string/reviews_label"
-                android:textColor="@color/white"
-                android:textSize="@dimen/detail_label_size"
-                android:textStyle="bold"
-                android:layout_marginBottom="@dimen/detail_review_header_bottom_margin" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/add_review_button_height"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_margin="@dimen/add_review_button_margin"
-                android:text="@string/view_all_reviews"
-                android:textSize="@dimen/add_review_font_size"
-                android:textColor="@color/white"
-                android:background="@drawable/add_review_button" />
-
-        </RelativeLayout>
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/review_recycler_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scrollbars="vertical" />
-
-        <!--<Button-->
+            <!--<Button-->
             <!--android:layout_width="wrap_content"-->
             <!--android:layout_height="wrap_content"-->
             <!--android:paddingLeft="@dimen/review_button_left_right_padding"-->
@@ -302,6 +317,8 @@
             <!--android:background="@drawable/add_review_button"-->
             <!--android:layout_marginBottom="@dimen/detail_button_bottom_margin" />-->
 
-    </LinearLayout>
+        </LinearLayout>
 
-</ScrollView>
+    </ScrollView>
+
+</android.support.design.widget.CoordinatorLayout>
