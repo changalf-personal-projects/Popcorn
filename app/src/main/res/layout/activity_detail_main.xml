@@ -6,6 +6,7 @@
     android:id="@+id/container"
     tools:context="com.example.android.popcorn.BuildConfig"
     tools:ignore="MergeRootFrame">
+
 </FrameLayout>
 
 <!--<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"-->

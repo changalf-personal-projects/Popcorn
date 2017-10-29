@@ -2,8 +2,9 @@ package com.example.android.popcorn.activity;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,12 +17,18 @@ import com.example.android.popcorn.fragment.DetailFragment;
  */
 
 // Extend AppCompatActivity for back button.
-public class DetailActivity extends FragmentActivity {
+public class DetailActivity extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_main);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getSupportActionBar().setBackgroundDrawable(getDrawable(R.drawable.custom_toolbar));
+        }
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().add(R.id.container,

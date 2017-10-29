@@ -7,19 +7,17 @@
     android:fitsSystemWindows="false"
     tools:context="com.example.android.popcorn.MainActivity">
 
-    <!--<android.support.design.widget.AppBarLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:theme="@style/AppTheme.AppBarOverlay"-->
-        <!--android:background="@null">-->
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        app:elevation="0dp">
 
         <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@android:color/transparent"
-            android:navigationIcon="?attr/homeAsUpIndicator" />
+            android:layout_height="?attr/actionBarSize" />
 
-    <!--</android.support.design.widget.AppBarLayout>-->
+    </android.support.design.widget.AppBarLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -29,8 +27,8 @@
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:background="@color/colorPrimary"
+            android:orientation="vertical"
             tools:context="com.example.android.popcorn.BuildConfig"
             tools:ignore="MergeRootFrame">
 
@@ -44,14 +42,14 @@
                     android:layout_height="wrap_content" />
 
                 <ImageButton
+                    android:id="@+id/favourite_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/favourite_button"
-                    android:background="@mipmap/ic_favourite"
                     android:layout_gravity="right|end|bottom"
-                    android:layout_marginRight="@dimen/favourite_button_right_margin"
+                    android:layout_marginBottom="@dimen/favourite_button_bottom_margin"
                     android:layout_marginEnd="@dimen/favourite_button_right_margin"
-                    android:layout_marginBottom="@dimen/favourite_button_bottom_margin" />
+                    android:layout_marginRight="@dimen/favourite_button_right_margin"
+                    android:background="@mipmap/ic_favourite" />
 
             </FrameLayout>
 
@@ -75,8 +73,8 @@
                         android:id="@+id/title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/detail_title_top_margin"
                         android:layout_marginBottom="@dimen/detail_title_bottom_margin"
+                        android:layout_marginTop="@dimen/detail_title_top_margin"
                         android:textColor="@color/white"
                         android:textSize="@dimen/detail_title_size"
                         android:textStyle="bold" />
@@ -167,21 +165,21 @@
                     </LinearLayout>
 
                     <Button
+                        android:id="@+id/trailer_button"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/rate_movie_button_height"
-                        android:id="@+id/trailer_button"
-                        android:paddingLeft="@dimen/rate_movie_button_side_padding"
-                        android:paddingStart="@dimen/rate_movie_button_side_padding"
-                        android:paddingRight="@dimen/rate_movie_button_side_padding"
-                        android:paddingEnd="@dimen/rate_movie_button_side_padding"
-                        android:layout_marginTop="@dimen/rate_movie_button_top_margin"
-                        android:layout_marginRight="@dimen/rate_movie_button_right_margin"
-                        android:layout_marginEnd="@dimen/rate_movie_button_right_margin"
-                        android:text="@string/rate_movie"
-                        android:textColor="@color/white"
                         android:layout_gravity="center"
+                        android:layout_marginBottom="@dimen/detail_button_bottom_margin"
+                        android:layout_marginEnd="@dimen/rate_movie_button_right_margin"
+                        android:layout_marginRight="@dimen/rate_movie_button_right_margin"
+                        android:layout_marginTop="@dimen/rate_movie_button_top_margin"
                         android:background="@drawable/trailer_button"
-                        android:layout_marginBottom="@dimen/detail_button_bottom_margin" />
+                        android:paddingEnd="@dimen/rate_movie_button_side_padding"
+                        android:paddingLeft="@dimen/rate_movie_button_side_padding"
+                        android:paddingRight="@dimen/rate_movie_button_side_padding"
+                        android:paddingStart="@dimen/rate_movie_button_side_padding"
+                        android:text="@string/rate_movie"
+                        android:textColor="@color/white" />
 
                 </LinearLayout>
 
@@ -228,16 +226,16 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/detail_trailers_margin"
                     android:text="@string/trailers_label"
                     android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:layout_margin="@dimen/detail_trailers_margin"
-                    android:textSize="@dimen/detail_label_size" />
+                    android:textSize="@dimen/detail_label_size"
+                    android:textStyle="bold" />
 
                 <android.support.v7.widget.RecyclerView
+                    android:id="@+id/trailer_recycler_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/trailer_recycler_view"
                     android:scrollbars="horizontal">
 
                 </android.support.v7.widget.RecyclerView>
@@ -279,22 +277,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/detail_label_margin"
+                    android:layout_marginBottom="@dimen/detail_review_header_bottom_margin"
                     android:text="@string/reviews_label"
                     android:textColor="@color/white"
                     android:textSize="@dimen/detail_label_size"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="@dimen/detail_review_header_bottom_margin" />
+                    android:textStyle="bold" />
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/add_review_button_height"
-                    android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
                     android:layout_margin="@dimen/add_review_button_margin"
+                    android:background="@drawable/add_review_button"
                     android:text="@string/view_all_reviews"
-                    android:textSize="@dimen/add_review_font_size"
                     android:textColor="@color/white"
-                    android:background="@drawable/add_review_button" />
+                    android:textSize="@dimen/add_review_font_size" />
 
             </RelativeLayout>
 
