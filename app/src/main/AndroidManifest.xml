@@ -26,7 +26,7 @@
         <activity
             android:name=".activity.DetailActivity"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/DetailAppTheme">
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.android.popcorn.MainActivity" />

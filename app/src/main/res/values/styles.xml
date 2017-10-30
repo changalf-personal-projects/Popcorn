@@ -6,6 +6,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:statusBarColor" tools:targetApi="lollipop">@android:color/transparent</item>
+        <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -14,9 +16,9 @@
     </style>
 
     <!-- Theme for detail view. -->
-    <style name="DetailAppTheme" parent="Theme.AppCompat.Light">
-        <item name="android:statusBarColor" tools:targetApi="lollipop">@android:color/transparent</item>
-        <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
+    <style name="DetailAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!--<item name="android:statusBarColor" tools:targetApi="lollipop">@android:color/transparent</item>-->
+        <!--<item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>-->
     </style>
 
     <!-- Theme for cast details view -->
@@ -36,10 +38,6 @@
     <style name="CustomActionBar" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:windowActionBarOverlay">true</item>
         <item name="windowActionBarOverlay">true</item>
-    </style>
-
-    <style name="WhiteToolbarArrow" parent="AppTheme">
-        <item name="android:textColorSecondary">@color/white</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

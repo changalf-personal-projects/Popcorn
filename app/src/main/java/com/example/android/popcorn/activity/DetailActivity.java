@@ -8,11 +8,14 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.fragment.DetailFragment;
+
+import butterknife.BindView;
 
 /**
  * Created by alfredchang on 2017-09-27.
@@ -20,6 +23,9 @@ import com.example.android.popcorn.fragment.DetailFragment;
 
 // Extend AppCompatActivity for back button.
 public class DetailActivity extends AppCompatActivity {
+
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,7 +53,7 @@ public class DetailActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) menu.findItem(R.id.search_widget).getActionView();
+        SearchView searchView = (SearchView) menu.findItem(R.id.search_icon).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 
         return true;
@@ -58,7 +64,7 @@ public class DetailActivity extends AppCompatActivity {
         int id = menuItem.getItemId();
 
         if (id == R.id.action_settings) {
-
+            return true;
         }
 
         return super.onOptionsItemSelected(menuItem);
