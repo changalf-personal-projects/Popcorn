@@ -37,7 +37,7 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_main);
         ButterKnife.bind(this);
-//        setSupportActionBar(mToolbar);
+        setSupportActionBar(mToolbar);
 
         Movie movie = getParcelableMovieDetails();
         populateBackdrop(movie);
@@ -49,8 +49,8 @@ public class DetailActivity extends AppCompatActivity {
 //        Drawable backArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
 //        backArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
 //        getSupportActionBar().setHomeAsUpIndicator(backArrow);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().add(R.id.container,
