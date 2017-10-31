@@ -34,15 +34,13 @@ public class ViewPopulator {
     }
 
     public static void populateCustomImageView(Context context, String imagePath, ImageView view,
-                                               int width, int height, int crossFadeTime, boolean isCircleCropped) {
+                                               int width, int height, int crossFadeTime) {
         if (imagePath != null) {
-            if (isCircleCropped) {
-                GlideApp.with(context).load(imagePath).circleCrop()
-                        .override(width, height)
-                        .transition(DrawableTransitionOptions.withCrossFade(crossFadeTime))
-                        .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                        .into(view);
-            }
+            GlideApp.with(context).load(imagePath).circleCrop()
+                    .override(width, height)
+                    .transition(DrawableTransitionOptions.withCrossFade(crossFadeTime))
+                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                    .into(view);
         }
     }
 

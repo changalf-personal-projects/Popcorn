@@ -30,7 +30,6 @@ public class IndividualCastDetailFragment extends Fragment {
     private final int PROFILE_PIC_CROSSFADE_TIME = 500;
     private final int PROFILE_PIC_WIDTH = 400;
     private final int PROFILE_PIC_HEIGHT = 400;
-    private final boolean SHOULD_CIRCLE_CROP = true;
 
     @BindView(R.id.cast_member_profile_picture) ImageView mProfilePicture;
     @BindView(R.id.cast_member_name) TextView mName;
@@ -53,7 +52,7 @@ public class IndividualCastDetailFragment extends Fragment {
 
     private void setParcelabeDetailIntoViews(Cast castMember) {
         ViewPopulator.populateCustomImageView(getActivity(), castMember.getProfilePath(), mProfilePicture,
-                PROFILE_PIC_WIDTH, PROFILE_PIC_HEIGHT, PROFILE_PIC_CROSSFADE_TIME, SHOULD_CIRCLE_CROP);
+                PROFILE_PIC_WIDTH, PROFILE_PIC_HEIGHT, PROFILE_PIC_CROSSFADE_TIME);
         ViewPopulator.populateTextView(castMember.getName(), mName);
         ViewPopulator.populateDateToTextView(castMember.getBirthday(), mBirthday);
         ViewPopulator.populateDateToTextView(castMember.getDeathday(), mDeath);
