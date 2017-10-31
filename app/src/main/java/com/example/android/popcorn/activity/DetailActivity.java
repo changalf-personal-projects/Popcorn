@@ -31,13 +31,14 @@ public class DetailActivity extends AppCompatActivity {
 
         // Adjusting toolbar.
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//            getSupportActionBar().setBackgroundDrawable(getDrawable(R.drawable.custom_toolbar));
+//            getSupportActionBar().setBackgroundDrawable(getDrawable(R.drawable.transparent_toolbar));
 //        }
 //        Drawable backArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
 //        backArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
 //        getSupportActionBar().setHomeAsUpIndicator(backArrow);
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 //        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        setSupportActionBar(mToolbar);
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().add(R.id.container,
