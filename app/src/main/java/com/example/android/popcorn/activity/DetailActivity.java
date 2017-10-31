@@ -2,17 +2,23 @@ package com.example.android.popcorn.activity;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 
 import com.example.android.popcorn.R;
+import com.example.android.popcorn.Utilities;
 import com.example.android.popcorn.fragment.DetailFragment;
+import com.example.android.popcorn.model.Movie;
+import com.example.android.popcorn.ui.ViewPopulator;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by alfredchang on 2017-09-27.
@@ -23,12 +29,18 @@ public class DetailActivity extends AppCompatActivity {
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
+    @BindView(R.id.backdrop_poster)
+    ImageView mBackdrop;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_main);
+        ButterKnife.bind(this);
 //        setSupportActionBar(mToolbar);
+
+        Movie movie = getParcelableMovieDetails();
+        populateBackdrop(movie);
 
         // Adjusting toolbar.
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -66,5 +78,14 @@ public class DetailActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(menuItem);
+    }
+
+    private Movie getParcelableMovieDetails() {
+        Intent intent = getIntent();
+        return intent.getParcelableExtra(Utilities.PARCELABLE_MOVIE_KEY);
+    }
+
+    private void populateBackdrop(Movie movie) {
+        ViewPopulator.populateImageView(this, movie.getBackdropPath(), 300, mBackdrop);
     }
 }

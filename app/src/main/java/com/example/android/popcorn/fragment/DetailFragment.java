@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -67,8 +66,8 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     private TrailerRecyclerViewAdapter mTrailerRecyclerAdapter;
     private Movie movie;
 
-    @BindView(R.id.backdrop_poster)
-    ImageView mBackdrop;
+//    @BindView(R.id.backdrop_poster)
+//    ImageView mBackdrop;
     @BindView(R.id.movie_poster)
     ImageView mPoster;
     @BindView(R.id.title)
@@ -85,8 +84,8 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     TextView mSynopsis;
     @BindView(R.id.trailer_button)
     Button mTrailerButton;
-    @BindView(R.id.favourite_button)
-    ImageButton mFavouriteButton;
+//    @BindView(R.id.favourite_button)
+//    ImageButton mFavouriteButton;
     @BindView(R.id.cast_recycler_view)
     RecyclerView mCastRecyclerView;
     @BindView(R.id.review_recycler_view)
@@ -192,18 +191,18 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
 
     private void onClickFavouriteButton() {
         // TODO: Button will reset to unliked if current fragment is destroyed.
-        mFavouriteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!mIsPressedFlag) {
-                    mFavouriteButton.setBackgroundResource(R.mipmap.ic_favourited);
-                    mIsPressedFlag = true;
-                } else {
-                    mFavouriteButton.setBackgroundResource(R.mipmap.ic_favourite);
-                    mIsPressedFlag = false;
-                }
-            }
-        });
+//        mFavouriteButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (!mIsPressedFlag) {
+//                    mFavouriteButton.setBackgroundResource(R.mipmap.ic_favourited);
+//                    mIsPressedFlag = true;
+//                } else {
+//                    mFavouriteButton.setBackgroundResource(R.mipmap.ic_favourite);
+//                    mIsPressedFlag = false;
+//                }
+//            }
+//        });
     }
 
     private void fetchJsonCastMemberDetails(Movie movie) {
@@ -244,7 +243,7 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     }
 
     private void setParcelableDetailsIntoViews(Movie movie) {
-        ViewPopulator.populateImageView(getActivity(), movie.getBackdropPath(), BACKDROP_CROSSFADE_TIME, mBackdrop);
+//        ViewPopulator.populateImageView(getActivity(), movie.getBackdropPath(), BACKDROP_CROSSFADE_TIME, mBackdrop);
         ViewPopulator.populateImageView(getActivity(), movie.getDetailPosterPath(), POSTER_CROSSFADE_TIME, mPoster);
         ViewPopulator.populateTextView(movie.getTitle(), mTitle);
         ViewPopulator.populateRatingTextView(getActivity(), movie.getRating(), mRating);
