@@ -2,8 +2,6 @@ package com.example.android.popcorn.activity;
 
 import android.app.SearchManager;
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -36,10 +34,10 @@ public class DetailActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getSupportActionBar().setBackgroundDrawable(getDrawable(R.drawable.custom_toolbar));
         }
-        Drawable backArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
-        backArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
-        getSupportActionBar().setHomeAsUpIndicator(backArrow);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        Drawable backArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
+//        backArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+//        getSupportActionBar().setHomeAsUpIndicator(backArrow);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         if (savedInstanceState == null) {
