@@ -15,6 +15,6 @@
         android:title="@string/test_string"
         android:icon="@mipmap/ic_search"
         app:actionViewClass="android.support.v7.widget.SearchView"
-        app:showAsAction="collapseActionView|ifRoom" />
+        app:showAsAction="always" />
 
 </menu>
