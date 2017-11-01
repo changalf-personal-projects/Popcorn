@@ -119,6 +119,9 @@
     <dimen name="favourite_button_right_margin">8dp</dimen>
     <dimen name="favourite_button_bottom_margin">5dp</dimen>
 
+    <!-- Toolbar margins -->
+    <dimen name="toolbar_top_margin">20dp</dimen>
+
     <!-- Everything else. -->
     <dimen name="green_rectangle_height">250dp</dimen>
     <dimen name="zero_dp">0dp</dimen>
