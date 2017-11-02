@@ -33,7 +33,7 @@ public class ViewPopulator {
         }
     }
 
-    public static void populateCustomImageView(Context context, String imagePath, ImageView view,
+    public static void populateCircleImageView(Context context, String imagePath, ImageView view,
                                                int width, int height, int crossFadeTime) {
         if (imagePath != null) {
             GlideApp.with(context).load(imagePath).circleCrop()
@@ -42,6 +42,15 @@ public class ViewPopulator {
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .into(view);
         }
+    }
+
+    public static void populateCustomSizeImageView(Context context, String imagePath, int crossFadeTime,
+                                                   ImageView view) {
+        GlideApp.with(context).load(imagePath)
+                .centerCrop()
+                .transition(DrawableTransitionOptions.withCrossFade(crossFadeTime))
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                .into(view);
     }
 
     public static void populateTextView(String content, TextView view) {

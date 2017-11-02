@@ -27,6 +27,8 @@ import butterknife.ButterKnife;
 // Extend AppCompatActivity for back button.
 public class DetailActivity extends AppCompatActivity {
 
+    private final int BACKDROP_CROSSFADE_TIME = 300;
+
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
     @BindView(R.id.backdrop_poster)
@@ -86,6 +88,7 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void populateBackdrop(Movie movie) {
-        ViewPopulator.populateImageView(this, movie.getBackdropPath(), 300, mBackdrop);
+        ViewPopulator.populateCustomSizeImageView(this, movie.getBackdropPath(), BACKDROP_CROSSFADE_TIME,
+                mBackdrop);
     }
 }
