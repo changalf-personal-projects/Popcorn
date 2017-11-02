@@ -23,11 +23,12 @@
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleMarginStart="48dp"
             app:expandedTitleMarginEnd="64dp"
-            app:title="@string/test_string">
+            app:title="@string/test_string"
+            app:titleEnabled="false">
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <!--<FrameLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content">-->
 
                 <android.support.v7.widget.Toolbar
                     android:layout_width="match_parent"
@@ -54,7 +55,7 @@
                     android:layout_marginRight="@dimen/favourite_button_right_margin"
                     android:background="@mipmap/ic_favourite" />
 
-            </FrameLayout>
+            <!--</FrameLayout>-->
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
