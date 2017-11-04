@@ -31,8 +31,6 @@ public class DetailActivity extends AppCompatActivity {
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
-//    @BindView(R.id.collapsing_toolbar_layout)
-//    CollapsingToolbarLayout mToolbarLayout;
     @BindView(R.id.backdrop_poster)
     ImageView mBackdrop;
 
