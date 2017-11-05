@@ -42,17 +42,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:id="@+id/movie_poster"
-                        android:layout_width="@dimen/detail_poster_width"
-                        android:layout_height="@dimen/detail_poster_height"
-                        android:layout_margin="@dimen/detail_poster_margin" />
-
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
                         android:background="@color/blueTest"
                         app:layout_collapseMode="pin" />
+
+                    <ImageView
+                        android:id="@+id/movie_poster"
+                        android:layout_width="@dimen/detail_poster_width"
+                        android:layout_height="@dimen/detail_poster_height"
+                        android:layout_margin="@dimen/detail_poster_margin" />
 
                 </FrameLayout>
 
