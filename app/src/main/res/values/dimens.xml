@@ -75,8 +75,8 @@
     <dimen name="poster_height">800dp</dimen>
 
     <!-- Detail poster width and height. -->
-    <dimen name="detail_poster_width">342dp</dimen>
-    <dimen name="detail_poster_height">250dp</dimen>
+    <dimen name="detail_poster_width">150dp</dimen>
+    <dimen name="detail_poster_height">200dp</dimen>
 
     <!-- Backdrop width and height. -->
     <dimen name="backdrop_width">500dp</dimen>
