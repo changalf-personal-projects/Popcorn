@@ -28,11 +28,14 @@ import butterknife.ButterKnife;
 public class DetailActivity extends AppCompatActivity {
 
     private final int BACKDROP_CROSSFADE_TIME = 300;
+    private final int POSTER_CROSSFADE_TIME = 500;
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
     @BindView(R.id.backdrop_poster)
     ImageView mBackdrop;
+    @BindView(R.id.movie_poster)
+    ImageView mPoster;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,6 +46,7 @@ public class DetailActivity extends AppCompatActivity {
 
         Movie movie = getParcelableMovieDetails();
         populateBackdrop(movie);
+        populatePoster(movie);
 
         // Adjusting toolbar.
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -90,5 +94,9 @@ public class DetailActivity extends AppCompatActivity {
     private void populateBackdrop(Movie movie) {
         ViewPopulator.populateCustomSizeImageView(this, movie.getBackdropPath(), BACKDROP_CROSSFADE_TIME,
                 mBackdrop);
+    }
+
+    private void populatePoster(Movie movie) {
+        ViewPopulator.populateImageView(this, movie.getPosterPath(), POSTER_CROSSFADE_TIME, mPoster);
     }
 }

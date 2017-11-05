@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -68,8 +67,8 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
 
 //    @BindView(R.id.backdrop_poster)
 //    ImageView mBackdrop;
-    @BindView(R.id.movie_poster)
-    ImageView mPoster;
+//    @BindView(R.id.movie_poster)
+//    ImageView mPoster;
     @BindView(R.id.title)
     TextView mTitle;
     @BindView(R.id.rating)
@@ -244,7 +243,7 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
 
     private void setParcelableDetailsIntoViews(Movie movie) {
 //        ViewPopulator.populateImageView(getActivity(), movie.getBackdropPath(), BACKDROP_CROSSFADE_TIME, mBackdrop);
-        ViewPopulator.populateImageView(getActivity(), movie.getDetailPosterPath(), POSTER_CROSSFADE_TIME, mPoster);
+//        ViewPopulator.populateImageView(getActivity(), movie.getDetailPosterPath(), POSTER_CROSSFADE_TIME, mPoster);
         ViewPopulator.populateTextView(movie.getTitle(), mTitle);
         ViewPopulator.populateRatingTextView(getActivity(), movie.getRating(), mRating);
         ViewPopulator.populateRuntimeTextView(getActivity(), movie.getRuntime(), mRuntime);
