@@ -90,12 +90,12 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void populateBackdrop(Movie movie) {
-        ViewPopulator.populateCustomSizeImageView(this, movie.getBackdropPath(), BACKDROP_CROSSFADE_TIME,
+        ViewPopulator.populateCenterCropImageView(this, movie.getBackdropPath(), BACKDROP_CROSSFADE_TIME,
                 mBackdrop);
     }
 
     private void populatePoster(Movie movie) {
-        ViewPopulator.populateImageViewWithToolbar(this, movie.getPosterPath(), POSTER_CROSSFADE_TIME, mPoster, mPosterBackground,
+        ViewPopulator.populateImageView(this, movie.getPosterPath(), POSTER_CROSSFADE_TIME, mPoster, mPosterBackground,
                 mToolbarLayout);
     }
 }

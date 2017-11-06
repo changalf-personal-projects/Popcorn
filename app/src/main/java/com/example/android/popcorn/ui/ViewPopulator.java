@@ -28,6 +28,7 @@ public class ViewPopulator {
 
     private final static String LOG_TAG = ViewPopulator.class.getSimpleName();
 
+    // Overloaded method 1: Populate any normal image view.
     public static void populateImageView(Context context, String imagePath, int crossfadeTime, ImageView view) {
         if (imagePath != null) {
             GlideApp.with(context).load(imagePath)
@@ -37,8 +38,9 @@ public class ViewPopulator {
         }
     }
 
-    public static void populateCircleImageView(Context context, String imagePath, ImageView view,
-                                               int width, int height, int crossfadeTime) {
+    // Overloaded method 2: Populate a circle-cropped image.
+    public static void populateImageView(Context context, String imagePath, ImageView view,
+                                         int width, int height, int crossfadeTime) {
         if (imagePath != null) {
             GlideApp.with(context).load(imagePath).circleCrop()
                     .override(width, height)
@@ -48,19 +50,10 @@ public class ViewPopulator {
         }
     }
 
-    public static void populateCustomSizeImageView(Context context, String imagePath, int crossfadeTime,
-                                                   ImageView view) {
-        GlideApp.with(context).load(imagePath)
-                .centerCrop()
-                .transition(DrawableTransitionOptions.withCrossFade(crossfadeTime))
-                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                .into(view);
-    }
-
-    // Populates poster in detail activity with background colour..
-    public static void populateImageViewWithToolbar(Context context, String imagePath, int crossfadeTime,
-                                                    final ImageView view, final ImageView background,
-                                                    final CollapsingToolbarLayout toolbarLayout) {
+    // Overloaded method 3: Populate an imageview and colour the background.
+    public static void populateImageView(Context context, String imagePath, int crossfadeTime,
+                                         final ImageView view, final ImageView background,
+                                         final CollapsingToolbarLayout toolbarLayout) {
         GlideApp.with(context).load(imagePath)
                 .listener(GlidePalette.with(imagePath)
                         .intoCallBack(new GlidePalette.CallBack() {
@@ -70,6 +63,15 @@ public class ViewPopulator {
                             }
                         })
                 )
+                .transition(DrawableTransitionOptions.withCrossFade(crossfadeTime))
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                .into(view);
+    }
+
+    public static void populateCenterCropImageView(Context context, String imagePath, int crossfadeTime,
+                                                   ImageView view) {
+        GlideApp.with(context).load(imagePath)
+                .centerCrop()
                 .transition(DrawableTransitionOptions.withCrossFade(crossfadeTime))
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .into(view);

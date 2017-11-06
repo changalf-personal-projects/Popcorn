@@ -51,7 +51,7 @@ public class IndividualCastDetailFragment extends Fragment {
     }
 
     private void setParcelabeDetailIntoViews(Cast castMember) {
-        ViewPopulator.populateCircleImageView(getActivity(), castMember.getProfilePath(), mProfilePicture,
+        ViewPopulator.populateImageView(getActivity(), castMember.getProfilePath(), mProfilePicture,
                 PROFILE_PIC_WIDTH, PROFILE_PIC_HEIGHT, PROFILE_PIC_CROSSFADE_TIME);
         ViewPopulator.populateTextView(castMember.getName(), mName);
         ViewPopulator.populateDateToTextView(castMember.getBirthday(), mBirthday);
