@@ -2,10 +2,8 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="fab_margin">16dp</dimen>
 
     <!-- Various font sizes. -->
-    <dimen name="title_size">30sp</dimen>
     <dimen name="cardview_title_size">22sp</dimen>
     <dimen name="detail_title_size">20sp</dimen>
     <dimen name="detail_label_size">15sp</dimen>
@@ -15,12 +13,9 @@
 
     <!-- Random margins. -->
     <dimen name="tabs_and_posters_divider">105dp</dimen>
-    <dimen name="linearlayout_left_margin">4dp</dimen>
     <dimen name="cardview_margin">14dp</dimen>
-    <dimen name="cardview_rating_top_margin">16dp</dimen>
     <dimen name="cardview_genre_bottom_margin">15dp</dimen>
     <dimen name="cardview_title_top_margin">10dp</dimen>
-    <dimen name="cardview_rating_icon_left_margin">6dp</dimen>
     <dimen name="cast_member_name_top_margin">95dp</dimen>
     <dimen name="progress_bar_top_margin">150dp</dimen>
 
@@ -34,17 +29,12 @@
     <dimen name="detail_title_bottom_margin">7dp</dimen>
     <dimen name="detail_text_left_margin">5dp</dimen>
     <dimen name="detail_genres_right_margin">15dp</dimen>
-    <dimen name="detail_rating_top_margin">15dp</dimen>
-    <dimen name="detail_runtime_left_margin">35dp</dimen>
-    <dimen name="detail_release_and_genres_margin">15dp</dimen>
     <dimen name="detail_label_margin">12dp</dimen>
     <dimen name="detail_cast_member_left_margin">22dp</dimen>
     <dimen name="detail_cast_member_top_margin">10dp</dimen>
     <dimen name="detail_cast_member_bottom_margin">12dp</dimen>
-    <dimen name="detail_cast_name_left_margin">25dp</dimen>
     <dimen name="detail_cast_name_top_margin">10dp</dimen>
     <dimen name="detail_synopsis_left_and_right_margin">22dp</dimen>
-    <dimen name="detail_synopsis_top_margin">15dp</dimen>
     <dimen name="detail_synopsis_bottom_margin">20dp</dimen>
     <dimen name="detail_review_header_bottom_margin">2dp</dimen>
     <dimen name="detail_review_side_margin">22dp</dimen>
@@ -56,23 +46,13 @@
     <dimen name="detail_trailer_description_side_margin">22dp</dimen>
     <dimen name="detail_trailers_margin">12dp</dimen>
     <dimen name="detail_button_bottom_margin">20dp</dimen>
-    <dimen name="detail_poster_bg_big_height">300dp</dimen>
     <dimen name="detail_poster_bg_height">150dp</dimen>
-    <!-- Negative margin to offset detail poster margin. -->
-    <dimen name="detail_rating_left_margin">-4dp</dimen>
-    <dimen name="detail_release_left_margin">-3dp</dimen>
 
     <!-- Single review fragment layout. -->
     <dimen name="review_background_height">275dp</dimen>
-    <dimen name="review_movie_poster_background_width">122dp</dimen>
-    <dimen name="review_movie_poster_background_height">178dp</dimen>
     <dimen name="review_movie_poster_border_width">126dp</dimen>
     <dimen name="review_movie_poster_border_height">184dp</dimen>
     <dimen name="cardview_review_content_side_padding">10dp</dimen>
-
-    <!-- Poster width and height. -->
-    <dimen name="poster_width">700dp</dimen>
-    <dimen name="poster_height">800dp</dimen>
 
     <!-- Detail poster. -->
     <dimen name="detail_poster_width">120dp</dimen>
@@ -81,15 +61,9 @@
     <dimen name="detail_poster_bottom_margin">20dp</dimen>
 
     <!-- Backdrop width and height. -->
-    <dimen name="backdrop_width">500dp</dimen>
     <dimen name="backdrop_height">250dp</dimen>
 
-    <!-- Cast thumbnail width and height. -->
-    <dimen name="thumbnail_width">92dp</dimen>
-    <dimen name="thumbnail_height">100dp</dimen>
-
     <!-- Image margins and paddings. -->
-    <dimen name="profile_picture_margin">10dp</dimen>
     <dimen name="image_padding">5dp</dimen>
 
     <!-- Single cast member detail paddings and margins. -->
@@ -105,7 +79,6 @@
     <dimen name="cardview_elevation">5dp</dimen>
 
     <!-- Widths and heights. -->
-    <dimen name="icon_dims">20dp</dimen>
     <dimen name="progress_bar_dims">50dp</dimen>
 
     <!-- Button design. -->
@@ -113,20 +86,12 @@
     <dimen name="rate_movie_button_height">30dp</dimen>
     <dimen name="rate_movie_button_top_margin">15dp</dimen>
     <dimen name="rate_movie_button_right_margin">7dp</dimen>
-    <dimen name="cast_button_left_right_padding">72dp</dimen>
-    <dimen name="review_button_left_right_padding">60dp</dimen>
     <dimen name="add_review_button_height">26dp</dimen>
     <dimen name="add_review_button_margin">12dp</dimen>
     <dimen name="button_corner_radius">2dp</dimen>
     <dimen name="button_stroke_width">5dp</dimen>
-    <dimen name="favourite_button_right_margin">8dp</dimen>
-    <dimen name="favourite_button_bottom_margin">5dp</dimen>
-
-    <!-- Toolbar margins -->
-    <dimen name="toolbar_top_margin">20dp</dimen>
 
     <!-- Everything else. -->
     <dimen name="green_rectangle_height">250dp</dimen>
-    <dimen name="zero_dp">0dp</dimen>
 
 </resources>

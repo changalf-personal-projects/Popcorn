@@ -2,25 +2,16 @@
 <resources>
     <color name="colorPrimary">#1A1A1A</color>
     <color name="colorPrimaryDark">#000000</color>
-    <color name="colorPrimaryDark2">#13A087</color>
     <color name="colorAccent">#FF4081</color>
     <color name="button_color">#0066CC</color>
 
     <!-- Colors for various uses. -->
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
-    <color name="very_light_grey">#E8E8E8</color>
-    <color name="cardview_background">#F2F2F2</color>
-    <color name="profile_picture_background">#1ACBAB</color>
     <color name="image_border_color">#FF0000</color>
-    <color name="progress_bar_color">#FF0000</color>
-    <color name="placeholder_color">#BFBFBF</color>
     <color name="detail_font_color">#CCCCCC</color>
 
     <!-- Colors for debugging background. -->
-    <color name="blackTest">#000000</color>
     <color name="blueTest">#1F618D</color>
     <color name="greenTest">#28B463</color>
-    <color name="greyTest">#5D6D7E</color>
-    <color name="lightGreenTest">#DAF7A6</color>
 </resources>

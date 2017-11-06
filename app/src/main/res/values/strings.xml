@@ -10,8 +10,6 @@
     <string name="synopsis_label">Synopsis</string>
     <string name="trailers_label">Trailers</string>
     <string name="reviews_label">Reviews</string>
-    <string name="cast_heading">Cast</string>
-    <string name="cast_member_heading">Cast Member</string>
     <string name="biography_subheading">Biography</string>
     <string name="birth_date">Birthday:</string>
     <string name="death_date">Death:</string>
@@ -19,19 +17,12 @@
 
     <!-- Button labels. -->
     <string name="rate_movie">Rate Movie</string>
-    <string name="view_cast">View Cast</string>
-    <string name="read_reviews">Read Reviews</string>
     <string name="view_all_reviews">View All</string>
 
     <!-- Placeholder strings. -->
-    <string name="genre_plus_comma">%1$s, </string>
     <string name="rating_out_of_ten">%1$s/10</string>
     <string name="runtime_plus_minutes">%1$s minutes</string>
     <string name="search_hint">Movie Title</string>
-    <string name="member_as_character">%1$s ......... as %2$s</string>
-    <string name="empty_trailers">Trailers unavailable.</string>
-    <string name="empty_review">No reviews posted yet.</string>
-    <string name="review_author_label">Author:</string>
 
     <!-- Test strings. -->
     <string name="test_string">Test</string>
