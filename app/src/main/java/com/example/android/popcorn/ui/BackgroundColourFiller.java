@@ -13,7 +13,8 @@ public class BackgroundColourFiller {
 
     public static void onFillBackground(View view, CollapsingToolbarLayout mToolbarLayout, Palette.Swatch swatch) {
         view.setBackgroundColor(swatch.getRgb());
-        mToolbarLayout.setBackgroundColor(swatch.getRgb());
+        mToolbarLayout.setContentScrimColor(swatch.getRgb());
+        mToolbarLayout.setStatusBarScrimColor(swatch.getRgb());
     }
 
     public static void onFillBackgroundWithHolder(RecyclerView.ViewHolder holder, Palette.Swatch swatch) {
