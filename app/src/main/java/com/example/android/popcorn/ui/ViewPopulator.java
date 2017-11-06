@@ -58,13 +58,13 @@ public class ViewPopulator {
 
     // Populates an image along with custom background colour.
     public static void populateImageViewWithBackgroundColour(Context context, String imagePath, int crossFadeTime,
-                                                             final ImageView view) {
+                                                             final ImageView view, final ImageView background) {
         GlideApp.with(context).load(imagePath)
                 .listener(GlidePalette.with(imagePath)
                         .intoCallBack(new GlidePalette.CallBack() {
                             @Override
                             public void onPaletteLoaded(Palette palette) {
-                                onFillBackground(view, palette.getDominantSwatch());
+                                onFillBackground(background, palette.getDominantSwatch());
                             }
                         })
                 )

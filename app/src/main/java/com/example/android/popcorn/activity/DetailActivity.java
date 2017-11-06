@@ -99,6 +99,6 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void populatePoster(Movie movie) {
-        ViewPopulator.populateImageViewWithBackgroundColour(this, movie.getPosterPath(), POSTER_CROSSFADE_TIME, mPoster);
+        ViewPopulator.populateImageViewWithBackgroundColour(this, movie.getPosterPath(), POSTER_CROSSFADE_TIME, mPoster, mPosterBackground);
     }
 }
