@@ -82,7 +82,7 @@
 
     <!-- Backdrop width and height. -->
     <dimen name="backdrop_width">500dp</dimen>
-    <dimen name="backdrop_height">300dp</dimen>
+    <dimen name="backdrop_height">250dp</dimen>
 
     <!-- Cast thumbnail width and height. -->
     <dimen name="thumbnail_width">92dp</dimen>
