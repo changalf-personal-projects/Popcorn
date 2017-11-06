@@ -2,12 +2,12 @@ package com.example.android.popcorn.ui.poster_recyclerview;
 
 import android.content.Context;
 import android.support.v7.graphics.Palette;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -93,7 +93,7 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
     }
 
     private void onBindColorToCardView(PosterViewHolder holder, Palette.Swatch swatch) {
-        holder.mCardView.setBackgroundColor(swatch.getRgb());
+        holder.mLinearLayout.setBackgroundColor(swatch.getRgb());
         holder.mTitle.setTextColor(swatch.getTitleTextColor());
         holder.mRating.setTextColor(swatch.getBodyTextColor());
         holder.mGenres.setTextColor(swatch.getBodyTextColor());
@@ -133,8 +133,8 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
         TextView mRating;
         @BindView(R.id.genres)
         TextView mGenres;
-        @BindView(R.id.cardview)
-        CardView mCardView;
+        @BindView(R.id.linear_layout)
+        LinearLayout mLinearLayout;
 
         public PosterViewHolder(View itemView) {
             super(itemView);
