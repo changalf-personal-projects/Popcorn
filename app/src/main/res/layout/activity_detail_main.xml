@@ -50,7 +50,7 @@
 
                         <View
                             android:layout_width="match_parent"
-                            android:layout_height="125dp"
+                            android:layout_height="@dimen/detail_poster_bg_height"
                             android:background="@color/blueTest"
                             android:layout_gravity="bottom"
                             app:layout_collapseMode="pin" />
@@ -64,8 +64,7 @@
                         android:layout_gravity="left|start|bottom"
                         android:layout_marginLeft="@dimen/detail_poster_margin"
                         android:layout_marginStart="@dimen/detail_poster_margin"
-                        android:layout_marginRight="@dimen/detail_poster_margin"
-                        android:layout_marginEnd="@dimen/detail_poster_margin" />
+                        android:layout_marginBottom="@dimen/detail_poster_bottom_margin" />
 
                 </FrameLayout>
 
