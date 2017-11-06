@@ -36,6 +36,8 @@ public class DetailActivity extends AppCompatActivity {
     ImageView mBackdrop;
     @BindView(R.id.movie_poster)
     ImageView mPoster;
+    @BindView(R.id.poster_background)
+    ImageView mPosterBackground;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -97,6 +99,6 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void populatePoster(Movie movie) {
-        ViewPopulator.populateImageView(this, movie.getPosterPath(), POSTER_CROSSFADE_TIME, mPoster);
+        ViewPopulator.populateImageViewWithBackgroundColour(this, movie.getPosterPath(), POSTER_CROSSFADE_TIME, mPoster);
     }
 }

@@ -1,12 +1,14 @@
 package com.example.android.popcorn.ui;
 
 import android.content.Context;
+import android.support.v7.graphics.Palette;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.example.android.popcorn.R;
+import com.github.florent37.glidepalette.GlidePalette;
 
 import java.util.List;
 
@@ -16,6 +18,7 @@ import static com.example.android.popcorn.Utilities.convertDoubleToString;
 import static com.example.android.popcorn.Utilities.formatDate;
 import static com.example.android.popcorn.Utilities.formatGenres;
 import static com.example.android.popcorn.Utilities.roundToNearestTenth;
+import static com.example.android.popcorn.ui.BackgroundColourFiller.onFillBackground;
 
 /**
  * Class that holds all methods that populate views.
@@ -48,6 +51,23 @@ public class ViewPopulator {
                                                    ImageView view) {
         GlideApp.with(context).load(imagePath)
                 .centerCrop()
+                .transition(DrawableTransitionOptions.withCrossFade(crossFadeTime))
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                .into(view);
+    }
+
+    // Populates an image along with custom background colour.
+    public static void populateImageViewWithBackgroundColour(Context context, String imagePath, int crossFadeTime,
+                                                             final ImageView view) {
+        GlideApp.with(context).load(imagePath)
+                .listener(GlidePalette.with(imagePath)
+                        .intoCallBack(new GlidePalette.CallBack() {
+                            @Override
+                            public void onPaletteLoaded(Palette palette) {
+                                onFillBackground(view, palette.getDominantSwatch());
+                            }
+                        })
+                )
                 .transition(DrawableTransitionOptions.withCrossFade(crossFadeTime))
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .into(view);

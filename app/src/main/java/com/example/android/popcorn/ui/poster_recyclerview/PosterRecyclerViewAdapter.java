@@ -132,7 +132,8 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
         TextView mRating;
         @BindView(R.id.genres)
         TextView mGenres;
-        @BindView(R.id.linear_layout) View mLinearLayout;
+        @BindView(R.id.linear_layout)
+        View mLinearLayout;
 
         public PosterViewHolder(View itemView) {
             super(itemView);
