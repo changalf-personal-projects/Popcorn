@@ -53,13 +53,6 @@ public class DetailActivity extends AppCompatActivity {
         populateBackdrop(movie);
         populatePoster(movie);
 
-        // Adjusting toolbar.
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//            getSupportActionBar().setBackgroundDrawable(getDrawable(R.drawable.transparent_layout));
-//        }
-//        Drawable backArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
-//        backArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
-//        getSupportActionBar().setHomeAsUpIndicator(backArrow);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 

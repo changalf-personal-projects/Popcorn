@@ -106,7 +106,6 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
 
         setParcelableDetailsIntoViews(movie);
         fetchJsonCastMemberDetails(movie);
-//        onClickTrailerButton();
         onClickFavouriteButton();
 
         return rootView;
@@ -154,9 +153,6 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     }
 
     private void attachToTrailerAdapter(Movie movie) {
-        // Achieve the "snapping" effect.
-//        SnapHelper snapHelper = new LinearSnapHelper();
-//        snapHelper.attachToRecyclerView(mTrailerRecyclerView);
         mTrailerRecyclerAdapter = new TrailerRecyclerViewAdapter(getActivity(), movie.getTrailers(), this);
         mTrailerRecyclerView.setAdapter(mTrailerRecyclerAdapter);
     }
@@ -242,8 +238,6 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     }
 
     private void setParcelableDetailsIntoViews(Movie movie) {
-//        ViewPopulator.populateImageView(getActivity(), movie.getBackdropPath(), BACKDROP_CROSSFADE_TIME, mBackdrop);
-//        ViewPopulator.populateImageView(getActivity(), movie.getDetailPosterPath(), POSTER_CROSSFADE_TIME, mPoster);
         ViewPopulator.populateTextView(movie.getTitle(), mTitle);
         ViewPopulator.populateRatingTextView(getActivity(), movie.getRating(), mRating);
         ViewPopulator.populateRuntimeTextView(getActivity(), movie.getRuntime(), mRuntime);
