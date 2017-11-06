@@ -19,7 +19,7 @@ import static com.example.android.popcorn.Utilities.convertDoubleToString;
 import static com.example.android.popcorn.Utilities.formatDate;
 import static com.example.android.popcorn.Utilities.formatGenres;
 import static com.example.android.popcorn.Utilities.roundToNearestTenth;
-import static com.example.android.popcorn.ui.BackgroundColourFiller.onFillBackground;
+import static com.example.android.popcorn.ui.BackgroundColourFiller.onColourDetailActivityLayout;
 
 /**
  * Class that holds all methods that populate views.
@@ -28,49 +28,49 @@ public class ViewPopulator {
 
     private final static String LOG_TAG = ViewPopulator.class.getSimpleName();
 
-    public static void populateImageView(Context context, String imagePath, int crossFadeTime, ImageView view) {
+    public static void populateImageView(Context context, String imagePath, int crossfadeTime, ImageView view) {
         if (imagePath != null) {
             GlideApp.with(context).load(imagePath)
-                    .transition(DrawableTransitionOptions.withCrossFade(crossFadeTime))
+                    .transition(DrawableTransitionOptions.withCrossFade(crossfadeTime))
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .into(view);
         }
     }
 
     public static void populateCircleImageView(Context context, String imagePath, ImageView view,
-                                               int width, int height, int crossFadeTime) {
+                                               int width, int height, int crossfadeTime) {
         if (imagePath != null) {
             GlideApp.with(context).load(imagePath).circleCrop()
                     .override(width, height)
-                    .transition(DrawableTransitionOptions.withCrossFade(crossFadeTime))
+                    .transition(DrawableTransitionOptions.withCrossFade(crossfadeTime))
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .into(view);
         }
     }
 
-    public static void populateCustomSizeImageView(Context context, String imagePath, int crossFadeTime,
+    public static void populateCustomSizeImageView(Context context, String imagePath, int crossfadeTime,
                                                    ImageView view) {
         GlideApp.with(context).load(imagePath)
                 .centerCrop()
-                .transition(DrawableTransitionOptions.withCrossFade(crossFadeTime))
+                .transition(DrawableTransitionOptions.withCrossFade(crossfadeTime))
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .into(view);
     }
 
-    // Populates an image along with custom background colour.
-    public static void populateImageViewWithBackgroundColour(Context context, String imagePath, int crossFadeTime,
-                                                             final ImageView view, final ImageView background,
-                                                             final CollapsingToolbarLayout toolbarLayout) {
+    // Populates poster in detail activity with background colour..
+    public static void populateImageViewWithToolbar(Context context, String imagePath, int crossfadeTime,
+                                                    final ImageView view, final ImageView background,
+                                                    final CollapsingToolbarLayout toolbarLayout) {
         GlideApp.with(context).load(imagePath)
                 .listener(GlidePalette.with(imagePath)
                         .intoCallBack(new GlidePalette.CallBack() {
                             @Override
                             public void onPaletteLoaded(Palette palette) {
-                                onFillBackground(background, toolbarLayout, palette.getDominantSwatch());
+                                onColourDetailActivityLayout(background, toolbarLayout, palette.getDominantSwatch());
                             }
                         })
                 )
-                .transition(DrawableTransitionOptions.withCrossFade(crossFadeTime))
+                .transition(DrawableTransitionOptions.withCrossFade(crossfadeTime))
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .into(view);
     }
