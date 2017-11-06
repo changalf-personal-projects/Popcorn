@@ -1,6 +1,7 @@
 package com.example.android.popcorn.ui;
 
 import android.content.Context;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.graphics.Palette;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -58,13 +59,14 @@ public class ViewPopulator {
 
     // Populates an image along with custom background colour.
     public static void populateImageViewWithBackgroundColour(Context context, String imagePath, int crossFadeTime,
-                                                             final ImageView view, final ImageView background) {
+                                                             final ImageView view, final ImageView background,
+                                                             final CollapsingToolbarLayout mToolbarLayout) {
         GlideApp.with(context).load(imagePath)
                 .listener(GlidePalette.with(imagePath)
                         .intoCallBack(new GlidePalette.CallBack() {
                             @Override
                             public void onPaletteLoaded(Palette palette) {
-                                onFillBackground(background, palette.getDominantSwatch());
+                                onFillBackground(background, mToolbarLayout, palette.getDominantSwatch());
                             }
                         })
                 )

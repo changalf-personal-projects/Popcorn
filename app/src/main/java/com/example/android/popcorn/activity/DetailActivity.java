@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
@@ -38,6 +39,8 @@ public class DetailActivity extends AppCompatActivity {
     ImageView mPoster;
     @BindView(R.id.poster_background)
     ImageView mPosterBackground;
+    @BindView(R.id.toolbar_layout)
+    CollapsingToolbarLayout mToolbarLayout;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -99,6 +102,7 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void populatePoster(Movie movie) {
-        ViewPopulator.populateImageViewWithBackgroundColour(this, movie.getPosterPath(), POSTER_CROSSFADE_TIME, mPoster, mPosterBackground);
+        ViewPopulator.populateImageViewWithBackgroundColour(this, movie.getPosterPath(), POSTER_CROSSFADE_TIME, mPoster, mPosterBackground,
+                mToolbarLayout);
     }
 }
