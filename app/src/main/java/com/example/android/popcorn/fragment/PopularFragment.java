@@ -16,9 +16,9 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.example.android.popcorn.activity.DetailActivity;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.Utilities;
+import com.example.android.popcorn.activity.DetailActivity;
 import com.example.android.popcorn.dagger.component.FragmentComponent;
 import com.example.android.popcorn.fragment.parsing.LoganCastTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganDetailsTemplate;
@@ -278,5 +278,18 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
                 fetchJsonId();
             }
         });
+        configureWheelColours();
+    }
+
+    private void configureWheelColours() {
+        mPullRefreshLayout.setColorSchemeResources(android.R.color.holo_red_dark,
+                android.R.color.holo_red_light,
+                android.R.color.holo_green_dark,
+                android.R.color.holo_green_light,
+                android.R.color.holo_blue_dark,
+                android.R.color.holo_blue_bright,
+                android.R.color.holo_blue_light,
+                android.R.color.holo_orange_dark,
+                android.R.color.holo_orange_light);
     }
 }
