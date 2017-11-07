@@ -118,6 +118,18 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
         }
     }
 
+    // Call this when refreshing layout.
+    public void clearData() {
+        mListOfMovies.clear();
+        notifyDataSetChanged();
+    }
+
+    // Call this when refreshing layout.
+    public void renewData(List<Movie> listOfMovies) {
+        mListOfMovies.addAll(listOfMovies);
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemCount() {
         return mListOfMovies.size();

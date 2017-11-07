@@ -68,13 +68,12 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         ButterKnife.bind(this, rootView);
 
-        onPullScreenDown();
-
         mListOfMovies = getSingletonMovies();
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), LAYOUT_COL_SPAN);
         mRecyclerView.setLayoutManager(layoutManager);
 
         fetchJsonId();
+        onPullScreenDown();
 
         return rootView;
     }
@@ -272,13 +271,17 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
     }
 
     private void onPullScreenDown() {
+        Log.v(LOG_TAG, "Recycler adapter null?: " + mRecyclerAdapter);
+        configureWheelColours();
         mPullRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                mRecyclerAdapter.clearData();
                 fetchJsonId();
+                mRecyclerAdapter.renewData(mListOfMovies);
             }
         });
-        configureWheelColours();
+        mPullRefreshLayout.setRefreshing(false);
     }
 
     private void configureWheelColours() {
