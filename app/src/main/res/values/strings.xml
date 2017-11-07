@@ -21,8 +21,11 @@
 
     <!-- Placeholder strings. -->
     <string name="rating_out_of_ten">%1$s/10</string>
-    <string name="runtime_plus_minutes">%1$s minutes</string>
+    <string name="runtime">%1$s mins</string>
     <string name="search_hint">Movie Title</string>
+
+    <!-- Symbols. -->
+    <string name="straight_slash">|</string>
 
     <!-- Test strings. -->
     <string name="test_string">Test</string>

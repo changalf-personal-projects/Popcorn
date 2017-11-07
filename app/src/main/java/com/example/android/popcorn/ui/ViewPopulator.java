@@ -88,7 +88,7 @@ public class ViewPopulator {
     }
 
     public static void populateRuntimeTextView(Context context, String content, TextView view) {
-        view.setText(context.getResources().getString(R.string.runtime_plus_minutes, content));
+        view.setText(context.getResources().getString(R.string.runtime, content));
     }
 
     public static void populateGenresToTextView(List<String> content, TextView view) {

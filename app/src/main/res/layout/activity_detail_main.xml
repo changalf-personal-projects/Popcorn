@@ -101,6 +101,23 @@
                                 android:layout_marginLeft="2dp"
                                 android:layout_marginStart="2dp"/>
 
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/straight_slash"
+                                android:layout_marginTop="3dp"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginStart="25dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/runtime"
+                                android:textStyle="italic"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginLeft="24dp"
+                                android:layout_marginStart="24dp" />
+
                         </LinearLayout>
 
                     </LinearLayout>
