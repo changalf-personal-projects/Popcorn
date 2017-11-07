@@ -28,7 +28,6 @@ import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.model.Review;
 import com.example.android.popcorn.model.Trailer;
 import com.example.android.popcorn.networking.RequestQueueSingleton;
-import com.example.android.popcorn.ui.ViewPopulator;
 import com.example.android.popcorn.ui.cast_recyclerview.CastRecyclerViewAdapter;
 import com.example.android.popcorn.ui.cast_recyclerview.OnCastMemberClickListener;
 import com.example.android.popcorn.ui.review_recyclerview.OnReviewClickListener;
@@ -65,10 +64,6 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     private TrailerRecyclerViewAdapter mTrailerRecyclerAdapter;
     private Movie movie;
 
-//    @BindView(R.id.backdrop_poster)
-//    ImageView mBackdrop;
-//    @BindView(R.id.movie_poster)
-//    ImageView mPoster;
     @BindView(R.id.title)
     TextView mTitle;
     @BindView(R.id.rating)
@@ -238,12 +233,12 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     }
 
     private void setParcelableDetailsIntoViews(Movie movie) {
-        ViewPopulator.populateTextView(movie.getTitle(), mTitle);
-        ViewPopulator.populateRatingTextView(getActivity(), movie.getRating(), mRating);
-        ViewPopulator.populateRuntimeTextView(getActivity(), movie.getRuntime(), mRuntime);
-        ViewPopulator.populateDateToTextView(movie.getReleaseDate(), mRelease);
-        ViewPopulator.populateGenresToTextView(movie.getGenres(), mGenres);
-        ViewPopulator.populateTextView(movie.getSynopsis(), mSynopsis);
+//        ViewPopulator.populateTextView(movie.getTitle(), mTitle);
+//        ViewPopulator.populateRatingTextView(getActivity(), movie.getRating(), mRating);
+//        ViewPopulator.populateRuntimeTextView(getActivity(), movie.getRuntime(), mRuntime);
+//        ViewPopulator.populateDateToTextView(movie.getReleaseDate(), mRelease);
+//        ViewPopulator.populateGenresToTextView(movie.getGenres(), mGenres);
+//        ViewPopulator.populateTextView(movie.getSynopsis(), mSynopsis);
 
         attachToCastAdapter(movie);
         attachToReviewAdapter(movie);

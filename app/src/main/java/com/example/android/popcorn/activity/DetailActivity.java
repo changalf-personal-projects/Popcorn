@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.Utilities;
@@ -42,6 +43,10 @@ public class DetailActivity extends AppCompatActivity {
     @BindView(R.id.toolbar_layout)
     CollapsingToolbarLayout mToolbarLayout;
 
+    // Movie info.
+    @BindView(R.id.title)
+    TextView mTitle;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,8 +55,7 @@ public class DetailActivity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
 
         Movie movie = getParcelableMovieDetails();
-        populateBackdrop(movie);
-        populatePoster(movie);
+        setParcelableDetailsIntoViews(movie);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -89,13 +93,16 @@ public class DetailActivity extends AppCompatActivity {
         return intent.getParcelableExtra(Utilities.PARCELABLE_MOVIE_KEY);
     }
 
-    private void populateBackdrop(Movie movie) {
+    private void setParcelableDetailsIntoViews(Movie movie) {
         ViewPopulator.populateCenterCropImageView(this, movie.getBackdropPath(), BACKDROP_CROSSFADE_TIME,
                 mBackdrop);
-    }
-
-    private void populatePoster(Movie movie) {
         ViewPopulator.populateImageView(this, movie.getPosterPath(), POSTER_CROSSFADE_TIME, mPoster, mPosterBackground,
                 mToolbarLayout);
+        ViewPopulator.populateTextView(movie.getTitle(), mTitle);
+//        ViewPopulator.populateRatingTextView(getActivity(), movie.getRating(), mRating);
+//        ViewPopulator.populateRuntimeTextView(getActivity(), movie.getRuntime(), mRuntime);
+//        ViewPopulator.populateDateToTextView(movie.getReleaseDate(), mRelease);
+//        ViewPopulator.populateGenresToTextView(movie.getGenres(), mGenres);
+//        ViewPopulator.populateTextView(movie.getSynopsis(), mSynopsis);
     }
 }
