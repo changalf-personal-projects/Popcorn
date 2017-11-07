@@ -50,6 +50,8 @@ public class DetailActivity extends AppCompatActivity {
     TextView mRating;
     @BindView(R.id.runtime)
     TextView mRuntime;
+    @BindView(R.id.release)
+    TextView mRelease;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -105,7 +107,7 @@ public class DetailActivity extends AppCompatActivity {
         ViewPopulator.populateTextView(movie.getTitle(), mTitle);
         ViewPopulator.populateRatingTextView(this, movie.getRating(), mRating);
         ViewPopulator.populateRuntimeTextView(this, movie.getRuntime(), mRuntime);
-//        ViewPopulator.populateDateToTextView(movie.getReleaseDate(), mRelease);
+        ViewPopulator.populateDateToTextView(movie.getReleaseDate(), mRelease);
 //        ViewPopulator.populateGenresToTextView(movie.getGenres(), mGenres);
 //        ViewPopulator.populateTextView(movie.getSynopsis(), mSynopsis);
     }
