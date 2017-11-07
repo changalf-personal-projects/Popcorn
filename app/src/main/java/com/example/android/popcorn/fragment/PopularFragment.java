@@ -3,6 +3,7 @@ package com.example.android.popcorn.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -59,12 +60,15 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
 
     @BindView(R.id.progress_bar) ProgressBar mProgressBar;
     @BindView(R.id.cast_recyclerview) RecyclerView mRecyclerView;
+    @BindView(R.id.pull_refresh_layout) SwipeRefreshLayout mPullRefreshLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         ButterKnife.bind(this, rootView);
+
+        onPullScreenDown();
 
         mListOfMovies = getSingletonMovies();
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), LAYOUT_COL_SPAN);
@@ -265,5 +269,14 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
         Intent detailIntent = new Intent(getActivity(), DetailActivity.class);
         detailIntent.putExtra(Utilities.PARCELABLE_MOVIE_KEY, movie);
         startActivity(detailIntent);
+    }
+
+    private void onPullScreenDown() {
+        mPullRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                fetchJsonId();
+            }
+        });
     }
 }
