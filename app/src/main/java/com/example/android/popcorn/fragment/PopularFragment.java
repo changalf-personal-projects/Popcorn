@@ -279,9 +279,9 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
                 mRecyclerAdapter.clearData();
                 fetchJsonId();
                 mRecyclerAdapter.renewData(mListOfMovies);
+                mPullRefreshLayout.setRefreshing(false);
             }
         });
-        mPullRefreshLayout.setRefreshing(false);
     }
 
     private void configureWheelColours() {
