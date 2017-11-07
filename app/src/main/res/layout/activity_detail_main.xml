@@ -67,7 +67,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:layout_marginTop="55dp"
+                        android:layout_marginTop="45dp"
                         android:layout_marginLeft="15dp"
                         android:layout_marginStart="15dp"
                         android:layout_marginRight="15dp"
@@ -125,6 +125,13 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/release"
                             android:layout_gravity="center" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/genres"
+                            android:textSize="12sp"
+                            android:layout_marginTop="8dp" />
 
                     </LinearLayout>
 
