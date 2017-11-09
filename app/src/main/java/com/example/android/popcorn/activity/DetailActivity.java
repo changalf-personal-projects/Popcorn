@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
@@ -46,6 +47,10 @@ public class DetailActivity extends AppCompatActivity {
     ImageView mPosterBackground;
     @BindView(R.id.toolbar_layout)
     CollapsingToolbarLayout mToolbarLayout;
+    @BindView(R.id.detail_tabs)
+    TabLayout mTabLayout;
+    @BindView(R.id.view_pager)
+    ViewPager mViewPager;
 
     // Movie info.
     @BindView(R.id.title)
@@ -68,6 +73,9 @@ public class DetailActivity extends AppCompatActivity {
 
         Movie movie = getParcelableMovieDetails();
         setParcelableDetailsIntoViews(movie);
+
+        setupViewPager(mViewPager);
+        mTabLayout.setupWithViewPager(mViewPager);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
