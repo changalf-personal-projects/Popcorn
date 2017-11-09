@@ -15,8 +15,8 @@ import com.example.android.popcorn.fragment.CurrentFragment;
 import com.example.android.popcorn.fragment.FavouriteFragment;
 import com.example.android.popcorn.fragment.PopularFragment;
 import com.example.android.popcorn.fragment.TopFragment;
-import com.example.android.popcorn.networking.UriTerms;
 import com.example.android.popcorn.ui.MovieCollectionPagerAdapter;
+import com.example.android.popcorn.ui.TabTitles;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -77,10 +77,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        MovieCollectionPagerAdapter mPagerAdapter = new MovieCollectionPagerAdapter(getSupportFragmentManager());
-        addFragments(mPagerAdapter);
-        addFragmentTitles(mPagerAdapter);
-        viewPager.setAdapter(mPagerAdapter);
+        MovieCollectionPagerAdapter pagerAdapter = new MovieCollectionPagerAdapter(getSupportFragmentManager());
+        addFragments(pagerAdapter);
+        addFragmentTitles(pagerAdapter);
+        viewPager.setAdapter(pagerAdapter);
     }
 
     private void addFragments(MovieCollectionPagerAdapter pagerAdapter) {
@@ -91,9 +91,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addFragmentTitles(MovieCollectionPagerAdapter pagerAdapter) {
-        pagerAdapter.addFragmentTitle(UriTerms.POPULAR_MOVIES);
-        pagerAdapter.addFragmentTitle(UriTerms.TOP_MOVIES);
-        pagerAdapter.addFragmentTitle(UriTerms.CURRENT_MOVIES);
-        pagerAdapter.addFragmentTitle(UriTerms.FAVOURITE_MOVIES);
+        pagerAdapter.addFragmentTitle(TabTitles.POPULAR_MOVIES);
+        pagerAdapter.addFragmentTitle(TabTitles.TOP_MOVIES);
+        pagerAdapter.addFragmentTitle(TabTitles.CURRENT_MOVIES);
+        pagerAdapter.addFragmentTitle(TabTitles.FAVOURITE_MOVIES);
     }
 }

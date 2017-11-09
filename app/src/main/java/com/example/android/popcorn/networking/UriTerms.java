@@ -8,12 +8,6 @@ public class UriTerms {
 
     // TODO: Use enums for each category of strings.
 
-    // Tab titles.
-    public static final String POPULAR_MOVIES = "Popular";
-    public static final String TOP_MOVIES = "Top";
-    public static final String CURRENT_MOVIES = "Current";
-    public static final String FAVOURITE_MOVIES = "Favourite";
-
     //Query paths.
     public static final String CREDITS = "credits";
     public static final String VIDEOS = "videos";

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
@@ -17,6 +18,8 @@ import com.example.android.popcorn.R;
 import com.example.android.popcorn.Utilities;
 import com.example.android.popcorn.fragment.DetailFragment;
 import com.example.android.popcorn.model.Movie;
+import com.example.android.popcorn.ui.DetailTabsPagerAdapter;
+import com.example.android.popcorn.ui.TabTitles;
 import com.example.android.popcorn.ui.ViewPopulator;
 
 import butterknife.BindView;
@@ -112,5 +115,20 @@ public class DetailActivity extends AppCompatActivity {
         ViewPopulator.populateDateToTextView(movie.getReleaseDate(), mRelease);
         ViewPopulator.populateGenresToTextView(movie.getGenres(), mGenres);
 //        ViewPopulator.populateTextView(movie.getSynopsis(), mSynopsis);
+    }
+
+    private void setupViewPager(ViewPager viewPager) {
+        DetailTabsPagerAdapter pagerAdapter = new DetailTabsPagerAdapter(getSupportFragmentManager());
+        addFragments(pagerAdapter);
+        addFragmentTitles(pagerAdapter);
+        viewPager.setAdapter(pagerAdapter);
+    }
+
+    private void addFragments(DetailTabsPagerAdapter pagerAdapter) {
+        pagerAdapter.addFragment(new DetailFragment());
+    }
+
+    private void addFragmentTitles(DetailTabsPagerAdapter pagerAdapter) {
+        pagerAdapter.addFragmentTitle(TabTitles.DETAILS);
     }
 }
