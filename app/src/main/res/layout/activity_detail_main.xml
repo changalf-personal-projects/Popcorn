@@ -160,6 +160,14 @@
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
+        <android.support.design.widget.TabLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/detail_tabs"
+            android:background="@color/greenTest"
+            app:tabGravity="fill"
+            app:tabMode="fixed" />
+
     </android.support.design.widget.AppBarLayout>
 
     <!--<android.support.design.widget.FloatingActionButton-->
