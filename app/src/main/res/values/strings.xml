@@ -14,6 +14,7 @@
     <string name="birth_date">Birthday:</string>
     <string name="death_date">Death:</string>
     <string name="place_of_birth">Place of birth:</string>
+    <string name="favourite">Add To Favourites</string>
 
     <!-- Button labels. -->
     <string name="rate_movie">Rate Movie</string>
@@ -21,7 +22,7 @@
 
     <!-- Placeholder strings. -->
     <string name="rating_out_of_ten">%1$s/10</string>
-    <string name="runtime">%1$s mins</string>
+    <string name="runtime">%1$s min</string>
     <string name="search_hint">Movie Title</string>
 
     <!-- Symbols. -->

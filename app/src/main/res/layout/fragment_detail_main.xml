@@ -129,7 +129,7 @@
                     android:layout_marginEnd="@dimen/rate_movie_button_right_margin"
                     android:layout_marginRight="@dimen/rate_movie_button_right_margin"
                     android:layout_marginTop="@dimen/rate_movie_button_top_margin"
-                    android:background="@drawable/trailer_button"
+                    android:background="@drawable/button_layout"
                     android:paddingEnd="@dimen/rate_movie_button_side_padding"
                     android:paddingLeft="@dimen/rate_movie_button_side_padding"
                     android:paddingRight="@dimen/rate_movie_button_side_padding"

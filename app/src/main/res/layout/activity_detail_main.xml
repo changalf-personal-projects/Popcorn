@@ -97,34 +97,46 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/rating"
+                                android:textStyle="bold"
                                 android:layout_marginTop="5dp"
                                 android:layout_marginLeft="2dp"
                                 android:layout_marginStart="2dp"/>
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/straight_slash"
-                                android:layout_marginTop="3dp"
-                                android:layout_marginLeft="25dp"
-                                android:layout_marginStart="25dp" />
+                            <!--<TextView-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:text="@string/straight_slash"-->
+                                <!--android:layout_marginTop="3dp"-->
+                                <!--android:layout_marginLeft="25dp"-->
+                                <!--android:layout_marginStart="25dp" />-->
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/runtime"
-                                android:textStyle="italic"
                                 android:layout_marginTop="5dp"
-                                android:layout_marginLeft="24dp"
-                                android:layout_marginStart="24dp" />
+                                android:layout_marginLeft="14dp"
+                                android:layout_marginStart="14dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/release"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginStart="15dp" />
 
                         </LinearLayout>
-
-                        <TextView
+                        
+                        <Button
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/release"
-                            android:layout_gravity="center" />
+                            android:layout_height="30dp"
+                            android:text="@string/favourite"
+                            android:background="@drawable/button_layout"
+                            android:paddingEnd="30dp"
+                            android:paddingLeft="30dp"
+                            android:paddingRight="30dp"
+                            android:paddingStart="30dp" />
 
                         <TextView
                             android:layout_width="wrap_content"

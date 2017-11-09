@@ -76,7 +76,8 @@ public class Utilities {
         }
 
         // This is the format that we want the date to be.
-        SimpleDateFormat newFormat = new SimpleDateFormat("MMMM yyyy");
+//        SimpleDateFormat newFormat = new SimpleDateFormat("MMMM yyyy");
+        SimpleDateFormat newFormat = new SimpleDateFormat("yyyy");
         // Turn date into a string.
         if (isNotNullDate(date)) {
             formattedDate = newFormat.format(date);

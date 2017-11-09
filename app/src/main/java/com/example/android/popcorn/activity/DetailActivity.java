@@ -26,7 +26,7 @@ import butterknife.ButterKnife;
  * Created by alfredchang on 2017-09-27.
  */
 
-// Extend AppCompatActivity for back button.
+// Extend AppCompatActivity for back button_layout.
 public class DetailActivity extends AppCompatActivity {
 
     private final int BACKDROP_CROSSFADE_TIME = 300;
