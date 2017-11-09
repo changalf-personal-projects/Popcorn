@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.Utilities;
 import com.example.android.popcorn.fragment.DetailFragment;
+import com.example.android.popcorn.fragment.ReviewFragment;
 import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.ui.DetailTabsPagerAdapter;
 import com.example.android.popcorn.ui.TabTitles;
@@ -126,9 +127,11 @@ public class DetailActivity extends AppCompatActivity {
 
     private void addFragments(DetailTabsPagerAdapter pagerAdapter) {
         pagerAdapter.addFragment(new DetailFragment());
+        pagerAdapter.addFragment(new ReviewFragment());
     }
 
     private void addFragmentTitles(DetailTabsPagerAdapter pagerAdapter) {
         pagerAdapter.addFragmentTitle(TabTitles.DETAILS);
+        pagerAdapter.addFragmentTitle(TabTitles.REVIEWS);
     }
 }
