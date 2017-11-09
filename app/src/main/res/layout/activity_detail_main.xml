@@ -147,16 +147,6 @@
 
                     </LinearLayout>
 
-                    <!--<ImageButton-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:id="@+id/favourite_button"-->
-                        <!--android:src="@mipmap/ic_favourite"-->
-                        <!--android:background="@android:color/transparent"-->
-                        <!--android:layout_marginTop="45dp"-->
-                        <!--android:layout_marginLeft="25dp"-->
-                        <!--android:layout_marginStart="25dp" />-->
-
                 </LinearLayout>
 
             </FrameLayout>
