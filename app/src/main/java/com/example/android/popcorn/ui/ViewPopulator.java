@@ -64,7 +64,7 @@ public class ViewPopulator {
                         .intoCallBack(new GlidePalette.CallBack() {
                             @Override
                             public void onPaletteLoaded(Palette palette) {
-                                colourWithDominantSwatch(background, toolbarLayout, palette.getDominantSwatch());
+                                colourWithDominantSwatch(background, toolbarLayout, palette.getSwatches());
                             }
                         })
 //                        .use(GlidePalette.Swatch.RGB).intoTextColor(title, GlidePalette.Swatch.RGB)

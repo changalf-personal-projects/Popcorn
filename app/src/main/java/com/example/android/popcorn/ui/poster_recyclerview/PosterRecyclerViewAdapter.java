@@ -81,7 +81,7 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
                             .intoCallBack(new GlidePalette.CallBack() {
                                 @Override
                                 public void onPaletteLoaded(Palette palette) {
-                                    onBindColorToCardView(holder, palette.getDarkVibrantSwatch());
+                                    onBindColorToCardView(holder, palette.getSwatches());
                                 }
                             })
                     )
@@ -92,11 +92,15 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
         }
     }
 
-    private void onBindColorToCardView(PosterViewHolder holder, Palette.Swatch swatch) {
-        holder.mLinearLayout.setBackgroundColor(swatch.getRgb());
-        holder.mTitle.setTextColor(swatch.getTitleTextColor());
-        holder.mRating.setTextColor(swatch.getBodyTextColor());
-        holder.mGenres.setTextColor(swatch.getBodyTextColor());
+    private void onBindColorToCardView(PosterViewHolder holder, List<Palette.Swatch> swatches) {
+        for (Palette.Swatch swatch: swatches) {
+            if (swatch != null) {
+                holder.mLinearLayout.setBackgroundColor(swatch.getRgb());
+                holder.mTitle.setTextColor(swatch.getTitleTextColor());
+                holder.mRating.setTextColor(swatch.getBodyTextColor());
+                holder.mGenres.setTextColor(swatch.getBodyTextColor());
+            }
+        }
     }
 
     private void onBindTitle(Movie movie, PosterViewHolder holder) {
