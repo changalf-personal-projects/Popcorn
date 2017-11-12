@@ -2,6 +2,7 @@ package com.example.android.popcorn.ui;
 
 import android.content.Context;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.TabLayout;
 import android.support.v7.graphics.Palette;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,7 +20,7 @@ import static com.example.android.popcorn.Utilities.convertDoubleToString;
 import static com.example.android.popcorn.Utilities.formatDate;
 import static com.example.android.popcorn.Utilities.formatGenres;
 import static com.example.android.popcorn.Utilities.roundToNearestTenth;
-import static com.example.android.popcorn.ui.BackgroundColourFiller.onColourDetailActivityLayout;
+import static com.example.android.popcorn.ui.ColourFiller.colourWithDominantSwatch;
 
 /**
  * Class that holds all methods that populate views.
@@ -53,15 +54,20 @@ public class ViewPopulator {
     // Overloaded method 3: Populate an imageview and colour the background.
     public static void populateImageView(Context context, String imagePath, int crossfadeTime,
                                          final ImageView view, final ImageView background,
-                                         final CollapsingToolbarLayout toolbarLayout) {
+                                         final CollapsingToolbarLayout toolbarLayout,
+                                         final TextView title, final TextView rating,
+                                         final TextView runtime,
+                                         final TextView release, final TextView genres,
+                                         final TabLayout tabLayout) {
         GlideApp.with(context).load(imagePath)
                 .listener(GlidePalette.with(imagePath)
                         .intoCallBack(new GlidePalette.CallBack() {
                             @Override
                             public void onPaletteLoaded(Palette palette) {
-                                onColourDetailActivityLayout(background, toolbarLayout, palette.getDominantSwatch());
+                                colourWithDominantSwatch(background, toolbarLayout, palette.getDominantSwatch());
                             }
                         })
+//                        .use(GlidePalette.Swatch.RGB).intoTextColor(title, GlidePalette.Swatch.RGB)
                 )
                 .transition(DrawableTransitionOptions.withCrossFade(crossfadeTime))
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)

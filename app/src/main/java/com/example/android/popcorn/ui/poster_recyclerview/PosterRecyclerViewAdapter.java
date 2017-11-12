@@ -81,7 +81,7 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
                             .intoCallBack(new GlidePalette.CallBack() {
                                 @Override
                                 public void onPaletteLoaded(Palette palette) {
-                                    onBindColorToCardView(holder, palette.getDominantSwatch());
+                                    onBindColorToCardView(holder, palette.getDarkVibrantSwatch());
                                 }
                             })
                     )

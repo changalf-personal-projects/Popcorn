@@ -117,13 +117,12 @@ public class DetailActivity extends AppCompatActivity {
         ViewPopulator.populateCenterCropImageView(this, movie.getBackdropPath(), BACKDROP_CROSSFADE_TIME,
                 mBackdrop);
         ViewPopulator.populateImageView(this, movie.getPosterPath(), POSTER_CROSSFADE_TIME, mPoster, mPosterBackground,
-                mToolbarLayout);
+                mToolbarLayout, mTitle, mRating, mRuntime, mRelease, mGenres, mTabLayout);
         ViewPopulator.populateTextView(movie.getTitle(), mTitle);
         ViewPopulator.populateRatingTextView(this, movie.getRating(), mRating);
         ViewPopulator.populateRuntimeTextView(this, movie.getRuntime(), mRuntime);
         ViewPopulator.populateDateToTextView(movie.getReleaseDate(), mRelease);
         ViewPopulator.populateGenresToTextView(movie.getGenres(), mGenres);
-//        ViewPopulator.populateTextView(movie.getSynopsis(), mSynopsis);
     }
 
     private void setupViewPager(ViewPager viewPager) {

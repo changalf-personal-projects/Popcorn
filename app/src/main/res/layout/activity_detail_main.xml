@@ -165,12 +165,12 @@
             android:layout_height="wrap_content"
             android:id="@+id/detail_tabs"
             android:background="@color/greenTest"
-            app:tabGravity="fill"
-            app:tabMode="fixed" />
+            app:tabMode="fixed"
+            app:tabGravity="fill" />
 
         <android.support.v4.view.ViewPager
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/view_pager" />
 
     </android.support.design.widget.AppBarLayout>

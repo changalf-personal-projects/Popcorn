@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/tab_layout"
             app:tabMode="scrollable"
-            app:tabGravity="fill" />
+            app:tabGravity="center" />
 
     </android.support.design.widget.AppBarLayout>
 
