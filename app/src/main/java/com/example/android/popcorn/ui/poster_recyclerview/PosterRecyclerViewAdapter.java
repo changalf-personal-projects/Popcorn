@@ -26,6 +26,7 @@ import static com.example.android.popcorn.NullChecker.isNotNullPath;
 import static com.example.android.popcorn.Utilities.convertDoubleToString;
 import static com.example.android.popcorn.Utilities.hasAtLeastOneGenre;
 import static com.example.android.popcorn.Utilities.roundToNearestTenth;
+import static com.example.android.popcorn.ui.ColourFiller.hasSwatch;
 
 /**
  * Created by alfredchang on 2017-09-21.
@@ -94,7 +95,7 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
 
     private void onBindColorToCardView(PosterViewHolder holder, List<Palette.Swatch> swatches) {
         for (Palette.Swatch swatch: swatches) {
-            if (swatch != null) {
+            if (hasSwatch(swatch)) {
                 holder.mLinearLayout.setBackgroundColor(swatch.getRgb());
                 holder.mTitle.setTextColor(swatch.getTitleTextColor());
                 holder.mRating.setTextColor(swatch.getBodyTextColor());

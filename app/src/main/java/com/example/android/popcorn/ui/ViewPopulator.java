@@ -20,7 +20,8 @@ import static com.example.android.popcorn.Utilities.convertDoubleToString;
 import static com.example.android.popcorn.Utilities.formatDate;
 import static com.example.android.popcorn.Utilities.formatGenres;
 import static com.example.android.popcorn.Utilities.roundToNearestTenth;
-import static com.example.android.popcorn.ui.ColourFiller.colourWithDominantSwatch;
+import static com.example.android.popcorn.ui.ColourFiller.colourTextViewWithSwatch;
+import static com.example.android.popcorn.ui.ColourFiller.colourWithSwatch;
 
 /**
  * Class that holds all methods that populate views.
@@ -64,10 +65,10 @@ public class ViewPopulator {
                         .intoCallBack(new GlidePalette.CallBack() {
                             @Override
                             public void onPaletteLoaded(Palette palette) {
-                                colourWithDominantSwatch(background, toolbarLayout, palette.getSwatches());
+                                colourWithSwatch(background, toolbarLayout, palette.getSwatches());
+                                colourTextViewWithSwatch(title, rating, runtime, release, genres, palette.getSwatches());
                             }
                         })
-//                        .use(GlidePalette.Swatch.RGB).intoTextColor(title, GlidePalette.Swatch.RGB)
                 )
                 .transition(DrawableTransitionOptions.withCrossFade(crossfadeTime))
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)

@@ -13,22 +13,33 @@ import java.util.List;
 
 public class ColourFiller {
 
-    private boolean hasSwatch(Palette.Swatch swatch) {
+    public static boolean hasSwatch(Palette.Swatch swatch) {
         return swatch != null;
     }
 
-    public static void colourWithDominantSwatch(View view, CollapsingToolbarLayout mToolbarLayout, List<Palette.Swatch> swatches) {
+    public static void colourWithSwatch(View view, CollapsingToolbarLayout mToolbarLayout, List<Palette.Swatch> swatches) {
         for (Palette.Swatch swatch: swatches) {
-            if (swatch != null) {
-                view.setBackgroundColor(swatch.getRgb());
-                mToolbarLayout.setContentScrimColor(swatch.getRgb());
-                mToolbarLayout.setStatusBarScrimColor(swatch.getRgb());
+            if (hasSwatch(swatch)) {
+                int colourFromRgb = swatch.getRgb();
+                view.setBackgroundColor(colourFromRgb);
+                mToolbarLayout.setContentScrimColor(colourFromRgb);
+                mToolbarLayout.setStatusBarScrimColor(colourFromRgb);
             }
         }
     }
 
-    public static void colourText(TextView title, TextView rating, TextView runtime,
-                                                  TextView release, TextView genres, Palette.Swatch swatch) {
-        title.setTextColor(swatch.getRgb());
+    public static void colourTextViewWithSwatch(TextView title, TextView rating, TextView runtime,
+                                                  TextView release, TextView genres, List<Palette.Swatch> swatches) {
+        for (Palette.Swatch swatch: swatches) {
+            if (swatch != null) {
+                int titleTextColour = swatch.getTitleTextColor();
+                int bodyTextColour = swatch.getBodyTextColor();
+                title.setTextColor(titleTextColour);
+                rating.setTextColor(bodyTextColour);
+                runtime.setTextColor(bodyTextColour);
+                release.setTextColor(bodyTextColour);
+                genres.setTextColor(bodyTextColour);
+            }
+        }
     }
 }
