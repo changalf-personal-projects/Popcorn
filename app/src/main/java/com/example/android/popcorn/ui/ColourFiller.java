@@ -1,6 +1,7 @@
 package com.example.android.popcorn.ui;
 
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.TabLayout;
 import android.support.v7.graphics.Palette;
 import android.view.View;
 import android.widget.ImageView;
@@ -32,7 +33,7 @@ public class ColourFiller {
     public static void colourTextViewWithSwatch(TextView title, TextView rating, TextView runtime,
                                                   TextView release, TextView genres, List<Palette.Swatch> swatches) {
         for (Palette.Swatch swatch: swatches) {
-            if (swatch != null) {
+            if (hasSwatch(swatch)) {
                 int titleTextColour = swatch.getTitleTextColor();
                 int bodyTextColour = swatch.getBodyTextColor();
                 title.setTextColor(titleTextColour);
@@ -44,25 +45,33 @@ public class ColourFiller {
         }
     }
 
-    public static void colourBranding(ImageView branding, Palette palette) {
-        int swatchColour;
+    public static int getFirstAvailableSwatch(Palette palette) {
+        int swatchRgb;
 
         if (hasSwatch(palette.getDarkVibrantSwatch())) {
-            swatchColour = palette.getDarkVibrantSwatch().getRgb();
+            swatchRgb = palette.getDarkVibrantSwatch().getRgb();
         } else if (hasSwatch(palette.getVibrantSwatch())) {
-            swatchColour = palette.getVibrantSwatch().getRgb();
+            swatchRgb = palette.getVibrantSwatch().getRgb();
         } else if (hasSwatch(palette.getLightVibrantSwatch())) {
-            swatchColour = palette.getLightVibrantSwatch().getRgb();
+            swatchRgb = palette.getLightVibrantSwatch().getRgb();
         } else if (hasSwatch(palette.getDarkMutedSwatch())) {
-            swatchColour = palette.getDarkMutedSwatch().getRgb();
+            swatchRgb = palette.getDarkMutedSwatch().getRgb();
         } else if (hasSwatch(palette.getMutedSwatch())) {
-            swatchColour = palette.getMutedSwatch().getRgb();
+            swatchRgb = palette.getMutedSwatch().getRgb();
         } else if (hasSwatch(palette.getLightMutedSwatch())) {
-            swatchColour = palette.getLightMutedSwatch().getRgb();
+            swatchRgb = palette.getLightMutedSwatch().getRgb();
         } else {
-            swatchColour = palette.getDominantSwatch().getRgb();
+            swatchRgb = palette.getDominantSwatch().getRgb();
         }
 
-        branding.setColorFilter(swatchColour);
+        return swatchRgb;
+    }
+
+    public static void colourTmdbLogo(ImageView tmdbLogo, int swatchRgb) {
+        tmdbLogo.setColorFilter(swatchRgb);
+    }
+
+    public static void colourTabLayout(TabLayout tabLayout, int swatchRgb) {
+        tabLayout.setBackgroundColor(swatchRgb);
     }
 }

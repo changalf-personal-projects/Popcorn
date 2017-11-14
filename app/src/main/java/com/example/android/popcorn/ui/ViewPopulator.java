@@ -20,9 +20,11 @@ import static com.example.android.popcorn.Utilities.convertDoubleToString;
 import static com.example.android.popcorn.Utilities.formatDate;
 import static com.example.android.popcorn.Utilities.formatGenres;
 import static com.example.android.popcorn.Utilities.roundToNearestTenth;
-import static com.example.android.popcorn.ui.ColourFiller.colourBranding;
+import static com.example.android.popcorn.ui.ColourFiller.colourTabLayout;
 import static com.example.android.popcorn.ui.ColourFiller.colourTextViewWithSwatch;
+import static com.example.android.popcorn.ui.ColourFiller.colourTmdbLogo;
 import static com.example.android.popcorn.ui.ColourFiller.colourWithSwatch;
+import static com.example.android.popcorn.ui.ColourFiller.getFirstAvailableSwatch;
 
 /**
  * Class that holds all methods that populate views.
@@ -69,7 +71,10 @@ public class ViewPopulator {
                                 List<Palette.Swatch> swatches = palette.getSwatches();
                                 colourWithSwatch(background, toolbarLayout, swatches);
                                 colourTextViewWithSwatch(title, rating, runtime, release, genres, swatches);
-                                colourBranding(branding, palette);
+
+                                int swatchRgb = getFirstAvailableSwatch(palette);
+                                colourTmdbLogo(branding, swatchRgb);
+                                colourTabLayout(tabLayout, swatchRgb);
                             }
                         })
                 )
