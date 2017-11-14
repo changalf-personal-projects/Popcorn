@@ -20,6 +20,7 @@ import static com.example.android.popcorn.Utilities.convertDoubleToString;
 import static com.example.android.popcorn.Utilities.formatDate;
 import static com.example.android.popcorn.Utilities.formatGenres;
 import static com.example.android.popcorn.Utilities.roundToNearestTenth;
+import static com.example.android.popcorn.ui.ColourFiller.colourBranding;
 import static com.example.android.popcorn.ui.ColourFiller.colourTextViewWithSwatch;
 import static com.example.android.popcorn.ui.ColourFiller.colourWithSwatch;
 
@@ -59,14 +60,16 @@ public class ViewPopulator {
                                          final TextView title, final TextView rating,
                                          final TextView runtime,
                                          final TextView release, final TextView genres,
-                                         final TabLayout tabLayout) {
+                                         final TabLayout tabLayout, final ImageView branding) {
         GlideApp.with(context).load(imagePath)
                 .listener(GlidePalette.with(imagePath)
                         .intoCallBack(new GlidePalette.CallBack() {
                             @Override
                             public void onPaletteLoaded(Palette palette) {
-                                colourWithSwatch(background, toolbarLayout, palette.getSwatches());
-                                colourTextViewWithSwatch(title, rating, runtime, release, genres, palette.getSwatches());
+                                List<Palette.Swatch> swatches = palette.getSwatches();
+                                colourWithSwatch(background, toolbarLayout, swatches);
+                                colourTextViewWithSwatch(title, rating, runtime, release, genres, swatches);
+                                colourBranding(branding, palette);
                             }
                         })
                 )

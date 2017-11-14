@@ -89,6 +89,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:id="@+id/tmdb_branding"
                                 android:src="@drawable/ic_tmdb_branding"
                                 android:layout_marginLeft="-4dp"
                                 android:layout_marginStart="-4dp" />
