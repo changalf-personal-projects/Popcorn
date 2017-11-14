@@ -82,11 +82,6 @@ public class DetailActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().add(R.id.container,
-                    new DetailFragment()).commit();
-        }
     }
 
     @Override

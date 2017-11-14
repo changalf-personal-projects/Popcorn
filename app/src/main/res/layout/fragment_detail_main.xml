@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@color/black"
         tools:context="com.example.android.popcorn.BuildConfig"
         tools:ignore="MergeRootFrame">
 
@@ -33,9 +32,6 @@
             <!--android:text="@string/rate_movie"-->
             <!--android:textColor="@color/white" />-->
 
-        <!-- Divider. -->
-        <include layout="@layout/detail_divider" />
-
         <TextView
             android:id="@+id/synopsis"
             android:layout_width="wrap_content"
@@ -45,7 +41,7 @@
             android:layout_marginLeft="@dimen/detail_synopsis_left_and_right_margin"
             android:layout_marginRight="@dimen/detail_synopsis_left_and_right_margin"
             android:layout_marginStart="@dimen/detail_synopsis_left_and_right_margin"
-            android:textColor="@color/detail_font_color" />
+            android:textColor="@color/black" />
 
         <!-- Divider. -->
         <include layout="@layout/detail_divider" />

@@ -35,6 +35,7 @@ import com.example.android.popcorn.networking.UriTerms;
 import com.example.android.popcorn.ui.poster_recyclerview.OnMovieClickListener;
 import com.example.android.popcorn.ui.poster_recyclerview.PosterRecyclerViewAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -57,6 +58,7 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
     private FragmentComponent mFragmentComponent;
     private PosterRecyclerViewAdapter mRecyclerAdapter;
     private List<Movie> mListOfMovies;
+    private List<Integer> mListOfRefreshColours = new ArrayList<>();
 
     @BindView(R.id.progress_bar) ProgressBar mProgressBar;
     @BindView(R.id.cast_recyclerview) RecyclerView mRecyclerView;
@@ -73,6 +75,7 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
         mRecyclerView.setLayoutManager(layoutManager);
 
         fetchJsonId();
+        getRefreshColours();
         onPullScreenDown();
 
         return rootView;
@@ -284,15 +287,16 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
         });
     }
 
+    private void getRefreshColours() {
+        mListOfRefreshColours.add(android.R.color.holo_red_dark);
+        mListOfRefreshColours.add(android.R.color.holo_green_dark);
+        mListOfRefreshColours.add(android.R.color.holo_blue_dark);
+        mListOfRefreshColours.add(android.R.color.holo_orange_dark);
+    }
+
     private void configureWheelColours() {
-        mPullRefreshLayout.setColorSchemeResources(android.R.color.holo_red_dark,
-                android.R.color.holo_red_light,
-                android.R.color.holo_green_dark,
-                android.R.color.holo_green_light,
-                android.R.color.holo_blue_dark,
-                android.R.color.holo_blue_bright,
-                android.R.color.holo_blue_light,
-                android.R.color.holo_orange_dark,
-                android.R.color.holo_orange_light);
+        for (int colour: mListOfRefreshColours) {
+            mPullRefreshLayout.setColorSchemeResources(colour);
+        }
     }
 }

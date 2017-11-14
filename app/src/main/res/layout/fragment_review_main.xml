@@ -5,23 +5,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/review_background_height"
-        android:background="@color/colorPrimaryDark">
-
-        <include layout="@layout/red_detail_divider" />
-
-        <ImageView
-            android:id="@+id/movie_poster"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@drawable/review_movie_poster_border"
-            android:padding="@dimen/image_padding" />
-
-    </FrameLayout>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">

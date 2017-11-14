@@ -221,11 +221,6 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     }
 
     private void setParcelableDetailsIntoViews(Movie movie) {
-//        ViewPopulator.populateTextView(movie.getTitle(), mTitle);
-//        ViewPopulator.populateRatingTextView(getActivity(), movie.getRating(), mRating);
-//        ViewPopulator.populateRuntimeTextView(getActivity(), movie.getRuntime(), mRuntime);
-//        ViewPopulator.populateDateToTextView(movie.getReleaseDate(), mRelease);
-//        ViewPopulator.populateGenresToTextView(movie.getGenres(), mGenres);
         populateTextView(movie.getSynopsis(), mSynopsis);
 
         attachToCastAdapter(movie);
