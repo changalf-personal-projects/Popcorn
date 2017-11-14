@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -42,6 +41,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.example.android.popcorn.networking.UrlCreator.createCastMemberDetailUrl;
+import static com.example.android.popcorn.ui.ViewPopulator.populateTextView;
 
 /**
  * Created by alfredchang on 2017-09-27.
@@ -64,20 +64,8 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     private TrailerRecyclerViewAdapter mTrailerRecyclerAdapter;
     private Movie movie;
 
-    @BindView(R.id.title)
-    TextView mTitle;
-    @BindView(R.id.rating)
-    TextView mRating;
-    @BindView(R.id.runtime)
-    TextView mRuntime;
-    @BindView(R.id.release)
-    TextView mRelease;
-    @BindView(R.id.genres)
-    TextView mGenres;
     @BindView(R.id.synopsis)
     TextView mSynopsis;
-    @BindView(R.id.trailer_button)
-    Button mTrailerButton;
 //    @BindView(R.id.favourite_button)
 //    ImageButton mFavouriteButton;
     @BindView(R.id.cast_recycler_view)
@@ -238,7 +226,7 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
 //        ViewPopulator.populateRuntimeTextView(getActivity(), movie.getRuntime(), mRuntime);
 //        ViewPopulator.populateDateToTextView(movie.getReleaseDate(), mRelease);
 //        ViewPopulator.populateGenresToTextView(movie.getGenres(), mGenres);
-//        ViewPopulator.populateTextView(movie.getSynopsis(), mSynopsis);
+        populateTextView(movie.getSynopsis(), mSynopsis);
 
         attachToCastAdapter(movie);
         attachToReviewAdapter(movie);
