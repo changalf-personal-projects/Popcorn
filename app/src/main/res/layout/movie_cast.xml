@@ -27,6 +27,6 @@
         android:id="@+id/cast_member_character"
         android:textColor="@color/detail_font_color"
         android:textSize="@dimen/cast_character_size"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center" />
 
 </LinearLayout>
