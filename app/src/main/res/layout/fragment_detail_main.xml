@@ -24,6 +24,8 @@
             android:layout_marginLeft="@dimen/detail_synopsis_left_and_right_margin"
             android:layout_marginRight="@dimen/detail_synopsis_left_and_right_margin"
             android:layout_marginStart="@dimen/detail_synopsis_left_and_right_margin"
+            android:layout_marginTop="@dimen/detail_synopsis_top_margin"
+            android:fontFamily="sans-serif-condensed"
             android:textColor="@color/black" />
 
         <!-- Divider. -->
@@ -38,6 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/detail_trailers_margin"
+                android:fontFamily="sans-serif"
                 android:text="@string/trailers_label"
                 android:textColor="@color/black"
                 android:textSize="@dimen/detail_label_size"

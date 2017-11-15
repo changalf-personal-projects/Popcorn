@@ -34,8 +34,9 @@
     <dimen name="detail_cast_member_top_margin">10dp</dimen>
     <dimen name="detail_cast_member_bottom_margin">12dp</dimen>
     <dimen name="detail_cast_name_top_margin">10dp</dimen>
+    <dimen name="detail_synopsis_top_margin">26dp</dimen>
     <dimen name="detail_synopsis_left_and_right_margin">22dp</dimen>
-    <dimen name="detail_synopsis_bottom_margin">20dp</dimen>
+    <dimen name="detail_synopsis_bottom_margin">18dp</dimen>
     <dimen name="detail_review_header_bottom_margin">2dp</dimen>
     <dimen name="detail_review_side_margin">22dp</dimen>
     <dimen name="detail_review_bottom_margin">22dp</dimen>
