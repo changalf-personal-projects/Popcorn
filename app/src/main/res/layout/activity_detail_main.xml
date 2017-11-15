@@ -78,7 +78,7 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/title"
                             android:textSize="@dimen/detail_title_size"
-                            android:fontFamily="sans-serif"
+                            android:fontFamily="sans-serif-light"
                             android:textStyle="bold" />
 
                         <LinearLayout
@@ -99,6 +99,7 @@
                                 android:layout_height="wrap_content"
                                 android:id="@+id/rating"
                                 android:textStyle="bold"
+                                android:fontFamily="sans-serif-light"
                                 android:layout_marginTop="@dimen/detail_text_top_margin"
                                 android:layout_marginLeft="@dimen/detail_rating_left_margin"
                                 android:layout_marginStart="@dimen/detail_rating_left_margin"/>
@@ -107,6 +108,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/runtime"
+                                android:fontFamily="sans-serif-light"
                                 android:layout_marginTop="@dimen/detail_text_top_margin"
                                 android:layout_marginLeft="@dimen/detail_runtime_left_margin"
                                 android:layout_marginStart="@dimen/detail_runtime_left_margin" />
@@ -115,6 +117,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/release"
+                                android:fontFamily="sans-serif-light"
                                 android:layout_marginTop="@dimen/detail_text_top_margin"
                                 android:layout_marginLeft="@dimen/detail_release_left_margin"
                                 android:layout_marginStart="@dimen/detail_release_left_margin" />
@@ -136,6 +139,7 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/genres"
                             android:textSize="12sp"
+                            android:fontFamily="sans-serif-light"
                             android:layout_marginTop="8dp"/>
 
                     </LinearLayout>

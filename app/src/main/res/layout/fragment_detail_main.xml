@@ -25,7 +25,7 @@
             android:layout_marginRight="@dimen/detail_synopsis_left_and_right_margin"
             android:layout_marginStart="@dimen/detail_synopsis_left_and_right_margin"
             android:layout_marginTop="@dimen/detail_synopsis_top_margin"
-            android:fontFamily="sans-serif-condensed"
+            android:fontFamily="sans-serif-light"
             android:textColor="@color/black" />
 
         <!-- Divider. -->
