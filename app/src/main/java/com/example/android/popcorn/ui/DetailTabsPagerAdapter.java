@@ -31,7 +31,7 @@ public class DetailTabsPagerAdapter extends FragmentPagerAdapter {
     }
 
     @Override
-    public String getPageTitle(int position) {
+    public CharSequence getPageTitle(int position) {
         return mFragmentTitles.get(position);
     }
 
