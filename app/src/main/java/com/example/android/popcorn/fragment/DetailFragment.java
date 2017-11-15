@@ -57,8 +57,6 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     private static final String EMPTY_STRING = "";
     public static final String NO_REVIEWS_MESSAGE = "No reviews posted yet.";
 
-    private boolean mIsPressedFlag = false;
-
     private CastRecyclerViewAdapter mCastRecyclerAdapter;
     private ReviewRecyclerViewAdapter mReviewRecyclerAdapter;
     private TrailerRecyclerViewAdapter mTrailerRecyclerAdapter;
@@ -68,10 +66,10 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     TextView mSynopsis;
 //    @BindView(R.id.favourite_button)
 //    ImageButton mFavouriteButton;
-    @BindView(R.id.cast_recycler_view)
-    RecyclerView mCastRecyclerView;
-    @BindView(R.id.review_recycler_view)
-    RecyclerView mReviewRecyclerView;
+//    @BindView(R.id.cast_recycler_view)
+//    RecyclerView mCastRecyclerView;
+//    @BindView(R.id.review_recycler_view)
+//    RecyclerView mReviewRecyclerView;
     @BindView(R.id.trailer_recycler_view)
     RecyclerView mTrailerRecyclerView;
 
@@ -81,8 +79,8 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
         View rootView = inflater.inflate(R.layout.fragment_detail_main, container, false);
         ButterKnife.bind(this, rootView);
 
-        setupCastRecyclerView();
-        setupReviewRecyclerView();
+//        setupCastRecyclerView();
+//        setupReviewRecyclerView();
         setupTrailerRecyclerView();
 
         movie = getParcelableMovie();
@@ -94,18 +92,18 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
         return rootView;
     }
 
-    private void setupCastRecyclerView() {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),
-                LinearLayoutManager.HORIZONTAL, false);
-        mCastRecyclerView.setLayoutManager(layoutManager);
-    }
+//    private void setupCastRecyclerView() {
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),
+//                LinearLayoutManager.HORIZONTAL, false);
+//        mCastRecyclerView.setLayoutManager(layoutManager);
+//    }
 
-    private void setupReviewRecyclerView() {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),
-                LinearLayoutManager.VERTICAL, false);
-        mReviewRecyclerView.setNestedScrollingEnabled(false);
-        mReviewRecyclerView.setLayoutManager(layoutManager);
-    }
+//    private void setupReviewRecyclerView() {
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),
+//                LinearLayoutManager.VERTICAL, false);
+//        mReviewRecyclerView.setNestedScrollingEnabled(false);
+//        mReviewRecyclerView.setLayoutManager(layoutManager);
+//    }
 
     private void setupTrailerRecyclerView() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),
@@ -113,27 +111,27 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
         mTrailerRecyclerView.setLayoutManager(layoutManager);
     }
 
-    private void attachToCastAdapter(Movie movie) {
-        mCastRecyclerAdapter = new CastRecyclerViewAdapter(getActivity(), movie.getCast(), this);
-        mCastRecyclerView.setAdapter(mCastRecyclerAdapter);
-    }
+//    private void attachToCastAdapter(Movie movie) {
+//        mCastRecyclerAdapter = new CastRecyclerViewAdapter(getActivity(), movie.getCast(), this);
+//        mCastRecyclerView.setAdapter(mCastRecyclerAdapter);
+//    }
 
-    private void attachToReviewAdapter(Movie movie) {
-        List<Review> reviews = movie.getReviews();
-
-        // Hacky way of printing message indicating no reviews posted yet.  Better solution is
-        // to switch layouts.  Doesn't always seem to work.
-        if (reviews.size() == EMPTY) {
-            Review emptyReview = new Review();
-            emptyReview.setAuthor(EMPTY_STRING);
-            // This string will be used to signal onBindViewHolder() that there are no reviews yet.
-            emptyReview.setContent(NO_REVIEWS_MESSAGE);
-            reviews.add(emptyReview);
-        }
-
-        mReviewRecyclerAdapter = new ReviewRecyclerViewAdapter(getActivity(), reviews, this);
-        mReviewRecyclerView.setAdapter(mReviewRecyclerAdapter);
-    }
+//    private void attachToReviewAdapter(Movie movie) {
+//        List<Review> reviews = movie.getReviews();
+//
+//        // Hacky way of printing message indicating no reviews posted yet.  Better solution is
+//        // to switch layouts.  Doesn't always seem to work.
+//        if (reviews.size() == EMPTY) {
+//            Review emptyReview = new Review();
+//            emptyReview.setAuthor(EMPTY_STRING);
+//            // This string will be used to signal onBindViewHolder() that there are no reviews yet.
+//            emptyReview.setContent(NO_REVIEWS_MESSAGE);
+//            reviews.add(emptyReview);
+//        }
+//
+//        mReviewRecyclerAdapter = new ReviewRecyclerViewAdapter(getActivity(), reviews, this);
+////        mReviewRecyclerView.setAdapter(mReviewRecyclerAdapter);
+//    }
 
     private void attachToTrailerAdapter(Movie movie) {
         mTrailerRecyclerAdapter = new TrailerRecyclerViewAdapter(getActivity(), movie.getTrailers(), this);
@@ -223,8 +221,8 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     private void setParcelableDetailsIntoViews(Movie movie) {
         populateTextView(movie.getSynopsis(), mSynopsis);
 
-        attachToCastAdapter(movie);
-        attachToReviewAdapter(movie);
+//        attachToCastAdapter(movie);
+//        attachToReviewAdapter(movie);
         attachToTrailerAdapter(movie);
     }
 }

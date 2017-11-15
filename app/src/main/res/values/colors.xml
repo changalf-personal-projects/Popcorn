@@ -8,6 +8,7 @@
     <!-- Colors for various uses. -->
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+    <color name="light_grey">#D1D1D1</color>
     <color name="image_border_color">#FF0000</color>
     <color name="detail_font_color">#CCCCCC</color>
 

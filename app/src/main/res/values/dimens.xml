@@ -20,7 +20,7 @@
     <dimen name="progress_bar_top_margin">150dp</dimen>
 
     <!-- Divider dimensions. -->
-    <dimen name="layout_height_quarter">0.25dp</dimen>
+    <dimen name="layout_height_half">0.5dp</dimen>
     <dimen name="line_height">0.5dp</dimen>
     <dimen name="review_divider_height">0.1dp</dimen>
 
