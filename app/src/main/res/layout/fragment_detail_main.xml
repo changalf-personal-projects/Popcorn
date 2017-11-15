@@ -56,6 +56,8 @@
 
         </LinearLayout>
 
+        <include layout="@layout/detail_divider" />
+
         <!--<Button-->
             <!--android:layout_width="wrap_content"-->
             <!--android:layout_height="@dimen/add_review_button_height"-->
