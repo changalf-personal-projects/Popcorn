@@ -25,11 +25,11 @@
     <dimen name="review_divider_height">0.1dp</dimen>
 
     <!-- Detail view margins. -->
-    <dimen name="detail_title_top_margin">15dp</dimen>
-    <dimen name="detail_title_bottom_margin">7dp</dimen>
     <dimen name="detail_text_left_margin">5dp</dimen>
-    <dimen name="detail_genres_right_margin">15dp</dimen>
+    <dimen name="detail_text_top_margin">5dp</dimen>
     <dimen name="detail_label_margin">12dp</dimen>
+    <dimen name="details_top_margin">50dp</dimen>
+    <dimen name="details_side_margin">15dp</dimen>
     <dimen name="detail_cast_member_left_margin">22dp</dimen>
     <dimen name="detail_cast_member_top_margin">10dp</dimen>
     <dimen name="detail_cast_member_bottom_margin">12dp</dimen>
@@ -45,13 +45,13 @@
     <dimen name="detail_trailer_description_bottom_margin">12dp</dimen>
     <dimen name="detail_trailer_description_side_margin">22dp</dimen>
     <dimen name="detail_trailers_margin">12dp</dimen>
-    <dimen name="detail_button_bottom_margin">20dp</dimen>
     <dimen name="detail_poster_bg_height">150dp</dimen>
+    <dimen name="detail_tmdb_logo_left_margin">-4dp</dimen>
+    <dimen name="detail_rating_left_margin">2dp</dimen>
+    <dimen name="detail_runtime_left_margin">14dp</dimen>
+    <dimen name="detail_release_left_margin">15dp</dimen>
 
     <!-- Single review fragment layout. -->
-    <dimen name="review_background_height">275dp</dimen>
-    <dimen name="review_movie_poster_border_width">126dp</dimen>
-    <dimen name="review_movie_poster_border_height">184dp</dimen>
     <dimen name="cardview_review_content_side_padding">10dp</dimen>
 
     <!-- Detail poster. -->
@@ -82,10 +82,6 @@
     <dimen name="progress_bar_dims">50dp</dimen>
 
     <!-- Button design. -->
-    <dimen name="rate_movie_button_side_padding">30dp</dimen>
-    <dimen name="rate_movie_button_height">30dp</dimen>
-    <dimen name="rate_movie_button_top_margin">15dp</dimen>
-    <dimen name="rate_movie_button_right_margin">7dp</dimen>
     <dimen name="add_review_button_height">26dp</dimen>
     <dimen name="add_review_button_margin">12dp</dimen>
     <dimen name="button_corner_radius">2dp</dimen>

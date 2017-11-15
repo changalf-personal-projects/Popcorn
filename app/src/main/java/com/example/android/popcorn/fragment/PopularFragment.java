@@ -263,7 +263,7 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
     private void attachAdapter() {
         mRecyclerAdapter = new PosterRecyclerViewAdapter(mListOfMovies, this);
         mRecyclerView.setAdapter(mRecyclerAdapter);
-        mProgressBar.setVisibility(View.INVISIBLE);
+        mProgressBar.setVisibility(View.GONE);
     }
 
     @Override
