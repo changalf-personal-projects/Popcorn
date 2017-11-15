@@ -33,7 +33,7 @@ public class IndividualReviewFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         super.onCreateView(inflater, parent, savedInstanceState);
-        View rootView = inflater.inflate(R.layout.fragment_review_main, parent, false);
+        View rootView = inflater.inflate(R.layout.fragment_single_review_main, parent, false);
         ButterKnife.bind(this, rootView);
 
         Intent intent = getActivity().getIntent();
