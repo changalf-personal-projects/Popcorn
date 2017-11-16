@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -31,6 +32,8 @@ import com.example.android.popcorn.ui.ViewPopulator;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.android.popcorn.ui.ToolbarTitleDisplay.displayTitleUponCollapse;
+
 /**
  * Created by alfredchang on 2017-09-27.
  */
@@ -49,8 +52,10 @@ public class DetailActivity extends AppCompatActivity {
     ImageView mPoster;
     @BindView(R.id.poster_background)
     ImageView mPosterBackground;
+    @BindView(R.id.app_bar)
+    AppBarLayout mAppBarLayout;
     @BindView(R.id.toolbar_layout)
-    CollapsingToolbarLayout mToolbarLayout;
+    CollapsingToolbarLayout mCollapsingToolbarLayout;
     @BindView(R.id.detail_tabs)
     TabLayout mTabLayout;
     @BindView(R.id.view_pager)
@@ -88,6 +93,7 @@ public class DetailActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        displayTitleUponCollapse(mAppBarLayout, mCollapsingToolbarLayout);
         initFab();
     }
 
@@ -132,7 +138,7 @@ public class DetailActivity extends AppCompatActivity {
         ViewPopulator.populateCenterCropImageView(this, movie.getBackdropPath(), BACKDROP_CROSSFADE_TIME,
                 mBackdrop);
         ViewPopulator.populateImageView(this, movie.getPosterPath(), POSTER_CROSSFADE_TIME, mPoster, mPosterBackground,
-                mToolbarLayout, mTitle, mRating, mRuntime, mRelease, mGenres, mTabLayout, tmdbBranding);
+                mCollapsingToolbarLayout, mTitle, mRating, mRuntime, mRelease, mGenres, mTabLayout, tmdbBranding);
         ViewPopulator.populateTextView(movie.getTitle(), mTitle);
         ViewPopulator.populateRatingTextView(this, movie.getRating(), mRating);
         ViewPopulator.populateRuntimeTextView(this, movie.getRuntime(), mRuntime);
