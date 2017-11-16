@@ -172,13 +172,12 @@
         android:id="@+id/view_pager"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    <!--<android.support.design.widget.FloatingActionButton-->
-        <!--android:id="@+id/favourite_fab"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_margin="@dimen/fab_margin"-->
-        <!--app:layout_anchor="@id/app_bar"-->
-        <!--app:layout_anchorGravity="bottom|end"-->
-        <!--app:srcCompat="@mipmap/ic_favourite" />-->
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/favourite_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:layout_gravity="right|end|bottom"
+        app:srcCompat="@mipmap/ic_favourite" />
 
 </android.support.design.widget.CoordinatorLayout>
