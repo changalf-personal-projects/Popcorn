@@ -274,7 +274,6 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
     }
 
     private void onPullScreenDown() {
-        Log.v(LOG_TAG, "Recycler adapter null?: " + mRecyclerAdapter);
         configureWheelColours();
         mPullRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override

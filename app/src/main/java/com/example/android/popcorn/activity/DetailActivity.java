@@ -54,6 +54,8 @@ public class DetailActivity extends AppCompatActivity {
     ViewPager mViewPager;
     @BindView(R.id.tmdb_branding)
     ImageView tmdbBranding;
+//    @BindView(R.id.favourite_fab)
+//    FloatingActionButton favouriteButton;
 
     // Movie info.
     @BindView(R.id.title)
@@ -82,6 +84,18 @@ public class DetailActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        initFab();
+    }
+
+    private void initFab() {
+//        favouriteButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
     }
 
     @Override
