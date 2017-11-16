@@ -1,6 +1,8 @@
 package com.example.android.popcorn.ui;
 
+import android.content.res.ColorStateList;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v7.graphics.Palette;
 import android.view.View;
@@ -73,5 +75,9 @@ public class ColourFiller {
 
     public static void colourTabLayout(TabLayout tabLayout, int swatchRgb) {
         tabLayout.setBackgroundColor(swatchRgb);
+    }
+
+    public static void colourFavouriteButton(FloatingActionButton fab, int swatchRgb) {
+        fab.setBackgroundTintList(ColorStateList.valueOf(swatchRgb));
     }
 }

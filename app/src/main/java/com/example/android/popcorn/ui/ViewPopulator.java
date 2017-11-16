@@ -2,6 +2,7 @@ package com.example.android.popcorn.ui;
 
 import android.content.Context;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v7.graphics.Palette;
 import android.widget.ImageView;
@@ -20,6 +21,7 @@ import static com.example.android.popcorn.Utilities.convertDoubleToString;
 import static com.example.android.popcorn.Utilities.formatDate;
 import static com.example.android.popcorn.Utilities.formatGenres;
 import static com.example.android.popcorn.Utilities.roundToNearestTenth;
+import static com.example.android.popcorn.ui.ColourFiller.colourFavouriteButton;
 import static com.example.android.popcorn.ui.ColourFiller.colourTabLayout;
 import static com.example.android.popcorn.ui.ColourFiller.colourTextViewWithSwatch;
 import static com.example.android.popcorn.ui.ColourFiller.colourTmdbLogo;
@@ -62,7 +64,8 @@ public class ViewPopulator {
                                          final TextView title, final TextView rating,
                                          final TextView runtime,
                                          final TextView release, final TextView genres,
-                                         final TabLayout tabLayout, final ImageView branding) {
+                                         final TabLayout tabLayout, final ImageView branding,
+                                         final FloatingActionButton fab) {
         GlideApp.with(context).load(imagePath)
                 .listener(GlidePalette.with(imagePath)
                         .intoCallBack(new GlidePalette.CallBack() {
@@ -75,6 +78,7 @@ public class ViewPopulator {
                                 int swatchRgb = getFirstAvailableSwatch(palette);
                                 colourTmdbLogo(branding, swatchRgb);
                                 colourTabLayout(tabLayout, swatchRgb);
+                                colourFavouriteButton(fab, swatchRgb);
                             }
                         })
                 )
