@@ -9,7 +9,7 @@
     <string name="birth_date">Birthday:</string>
     <string name="death_date">Death:</string>
     <string name="place_of_birth">Place of birth:</string>
-    <string name="favourite">Add To Favourites</string>
+    <string name="rate">Rate Movie</string>
 
     <!-- Button labels. -->
     <string name="view_all_reviews">View All</string>

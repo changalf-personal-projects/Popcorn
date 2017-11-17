@@ -66,7 +66,7 @@
             <!--android:layout_alignParentEnd="true"-->
             <!--android:layout_alignParentRight="true"-->
             <!--android:layout_margin="@dimen/add_review_button_margin"-->
-            <!--android:background="@drawable/add_review_button"-->
+            <!--android:background="@drawarate_movie_buttontton"-->
             <!--android:text="@string/view_all_reviews"-->
             <!--android:textColor="@color/white"-->
             <!--android:textSize="@dimen/add_review_font_size" />-->

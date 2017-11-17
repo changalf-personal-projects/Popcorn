@@ -125,14 +125,10 @@
                         </LinearLayout>
                         
                         <Button
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="30dp"
-                            android:text="@string/favourite"
-                            android:background="@drawable/button_layout"
-                            android:paddingEnd="30dp"
-                            android:paddingLeft="30dp"
-                            android:paddingRight="30dp"
-                            android:paddingStart="30dp" />
+                            android:text="@string/rate"
+                            android:background="@drawable/button_layout" />
 
                         <TextView
                             android:layout_width="wrap_content"
