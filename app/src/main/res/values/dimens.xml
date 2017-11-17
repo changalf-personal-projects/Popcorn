@@ -6,7 +6,7 @@
     <!-- Various font sizes. -->
     <dimen name="cardview_title_size">22sp</dimen>
     <dimen name="detail_title_size">20sp</dimen>
-    <dimen name="detail_label_size">15sp</dimen>
+    <dimen name="detail_label_size">18sp</dimen>
     <dimen name="cast_character_size">12sp</dimen>
     <dimen name="cast_member_name_size">25sp</dimen>
     <dimen name="add_review_font_size">12sp</dimen>
@@ -46,6 +46,7 @@
     <dimen name="detail_trailer_description_bottom_margin">12dp</dimen>
     <dimen name="detail_trailer_description_side_margin">22dp</dimen>
     <dimen name="detail_trailer_recyclerview_top_margin">6dp</dimen>
+    <dimen name="detail_trailer_recyclerview_bottom_margin">4dp</dimen>
     <dimen name="detail_trailers_margin">12dp</dimen>
     <dimen name="detail_poster_bg_height">150dp</dimen>
     <dimen name="detail_tmdb_logo_left_margin">-4dp</dimen>

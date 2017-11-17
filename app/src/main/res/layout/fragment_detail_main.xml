@@ -53,6 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/detail_trailer_recyclerview_top_margin"
+                android:layout_marginBottom="@dimen/detail_trailer_recyclerview_bottom_margin"
                 android:scrollbars="none" />
 
         </LinearLayout>
