@@ -75,7 +75,7 @@ public class TrailerRecyclerViewAdapter extends RecyclerView.Adapter<TrailerRecy
 
         @BindView(R.id.trailer_thumbnail)
         ImageView mTrailerThumbnail;
-        @BindView(R.id.trailer_description)
+        @BindView(R.id.trailer_title)
         TextView mTrailerDescription;
 
         public TrailerViewHolder(View itemView) {

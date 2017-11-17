@@ -7,6 +7,7 @@
     <dimen name="cardview_title_size">22sp</dimen>
     <dimen name="detail_title_size">20sp</dimen>
     <dimen name="detail_label_size">18sp</dimen>
+    <dimen name="detail_trailer_title_size">13sp</dimen>
     <dimen name="cast_character_size">12sp</dimen>
     <dimen name="cast_member_name_size">25sp</dimen>
     <dimen name="add_review_font_size">12sp</dimen>
