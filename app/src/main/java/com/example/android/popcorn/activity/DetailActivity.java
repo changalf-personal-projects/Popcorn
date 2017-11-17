@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.Utilities;
@@ -42,6 +43,7 @@ public class DetailActivity extends AppCompatActivity {
 
     private final int BACKDROP_CROSSFADE_TIME = 300;
     private final int POSTER_CROSSFADE_TIME = 500;
+    private final String SAVED_MOVIE = "Saved to favourites!";
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -101,8 +103,7 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 favouriteButton.setImageResource(R.mipmap.ic_favourited);
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
+                Toast.makeText(getBaseContext(), SAVED_MOVIE, Toast.LENGTH_SHORT).show();
             }
         });
     }
