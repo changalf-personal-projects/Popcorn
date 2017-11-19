@@ -13,6 +13,7 @@ public class UriTerms {
     public static final String VIDEOS = "videos";
     public static final String REVIEWS = "reviews";
     public static final String YOUTUBE_V = "v";
+    public static final String QUERY = "query";
 
     // Query terms.
     public static final String POPULAR = "popular";

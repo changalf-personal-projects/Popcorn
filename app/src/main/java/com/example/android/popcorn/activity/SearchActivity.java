@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import static com.example.android.popcorn.networking.UrlCreator.createSearchMovieUrl;
+
 /**
  * Created by alfredchang on 2017-10-02.
  */
@@ -37,6 +39,9 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void searchMovie(String query) {
+        String url = createSearchMovieUrl(query);
+        Log.v(LOG_TAG, "Url string: " + url);
+
 
     }
 

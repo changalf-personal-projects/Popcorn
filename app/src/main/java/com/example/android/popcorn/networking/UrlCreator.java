@@ -11,9 +11,9 @@ import com.example.android.popcorn.BuildConfig;
 public class UrlCreator {
 
     // Request for movie details.
-    public static String createUrl(String path) {
+    public static String createUrl(String query) {
         return Uri.parse(UriTerms.MOVIE_BASE_URL).buildUpon()
-                .appendPath(path)
+                .appendPath(query)
                 .appendQueryParameter(UriTerms.TMDB_API_KEY, BuildConfig.MOVIE_DP_API_KEY)
                 .appendQueryParameter(UriTerms.TMDB_LANGUAGE, UriTerms.LANGUAGE)
                 .appendQueryParameter(UriTerms.TMDB_PAGE, UriTerms.PAGE)
@@ -37,6 +37,13 @@ public class UrlCreator {
                 .appendPath(id)
                 .appendQueryParameter(UriTerms.TMDB_API_KEY, BuildConfig.MOVIE_DP_API_KEY)
                 .appendQueryParameter(UriTerms.TMDB_LANGUAGE, UriTerms.LANGUAGE)
+                .build().toString();
+    }
+
+    public static String createSearchMovieUrl(String query) {
+        return Uri.parse(UriTerms.SEARCH_MOVIE_URL).buildUpon()
+                .appendQueryParameter(UriTerms.TMDB_API_KEY, BuildConfig.MOVIE_DP_API_KEY)
+                .appendQueryParameter(UriTerms.QUERY, query)
                 .build().toString();
     }
 
