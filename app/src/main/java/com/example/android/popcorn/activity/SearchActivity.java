@@ -31,7 +31,13 @@ public class SearchActivity extends AppCompatActivity {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
             Log.v(LOG_TAG, "Search query string: " + query);
+
+            searchMovie(query);
         }
+    }
+
+    private void searchMovie(String query) {
+
     }
 
 }

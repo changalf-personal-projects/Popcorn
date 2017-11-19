@@ -37,6 +37,7 @@ public class UriTerms {
     // Main urls.
     public static final String MOVIE_BASE_URL = "https://api.themoviedb.org/3/movie/";
     public static final String PERSON_BASE_URL = "https://api.themoviedb.org/3/person/";
+    public static final String SEARCH_MOVIE_URL = "https://api.themoviedb.org/3/search/movie";
     public static final String YOUTUBE_VIDEO_URL = "https://www.youtube.com/watch";
     public static final String YOUTUBE_THUMBNAIL_URL = "https://img.youtube.com/vi/";
     public static final String YOUTUBE_THUMBNAIL_HIGHRES = "mqdefault.jpg";

@@ -2,7 +2,6 @@ package com.example.android.popcorn;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.youtube.player.YouTubeBaseActivity;
@@ -57,7 +56,6 @@ public class YoutubePlayerActivity extends YouTubeBaseActivity implements YouTub
     }
 
     private List<String> getParcelableTrailerIds() {
-        Log.v(LOG_TAG, "Here in shittier method...");
         Intent intent = getIntent();
         List<String> trailerIds = intent.getStringArrayListExtra(Utilities.PARCELABLE_TRAILER_IDS_KEY);
         return trailerIds;
