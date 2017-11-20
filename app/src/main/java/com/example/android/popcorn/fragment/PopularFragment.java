@@ -41,7 +41,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.android.popcorn.fragment.parsing.DataSaver.saveMovieId;
 import static com.example.android.popcorn.model.MoviesSingleton.getSingletonMovies;
+import static com.example.android.popcorn.networking.JsonFetcher.fetchJsonDetails;
 import static com.example.android.popcorn.networking.UrlCreator.createImageUrl;
 import static com.example.android.popcorn.networking.UrlCreator.createUrl;
 import static com.example.android.popcorn.networking.UrlCreator.createUrlWithAppendedResponse;
@@ -90,7 +92,7 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
                     @Override
                     public void onResponse(String response) {
                         LoganIdTemplate movieLogan = MovieParser.parseJsonIdData(response);
-                        saveMovieId(movieLogan);
+                        useMovieIdToFetchDetails(movieLogan);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -100,28 +102,6 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
         });
 
         RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
-    }
-
-    private void fetchJsonDetails() {
-        for (int i = 0; i < mListOfMovies.size(); i++) {
-            String url = createUrl(mListOfMovies.get(i).getId());
-            final int index = i;
-            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            LoganDetailsTemplate movieLogan = MovieParser.parseJsonDetailsData(response);
-                            saveMovieDetails(movieLogan, index);
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Log.e(LOG_TAG, "Respone error (fetchJsonDetails): " + error);
-                }
-            });
-
-            RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
-        }
     }
 
     private void fetchJsonCast() {
@@ -203,13 +183,10 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
         }
     }
 
-    private void saveMovieId(LoganIdTemplate movieLogan) {
-        for (LoganIdTemplate.Results result: movieLogan.getResults()) {
-            Movie movie = new Movie();
-            movie.setId(result.getId());
-            mListOfMovies.add(movie);
-        }
-        fetchJsonDetails();
+    private void useMovieIdToFetchDetails(LoganIdTemplate movieLogan) {
+        saveMovieId(movieLogan);
+        fetchJsonDetails(getActivity());
+        attachAdapter();
         fetchJsonCast();
         fetchJsonReviews();
         fetchJsonTrailers();
@@ -233,21 +210,7 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
 
     // AttachAdapter method needs to be done after all required info has been saved to movie object.
     private void saveMovieDetails(LoganDetailsTemplate movieLogan, int index) {
-        Movie movie = mListOfMovies.get(index);
-
-        // Saving all info to a movie object.
-        for (LoganDetailsTemplate.Genre genre: movieLogan.getGenres()) {
-            movie.setGenres(genre.getName());
-        }
-        movie.setTitle(movieLogan.getTitle());
-        movie.setRuntime(movieLogan.getRuntime());
-        movie.setRating(movieLogan.getVoteAverage());
-        movie.setSynopsis(movieLogan.getSynopsis());
-        movie.setReleaseDate(movieLogan.getRelease());
-        movie.setPosterPath(createImageUrl(movieLogan.getPosterPath(), UriTerms.IMAGE_SIZE_W500));
-        movie.setDetailPosterPath(createImageUrl(movieLogan.getPosterPath(), UriTerms.IMAGE_SIZE_W342));
-        movie.setBackdropPath(createImageUrl(movieLogan.getBackdropPath(), UriTerms.POSTER_SIZE_ORIGINAL));
-
+        saveMovieDetails(movieLogan, index);
         attachAdapter();
     }
 
