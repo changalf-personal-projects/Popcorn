@@ -13,7 +13,7 @@ import android.util.Log;
 public class SearchQueryActivity extends AppCompatActivity {
 
     private final String LOG_TAG = SearchQueryActivity.class.getSimpleName();
-    private final String SEARCH_KEY = "search query";
+    protected static final String SEARCH_KEY = "query";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

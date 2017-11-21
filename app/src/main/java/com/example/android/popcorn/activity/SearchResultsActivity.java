@@ -29,6 +29,10 @@ public class SearchResultsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search_results_main);
         ButterKnife.bind(this);
         setSupportActionBar(mToolbar);
+
+        // Coupled the search key because it will always have to be identical to work.
+        String query = getIntent().getStringExtra(SearchQueryActivity.SEARCH_KEY);
+        searchForResultsWithQuery(query);
     }
 
     @Override
@@ -53,6 +57,10 @@ public class SearchResultsActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void searchForResultsWithQuery(String query) {
+
     }
 
 }
