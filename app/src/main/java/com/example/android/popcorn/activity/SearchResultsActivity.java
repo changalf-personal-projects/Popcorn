@@ -5,10 +5,14 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.android.popcorn.R;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by alfredchang on 2017-11-20.
@@ -16,10 +20,15 @@ import com.example.android.popcorn.R;
 
 public class SearchResultsActivity extends AppCompatActivity {
 
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_results_main);
+        ButterKnife.bind(this);
+        setSupportActionBar(mToolbar);
     }
 
     @Override
