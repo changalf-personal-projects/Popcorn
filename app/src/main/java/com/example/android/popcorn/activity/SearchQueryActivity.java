@@ -10,9 +10,9 @@ import android.util.Log;
  * Created by alfredchang on 2017-10-02.
  */
 
-public class SearchActivity extends AppCompatActivity {
+public class SearchQueryActivity extends AppCompatActivity {
 
-    private final String LOG_TAG = SearchActivity.class.getSimpleName();
+    private final String LOG_TAG = SearchQueryActivity.class.getSimpleName();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
