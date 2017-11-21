@@ -41,7 +41,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.example.android.popcorn.model.MoviesSingleton.getSingletonMovies;
+import static com.example.android.popcorn.model.singleton.PopularMoviesSingleton.getPopularMoviesSingleton;
 import static com.example.android.popcorn.networking.UrlCreator.createImageUrl;
 import static com.example.android.popcorn.networking.UrlCreator.createUrl;
 import static com.example.android.popcorn.networking.UrlCreator.createUrlWithAppendedResponse;
@@ -70,7 +70,7 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         ButterKnife.bind(this, rootView);
 
-        mListOfMovies = getSingletonMovies();
+        mListOfMovies = getPopularMoviesSingleton();
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), LAYOUT_COL_SPAN);
         mRecyclerView.setLayoutManager(layoutManager);
 
@@ -262,7 +262,7 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
     }
 
     private void attachAdapter() {
-        mRecyclerAdapter = new PosterRecyclerViewAdapter(getSingletonMovies(), this);
+        mRecyclerAdapter = new PosterRecyclerViewAdapter(getPopularMoviesSingleton(), this);
         mRecyclerView.setAdapter(mRecyclerAdapter);
         mProgressBar.setVisibility(View.GONE);
     }
