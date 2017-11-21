@@ -45,6 +45,9 @@
                 android:resource="@xml/searchable" />
         </activity>
         <activity
+            android:name=".activity.SearchResultsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".activity.IndividualCastDetailActivity"
             android:theme="@style/LargeTopImageAppTheme">
         </activity>
