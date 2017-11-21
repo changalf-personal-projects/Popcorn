@@ -198,7 +198,7 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
         for (LoganIdTemplate.Results result: movieLogan.getResults()) {
             Movie movie = new Movie();
             movie.setId(result.getId());
-            this.mListOfMovies.add(movie);
+            mListOfMovies.add(movie);
         }
 
         fetchJsonDetails();
