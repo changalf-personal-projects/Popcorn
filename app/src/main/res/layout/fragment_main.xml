@@ -9,13 +9,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.android.popcorn.MainActivity">
 
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        android:layout_width="@dimen/progress_bar_dims"
-        android:layout_height="@dimen/progress_bar_dims"
-        android:layout_marginTop="@dimen/progress_bar_top_margin"
-        android:visibility="visible"
-        android:layout_gravity="center_horizontal" />
+    <include layout="@layout/progress_bar" />
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
@@ -23,7 +17,7 @@
         android:id="@+id/pull_refresh_layout">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/search_results_recyclerview"
+            android:id="@+id/posters_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scrollbars="vertical" />

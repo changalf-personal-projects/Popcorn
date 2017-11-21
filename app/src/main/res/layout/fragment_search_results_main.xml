@@ -9,6 +9,8 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.android.popcorn.MainActivity">
 
+        <include layout="@layout/progress_bar" />
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/search_results_recyclerview"
             android:layout_width="match_parent"

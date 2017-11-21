@@ -61,7 +61,7 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
     private List<Integer> mListOfRefreshColours = new ArrayList<>();
 
     @BindView(R.id.progress_bar) ProgressBar mProgressBar;
-    @BindView(R.id.search_results_recyclerview) RecyclerView mRecyclerView;
+    @BindView(R.id.posters_recyclerview) RecyclerView mRecyclerView;
     @BindView(R.id.pull_refresh_layout) SwipeRefreshLayout mPullRefreshLayout;
 
     @Override
