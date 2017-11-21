@@ -32,11 +32,11 @@ public class SearchQueryActivity extends AppCompatActivity {
             String query = intent.getStringExtra(SearchManager.QUERY);
             Log.v(LOG_TAG, "Search query string: " + query);
 
-            searchMovie(query);
+            searchMovieInNewActivity(query);
         }
     }
 
-    private void searchMovie(String query) {
+    private void searchMovieInNewActivity(String query) {
 //        String url = createSearchMovieUrl(query);
 //        Log.v(LOG_TAG, "Url string: " + url);
 //
@@ -50,7 +50,7 @@ public class SearchQueryActivity extends AppCompatActivity {
 //                }, new Response.ErrorListener() {
 //            @Override
 //            public void onErrorResponse(VolleyError error) {
-//                Log.e(LOG_TAG, "Response error (searchMovie): " + error);
+//                Log.e(LOG_TAG, "Response error (searchMovieInNewActivity): " + error);
 //            }
 //        });
 //
