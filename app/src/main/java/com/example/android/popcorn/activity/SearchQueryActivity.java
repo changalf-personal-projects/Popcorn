@@ -13,6 +13,7 @@ import android.util.Log;
 public class SearchQueryActivity extends AppCompatActivity {
 
     private final String LOG_TAG = SearchQueryActivity.class.getSimpleName();
+    private final String SEARCH_KEY = "search query";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,24 +38,9 @@ public class SearchQueryActivity extends AppCompatActivity {
     }
 
     private void searchMovieInNewActivity(String query) {
-//        String url = createSearchMovieUrl(query);
-//        Log.v(LOG_TAG, "Url string: " + url);
-//
-//        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-//                new Response.Listener<String>() {
-//                    @Override
-//                    public void onResponse(String response) {
-//                        LoganIdTemplate movieLogan = MovieParser.parseJsonIdData(response);
-//                        saveMovieId(movieLogan);
-//                    }
-//                }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Log.e(LOG_TAG, "Response error (searchMovieInNewActivity): " + error);
-//            }
-//        });
-//
-//        RequestQueueSingleton.getSingletonInstance(this).addToRequestQueue(stringRequest);
+        Intent searchResultsIntent = new Intent(this, SearchResultsActivity.class);
+        searchResultsIntent.putExtra(SEARCH_KEY, query);
+        startActivity(searchResultsIntent);
     }
 
 }
