@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.example.android.popcorn.Utilities;
+
 /**
  * Created by alfredchang on 2017-10-02.
  */
@@ -13,14 +15,12 @@ import android.util.Log;
 public class SearchQueryActivity extends AppCompatActivity {
 
     private final String LOG_TAG = SearchQueryActivity.class.getSimpleName();
-    public static final String SEARCH_KEY = "query";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        handleIntent(getIntent());
-
         Log.v(LOG_TAG, "In search activity!");
+        handleIntent(getIntent());
     }
 
     @Override
@@ -39,7 +39,7 @@ public class SearchQueryActivity extends AppCompatActivity {
 
     private void searchMovieInNewActivity(String query) {
         Intent searchResultsIntent = new Intent(this, SearchResultsActivity.class);
-        searchResultsIntent.putExtra(SEARCH_KEY, query);
+        searchResultsIntent.putExtra(Utilities.SEARCH_KEY, query);
         startActivity(searchResultsIntent);
     }
 

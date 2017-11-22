@@ -28,6 +28,7 @@ public class Utilities {
     public static final String PARCELABLE_TRAILER_KEY = "trailers";
     public static final String PARCELABLE_TRAILER_IDS_KEY = "trailer ids";
 
+    public static final String SEARCH_KEY = "query";
     private static final String NOT_AVAILABLE = "N/A";
 
     public static double roundToNearestTenth(String rating) {
@@ -84,6 +85,10 @@ public class Utilities {
         }
 
         return formattedDate;
+    }
+
+    public static boolean isNotNull(String param) {
+        return param != null;
     }
 
     public static boolean canReceiveImplicitIntent(Context context, Intent intent) {

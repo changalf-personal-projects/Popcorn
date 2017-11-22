@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.android.popcorn.R;
+import com.example.android.popcorn.Utilities;
 import com.example.android.popcorn.fragment.SearchResultsFragment;
 
 import butterknife.BindView;
@@ -45,14 +46,16 @@ public class SearchResultsActivity extends AppCompatActivity {
         String query = getQueryFromIntent();
         Fragment searchResultsFragment = new SearchResultsFragment();
         Bundle bundle = new Bundle();
+
         // Coupled the search key because it will always have to be identical to work.
-        bundle.putString(SearchQueryActivity.SEARCH_KEY, query);
+        bundle.putString(Utilities.SEARCH_KEY, query);
         searchResultsFragment.setArguments(bundle);
+
         return searchResultsFragment;
     }
 
     private String getQueryFromIntent() {
-        return getIntent().getStringExtra(SearchQueryActivity.SEARCH_KEY);
+        return getIntent().getStringExtra(Utilities.SEARCH_KEY);
     }
 
     @Override
@@ -68,7 +71,7 @@ public class SearchResultsActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                resetSearch(query);
+                startSearch(query);
                 return true;
             }
 
@@ -93,9 +96,9 @@ public class SearchResultsActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void resetSearch(String query) {
+    private void startSearch(String query) {
         Intent searchIntent = new Intent(this, SearchResultsActivity.class);
-        searchIntent.putExtra(SearchQueryActivity.SEARCH_KEY, query);
+        searchIntent.putExtra(Utilities.SEARCH_KEY, query);
         startActivity(searchIntent);
     }
 

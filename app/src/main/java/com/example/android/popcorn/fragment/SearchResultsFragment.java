@@ -18,7 +18,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.Utilities;
 import com.example.android.popcorn.activity.DetailActivity;
-import com.example.android.popcorn.activity.SearchQueryActivity;
 import com.example.android.popcorn.fragment.parsing.LoganCastTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganDetailsTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganIdTemplate;
@@ -79,7 +78,7 @@ public class SearchResultsFragment extends Fragment implements OnMovieClickListe
     }
 
     private String getSearchQueryFromBundle() {
-        return getArguments().getString(SearchQueryActivity.SEARCH_KEY);
+        return getArguments().getString(Utilities.SEARCH_KEY);
     }
 
     private void fetchJsonMovies(String query) {

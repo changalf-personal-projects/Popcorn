@@ -4,11 +4,15 @@ import android.net.Uri;
 
 import com.example.android.popcorn.BuildConfig;
 
+import static com.example.android.popcorn.Utilities.isNotNull;
+
 /**
  * Created by alfredchang on 2017-09-26.
  */
 
 public class UrlCreator {
+
+    private static final String LOG_TAG = UrlCreator.class.getSimpleName();
 
     // Request for movie details.
     public static String createUrl(String query) {
@@ -21,7 +25,11 @@ public class UrlCreator {
     }
 
     public static String createImageUrl(String path, String size) {
-        return UriTerms.POSTER_BASE_URL.concat(size).concat(path);
+        String url = "";
+        if (isNotNull(path)) {
+            url = UriTerms.POSTER_BASE_URL.concat(size).concat(path);
+        }
+        return url;
     }
 
     public static String createUrlWithAppendedResponse(String id, String parameterToAppend) {

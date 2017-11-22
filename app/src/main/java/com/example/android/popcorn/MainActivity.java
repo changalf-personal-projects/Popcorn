@@ -2,6 +2,7 @@ package com.example.android.popcorn;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -11,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.android.popcorn.activity.SearchResultsActivity;
 import com.example.android.popcorn.fragment.CurrentFragment;
 import com.example.android.popcorn.fragment.FavouriteFragment;
 import com.example.android.popcorn.fragment.PopularFragment;
@@ -48,6 +50,12 @@ public class MainActivity extends AppCompatActivity {
 //        });
     }
 
+    private void startSearch(String query) {
+        Intent searchIntent = new Intent(this, SearchResultsActivity.class);
+        searchIntent.putExtra(Utilities.SEARCH_KEY, query);
+        startActivity(searchIntent);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -57,6 +65,18 @@ public class MainActivity extends AppCompatActivity {
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView = (SearchView) menu.findItem(R.id.search_icon).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                startSearch(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
 
         return super.onCreateOptionsMenu(menu);
     }
