@@ -28,6 +28,8 @@ public class Utilities {
     public static final String PARCELABLE_TRAILER_KEY = "trailers";
     public static final String PARCELABLE_TRAILER_IDS_KEY = "trailer ids";
 
+    public static final String MAIN_ACTIVITY_PARENT = "main activity";
+    public static final String SEARCH_ACTIVITY_PARENT = "search results activity";
     public static final String PARENT_ACTIVITY = "parent activity";
     public static final String SEARCH_KEY = "query";
     private static final String NOT_AVAILABLE = "N/A";

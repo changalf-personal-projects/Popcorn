@@ -1,7 +1,5 @@
 package com.example.android.popcorn.activity;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
@@ -10,7 +8,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -46,7 +43,6 @@ public class DetailActivity extends AppCompatActivity {
     private final int BACKDROP_CROSSFADE_TIME = 300;
     private final int POSTER_CROSSFADE_TIME = 500;
     private final String SAVED_MOVIE = "Saved to favourites!";
-    private final String MAIN_ACTIVITY_PARENT = "Main activity";
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -113,12 +109,7 @@ public class DetailActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) menu.findItem(R.id.search_icon).getActionView();
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-
+        getMenuInflater().inflate(R.menu.menu_detail, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -147,7 +138,7 @@ public class DetailActivity extends AppCompatActivity {
         Intent lastParentIntent;
         String parentName = getParentName();
 
-        if (parentName == MAIN_ACTIVITY_PARENT) {
+        if (parentName == Utilities.MAIN_ACTIVITY_PARENT) {
             lastParentIntent = new Intent(this, MainActivity.class);
         } else {
             lastParentIntent = new Intent(this, SearchResultsActivity.class);

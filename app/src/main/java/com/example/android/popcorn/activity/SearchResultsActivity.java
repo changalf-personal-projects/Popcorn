@@ -33,6 +33,8 @@ public class SearchResultsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search_results_main);
         ButterKnife.bind(this);
         setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         Fragment searchResultsFragment = saveQueryToBundle();
 
@@ -99,6 +101,7 @@ public class SearchResultsActivity extends AppCompatActivity {
     private void startSearch(String query) {
         Intent searchIntent = new Intent(this, SearchResultsActivity.class);
         searchIntent.putExtra(Utilities.SEARCH_KEY, query);
+        searchIntent.putExtra(Utilities.PARENT_ACTIVITY, Utilities.SEARCH_ACTIVITY_PARENT);
         startActivity(searchIntent);
     }
 

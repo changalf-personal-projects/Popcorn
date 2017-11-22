@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     private void startSearch(String query) {
         Intent searchIntent = new Intent(this, SearchResultsActivity.class);
         searchIntent.putExtra(Utilities.SEARCH_KEY, query);
+        searchIntent.putExtra(Utilities.PARENT_ACTIVITY, Utilities.MAIN_ACTIVITY_PARENT);
         startActivity(searchIntent);
     }
 
