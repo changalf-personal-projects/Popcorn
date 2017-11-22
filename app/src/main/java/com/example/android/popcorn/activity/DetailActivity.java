@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android.popcorn.MainActivity;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.Utilities;
 import com.example.android.popcorn.fragment.CastFragment;
@@ -32,6 +33,7 @@ import com.example.android.popcorn.ui.ViewPopulator;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.android.popcorn.Utilities.PARENT_ACTIVITY;
 import static com.example.android.popcorn.ui.ToolbarTitleDisplay.displayTitleUponCollapse;
 
 /**
@@ -44,6 +46,7 @@ public class DetailActivity extends AppCompatActivity {
     private final int BACKDROP_CROSSFADE_TIME = 300;
     private final int POSTER_CROSSFADE_TIME = 500;
     private final String SAVED_MOVIE = "Saved to favourites!";
+    private final String MAIN_ACTIVITY_PARENT = "Main activity";
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -132,16 +135,30 @@ public class DetailActivity extends AppCompatActivity {
 
     @Override
     public Intent getParentActivityIntent() {
-        return null;
+        return getLastParentActivityIntent();
     }
 
     @Override
     public Intent getSupportParentActivityIntent() {
-        return null;
+        return getLastParentActivityIntent();
     }
 
     private Intent getLastParentActivityIntent() {
-        return null;
+        Intent lastParentIntent;
+        String parentName = getParentName();
+
+        if (parentName == MAIN_ACTIVITY_PARENT) {
+            lastParentIntent = new Intent(this, MainActivity.class);
+        } else {
+            lastParentIntent = new Intent(this, SearchResultsActivity.class);
+        }
+        lastParentIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+        return lastParentIntent;
+    }
+
+    private String getParentName() {
+        return getIntent().getStringExtra(PARENT_ACTIVITY);
     }
 
     private Movie getParcelableMovieDetails() {
