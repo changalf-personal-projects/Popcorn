@@ -27,10 +27,8 @@ import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.model.Review;
 import com.example.android.popcorn.model.Trailer;
 import com.example.android.popcorn.networking.RequestQueueSingleton;
-import com.example.android.popcorn.ui.cast_recyclerview.CastRecyclerViewAdapter;
 import com.example.android.popcorn.ui.cast_recyclerview.OnCastMemberClickListener;
 import com.example.android.popcorn.ui.review_recyclerview.OnReviewClickListener;
-import com.example.android.popcorn.ui.review_recyclerview.ReviewRecyclerViewAdapter;
 import com.example.android.popcorn.ui.trailer_recyclerview.OnTrailerClickListener;
 import com.example.android.popcorn.ui.trailer_recyclerview.TrailerRecyclerViewAdapter;
 
@@ -57,19 +55,11 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     private static final String EMPTY_STRING = "";
     public static final String NO_REVIEWS_MESSAGE = "No reviews posted yet.";
 
-    private CastRecyclerViewAdapter mCastRecyclerAdapter;
-    private ReviewRecyclerViewAdapter mReviewRecyclerAdapter;
     private TrailerRecyclerViewAdapter mTrailerRecyclerAdapter;
     private Movie movie;
 
     @BindView(R.id.synopsis)
     TextView mSynopsis;
-//    @BindView(R.id.favourite_button)
-//    ImageButton mFavouriteButton;
-//    @BindView(R.id.cast_recycler_view)
-//    RecyclerView mCastRecyclerView;
-//    @BindView(R.id.review_recycler_view)
-//    RecyclerView mReviewRecyclerView;
     @BindView(R.id.trailer_recycler_view)
     RecyclerView mTrailerRecyclerView;
 

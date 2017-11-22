@@ -130,6 +130,20 @@ public class DetailActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(menuItem);
     }
 
+    @Override
+    public Intent getParentActivityIntent() {
+        return null;
+    }
+
+    @Override
+    public Intent getSupportParentActivityIntent() {
+        return null;
+    }
+
+    private Intent getLastParentActivityIntent() {
+        return null;
+    }
+
     private Movie getParcelableMovieDetails() {
         Intent intent = getIntent();
         return intent.getParcelableExtra(Utilities.PARCELABLE_MOVIE_KEY);
