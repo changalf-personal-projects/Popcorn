@@ -68,6 +68,7 @@ public class SearchResultsFragment extends Fragment implements OnMovieClickListe
         ButterKnife.bind(this, rootView);
 
         mListOfMovies = getSearchedMoviesSingleton();
+        mListOfMovies.clear();
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), LAYOUT_COL_SPAN);
         mRecyclerView.setLayoutManager(layoutManager);
 
@@ -261,7 +262,7 @@ public class SearchResultsFragment extends Fragment implements OnMovieClickListe
     }
 
     private void attachAdapter() {
-        mRecyclerAdapter = new PosterRecyclerViewAdapter(getSearchedMoviesSingleton(), this);
+        mRecyclerAdapter = new PosterRecyclerViewAdapter(mListOfMovies, this);
         mRecyclerView.setAdapter(mRecyclerAdapter);
         mProgressBar.setVisibility(View.GONE);
     }
