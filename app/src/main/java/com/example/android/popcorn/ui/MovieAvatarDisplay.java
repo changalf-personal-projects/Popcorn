@@ -11,7 +11,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * collapses.
  */
 
-public class ToolbarTitleDisplay extends CoordinatorLayout.Behavior<CircleImageView> {
+public class MovieAvatarDisplay extends CoordinatorLayout.Behavior<CircleImageView> {
 
     private final int X_POS = 20;
     private final int Y_POS = 20;
