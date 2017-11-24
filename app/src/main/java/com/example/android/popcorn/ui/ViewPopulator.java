@@ -87,6 +87,15 @@ public class ViewPopulator {
                 .into(view);
     }
 
+    // Overloaded method 4: Populate an imageview without crossfade.
+    public static void populateImageViewNoCrossfade(Context context, String imagePath, ImageView view) {
+        if (imagePath != null) {
+            GlideApp.with(context).load(imagePath)
+                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                    .into(view);
+        }
+    }
+
     public static void populateCenterCropImageView(Context context, String imagePath, int crossfadeTime,
                                                    ImageView view) {
         GlideApp.with(context).load(imagePath)

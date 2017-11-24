@@ -29,9 +29,9 @@ import com.example.android.popcorn.ui.ViewPopulator;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 import static com.example.android.popcorn.Utilities.PARENT_ACTIVITY;
-import static com.example.android.popcorn.ui.ToolbarTitleDisplay.displayTitleUponCollapse;
 
 /**
  * Created by alfredchang on 2017-09-27.
@@ -64,6 +64,8 @@ public class DetailActivity extends AppCompatActivity {
     ImageView tmdbBranding;
     @BindView(R.id.favourite_fab)
     FloatingActionButton favouriteButton;
+    @BindView(R.id.avatar_poster)
+    CircleImageView moviePosterAvatar;
 
     // Movie info.
     @BindView(R.id.title)
@@ -93,7 +95,6 @@ public class DetailActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        displayTitleUponCollapse(mAppBarLayout, mCollapsingToolbarLayout);
         initFab();
     }
 
@@ -162,6 +163,7 @@ public class DetailActivity extends AppCompatActivity {
                 mBackdrop);
         ViewPopulator.populateImageView(this, movie.getPosterPath(), POSTER_CROSSFADE_TIME, mPoster, mPosterBackground,
                 mCollapsingToolbarLayout, mTitle, mRating, mRuntime, mRelease, mGenres, mTabLayout, tmdbBranding, favouriteButton);
+        ViewPopulator.populateImageViewNoCrossfade(this, movie.getPosterPath(), moviePosterAvatar);
         ViewPopulator.populateTextView(movie.getTitle(), mTitle);
         ViewPopulator.populateRatingTextView(this, movie.getRating(), mRating);
         ViewPopulator.populateRuntimeTextView(this, movie.getRuntime(), mRuntime);
