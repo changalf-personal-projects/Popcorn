@@ -8,11 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.model.Cast;
-import com.example.android.popcorn.ui.GlideApp;
+import com.example.android.popcorn.ui.ViewPopulator;
 
 import java.util.List;
 
@@ -65,10 +63,7 @@ public class CastRecyclerViewAdapter extends RecyclerView.Adapter<CastRecyclerVi
 
     private void onBindProfilePicture(Cast cast, CastViewHolder holder) {
         if (cast.getProfilePath() != null) {
-            GlideApp.with(mContext).load(cast.getProfilePath())
-                    .transition(DrawableTransitionOptions.withCrossFade(CROSSFADE_TIME))
-                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                    .into(holder.mProfilePicture);
+            ViewPopulator.populateImageViewNoCrossfade(mContext, cast.getProfilePath(), holder.mProfilePicture);
         }
     }
 

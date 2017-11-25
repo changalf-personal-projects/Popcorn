@@ -7,7 +7,7 @@
     android:layout_marginStart="@dimen/detail_cast_member_left_margin"
     android:layout_marginBottom="@dimen/detail_cast_member_bottom_margin">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/cast_member_image"
