@@ -18,17 +18,12 @@ import com.android.volley.toolbox.StringRequest;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.Utilities;
 import com.example.android.popcorn.YoutubePlayerActivity;
-import com.example.android.popcorn.activity.IndividualCastDetailActivity;
-import com.example.android.popcorn.activity.IndividualReviewActivity;
 import com.example.android.popcorn.fragment.parsing.LoganCastMemberDetailTemplate;
 import com.example.android.popcorn.fragment.parsing.MovieParser;
 import com.example.android.popcorn.model.Cast;
 import com.example.android.popcorn.model.Movie;
-import com.example.android.popcorn.model.Review;
 import com.example.android.popcorn.model.Trailer;
 import com.example.android.popcorn.networking.RequestQueueSingleton;
-import com.example.android.popcorn.ui.cast_recyclerview.OnCastMemberClickListener;
-import com.example.android.popcorn.ui.review_recyclerview.OnReviewClickListener;
 import com.example.android.popcorn.ui.trailer_recyclerview.OnTrailerClickListener;
 import com.example.android.popcorn.ui.trailer_recyclerview.TrailerRecyclerViewAdapter;
 
@@ -45,7 +40,7 @@ import static com.example.android.popcorn.ui.ViewPopulator.populateTextView;
  * Created by alfredchang on 2017-09-27.
  */
 
-public class DetailFragment extends Fragment implements OnCastMemberClickListener, OnReviewClickListener, OnTrailerClickListener {
+public class DetailFragment extends Fragment implements OnTrailerClickListener {
 
     private final String LOG_TAG = DetailFragment.class.getSimpleName();
     // Must pass a value to ViewPopulator.populateImageView(...), but don't want any crossfade time.
@@ -56,7 +51,7 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     public static final String NO_REVIEWS_MESSAGE = "No reviews posted yet.";
 
     private TrailerRecyclerViewAdapter mTrailerRecyclerAdapter;
-    private Movie movie;
+    private Movie mMovie;
 
     @BindView(R.id.synopsis)
     TextView mSynopsis;
@@ -73,10 +68,10 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
 //        setupReviewRecyclerView();
         setupTrailerRecyclerView();
 
-        movie = getParcelableMovie();
+        mMovie = getParcelableMovie();
 
-        setParcelableDetailsIntoViews(movie);
-        fetchJsonCastMemberDetails(movie);
+        setParcelableDetailsIntoViews(mMovie);
+        fetchJsonCastMemberDetails(mMovie);
         onClickFavouriteButton();
 
         return rootView;
@@ -101,13 +96,13 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
         mTrailerRecyclerView.setLayoutManager(layoutManager);
     }
 
-//    private void attachToCastAdapter(Movie movie) {
-//        mCastRecyclerAdapter = new CastRecyclerViewAdapter(getActivity(), movie.getCast(), this);
+//    private void attachToCastAdapter(Movie mMovie) {
+//        mCastRecyclerAdapter = new CastRecyclerViewAdapter(getActivity(), mMovie.getCast(), this);
 //        mCastRecyclerView.setAdapter(mCastRecyclerAdapter);
 //    }
 
-//    private void attachToReviewAdapter(Movie movie) {
-//        List<Review> reviews = movie.getReviews();
+//    private void attachToReviewAdapter(Movie mMovie) {
+//        List<Review> reviews = mMovie.getReviews();
 //
 //        // Hacky way of printing message indicating no reviews posted yet.  Better solution is
 //        // to switch layouts.  Doesn't always seem to work.
@@ -129,29 +124,29 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     }
 
     // Display cast member details in a separate fragment.
-    @Override
-    public void onClick(Cast castMember) {
-        Intent singleCastMemberDetailsIntent = new Intent(getActivity(), IndividualCastDetailActivity.class);
-        singleCastMemberDetailsIntent.putExtra(Utilities.PARCELABLE_CAST_MEMBER_KEY, castMember);
-        startActivity(singleCastMemberDetailsIntent);
-    }
-
-    // Display individual review in a separate fragment.
-    @Override
-    public void onClick(Review review) {
-        Movie movie = getParcelableMovie();
-        Intent readReviewIntent = new Intent(getActivity(), IndividualReviewActivity.class);
-        readReviewIntent.putExtra(Utilities.PARCELABLE_MOVIE_KEY, movie);
-        readReviewIntent.putExtra(Utilities.PARCELABLE_REVIEW_KEY, review);
-        startActivity(readReviewIntent);
-    }
+//    @Override
+//    public void onClick(Cast castMember) {
+//        Intent singleCastMemberDetailsIntent = new Intent(getActivity(), IndividualCastDetailActivity.class);
+//        singleCastMemberDetailsIntent.putExtra(Utilities.PARCELABLE_CAST_MEMBER_KEY, castMember);
+//        startActivity(singleCastMemberDetailsIntent);
+//    }
+//
+//    // Display individual review in a separate fragment.
+//    @Override
+//    public void onClick(Review review) {
+//        Movie movie = getParcelableMovie();
+//        Intent readReviewIntent = new Intent(getActivity(), IndividualReviewActivity.class);
+//        readReviewIntent.putExtra(Utilities.PARCELABLE_MOVIE_KEY, movie);
+//        readReviewIntent.putExtra(Utilities.PARCELABLE_REVIEW_KEY, review);
+//        startActivity(readReviewIntent);
+//    }
 
     // Play trailer in a different app.
     @Override
     public void onClick(Trailer trailer) {
         Intent playerTrailerIntent = new Intent(getActivity(), YoutubePlayerActivity.class);
         playerTrailerIntent.putExtra(Utilities.PARCELABLE_TRAILER_KEY, trailer);
-        playerTrailerIntent.putStringArrayListExtra(Utilities.PARCELABLE_TRAILER_IDS_KEY, (ArrayList<String>) movie.getTrailerIds());
+        playerTrailerIntent.putStringArrayListExtra(Utilities.PARCELABLE_TRAILER_IDS_KEY, (ArrayList<String>) mMovie.getTrailerIds());
         startActivity(playerTrailerIntent);
     }
 
@@ -211,8 +206,8 @@ public class DetailFragment extends Fragment implements OnCastMemberClickListene
     private void setParcelableDetailsIntoViews(Movie movie) {
         populateTextView(movie.getSynopsis(), mSynopsis);
 
-//        attachToCastAdapter(movie);
-//        attachToReviewAdapter(movie);
+//        attachToCastAdapter(mMovie);
+//        attachToReviewAdapter(mMovie);
         attachToTrailerAdapter(movie);
     }
 }
