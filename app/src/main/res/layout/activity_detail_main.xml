@@ -26,19 +26,20 @@
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fitsSystemWindows="true"
-                app:layout_collapseMode="parallax">
+                android:fitsSystemWindows="true">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    app:layout_collapseMode="parallax">
 
                     <ImageView
                         android:id="@+id/backdrop_poster"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/backdrop_height"
-                        android:fitsSystemWindows="true" />
+                        android:fitsSystemWindows="true"
+                        app:layout_collapseMode="parallax" />
 
                     <ImageView
                         android:id="@+id/poster_background"
@@ -166,11 +167,6 @@
             app:layout_anchorGravity="bottom" />
 
     </android.support.design.widget.AppBarLayout>
-
-    <!--<de.hdodenhof.circleimageview.CircleImageView-->
-        <!--android:layout_width="40dp"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:id="@+id/avatar_poster" />-->
 
     <android.support.v4.view.ViewPager
         android:layout_width="match_parent"
