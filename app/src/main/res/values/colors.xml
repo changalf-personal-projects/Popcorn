@@ -10,7 +10,7 @@
     <color name="black">#000000</color>
     <color name="light_grey">#D1D1D1</color>
     <color name="image_border_color">#FF0000</color>
-    <color name="detail_font_color">#CCCCCC</color>
+    <color name="detail_font_color">#BDBDBD</color>
 
     <!-- Colors for debugging background. -->
     <color name="blueTest">#1F618D</color>

@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/cast_member_name"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:layout_marginTop="@dimen/detail_cast_name_top_margin"
         android:layout_gravity="center" />
 
