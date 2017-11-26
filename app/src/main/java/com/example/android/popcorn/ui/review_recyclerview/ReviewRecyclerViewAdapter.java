@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.android.popcorn.R;
-import com.example.android.popcorn.fragment.DetailFragment;
+import com.example.android.popcorn.fragment.ReviewFragment;
 import com.example.android.popcorn.model.Review;
 
 import java.util.List;
@@ -64,7 +64,7 @@ public class ReviewRecyclerViewAdapter extends RecyclerView.Adapter<ReviewRecycl
     }
 
     private void onBindContent(Review review, ReviewViewHolder holder) {
-        if (review.getContent().equals(DetailFragment.NO_REVIEWS_MESSAGE)) {
+        if (review.getContent().equals(ReviewFragment.NO_REVIEWS_MESSAGE)) {
             holder.mContent.setGravity(Gravity.CENTER);
         }
         holder.mContent.setText(review.getContent());

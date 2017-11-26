@@ -43,10 +43,6 @@ import static com.example.android.popcorn.ui.ViewPopulator.populateTextView;
 public class DetailFragment extends Fragment implements OnTrailerClickListener {
 
     private final String LOG_TAG = DetailFragment.class.getSimpleName();
-    // Must pass a value to ViewPopulator.populateImageView(...), but don't want any crossfade time.
-    private final int EMPTY = 0;
-    private static final String EMPTY_STRING = "";
-    public static final String NO_REVIEWS_MESSAGE = "No reviews posted yet.";
 
     private TrailerRecyclerViewAdapter mTrailerRecyclerAdapter;
     private Movie mMovie;
@@ -77,23 +73,6 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener {
                 LinearLayoutManager.HORIZONTAL, false);
         mTrailerRecyclerView.setLayoutManager(layoutManager);
     }
-
-//    private void attachToReviewAdapter(Movie mMovie) {
-//        List<Review> reviews = mMovie.getReviews();
-//
-//        // Hacky way of printing message indicating no reviews posted yet.  Better solution is
-//        // to switch layouts.  Doesn't always seem to work.
-//        if (reviews.size() == EMPTY) {
-//            Review emptyReview = new Review();
-//            emptyReview.setAuthor(EMPTY_STRING);
-//            // This string will be used to signal onBindViewHolder() that there are no reviews yet.
-//            emptyReview.setContent(NO_REVIEWS_MESSAGE);
-//            reviews.add(emptyReview);
-//        }
-//
-//        mReviewRecyclerAdapter = new ReviewRecyclerViewAdapter(getActivity(), reviews, this);
-////        mReviewRecyclerView.setAdapter(mReviewRecyclerAdapter);
-//    }
 
     private void attachToTrailerAdapter(Movie movie) {
         mTrailerRecyclerAdapter = new TrailerRecyclerViewAdapter(getActivity(), movie.getTrailers(), this);

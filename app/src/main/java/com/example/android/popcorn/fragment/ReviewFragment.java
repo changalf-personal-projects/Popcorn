@@ -17,6 +17,8 @@ import com.example.android.popcorn.model.Review;
 import com.example.android.popcorn.ui.review_recyclerview.OnReviewClickListener;
 import com.example.android.popcorn.ui.review_recyclerview.ReviewRecyclerViewAdapter;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -25,6 +27,10 @@ import butterknife.ButterKnife;
  */
 
 public class ReviewFragment extends Fragment implements OnReviewClickListener {
+
+    public static final String NO_REVIEWS_MESSAGE = "No reviews posted yet.";
+    private final int EMPTY = 0;
+    private static final String EMPTY_STRING = "";
 
     private Movie mMovie;
     private ReviewRecyclerViewAdapter mReviewRecyclerAdapter;
@@ -40,7 +46,7 @@ public class ReviewFragment extends Fragment implements OnReviewClickListener {
 
         getParcelableMovie();
         setupReviewRecyclerView();
-        attachReviewsAdapter();
+        attachToReviewsAdapter();
 
         return rootView;
     }
@@ -57,7 +63,17 @@ public class ReviewFragment extends Fragment implements OnReviewClickListener {
         mMovie = movieIntent.getParcelableExtra(Utilities.PARCELABLE_MOVIE_KEY);
     }
 
-    private void attachReviewsAdapter() {
+    private void attachToReviewsAdapter() {
+        List<Review> reviews = mMovie.getReviews();
+
+        if (reviews.size() == EMPTY) {
+            Review emptyReview = new Review();
+            emptyReview.setAuthor(EMPTY_STRING);
+            // This string will be used to signal onBindViewHolder() that there are no reviews yet.
+            emptyReview.setContent(NO_REVIEWS_MESSAGE);
+            reviews.add(emptyReview);
+        }
+
         mReviewRecyclerAdapter = new ReviewRecyclerViewAdapter(getActivity(), mMovie.getReviews(), this);
         mReviewRecyclerView.setAdapter(mReviewRecyclerAdapter);
     }
