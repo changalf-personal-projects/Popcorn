@@ -35,6 +35,7 @@
     <dimen name="detail_cast_member_top_margin">10dp</dimen>
     <dimen name="detail_cast_member_bottom_margin">12dp</dimen>
     <dimen name="detail_cast_name_top_margin">10dp</dimen>
+    <dimen name="detail_cast_name_left_margin">10dp</dimen>
     <dimen name="detail_synopsis_top_margin">26dp</dimen>
     <dimen name="detail_synopsis_left_and_right_margin">22dp</dimen>
     <dimen name="detail_synopsis_bottom_margin">18dp</dimen>
