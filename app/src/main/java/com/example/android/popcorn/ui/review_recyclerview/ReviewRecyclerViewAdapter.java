@@ -77,9 +77,7 @@ public class ReviewRecyclerViewAdapter extends RecyclerView.Adapter<ReviewRecycl
 
     public class ReviewViewHolder extends ViewHolder implements View.OnClickListener {
 
-//        @Nullable
         @BindView(R.id.author) TextView mAuthor;
-//        @Nullable
         @BindView(R.id.content) TextView mContent;
 
         public ReviewViewHolder(View itemView) {
