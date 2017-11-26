@@ -44,8 +44,6 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener {
 
     private final String LOG_TAG = DetailFragment.class.getSimpleName();
     // Must pass a value to ViewPopulator.populateImageView(...), but don't want any crossfade time.
-    private final int BACKDROP_CROSSFADE_TIME = 0;
-    private final int POSTER_CROSSFADE_TIME = 700;
     private final int EMPTY = 0;
     private static final String EMPTY_STRING = "";
     public static final String NO_REVIEWS_MESSAGE = "No reviews posted yet.";
@@ -64,11 +62,8 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener {
         View rootView = inflater.inflate(R.layout.fragment_detail_main, container, false);
         ButterKnife.bind(this, rootView);
 
-//        setupCastRecyclerView();
-//        setupReviewRecyclerView();
         setupTrailerRecyclerView();
-
-        mMovie = getParcelableMovie();
+        getParcelableMovie();
 
         setParcelableDetailsIntoViews(mMovie);
         fetchJsonCastMemberDetails(mMovie);
@@ -77,29 +72,11 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener {
         return rootView;
     }
 
-//    private void setupCastRecyclerView() {
-//        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),
-//                LinearLayoutManager.HORIZONTAL, false);
-//        mCastRecyclerView.setLayoutManager(layoutManager);
-//    }
-
-//    private void setupReviewRecyclerView() {
-//        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),
-//                LinearLayoutManager.VERTICAL, false);
-//        mReviewRecyclerView.setNestedScrollingEnabled(false);
-//        mReviewRecyclerView.setLayoutManager(layoutManager);
-//    }
-
     private void setupTrailerRecyclerView() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),
                 LinearLayoutManager.HORIZONTAL, false);
         mTrailerRecyclerView.setLayoutManager(layoutManager);
     }
-
-//    private void attachToCastAdapter(Movie mMovie) {
-//        mCastRecyclerAdapter = new CastRecyclerViewAdapter(getActivity(), mMovie.getCast(), this);
-//        mCastRecyclerView.setAdapter(mCastRecyclerAdapter);
-//    }
 
 //    private void attachToReviewAdapter(Movie mMovie) {
 //        List<Review> reviews = mMovie.getReviews();
@@ -123,25 +100,6 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener {
         mTrailerRecyclerView.setAdapter(mTrailerRecyclerAdapter);
     }
 
-    // Display cast member details in a separate fragment.
-//    @Override
-//    public void onClick(Cast castMember) {
-//        Intent singleCastMemberDetailsIntent = new Intent(getActivity(), IndividualCastDetailActivity.class);
-//        singleCastMemberDetailsIntent.putExtra(Utilities.PARCELABLE_CAST_MEMBER_KEY, castMember);
-//        startActivity(singleCastMemberDetailsIntent);
-//    }
-//
-//    // Display individual review in a separate fragment.
-//    @Override
-//    public void onClick(Review review) {
-//        Movie movie = getParcelableMovie();
-//        Intent readReviewIntent = new Intent(getActivity(), IndividualReviewActivity.class);
-//        readReviewIntent.putExtra(Utilities.PARCELABLE_MOVIE_KEY, movie);
-//        readReviewIntent.putExtra(Utilities.PARCELABLE_REVIEW_KEY, review);
-//        startActivity(readReviewIntent);
-//    }
-
-    // Play trailer in a different app.
     @Override
     public void onClick(Trailer trailer) {
         Intent playerTrailerIntent = new Intent(getActivity(), YoutubePlayerActivity.class);
@@ -197,17 +155,13 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener {
         castMember.setBirthplace(castMemberLogan.getBirthPlace());
     }
 
-    private Movie getParcelableMovie() {
+    private void getParcelableMovie() {
         Intent movieIntent = getActivity().getIntent();
-        Movie movie = movieIntent.getParcelableExtra(Utilities.PARCELABLE_MOVIE_KEY);
-        return movie;
+        mMovie = movieIntent.getParcelableExtra(Utilities.PARCELABLE_MOVIE_KEY);
     }
 
     private void setParcelableDetailsIntoViews(Movie movie) {
         populateTextView(movie.getSynopsis(), mSynopsis);
-
-//        attachToCastAdapter(mMovie);
-//        attachToReviewAdapter(mMovie);
         attachToTrailerAdapter(movie);
     }
 }
