@@ -24,7 +24,6 @@ import butterknife.ButterKnife;
 public class CastRecyclerViewAdapter extends RecyclerView.Adapter<CastRecyclerViewAdapter.CastViewHolder> {
 
     private final String LOG_TAG = CastRecyclerViewAdapter.class.getSimpleName();
-    private final int CROSSFADE_TIME = 250;
 
     private Context mContext;
     private List<Cast> mCast;
