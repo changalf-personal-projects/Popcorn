@@ -38,17 +38,16 @@ public class CastFragment extends Fragment implements OnCastMemberClickListener 
         View rootView = inflater.inflate(R.layout.fragment_cast_main, container, false);
         ButterKnife.bind(this, rootView);
 
-        mMovie = getParcelableMovie();
+        getParcelableMovie();
         setupCastRecyclerView();
         attachToCastAdapter();
 
         return rootView;
     }
 
-    private Movie getParcelableMovie() {
+    private void getParcelableMovie() {
         Intent movieIntent = getActivity().getIntent();
-        Movie movie = movieIntent.getParcelableExtra(Utilities.PARCELABLE_MOVIE_KEY);
-        return movie;
+        mMovie = movieIntent.getParcelableExtra(Utilities.PARCELABLE_MOVIE_KEY);
     }
 
     private void setupCastRecyclerView() {
