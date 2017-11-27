@@ -44,8 +44,9 @@
     <dimen name="detail_synopsis_bottom_margin">18dp</dimen>
     <dimen name="detail_review_header_bottom_margin">2dp</dimen>
     <dimen name="detail_review_side_margin">22dp</dimen>
+    <dimen name="detail_review_top_margin">22dp</dimen>
     <dimen name="detail_review_bottom_margin">22dp</dimen>
-    <dimen name="detail_review_author_bottom_margin">5dp</dimen>
+    <dimen name="detail_review_author_bottom_margin">8dp</dimen>
     <dimen name="detail_trailer_side_margin">22dp</dimen>
     <dimen name="detail_trailer_bottom_margin">10dp</dimen>
     <dimen name="detail_trailer_description_bottom_margin">12dp</dimen>

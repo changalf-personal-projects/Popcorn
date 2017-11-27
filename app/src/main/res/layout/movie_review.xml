@@ -5,7 +5,8 @@
     android:layout_marginLeft="@dimen/detail_review_side_margin"
     android:layout_marginStart="@dimen/detail_review_side_margin"
     android:layout_marginRight="@dimen/detail_review_side_margin"
-    android:layout_marginEnd="@dimen/detail_review_side_margin">
+    android:layout_marginEnd="@dimen/detail_review_side_margin"
+    android:layout_marginTop="@dimen/detail_review_top_margin">
 
     <TextView
         android:layout_width="match_parent"
