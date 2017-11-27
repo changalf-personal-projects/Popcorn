@@ -40,6 +40,14 @@ public class UrlCreator {
                 .build().toString();
     }
 
+    public static String createCreditsUrl(String id) {
+        return Uri.parse(UriTerms.MOVIE_BASE_URL).buildUpon()
+                .appendPath(id)
+                .appendPath(UriTerms.CREDITS)
+                .appendQueryParameter(UriTerms.TMDB_API_KEY, BuildConfig.MOVIE_DP_API_KEY)
+                .build().toString();
+    }
+
     public static String createCastMemberDetailUrl(String id) {
         return Uri.parse(UriTerms.PERSON_BASE_URL).buildUpon()
                 .appendPath(id)
