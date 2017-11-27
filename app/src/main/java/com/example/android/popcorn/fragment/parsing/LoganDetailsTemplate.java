@@ -16,6 +16,9 @@ public class LoganDetailsTemplate extends MovieLogan {
     private String backdropPath;
 
     @JsonField
+    private String budget;
+
+    @JsonField
     private List<Genre> genres;
 
     public String getBackdropPath() {
@@ -24,6 +27,14 @@ public class LoganDetailsTemplate extends MovieLogan {
 
     public void setBackdropPath(String backdropPath) {
         this.backdropPath = backdropPath;
+    }
+
+    public String getBudget() {
+        return budget;
+    }
+
+    public void setBudget(String budget) {
+        this.budget = budget;
     }
 
     public List<Genre> getGenres() {
@@ -53,7 +64,25 @@ public class LoganDetailsTemplate extends MovieLogan {
     private String title;
 
     @JsonField(name = "overview")
-    private String synopsis;
+    private String overview;
+
+    @JsonField(name = "production_companies")
+    private List<ProductionCompany> productionCompanies;
+
+    @JsonObject
+    public static class ProductionCompany {
+
+        @JsonField(name = "name")
+        private String company;
+
+        public String getCompany() {
+            return company;
+        }
+
+        public void setCompany(String company) {
+            this.company = company;
+        }
+    }
 
     @JsonField(name = "poster_path")
     private String posterPath;
@@ -62,7 +91,31 @@ public class LoganDetailsTemplate extends MovieLogan {
     private String release;
 
     @JsonField
+    private String revenue;
+
+    @JsonField
     private String runtime;
+
+    @JsonField(name = "spoken_language")
+    private List<Language> languages;
+
+    @JsonObject
+    public static class Language {
+
+        @JsonField(name = "name")
+        private String language;
+
+        public String getLanguage() {
+            return language;
+        }
+
+        public void setLanguage(String language) {
+            this.language = language;
+        }
+    }
+
+    @JsonField
+    private String tagline;
 
     @JsonField(name = "vote_average")
     private String voteAverage;
@@ -75,12 +128,20 @@ public class LoganDetailsTemplate extends MovieLogan {
         this.title = title;
     }
 
-    public String getSynopsis() {
-        return synopsis;
+    public String getOverview() {
+        return overview;
     }
 
-    public void setSynopsis(String synopsis) {
-        this.synopsis = synopsis;
+    public void setOverview(String overview) {
+        this.overview = overview;
+    }
+
+    public List<ProductionCompany> getProductionCompanies() {
+        return productionCompanies;
+    }
+
+    public void setProductionCompanies(List<ProductionCompany> productionCompanies) {
+        this.productionCompanies = productionCompanies;
     }
 
     public String getPosterPath() {
@@ -99,12 +160,36 @@ public class LoganDetailsTemplate extends MovieLogan {
         this.release = release;
     }
 
+    public String getRevenue() {
+        return revenue;
+    }
+
+    public void setRevenue(String revenue) {
+        this.revenue = revenue;
+    }
+
     public String getRuntime() {
         return runtime;
     }
 
     public void setRuntime(String runtime) {
         this.runtime = runtime;
+    }
+
+    public List<Language> getLanguages() {
+        return languages;
+    }
+
+    public void setLanguages(List<Language> languages) {
+        this.languages = languages;
+    }
+
+    public String getTagline() {
+        return tagline;
+    }
+
+    public void setTagline(String tagline) {
+        this.tagline = tagline;
     }
 
     public String getVoteAverage() {

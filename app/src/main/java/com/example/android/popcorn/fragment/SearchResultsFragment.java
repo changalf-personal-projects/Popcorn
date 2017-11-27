@@ -244,7 +244,7 @@ public class SearchResultsFragment extends Fragment implements OnMovieClickListe
         movie.setTitle(movieLogan.getTitle());
         movie.setRuntime(movieLogan.getRuntime());
         movie.setRating(movieLogan.getVoteAverage());
-        movie.setSynopsis(movieLogan.getSynopsis());
+        movie.setSynopsis(movieLogan.getOverview());
         movie.setReleaseDate(movieLogan.getRelease());
         movie.setPosterPath(createImageUrl(movieLogan.getPosterPath(), UriTerms.IMAGE_SIZE_W500));
         movie.setDetailPosterPath(createImageUrl(movieLogan.getPosterPath(), UriTerms.IMAGE_SIZE_W342));

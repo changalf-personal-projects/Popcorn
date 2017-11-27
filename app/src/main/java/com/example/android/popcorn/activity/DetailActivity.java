@@ -38,47 +38,30 @@ import static com.example.android.popcorn.ui.LayoutPropertiesInitializer.initIma
  * Created by alfredchang on 2017-09-27.
  */
 
-// Extend AppCompatActivity for back button_layout.
+// Extend AppCompatActivity for back button layout.
 public class DetailActivity extends AppCompatActivity {
 
     private final int BACKDROP_CROSSFADE_TIME = 300;
     private final int POSTER_CROSSFADE_TIME = 500;
     private final String SAVED_MOVIE = "Saved to favourites!";
 
-    @BindView(R.id.toolbar)
-    Toolbar mToolbar;
-    @BindView(R.id.backdrop_poster)
-    ImageView mBackdrop;
-    @BindView(R.id.movie_poster)
-    ImageView mPoster;
-    @BindView(R.id.poster_background)
-    ImageView mPosterBackground;
-    @BindView(R.id.app_bar)
-    AppBarLayout mAppBarLayout;
-    @BindView(R.id.toolbar_layout)
-    CollapsingToolbarLayout mCollapsingToolbarLayout;
-    @BindView(R.id.detail_tabs)
-    TabLayout mTabLayout;
-    @BindView(R.id.view_pager)
-    ViewPager mViewPager;
-    @BindView(R.id.tmdb_branding)
-    ImageView tmdbBranding;
-    @BindView(R.id.favourite_fab)
-    FloatingActionButton favouriteButton;
-    @BindView(R.id.avatar_poster)
-    CircleImageView moviePosterAvatar;
+    @BindView(R.id.toolbar) Toolbar mToolbar;
+    @BindView(R.id.backdrop_poster) ImageView mBackdrop;
+    @BindView(R.id.movie_poster) ImageView mPoster;
+    @BindView(R.id.poster_background) ImageView mPosterBackground;
+    @BindView(R.id.app_bar) AppBarLayout mAppBarLayout;
+    @BindView(R.id.toolbar_layout) CollapsingToolbarLayout mCollapsingToolbarLayout;
+    @BindView(R.id.detail_tabs) TabLayout mTabLayout;
+    @BindView(R.id.view_pager) ViewPager mViewPager;
+    @BindView(R.id.tmdb_branding) ImageView tmdbBranding;
+    @BindView(R.id.favourite_fab) FloatingActionButton favouriteButton;
+    @BindView(R.id.avatar_poster) CircleImageView moviePosterAvatar;
 
-    // Movie info.
-    @BindView(R.id.title)
-    TextView mTitle;
-    @BindView(R.id.rating)
-    TextView mRating;
-    @BindView(R.id.runtime)
-    TextView mRuntime;
-    @BindView(R.id.release)
-    TextView mRelease;
-    @BindView(R.id.genres)
-    TextView mGenres;
+    @BindView(R.id.title) TextView mTitle;
+    @BindView(R.id.rating) TextView mRating;
+    @BindView(R.id.runtime) TextView mRuntime;
+    @BindView(R.id.release) TextView mRelease;
+    @BindView(R.id.genres) TextView mGenres;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
