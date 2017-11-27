@@ -47,7 +47,7 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener {
     private TrailerRecyclerViewAdapter mTrailerRecyclerAdapter;
     private Movie mMovie;
 
-    @BindView(R.id.synopsis)
+    @BindView(R.id.overview)
     TextView mSynopsis;
     @BindView(R.id.trailer_recycler_view)
     RecyclerView mTrailerRecyclerView;
@@ -140,7 +140,7 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener {
     }
 
     private void setParcelableDetailsIntoViews(Movie movie) {
-        populateTextView(movie.getSynopsis(), mSynopsis);
+        populateTextView(movie.getOverview(), mSynopsis);
         attachToTrailerAdapter(movie);
     }
 }

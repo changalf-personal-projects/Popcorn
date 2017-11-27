@@ -63,7 +63,7 @@ public class LoganDetailsTemplate extends MovieLogan {
     @JsonField(name = "original_title")
     private String title;
 
-    @JsonField(name = "overview")
+    @JsonField
     private String overview;
 
     @JsonField(name = "production_companies")
@@ -96,7 +96,7 @@ public class LoganDetailsTemplate extends MovieLogan {
     @JsonField
     private String runtime;
 
-    @JsonField(name = "spoken_language")
+    @JsonField(name = "spoken_languages")
     private List<Language> languages;
 
     @JsonObject

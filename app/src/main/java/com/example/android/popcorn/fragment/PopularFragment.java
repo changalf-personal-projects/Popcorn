@@ -237,15 +237,26 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
     private void saveMovieDetails(LoganDetailsTemplate movieLogan, int index) {
         Movie movie = mListOfMovies.get(index);
 
-        // Saving all info to a mListOfMovies object.
         for (LoganDetailsTemplate.Genre genre: movieLogan.getGenres()) {
             movie.setGenres(genre.getName());
         }
+
+        for (LoganDetailsTemplate.ProductionCompany company: movieLogan.getProductionCompanies()) {
+            movie.setProductionCompanies(company.getCompany());
+        }
+
+        for (LoganDetailsTemplate.Language language: movieLogan.getLanguages()) {
+            movie.setLanguages(language.getLanguage());
+        }
+
+        movie.setBudget(movieLogan.getBudget());
         movie.setTitle(movieLogan.getTitle());
         movie.setRuntime(movieLogan.getRuntime());
         movie.setRating(movieLogan.getVoteAverage());
-        movie.setSynopsis(movieLogan.getOverview());
+        movie.setOverview(movieLogan.getOverview());
         movie.setReleaseDate(movieLogan.getRelease());
+        movie.setRevenue(movieLogan.getRevenue());
+        movie.setTagline(movieLogan.getTagline());
         movie.setPosterPath(createImageUrl(movieLogan.getPosterPath(), UriTerms.IMAGE_SIZE_W500));
         movie.setDetailPosterPath(createImageUrl(movieLogan.getPosterPath(), UriTerms.IMAGE_SIZE_W342));
         movie.setBackdropPath(createImageUrl(movieLogan.getBackdropPath(), UriTerms.POSTER_SIZE_ORIGINAL));

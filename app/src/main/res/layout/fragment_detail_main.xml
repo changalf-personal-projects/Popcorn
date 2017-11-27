@@ -17,7 +17,7 @@
         tools:ignore="MergeRootFrame">
 
         <TextView
-            android:id="@+id/synopsis"
+            android:id="@+id/overview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/detail_synopsis_bottom_margin"

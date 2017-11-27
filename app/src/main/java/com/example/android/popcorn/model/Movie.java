@@ -13,12 +13,17 @@ import java.util.List;
 public class Movie implements Parcelable {
 
     private List<String> genres = new ArrayList<>();
+    private List<String> productionCompanies = new ArrayList<>();
+    private List<String> languages = new ArrayList<>();
+    private String budget;
     private String title;
     private String runtime;
     private String rating;
-    private String synopsis;
+    private String overview;
     private String id;
     private String releaseDate;
+    private String revenue;
+    private String tagline;
     private String posterPath;
     private String detailPosterPath;
     private String backdropPath;
@@ -34,12 +39,17 @@ public class Movie implements Parcelable {
 
     protected Movie(Parcel in) {
         genres = in.createStringArrayList();
+        productionCompanies = in.createStringArrayList();
+        languages = in.createStringArrayList();
+        budget = in.readString();
         title = in.readString();
         runtime = in.readString();
         rating = in.readString();
-        synopsis = in.readString();
+        overview = in.readString();
         id = in.readString();
         releaseDate = in.readString();
+        revenue = in.readString();
+        tagline = in.readString();
         posterPath = in.readString();
         detailPosterPath = in.readString();
         backdropPath = in.readString();
@@ -61,12 +71,36 @@ public class Movie implements Parcelable {
         }
     };
 
+    public String getBudget() {
+        return budget;
+    }
+
+    public void setBudget(String budget) {
+        this.budget = budget;
+    }
+
     public List<String> getGenres() {
         return genres;
     }
 
     public void setGenres(String genre) {
         genres.add(genre);
+    }
+
+    public List<String> getProductionCompanies() {
+        return productionCompanies;
+    }
+
+    public void setProductionCompanies(String company) {
+        productionCompanies.add(company);
+    }
+
+    public List<String> getLanguages() {
+        return languages;
+    }
+
+    public void setLanguages(String language) {
+        languages.add(language);
     }
 
     public String getTitle() {
@@ -93,12 +127,12 @@ public class Movie implements Parcelable {
         this.rating = rating;
     }
 
-    public String getSynopsis() {
-        return synopsis;
+    public String getOverview() {
+        return overview;
     }
 
-    public void setSynopsis(String synopsis) {
-        this.synopsis = synopsis;
+    public void setOverview(String overview) {
+        this.overview = overview;
     }
 
     public String getId() {
@@ -115,6 +149,22 @@ public class Movie implements Parcelable {
 
     public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
+    }
+
+    public String getRevenue() {
+        return revenue;
+    }
+
+    public void setRevenue(String revenue) {
+        this.revenue = revenue;
+    }
+
+    public String getTagline() {
+        return tagline;
+    }
+
+    public void setTagline(String tagline) {
+        this.tagline = tagline;
     }
 
     public String getPosterPath() {
@@ -176,12 +226,17 @@ public class Movie implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeStringList(genres);
+        parcel.writeStringList(productionCompanies);
+        parcel.writeStringList(languages);
+        parcel.writeString(budget);
         parcel.writeString(title);
         parcel.writeString(runtime);
         parcel.writeString(rating);
-        parcel.writeString(synopsis);
+        parcel.writeString(overview);
         parcel.writeString(id);
         parcel.writeString(releaseDate);
+        parcel.writeString(revenue);
+        parcel.writeString(tagline);
         parcel.writeString(posterPath);
         parcel.writeString(detailPosterPath);
         parcel.writeString(backdropPath);
