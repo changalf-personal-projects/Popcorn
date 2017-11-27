@@ -29,7 +29,7 @@ public class DetailActivityLayoutProperties {
 
     private TabLayout mTabLayout;
     private CollapsingToolbarLayout mCollapseToolbar;
-    private FloatingActionButton mfavouriteButton;
+    private FloatingActionButton mFavouriteButton;
 
     public DetailActivityLayoutProperties(Context context, String imagePath, ImageView image) {
         mContext = context;
@@ -45,12 +45,12 @@ public class DetailActivityLayoutProperties {
         mImage = image;
     }
 
-    public DetailActivityLayoutProperties (int crossfadeTime, String imagePath, Context context,
-                                           ImageView image, ImageView background, ImageView tmdbLogo,
-                                           TextView title, TextView rating, TextView runtime,
-                                           TextView release, TextView genres, TabLayout tabLayout,
-                                           CollapsingToolbarLayout collapseToolbar,
-                                           FloatingActionButton favouriteButton) {
+    public DetailActivityLayoutProperties(Context context, String imagePath, int crossfadeTime,
+                                          ImageView image, ImageView background, ImageView tmdbLogo,
+                                          TextView title, TextView rating, TextView runtime,
+                                          TextView release, TextView genres, TabLayout tabLayout,
+                                          CollapsingToolbarLayout collapseToolbar,
+                                          FloatingActionButton favouriteButton) {
         mCrossfadeTime = crossfadeTime;
         mImagePath = imagePath;
         mContext = context;
@@ -64,63 +64,62 @@ public class DetailActivityLayoutProperties {
         mGenres = genres;
         mTabLayout = tabLayout;
         mCollapseToolbar = collapseToolbar;
-        mfavouriteButton = favouriteButton;
-
+        mFavouriteButton = favouriteButton;
     }
 
-    public void setmCrossfadeTime(int mCrossfadeTime) {
-        this.mCrossfadeTime = mCrossfadeTime;
+    public int getCrossfadeTime() {
+        return mCrossfadeTime;
     }
 
-    public void setmImagePath(String mImagePath) {
-        this.mImagePath = mImagePath;
+    public String getImagePath() {
+        return mImagePath;
     }
 
-    public void setmContext(Context mContext) {
-        this.mContext = mContext;
+    public Context getContext() {
+        return mContext;
     }
 
-    public void setmImage(ImageView mImage) {
-        this.mImage = mImage;
+    public ImageView getImage() {
+        return mImage;
     }
 
-    public void setmBackground(ImageView mBackground) {
-        this.mBackground = mBackground;
+    public ImageView getBackground() {
+        return mBackground;
     }
 
-    public void setmTmdbLogo(ImageView mTmdbLogo) {
-        this.mTmdbLogo = mTmdbLogo;
+    public ImageView getTmdbLogo() {
+        return mTmdbLogo;
     }
 
-    public void setmTitle(TextView mTitle) {
-        this.mTitle = mTitle;
+    public TextView getTitle() {
+        return mTitle;
     }
 
-    public void setmRating(TextView mRating) {
-        this.mRating = mRating;
+    public TextView getRating() {
+        return mRating;
     }
 
-    public void setmRuntime(TextView mRuntime) {
-        this.mRuntime = mRuntime;
+    public TextView getRuntime() {
+        return mRuntime;
     }
 
-    public void setmRelease(TextView mRelease) {
-        this.mRelease = mRelease;
+    public TextView getRelease() {
+        return mRelease;
     }
 
-    public void setmGenres(TextView mGenres) {
-        this.mGenres = mGenres;
+    public TextView getGenres() {
+        return mGenres;
     }
 
-    public void setmTabLayout(TabLayout mTabLayout) {
-        this.mTabLayout = mTabLayout;
+    public TabLayout getTabLayout() {
+        return mTabLayout;
     }
 
-    public void setmCollapseToolbar(CollapsingToolbarLayout mCollapseToolbar) {
-        this.mCollapseToolbar = mCollapseToolbar;
+    public CollapsingToolbarLayout getCollapseToolbar() {
+        return mCollapseToolbar;
     }
 
-    public void setMfavouriteButton(FloatingActionButton mfavouriteButton) {
-        this.mfavouriteButton = mfavouriteButton;
+    public FloatingActionButton getfavouriteButton() {
+        return mFavouriteButton;
     }
 }

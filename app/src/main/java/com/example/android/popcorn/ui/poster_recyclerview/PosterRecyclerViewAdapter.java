@@ -75,6 +75,8 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
         onBindGenres(movie, holder);
     }
 
+    // The GlideApp.method(...) can't be moved to ViewPopulator.java because it requires a holder
+    // parameter, which can't be used in other classes.
     private void onBindPoster(Movie movie, final PosterViewHolder holder) {
         if (isNotNullPath(movie)) {
             GlideApp.with(mContext).load(movie.getPosterPath())

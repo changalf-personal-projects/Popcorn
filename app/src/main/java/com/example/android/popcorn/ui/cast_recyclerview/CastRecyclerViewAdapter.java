@@ -17,6 +17,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.android.popcorn.ui.LayoutPropertiesInitializer.initImageViewProperties;
+
 /**
  * Created by alfredchang on 2017-10-04.
  */
@@ -62,7 +64,8 @@ public class CastRecyclerViewAdapter extends RecyclerView.Adapter<CastRecyclerVi
 
     private void onBindProfilePicture(Cast cast, CastViewHolder holder) {
         if (cast.getProfilePath() != null) {
-            ViewPopulator.populateImageViewNoCrossfade(mContext, cast.getProfilePath(), holder.mProfilePicture);
+            ViewPopulator.populateImageViewNoCrossfade(initImageViewProperties(mContext, cast.getProfilePath(),
+                    holder.mProfilePicture));
         }
     }
 

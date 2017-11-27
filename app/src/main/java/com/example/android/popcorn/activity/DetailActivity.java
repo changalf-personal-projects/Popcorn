@@ -32,6 +32,7 @@ import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static com.example.android.popcorn.Utilities.PARENT_ACTIVITY;
+import static com.example.android.popcorn.ui.LayoutPropertiesInitializer.initImageViewProperties;
 
 /**
  * Created by alfredchang on 2017-09-27.
@@ -159,11 +160,16 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void setParcelableDetailsIntoViews(Movie movie) {
-        ViewPopulator.populateCenterCropImageView(this, movie.getBackdropPath(), BACKDROP_CROSSFADE_TIME,
-                mBackdrop);
-        ViewPopulator.populateImageView(this, movie.getPosterPath(), POSTER_CROSSFADE_TIME, mPoster, mPosterBackground,
-                mCollapsingToolbarLayout, mTitle, mRating, mRuntime, mRelease, mGenres, mTabLayout, tmdbBranding, favouriteButton);
-        ViewPopulator.populateImageViewNoCrossfade(this, movie.getPosterPath(), moviePosterAvatar);
+        ViewPopulator.populateCenterCropImageView(initImageViewProperties(this,
+                movie.getBackdropPath(), BACKDROP_CROSSFADE_TIME, mBackdrop));
+
+        ViewPopulator.populateImageView(initImageViewProperties(this, movie.getPosterPath(),
+                POSTER_CROSSFADE_TIME, mPoster, mPosterBackground, tmdbBranding, mTitle, mRating,
+                mRuntime, mRelease, mGenres, mTabLayout, mCollapsingToolbarLayout, favouriteButton));
+
+        ViewPopulator.populateImageViewNoCrossfade(initImageViewProperties(this, movie.getPosterPath(),
+                moviePosterAvatar));
+
         ViewPopulator.populateTextView(movie.getTitle(), mTitle);
         ViewPopulator.populateRatingTextView(this, movie.getRating(), mRating);
         ViewPopulator.populateRuntimeTextView(this, movie.getRuntime(), mRuntime);
