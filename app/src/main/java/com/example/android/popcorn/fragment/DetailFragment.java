@@ -43,10 +43,13 @@ import static com.example.android.popcorn.ui.ViewPopulator.populateTextView;
 public class DetailFragment extends Fragment implements OnTrailerClickListener {
 
     private final String LOG_TAG = DetailFragment.class.getSimpleName();
+    private final int NO_TAGLINE_HEIGHT = 0;
 
     private TrailerRecyclerViewAdapter mTrailerRecyclerAdapter;
     private Movie mMovie;
 
+    @BindView(R.id.tagline)
+    TextView mTagline;
     @BindView(R.id.overview)
     TextView mSynopsis;
     @BindView(R.id.trailer_recycler_view)
@@ -140,7 +143,18 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener {
     }
 
     private void setParcelableDetailsIntoViews(Movie movie) {
+        String tagline = movie.getTagline();
+
+        if (hasTagline(tagline)) {
+            mTagline.setVisibility(View.VISIBLE);
+            populateTextView(movie.getTagline(), mTagline);
+        }
+
         populateTextView(movie.getOverview(), mSynopsis);
         attachToTrailerAdapter(movie);
+    }
+
+    private boolean hasTagline(String tagline) {
+        return !tagline.equals("");
     }
 }
