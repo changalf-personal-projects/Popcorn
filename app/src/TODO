@@ -3,3 +3,4 @@
 #TODO: Placeholder when poster/backdrop is null.
 #TODO: Why every second search no results are shown?
 #TODO: Add rate movie button in reviews section.
+#TODO: Combine fetchJsonCast() and fetchJsonCrew().

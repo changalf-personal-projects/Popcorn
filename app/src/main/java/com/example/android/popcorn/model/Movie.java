@@ -12,6 +12,8 @@ import java.util.List;
 
 public class Movie implements Parcelable {
 
+    private final int NO_FLAG = 0;
+
     private List<String> genres = new ArrayList<>();
     private List<String> productionCompanies = new ArrayList<>();
     private List<String> languages = new ArrayList<>();
@@ -59,6 +61,30 @@ public class Movie implements Parcelable {
         in.readList(reviews, Review.class.getClassLoader());
         in.readList(trailers, Trailer.class.getClassLoader());
         in.readList(trailerIds, String.class.getClassLoader());
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeStringList(genres);
+        parcel.writeStringList(productionCompanies);
+        parcel.writeStringList(languages);
+        parcel.writeString(budget);
+        parcel.writeString(title);
+        parcel.writeString(runtime);
+        parcel.writeString(rating);
+        parcel.writeString(overview);
+        parcel.writeString(id);
+        parcel.writeString(releaseDate);
+        parcel.writeString(revenue);
+        parcel.writeString(tagline);
+        parcel.writeString(posterPath);
+        parcel.writeString(detailPosterPath);
+        parcel.writeString(backdropPath);
+        parcel.writeParcelable(director, NO_FLAG);
+        parcel.writeList(cast);
+        parcel.writeList(reviews);
+        parcel.writeList(trailers);
+        parcel.writeList(trailerIds);
     }
 
     public static final Creator<Movie> CREATOR = new Creator<Movie>() {
@@ -231,30 +257,6 @@ public class Movie implements Parcelable {
 
     public void setTrailerIds(String id) {
         trailerIds.add(id);
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeStringList(genres);
-        parcel.writeStringList(productionCompanies);
-        parcel.writeStringList(languages);
-        parcel.writeString(budget);
-        parcel.writeString(title);
-        parcel.writeString(runtime);
-        parcel.writeString(rating);
-        parcel.writeString(overview);
-        parcel.writeString(id);
-        parcel.writeString(releaseDate);
-        parcel.writeString(revenue);
-        parcel.writeString(tagline);
-        parcel.writeString(posterPath);
-        parcel.writeString(detailPosterPath);
-        parcel.writeString(backdropPath);
-        parcel.writeParcelable(director, 0);
-        parcel.writeList(cast);
-        parcel.writeList(reviews);
-        parcel.writeList(trailers);
-        parcel.writeList(trailerIds);
     }
 
     // Method left alone because this class has no children.

@@ -17,7 +17,14 @@ public class Director implements Parcelable {
     }
 
     protected Director(Parcel in) {
+        name = in.readString();
+        profilePath = in.readString();
+    }
 
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(profilePath);
     }
 
     public String getName() {
@@ -34,10 +41,6 @@ public class Director implements Parcelable {
 
     public void setProfilePath(String profilePath) {
         this.profilePath = profilePath;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
     }
 
     @Override

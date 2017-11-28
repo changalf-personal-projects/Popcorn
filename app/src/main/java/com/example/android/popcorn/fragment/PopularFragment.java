@@ -228,6 +228,7 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
 
         fetchJsonDetails();
         fetchJsonCast();
+        fetchJsonDirector();
         fetchJsonReviews();
         fetchJsonTrailers();
     }
@@ -259,11 +260,14 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
     }
 
     private void saveMovieCredits(Movie movie, LoganCreditsTemplate creditsLogan) {
-        for (LoganCreditsTemplate.Cast castMember: creditsLogan.getCast()) {
-            if (isDirector(castMember)) {
+        for (LoganCreditsTemplate.Crew crewMember: creditsLogan.getCrew()) {
+            Log.v(LOG_TAG, "What is job? " + crewMember.getJob());
+            // Doesn't go in.
+            if (isDirector(crewMember)) {
+                Log.v(LOG_TAG, "Is there good director? " + crewMember.getJob());
                 Director director = new Director();
-                director.setName(castMember.getName());
-                director.setProfilePath(castMember.getProfilePath());
+                director.setName(crewMember.getName());
+                director.setProfilePath(crewMember.getProfilePath());
                 movie.setDirector(director);
             }
         }
@@ -296,6 +300,7 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
         movie.setPosterPath(createImageUrl(movieLogan.getPosterPath(), UriTerms.IMAGE_SIZE_W500));
         movie.setDetailPosterPath(createImageUrl(movieLogan.getPosterPath(), UriTerms.IMAGE_SIZE_W342));
         movie.setBackdropPath(createImageUrl(movieLogan.getBackdropPath(), UriTerms.POSTER_SIZE_ORIGINAL));
+
         attachAdapter();
     }
 
@@ -347,8 +352,8 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
         }
     }
 
-    private boolean isDirector(LoganCreditsTemplate.Cast castMember) {
-        if (castMember.getJob() == DIRECTOR) {
+    private boolean isDirector(LoganCreditsTemplate.Crew crewMember) {
+        if (crewMember.getJob().equals(DIRECTOR)) {
             return true;
         }
         return false;

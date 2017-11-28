@@ -12,10 +12,10 @@ import java.util.List;
 public class LoganCreditsTemplate extends MovieLogan {
 
     @JsonField
-    private List<Cast> cast;
+    private List<Crew> crew;
 
     @JsonObject
-    public static class Cast {
+    public static class Crew {
 
         @JsonField
         private String job;
@@ -51,11 +51,11 @@ public class LoganCreditsTemplate extends MovieLogan {
         }
     }
 
-    public List<Cast> getCast() {
-        return cast;
+    public List<Crew> getCrew() {
+        return crew;
     }
 
-    public void setCast(List<Cast> cast) {
-        this.cast = cast;
+    public void setCrew(List<Crew> crew) {
+        this.crew = crew;
     }
 }

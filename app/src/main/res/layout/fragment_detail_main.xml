@@ -43,6 +43,30 @@
             android:lineSpacingMultiplier="1.2"
             android:textColor="@color/black" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/directed_by"
+                    android:fontFamily="sans-serif-light"
+                    android:letterSpacing="0.075"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/director_profile_picture"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/director_name"
+                    android:fontFamily="sans-serif"
+                    android:textStyle="bold"
+                    android:layout_gravity="center" />
+
         <!-- Divider. -->
         <include layout="@layout/detail_divider" />
 
@@ -70,19 +94,6 @@
                 android:scrollbars="none" />
 
         </LinearLayout>
-
-        <include layout="@layout/detail_divider" />
-
-        <!--<Button-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="@dimen/add_review_button_height"-->
-            <!--android:layout_alignParentEnd="true"-->
-            <!--android:layout_alignParentRight="true"-->
-            <!--android:layout_margin="@dimen/add_review_button_margin"-->
-            <!--android:background="@drawarate_movie_buttontton"-->
-            <!--android:text="@string/view_all_reviews"-->
-            <!--android:textColor="@color/white"-->
-            <!--android:textSize="@dimen/add_review_font_size" />-->
 
     </LinearLayout>
 

@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -34,6 +35,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.example.android.popcorn.networking.UrlCreator.createCastMemberDetailUrl;
+import static com.example.android.popcorn.ui.LayoutPropertiesInitializer.initImageViewProperties;
+import static com.example.android.popcorn.ui.ViewPopulator.populateImageView;
 import static com.example.android.popcorn.ui.ViewPopulator.populateTextView;
 
 /**
@@ -43,7 +46,7 @@ import static com.example.android.popcorn.ui.ViewPopulator.populateTextView;
 public class DetailFragment extends Fragment implements OnTrailerClickListener {
 
     private final String LOG_TAG = DetailFragment.class.getSimpleName();
-    private final int NO_TAGLINE_HEIGHT = 0;
+    private final int DIRECTOR_PICTURE_DIMS = 50;
 
     private TrailerRecyclerViewAdapter mTrailerRecyclerAdapter;
     private Movie mMovie;
@@ -52,6 +55,10 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener {
     TextView mTagline;
     @BindView(R.id.overview)
     TextView mSynopsis;
+    @BindView(R.id.director_profile_picture)
+    ImageView mDirectorPicture;
+    @BindView(R.id.director_name)
+    TextView mDirectorName;
     @BindView(R.id.trailer_recycler_view)
     RecyclerView mTrailerRecyclerView;
 
@@ -64,8 +71,8 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener {
         setupTrailerRecyclerView();
         getParcelableMovie();
 
-        setParcelableDetailsIntoViews(mMovie);
-        fetchJsonCastMemberDetails(mMovie);
+        setParcelableDetailsIntoViews();
+        fetchJsonCastMemberDetails();
         onClickFavouriteButton();
 
         return rootView;
@@ -106,8 +113,8 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener {
 //        });
     }
 
-    private void fetchJsonCastMemberDetails(Movie movie) {
-        List<Cast> cast = movie.getCast();
+    private void fetchJsonCastMemberDetails() {
+        List<Cast> cast = mMovie.getCast();
         for (int i = 0; i < cast.size(); i++) {
             final Cast castMember = cast.get(i);
             String url = createCastMemberDetailUrl(castMember.getId());
@@ -142,16 +149,19 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener {
         mMovie = movieIntent.getParcelableExtra(Utilities.PARCELABLE_MOVIE_KEY);
     }
 
-    private void setParcelableDetailsIntoViews(Movie movie) {
-        String tagline = movie.getTagline();
+    private void setParcelableDetailsIntoViews() {
+        String tagline = mMovie.getTagline();
 
         if (hasTagline(tagline)) {
             mTagline.setVisibility(View.VISIBLE);
-            populateTextView(movie.getTagline(), mTagline);
+            populateTextView(mMovie.getTagline(), mTagline);
         }
 
-        populateTextView(movie.getOverview(), mSynopsis);
-        attachToTrailerAdapter(movie);
+        populateTextView(mMovie.getOverview(), mSynopsis);
+        populateImageView(initImageViewProperties(getActivity(), mMovie.getDirector().getProfilePath(),
+                mDirectorPicture));
+        populateTextView(mMovie.getDirector().getName(), mDirectorName);
+        attachToTrailerAdapter(mMovie);
     }
 
     private boolean hasTagline(String tagline) {

@@ -42,7 +42,7 @@
     <dimen name="detail_tagline_top_margin">22dp</dimen>
     <dimen name="detail_synopsis_top_margin">22dp</dimen>
     <dimen name="detail_synopsis_left_and_right_margin">22dp</dimen>
-    <dimen name="detail_synopsis_bottom_margin">18dp</dimen>
+    <dimen name="detail_synopsis_bottom_margin">26dp</dimen>
     <dimen name="detail_review_header_bottom_margin">2dp</dimen>
     <dimen name="detail_review_side_margin">22dp</dimen>
     <dimen name="detail_review_top_margin">22dp</dimen>
@@ -60,6 +60,7 @@
     <dimen name="detail_rating_left_margin">2dp</dimen>
     <dimen name="detail_runtime_left_margin">14dp</dimen>
     <dimen name="detail_release_left_margin">15dp</dimen>
+    <dimen name="details_left_margin">22dp</dimen>
 
     <!-- Single review fragment layout. -->
     <dimen name="cardview_review_content_side_padding">10dp</dimen>

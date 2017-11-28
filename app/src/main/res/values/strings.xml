@@ -10,14 +10,15 @@
     <string name="death_date">Death:</string>
     <string name="place_of_birth">Place of birth:</string>
     <string name="rate">Rate Movie</string>
+    <string name="directed_by">Directed by</string>
+    <string name="search_hint">Search movie...</string>
 
     <!-- Button labels. -->
     <string name="view_all_reviews">View All</string>
 
-    <!-- Placeholder strings. -->
+    <!-- String resources. -->
     <string name="rating_out_of_ten">%1$s/10</string>
     <string name="runtime">%1$s min</string>
-    <string name="search_hint">Search movie...</string>
 
     <!-- Symbols. -->
 

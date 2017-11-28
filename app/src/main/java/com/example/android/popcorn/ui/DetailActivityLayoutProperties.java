@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 public class DetailActivityLayoutProperties {
 
+    private int mWidth;
+    private int mHeight;
     private int mCrossfadeTime;
     private String mImagePath;
     private Context mContext;
@@ -45,6 +47,16 @@ public class DetailActivityLayoutProperties {
         mImage = image;
     }
 
+    public DetailActivityLayoutProperties(Context context, String imagePath, ImageView image,
+                                          int width, int height, int crossfadeTime) {
+        mContext = context;
+        mImagePath = imagePath;
+        mImage = image;
+        mWidth = width;
+        mHeight = height;
+        mCrossfadeTime = crossfadeTime;
+    }
+
     public DetailActivityLayoutProperties(Context context, String imagePath, int crossfadeTime,
                                           ImageView image, ImageView background, ImageView tmdbLogo,
                                           TextView title, TextView rating, TextView runtime,
@@ -65,6 +77,14 @@ public class DetailActivityLayoutProperties {
         mTabLayout = tabLayout;
         mCollapseToolbar = collapseToolbar;
         mFavouriteButton = favouriteButton;
+    }
+
+    public int getWidth() {
+        return mWidth;
+    }
+
+    public int getHeight() {
+        return mHeight;
     }
 
     public int getCrossfadeTime() {

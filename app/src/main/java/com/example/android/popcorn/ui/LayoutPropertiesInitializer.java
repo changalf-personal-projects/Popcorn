@@ -23,6 +23,11 @@ public class LayoutPropertiesInitializer {
         return new DetailActivityLayoutProperties(context, imagePath, crossfadeTime, image);
     }
 
+    public static DetailActivityLayoutProperties initImageViewProperties(Context context, String imagePath, ImageView view,
+                                                                         int width, int height, int crossfadeTime) {
+        return new DetailActivityLayoutProperties(context, imagePath, view, width, height, crossfadeTime);
+    }
+
     public static DetailActivityLayoutProperties initImageViewProperties(Context context, String imagePath, int crossfadeTime,
                                                                          ImageView image, ImageView background, ImageView tmdbLogo,
                                                                          TextView title, TextView rating, TextView runtime,
