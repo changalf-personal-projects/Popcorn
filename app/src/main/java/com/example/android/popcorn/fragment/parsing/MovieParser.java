@@ -44,6 +44,11 @@ public class MovieParser {
         return (LoganReviewTemplate) parseData(response, LoganReviewTemplate.class);
     }
 
+    // Get movie director.
+    public static LoganCreditsTemplate parseJsonCreditsData(String response) {
+        return (LoganCreditsTemplate) parseData(response, LoganCreditsTemplate.class);
+    }
+
     private static MovieLogan parseData(String response, Class template) {
         MovieLogan movieLogan = null;
         try {

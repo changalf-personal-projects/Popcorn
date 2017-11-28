@@ -27,6 +27,7 @@ public class Movie implements Parcelable {
     private String posterPath;
     private String detailPosterPath;
     private String backdropPath;
+    private Director director;
 
     private List<Cast> cast = new ArrayList<>();
     private List<Review> reviews = new ArrayList<>();
@@ -53,6 +54,7 @@ public class Movie implements Parcelable {
         posterPath = in.readString();
         detailPosterPath = in.readString();
         backdropPath = in.readString();
+        director = in.readParcelable(Director.class.getClassLoader());
         in.readList(cast, Cast.class.getClassLoader());
         in.readList(reviews, Review.class.getClassLoader());
         in.readList(trailers, Trailer.class.getClassLoader());
@@ -191,6 +193,14 @@ public class Movie implements Parcelable {
         this.backdropPath = backdropPath;
     }
 
+    public Director getDirector() {
+        return director;
+    }
+
+    public void setDirector(Director director) {
+        this.director = director;
+    }
+
     public List<Cast> getCast() {
         return cast;
     }
@@ -240,6 +250,7 @@ public class Movie implements Parcelable {
         parcel.writeString(posterPath);
         parcel.writeString(detailPosterPath);
         parcel.writeString(backdropPath);
+        parcel.writeParcelable(director, 0);
         parcel.writeList(cast);
         parcel.writeList(reviews);
         parcel.writeList(trailers);

@@ -21,12 +21,14 @@ import com.example.android.popcorn.Utilities;
 import com.example.android.popcorn.activity.DetailActivity;
 import com.example.android.popcorn.dagger.component.FragmentComponent;
 import com.example.android.popcorn.fragment.parsing.LoganCastTemplate;
+import com.example.android.popcorn.fragment.parsing.LoganCreditsTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganDetailsTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganIdTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganReviewTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganTrailersTemplate;
 import com.example.android.popcorn.fragment.parsing.MovieParser;
 import com.example.android.popcorn.model.Cast;
+import com.example.android.popcorn.model.Director;
 import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.model.Review;
 import com.example.android.popcorn.model.Trailer;
@@ -42,6 +44,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.example.android.popcorn.model.singleton.PopularMoviesSingleton.getPopularMoviesSingleton;
+import static com.example.android.popcorn.networking.UrlCreator.createCreditsUrl;
 import static com.example.android.popcorn.networking.UrlCreator.createImageUrl;
 import static com.example.android.popcorn.networking.UrlCreator.createUrl;
 import static com.example.android.popcorn.networking.UrlCreator.createUrlWithAppendedResponse;
@@ -53,6 +56,7 @@ import static com.example.android.popcorn.networking.UrlCreator.createUrlWithApp
 public class PopularFragment extends Fragment implements OnMovieClickListener {
 
     private final String LOG_TAG = PopularFragment.class.getSimpleName();
+    private final String DIRECTOR = "Director";
     private final int LAYOUT_COL_SPAN = 2;
 
     private FragmentComponent mFragmentComponent;
@@ -102,8 +106,29 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
         RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
     }
 
-    private void fetchJsonDetails() {
+    private void fetchJsonDirector() {
+        for (int i = 0; i < mListOfMovies.size(); i++) {
+            String url = createCreditsUrl(mListOfMovies.get(i).getId());
+            final Movie movie = this.mListOfMovies.get(i);
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            LoganCreditsTemplate creditsLogan = MovieParser.parseJsonCreditsData(response);
+                            saveMovieCredits(movie, creditsLogan);
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.e(LOG_TAG, "Response error (fetchJsonDetails): " + error);
+                }
+            });
 
+            RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
+        }
+    }
+
+    private void fetchJsonDetails() {
         for (int i = 0; i < mListOfMovies.size(); i++) {
             String url = createUrl(mListOfMovies.get(i).getId());
             final int index = i;
@@ -233,6 +258,17 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
         }
     }
 
+    private void saveMovieCredits(Movie movie, LoganCreditsTemplate creditsLogan) {
+        for (LoganCreditsTemplate.Cast castMember: creditsLogan.getCast()) {
+            if (isDirector(castMember)) {
+                Director director = new Director();
+                director.setName(castMember.getName());
+                director.setProfilePath(castMember.getProfilePath());
+                movie.setDirector(director);
+            }
+        }
+    }
+
     // AttachAdapter method needs to be done after all required info has been saved to mListOfMovies object.
     private void saveMovieDetails(LoganDetailsTemplate movieLogan, int index) {
         Movie movie = mListOfMovies.get(index);
@@ -309,5 +345,12 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
         for (int colour: mListOfRefreshColours) {
             mPullRefreshLayout.setColorSchemeResources(colour);
         }
+    }
+
+    private boolean isDirector(LoganCreditsTemplate.Cast castMember) {
+        if (castMember.getJob() == DIRECTOR) {
+            return true;
+        }
+        return false;
     }
 }
