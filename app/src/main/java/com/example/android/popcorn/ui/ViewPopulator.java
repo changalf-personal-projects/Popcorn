@@ -45,20 +45,6 @@ public class ViewPopulator {
         }
     }
 
-//    GlideApp.with(mContext).load(movie.getPosterPath())
-//            .listener(GlidePalette.with(movie.getPosterPath())
-//            .intoCallBack(new GlidePalette.CallBack() {
-//        @Override
-//        public void onPaletteLoaded(Palette palette) {
-//            onBindColorToCardView(holder, palette.getSwatches());
-//        }
-//    })
-//            )
-//            .override(POSTER_WIDTH, POSTER_HEIGHT)
-//                    .transition(DrawableTransitionOptions.withCrossFade(CROSSFADE_TIME))
-//            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-//                    .into(holder.mPoster);
-
     // Overloaded method 2: Populate a circle-cropped image.
     public static void populateImageView(Context context, String imagePath, ImageView view,
                                          int width, int height, int crossfadeTime) {

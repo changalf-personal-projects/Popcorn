@@ -267,7 +267,7 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
                 Log.v(LOG_TAG, "Is there good director? " + crewMember.getJob());
                 Director director = new Director();
                 director.setName(crewMember.getName());
-                director.setProfilePath(crewMember.getProfilePath());
+                director.setProfilePath(createImageUrl(crewMember.getProfilePath(), UriTerms.IMAGE_SIZE_W185));
                 movie.setDirector(director);
             }
         }

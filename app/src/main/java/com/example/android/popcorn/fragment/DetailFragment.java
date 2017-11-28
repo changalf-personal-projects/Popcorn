@@ -36,7 +36,7 @@ import butterknife.ButterKnife;
 
 import static com.example.android.popcorn.networking.UrlCreator.createCastMemberDetailUrl;
 import static com.example.android.popcorn.ui.LayoutPropertiesInitializer.initImageViewProperties;
-import static com.example.android.popcorn.ui.ViewPopulator.populateImageView;
+import static com.example.android.popcorn.ui.ViewPopulator.populateImageViewNoCrossfade;
 import static com.example.android.popcorn.ui.ViewPopulator.populateTextView;
 
 /**
@@ -158,7 +158,7 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener {
         }
 
         populateTextView(mMovie.getOverview(), mSynopsis);
-        populateImageView(initImageViewProperties(getActivity(), mMovie.getDirector().getProfilePath(),
+        populateImageViewNoCrossfade(initImageViewProperties(getActivity(), mMovie.getDirector().getProfilePath(),
                 mDirectorPicture));
         populateTextView(mMovie.getDirector().getName(), mDirectorName);
         attachToTrailerAdapter(mMovie);

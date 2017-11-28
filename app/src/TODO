@@ -4,3 +4,4 @@
 #TODO: Why every second search no results are shown?
 #TODO: Add rate movie button in reviews section.
 #TODO: Combine fetchJsonCast() and fetchJsonCrew().
+#TODO: Change all populateImageViews() parameters to LayoutProperties type.
