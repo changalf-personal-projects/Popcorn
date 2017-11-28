@@ -19,10 +19,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/detail_tagline_top_margin"
             android:id="@+id/tagline"
-            android:fontFamily="sans-serif-smallcaps"
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"
+            android:textAllCaps="true"
             android:textColor="@color/black"
-            android:visibility="gone"/>
+            android:layout_gravity="center"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/overview"

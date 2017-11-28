@@ -39,7 +39,8 @@
     <dimen name="detail_cast_name_top_margin">10dp</dimen>
     <dimen name="detail_cast_name_left_margin">10dp</dimen>
     <dimen name="detail_cast_character_width">110dp</dimen>
-    <dimen name="detail_synopsis_top_margin">26dp</dimen>
+    <dimen name="detail_tagline_top_margin">22dp</dimen>
+    <dimen name="detail_synopsis_top_margin">22dp</dimen>
     <dimen name="detail_synopsis_left_and_right_margin">22dp</dimen>
     <dimen name="detail_synopsis_bottom_margin">18dp</dimen>
     <dimen name="detail_review_header_bottom_margin">2dp</dimen>
