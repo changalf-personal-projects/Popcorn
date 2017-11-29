@@ -19,7 +19,8 @@ import static com.example.android.popcorn.NullChecker.isNotEmptyString;
 import static com.example.android.popcorn.NullChecker.isNotNullString;
 import static com.example.android.popcorn.Utilities.convertDoubleToString;
 import static com.example.android.popcorn.Utilities.formatDate;
-import static com.example.android.popcorn.Utilities.formatGenres;
+import static com.example.android.popcorn.Utilities.formatString;
+import static com.example.android.popcorn.Utilities.formatWithCommas;
 import static com.example.android.popcorn.Utilities.roundToNearestTenth;
 import static com.example.android.popcorn.ui.ColourFiller.colourFavouriteButton;
 import static com.example.android.popcorn.ui.ColourFiller.colourTabLayout;
@@ -127,6 +128,10 @@ public class ViewPopulator {
         view.setText(content);
     }
 
+    public static void populateTextViewWithSpaces(String content, TextView view) {
+        view.setText(formatWithCommas(content));
+    }
+
     public static void populateRatingTextView(Context context, String content, TextView view) {
         double rating = roundToNearestTenth(content);
         String ratingAsString = convertDoubleToString(rating);
@@ -137,8 +142,8 @@ public class ViewPopulator {
         view.setText(context.getResources().getString(R.string.runtime, content));
     }
 
-    public static void populateGenresToTextView(List<String> content, TextView view) {
-        view.setText(formatGenres(content.toString()));
+    public static void populateStringListToTextView(List<String> content, TextView view) {
+        view.setText(formatString(content.toString()));
     }
 
     public static void populateDateToTextView(String content, TextView view) {

@@ -36,8 +36,10 @@ import butterknife.ButterKnife;
 
 import static com.example.android.popcorn.networking.UrlCreator.createCastMemberDetailUrl;
 import static com.example.android.popcorn.ui.LayoutPropertiesInitializer.initImageViewProperties;
+import static com.example.android.popcorn.ui.ViewPopulator.populateStringListToTextView;
 import static com.example.android.popcorn.ui.ViewPopulator.populateImageViewNoCrossfade;
 import static com.example.android.popcorn.ui.ViewPopulator.populateTextView;
+import static com.example.android.popcorn.ui.ViewPopulator.populateTextViewWithSpaces;
 
 /**
  * Created by alfredchang on 2017-09-27.
@@ -59,6 +61,12 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener {
     ImageView mDirectorPicture;
     @BindView(R.id.director_name)
     TextView mDirectorName;
+    @BindView(R.id.movie_languages)
+    TextView mLanguages;
+    @BindView(R.id.movie_budget)
+    TextView mBudget;
+    @BindView(R.id.movie_revenue)
+    TextView mRevenue;
     @BindView(R.id.trailer_recycler_view)
     RecyclerView mTrailerRecyclerView;
 
@@ -161,6 +169,10 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener {
         populateImageViewNoCrossfade(initImageViewProperties(getActivity(), mMovie.getDirector().getProfilePath(),
                 mDirectorPicture));
         populateTextView(mMovie.getDirector().getName(), mDirectorName);
+        populateStringListToTextView(mMovie.getLanguages(), mLanguages);
+        populateTextViewWithSpaces(mMovie.getBudget(), mBudget);
+        populateTextViewWithSpaces(mMovie.getRevenue(), mRevenue);
+
         attachToTrailerAdapter(mMovie);
     }
 

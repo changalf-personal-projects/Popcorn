@@ -261,10 +261,7 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
 
     private void saveMovieCredits(Movie movie, LoganCreditsTemplate creditsLogan) {
         for (LoganCreditsTemplate.Crew crewMember: creditsLogan.getCrew()) {
-            Log.v(LOG_TAG, "What is job? " + crewMember.getJob());
-            // Doesn't go in.
             if (isDirector(crewMember)) {
-                Log.v(LOG_TAG, "Is there good director? " + crewMember.getJob());
                 Director director = new Director();
                 director.setName(crewMember.getName());
                 director.setProfilePath(createImageUrl(crewMember.getProfilePath(), UriTerms.IMAGE_SIZE_W185));

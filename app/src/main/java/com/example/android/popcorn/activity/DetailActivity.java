@@ -25,7 +25,6 @@ import com.example.android.popcorn.fragment.ReviewFragment;
 import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.ui.DetailTabsPagerAdapter;
 import com.example.android.popcorn.ui.TabTitles;
-import com.example.android.popcorn.ui.ViewPopulator;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,6 +32,14 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 import static com.example.android.popcorn.Utilities.PARENT_ACTIVITY;
 import static com.example.android.popcorn.ui.LayoutPropertiesInitializer.initImageViewProperties;
+import static com.example.android.popcorn.ui.ViewPopulator.populateCenterCropImageView;
+import static com.example.android.popcorn.ui.ViewPopulator.populateDateToTextView;
+import static com.example.android.popcorn.ui.ViewPopulator.populateImageView;
+import static com.example.android.popcorn.ui.ViewPopulator.populateImageViewNoCrossfade;
+import static com.example.android.popcorn.ui.ViewPopulator.populateRatingTextView;
+import static com.example.android.popcorn.ui.ViewPopulator.populateRuntimeTextView;
+import static com.example.android.popcorn.ui.ViewPopulator.populateStringListToTextView;
+import static com.example.android.popcorn.ui.ViewPopulator.populateTextView;
 
 /**
  * Created by alfredchang on 2017-09-27.
@@ -143,21 +150,21 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void setParcelableDetailsIntoViews(Movie movie) {
-        ViewPopulator.populateCenterCropImageView(initImageViewProperties(this,
+        populateCenterCropImageView(initImageViewProperties(this,
                 movie.getBackdropPath(), BACKDROP_CROSSFADE_TIME, mBackdrop));
 
-        ViewPopulator.populateImageView(initImageViewProperties(this, movie.getPosterPath(),
+        populateImageView(initImageViewProperties(this, movie.getPosterPath(),
                 POSTER_CROSSFADE_TIME, mPoster, mPosterBackground, tmdbBranding, mTitle, mRating,
                 mRuntime, mRelease, mGenres, mTabLayout, mCollapsingToolbarLayout, favouriteButton));
 
-        ViewPopulator.populateImageViewNoCrossfade(initImageViewProperties(this, movie.getPosterPath(),
+        populateImageViewNoCrossfade(initImageViewProperties(this, movie.getPosterPath(),
                 moviePosterAvatar));
 
-        ViewPopulator.populateTextView(movie.getTitle(), mTitle);
-        ViewPopulator.populateRatingTextView(this, movie.getRating(), mRating);
-        ViewPopulator.populateRuntimeTextView(this, movie.getRuntime(), mRuntime);
-        ViewPopulator.populateDateToTextView(movie.getReleaseDate(), mRelease);
-        ViewPopulator.populateGenresToTextView(movie.getGenres(), mGenres);
+        populateTextView(movie.getTitle(), mTitle);
+        populateRatingTextView(this, movie.getRating(), mRating);
+        populateRuntimeTextView(this, movie.getRuntime(), mRuntime);
+        populateDateToTextView(movie.getReleaseDate(), mRelease);
+        populateStringListToTextView(movie.getGenres(), mGenres);
     }
 
     private void setupViewPager(ViewPager viewPager) {

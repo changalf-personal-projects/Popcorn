@@ -33,6 +33,8 @@ public class Utilities {
     public static final String PARENT_ACTIVITY = "parent activity";
     public static final String SEARCH_KEY = "query";
     private static final String NOT_AVAILABLE = "N/A";
+    private static final String DOLLAR_SIGN = "$";
+    private static final int THREE_CHARS = 3;
 
     public static double roundToNearestTenth(String rating) {
         if (rating == null) {
@@ -50,14 +52,15 @@ public class Utilities {
         return String.valueOf(rating);
     }
 
-    public static String formatGenres(String genres) {
+    public static String formatString(String string) {
         String formattedGenres = NOT_AVAILABLE;
 
-        if (isNotNullString(genres)) {
-            final int ONE_CHAR = 1;
+        if (isNotNullString(string)) {
+            // For clearer purposes, these are two variables with same values.
+            final int SINGLE_CHAR = 1;
             final int SECOND_CHAR = 1;
-            final int SECOND_LAST_CHAR = genres.length() - ONE_CHAR;
-            formattedGenres = genres.substring(SECOND_CHAR, SECOND_LAST_CHAR);
+            final int SECOND_LAST_CHAR = string.length() - SINGLE_CHAR;
+            formattedGenres = string.substring(SECOND_CHAR, SECOND_LAST_CHAR);
         }
 
         return formattedGenres;
@@ -80,7 +83,7 @@ public class Utilities {
         }
 
         // This is the format that we want the date to be.
-//        SimpleDateFormat newFormat = new SimpleDateFormat("MMMM yyyy");
+        // SimpleDateFormat newFormat = new SimpleDateFormat("MMMM yyyy");
         SimpleDateFormat newFormat = new SimpleDateFormat("yyyy");
         // Turn date into a string.
         if (isNotNullDate(date)) {
@@ -88,6 +91,32 @@ public class Utilities {
         }
 
         return formattedDate;
+    }
+
+    public static String formatWithSpaces(String stringValue) {
+        if (moreThanThreeChars(stringValue)) {
+            StringBuilder stringBuilder = new StringBuilder(stringValue);
+            for (int i = stringValue.length() - 3; i >= stringValue.length() / 3; i -= 3) {
+                stringBuilder.insert(i, " ");
+            }
+            return formatWithDollarSign(stringBuilder.toString());
+        }
+        return NOT_AVAILABLE;
+    }
+
+    public static String formatWithCommas(String stringValue) {
+        if (moreThanThreeChars(stringValue)) {
+            StringBuilder stringBuilder = new StringBuilder(stringValue);
+            for (int i = stringValue.length() - 3; i >= stringValue.length() / 3; i -= 3) {
+                stringBuilder.insert(i, ",");
+            }
+            return formatWithDollarSign(stringBuilder.toString());
+        }
+        return NOT_AVAILABLE;
+    }
+
+    public static String formatWithDollarSign(String value) {
+        return DOLLAR_SIGN.concat(value);
     }
 
     public static boolean isNotNull(String param) {
@@ -99,5 +128,9 @@ public class Utilities {
         List listOfReceivers = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
 
         return listOfReceivers.size() >= 1;
+    }
+
+    private static boolean moreThanThreeChars(String value) {
+        return value.length() > 3;
     }
 }

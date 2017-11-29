@@ -33,10 +33,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/detail_synopsis_bottom_margin"
-            android:layout_marginEnd="@dimen/detail_synopsis_left_and_right_margin"
-            android:layout_marginLeft="@dimen/detail_synopsis_left_and_right_margin"
-            android:layout_marginRight="@dimen/detail_synopsis_left_and_right_margin"
-            android:layout_marginStart="@dimen/detail_synopsis_left_and_right_margin"
+            android:layout_marginEnd="@dimen/detail_info_left_and_right_margin"
+            android:layout_marginLeft="@dimen/detail_info_left_and_right_margin"
+            android:layout_marginRight="@dimen/detail_info_left_and_right_margin"
+            android:layout_marginStart="@dimen/detail_info_left_and_right_margin"
             android:layout_marginTop="@dimen/detail_synopsis_top_margin"
             android:fontFamily="sans-serif-light"
             android:letterSpacing="0.075"
@@ -66,6 +66,81 @@
                     android:fontFamily="sans-serif"
                     android:textStyle="bold"
                     android:layout_gravity="center" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginEnd="@dimen/detail_info_left_and_right_margin"
+            android:layout_marginLeft="@dimen/detail_info_left_and_right_margin"
+            android:layout_marginRight="@dimen/detail_info_left_and_right_margin"
+            android:layout_marginStart="@dimen/detail_info_left_and_right_margin">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/languages"
+                android:fontFamily="sans-serif-light"
+                android:letterSpacing="0.075"
+                android:textStyle="bold"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/movie_languages" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginEnd="@dimen/detail_info_left_and_right_margin"
+            android:layout_marginLeft="@dimen/detail_info_left_and_right_margin"
+            android:layout_marginRight="@dimen/detail_info_left_and_right_margin"
+            android:layout_marginStart="@dimen/detail_info_left_and_right_margin">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/budget"
+                android:fontFamily="sans-serif-light"
+                android:letterSpacing="0.075"
+                android:textStyle="bold"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/movie_budget" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginEnd="@dimen/detail_info_left_and_right_margin"
+            android:layout_marginLeft="@dimen/detail_info_left_and_right_margin"
+            android:layout_marginRight="@dimen/detail_info_left_and_right_margin"
+            android:layout_marginStart="@dimen/detail_info_left_and_right_margin">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/revenue"
+                android:fontFamily="sans-serif-light"
+                android:letterSpacing="0.075"
+                android:textStyle="bold"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/movie_revenue" />
+
+        </LinearLayout>
 
         <!-- Divider. -->
         <include layout="@layout/detail_divider" />
