@@ -146,8 +146,8 @@ public class ViewPopulator {
         view.setText(formatString(content.toString()));
     }
 
-    public static void populateDateToTextView(String content, TextView view) {
-        view.setText(formatDate(content));
+    public static void populateDateToTextView(String content, TextView view, String format) {
+        view.setText(formatDate(content, format));
     }
 
     public static void populateBirthPlaceToTextView(String content, String message, TextView view) {

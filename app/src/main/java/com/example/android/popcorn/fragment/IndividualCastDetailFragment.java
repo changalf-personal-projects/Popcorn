@@ -54,8 +54,8 @@ public class IndividualCastDetailFragment extends Fragment {
         ViewPopulator.populateImageView(getActivity(), castMember.getProfilePath(), mProfilePicture,
                 PROFILE_PIC_WIDTH, PROFILE_PIC_HEIGHT, PROFILE_PIC_CROSSFADE_TIME);
         ViewPopulator.populateTextView(castMember.getName(), mName);
-        ViewPopulator.populateDateToTextView(castMember.getBirthday(), mBirthday);
-        ViewPopulator.populateDateToTextView(castMember.getDeathday(), mDeath);
+        ViewPopulator.populateDateToTextView(castMember.getBirthday(), mBirthday, "MMMM dd, yyyy");
+        ViewPopulator.populateDateToTextView(castMember.getDeathday(), mDeath, "MMMM dd, yyyy");
         ViewPopulator.populateBirthPlaceToTextView(castMember.getBirthplace(), NOT_AVAILABLE, mPlaceOfBirth);
         ViewPopulator.populateBiographyToTextView(castMember.getBiography(), NO_BIOGRAPHY, mBiography);
     }

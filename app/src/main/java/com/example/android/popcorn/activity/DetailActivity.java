@@ -163,7 +163,7 @@ public class DetailActivity extends AppCompatActivity {
         populateTextView(movie.getTitle(), mTitle);
         populateRatingTextView(this, movie.getRating(), mRating);
         populateRuntimeTextView(this, movie.getRuntime(), mRuntime);
-        populateDateToTextView(movie.getReleaseDate(), mRelease);
+        populateDateToTextView(movie.getReleaseDate(), mRelease, "yyyy");
         populateStringListToTextView(movie.getGenres(), mGenres);
     }
 

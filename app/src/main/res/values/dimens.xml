@@ -61,6 +61,8 @@
     <dimen name="detail_runtime_left_margin">14dp</dimen>
     <dimen name="detail_release_left_margin">15dp</dimen>
     <dimen name="details_left_margin">22dp</dimen>
+    <dimen name="detail_bottom_margin">18dp</dimen>
+    <dimen name="detail_additional_bottom_margin">5dp</dimen>
 
     <!-- Single review fragment layout. -->
     <dimen name="cardview_review_content_side_padding">10dp</dimen>

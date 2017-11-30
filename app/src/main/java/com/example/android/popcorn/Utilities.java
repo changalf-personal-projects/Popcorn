@@ -66,7 +66,7 @@ public class Utilities {
         return formattedGenres;
     }
 
-    public static String formatDate(String releaseDate) {
+    public static String formatDate(String arg, String format) {
         Date date = null;
         String formattedDate = NOT_AVAILABLE;
         // Start with the original format of releaseDate (ie. 2016-12-10).
@@ -74,9 +74,9 @@ public class Utilities {
 
         try {
             // Get a new Date object from releaseDate.
-            Log.v(LOG_TAG, "Release date: " + releaseDate);
-            if (isNotNullString(releaseDate)) {
-                date = originalFormat.parse(releaseDate);
+            Log.v(LOG_TAG, "Release date: " + date);
+            if (isNotNullString(arg)) {
+                date = originalFormat.parse(arg);
             }
         } catch (ParseException e) {
             e.printStackTrace();
@@ -84,7 +84,7 @@ public class Utilities {
 
         // This is the format that we want the date to be.
         // SimpleDateFormat newFormat = new SimpleDateFormat("MMMM yyyy");
-        SimpleDateFormat newFormat = new SimpleDateFormat("yyyy");
+        SimpleDateFormat newFormat = new SimpleDateFormat(format);
         // Turn date into a string.
         if (isNotNullDate(date)) {
             formattedDate = newFormat.format(date);
