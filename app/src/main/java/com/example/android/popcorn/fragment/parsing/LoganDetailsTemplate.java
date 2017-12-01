@@ -72,15 +72,15 @@ public class LoganDetailsTemplate extends MovieLogan {
     @JsonObject
     public static class ProductionCompany {
 
-        @JsonField(name = "name")
-        private String company;
+        @JsonField
+        private String name;
 
-        public String getCompany() {
-            return company;
+        public String getName() {
+            return name;
         }
 
-        public void setCompany(String company) {
-            this.company = company;
+        public void setName(String name) {
+            this.name = name;
         }
     }
 

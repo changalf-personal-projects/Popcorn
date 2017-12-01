@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -17,15 +16,15 @@
         tools:ignore="MergeRootFrame">
 
         <TextView
+            android:id="@+id/tagline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="@dimen/detail_tagline_top_margin"
-            android:id="@+id/tagline"
             android:fontFamily="sans-serif-condensed"
-            android:textStyle="bold"
             android:textAllCaps="true"
             android:textColor="@color/black"
-            android:layout_gravity="center"
+            android:textStyle="bold"
             android:visibility="gone" />
 
         <TextView
@@ -43,114 +42,207 @@
             android:lineSpacingMultiplier="1.2"
             android:textColor="@color/black" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/directed_by"
-                    android:fontFamily="sans-serif-light"
-                    android:letterSpacing="0.075"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
-                    android:layout_gravity="center" />
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/director_profile_picture"
-                    android:layout_gravity="center" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/director_name"
-                    android:fontFamily="sans-serif"
-                    android:textStyle="bold"
-                    android:layout_gravity="center" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginEnd="@dimen/detail_info_left_and_right_margin"
+            android:layout_marginLeft="@dimen/detail_info_left_and_right_margin"
+            android:layout_marginRight="@dimen/detail_info_left_and_right_margin"
+            android:layout_marginStart="@dimen/detail_info_left_and_right_margin">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginRight="@dimen/detail_info_left_and_right_margin"
+                android:layout_marginEnd="@dimen/detail_info_left_and_right_margin">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="sans-serif-light"
+                    android:letterSpacing="0.075"
+                    android:text="@string/directed_by"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/director_profile_picture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:id="@+id/director_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="sans-serif"
+                    android:letterSpacing="0.025"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/detail_info_left_and_right_margin"
+                android:layout_marginStart="@dimen/detail_info_left_and_right_margin">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="sans-serif-light"
+                    android:letterSpacing="0.075"
+                    android:text="@string/produced_by"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/producer_profile_picture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:id="@+id/producer_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="sans-serif"
+                    android:letterSpacing="0.025"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/detail_additional_bottom_margin"
             android:layout_marginEnd="@dimen/detail_info_left_and_right_margin"
             android:layout_marginLeft="@dimen/detail_info_left_and_right_margin"
             android:layout_marginRight="@dimen/detail_info_left_and_right_margin"
             android:layout_marginStart="@dimen/detail_info_left_and_right_margin"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="@dimen/detail_additional_bottom_margin">
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:fontFamily="sans-serif-light"
+                android:letterSpacing="0.075"
                 android:text="@string/languages"
-                android:fontFamily="sans-serif-light"
-                android:letterSpacing="0.075"
-                android:textStyle="bold"
                 android:textColor="@color/black"
-                android:layout_marginRight="5dp"
-                android:layout_marginEnd="5dp" />
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/movie_languages"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/movie_languages" />
+                android:letterSpacing="0.025" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_marginBottom="@dimen/detail_additional_bottom_margin"
             android:layout_marginEnd="@dimen/detail_info_left_and_right_margin"
             android:layout_marginLeft="@dimen/detail_info_left_and_right_margin"
             android:layout_marginRight="@dimen/detail_info_left_and_right_margin"
             android:layout_marginStart="@dimen/detail_info_left_and_right_margin"
-            android:layout_marginBottom="@dimen/detail_additional_bottom_margin">
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:fontFamily="sans-serif-light"
+                android:letterSpacing="0.075"
                 android:text="@string/budget"
-                android:fontFamily="sans-serif-light"
-                android:letterSpacing="0.075"
-                android:textStyle="bold"
                 android:textColor="@color/black"
-                android:layout_marginRight="5dp"
-                android:layout_marginEnd="5dp" />
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/movie_budget"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/movie_budget" />
+                android:letterSpacing="0.025" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_marginBottom="@dimen/detail_additional_bottom_margin"
             android:layout_marginEnd="@dimen/detail_info_left_and_right_margin"
             android:layout_marginLeft="@dimen/detail_info_left_and_right_margin"
             android:layout_marginRight="@dimen/detail_info_left_and_right_margin"
             android:layout_marginStart="@dimen/detail_info_left_and_right_margin"
-            android:layout_marginBottom="@dimen/detail_bottom_margin">
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/revenue"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
                 android:fontFamily="sans-serif-light"
                 android:letterSpacing="0.075"
-                android:textStyle="bold"
+                android:text="@string/revenue"
                 android:textColor="@color/black"
-                android:layout_marginRight="5dp"
-                android:layout_marginEnd="5dp" />
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/movie_revenue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:letterSpacing="0.025" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/detail_bottom_margin"
+            android:layout_marginEnd="@dimen/detail_info_left_and_right_margin"
+            android:layout_marginLeft="@dimen/detail_info_left_and_right_margin"
+            android:layout_marginRight="@dimen/detail_info_left_and_right_margin"
+            android:layout_marginStart="@dimen/detail_info_left_and_right_margin"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/movie_revenue" />
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:fontFamily="sans-serif-light"
+                android:letterSpacing="0.075"
+                android:text="@string/production_companies"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/movie_prod_company"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:letterSpacing="0.025"
+                android:lineSpacingMultiplier="1.2" />
 
         </LinearLayout>
+
 
         <!-- Divider. -->
         <include layout="@layout/detail_divider" />
@@ -174,8 +266,8 @@
                 android:id="@+id/trailer_recycler_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/detail_trailer_recyclerview_top_margin"
                 android:layout_marginBottom="@dimen/detail_trailer_recyclerview_bottom_margin"
+                android:layout_marginTop="@dimen/detail_trailer_recyclerview_top_margin"
                 android:scrollbars="none" />
 
         </LinearLayout>

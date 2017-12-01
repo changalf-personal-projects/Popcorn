@@ -30,6 +30,7 @@ import com.example.android.popcorn.fragment.parsing.MovieParser;
 import com.example.android.popcorn.model.Cast;
 import com.example.android.popcorn.model.Director;
 import com.example.android.popcorn.model.Movie;
+import com.example.android.popcorn.model.Producer;
 import com.example.android.popcorn.model.Review;
 import com.example.android.popcorn.model.Trailer;
 import com.example.android.popcorn.networking.RequestQueueSingleton;
@@ -57,6 +58,7 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
 
     private final String LOG_TAG = PopularFragment.class.getSimpleName();
     private final String DIRECTOR = "Director";
+    private final String PRODUCER = "Producer";
     private final int LAYOUT_COL_SPAN = 2;
 
     private FragmentComponent mFragmentComponent;
@@ -267,6 +269,12 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
                 director.setProfilePath(createImageUrl(crewMember.getProfilePath(), UriTerms.IMAGE_SIZE_W185));
                 movie.setDirector(director);
             }
+            if (isProducer(crewMember)) {
+                Producer producer = new Producer();
+                producer.setName(crewMember.getName());
+                producer.setProfilePath(createImageUrl(crewMember.getProfilePath(), UriTerms.IMAGE_SIZE_W185));
+                movie.setProducer(producer);
+            }
         }
     }
 
@@ -279,7 +287,7 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
         }
 
         for (LoganDetailsTemplate.ProductionCompany company: movieLogan.getProductionCompanies()) {
-            movie.setProductionCompanies(company.getCompany());
+            movie.setProductionCompanies(company.getName());
         }
 
         for (LoganDetailsTemplate.Language language: movieLogan.getLanguages()) {
@@ -351,6 +359,13 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
 
     private boolean isDirector(LoganCreditsTemplate.Crew crewMember) {
         if (crewMember.getJob().equals(DIRECTOR)) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isProducer(LoganCreditsTemplate.Crew crewMember) {
+        if (crewMember.getJob().equals(PRODUCER)) {
             return true;
         }
         return false;

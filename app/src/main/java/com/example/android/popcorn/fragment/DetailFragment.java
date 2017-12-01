@@ -61,12 +61,18 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener {
     ImageView mDirectorPicture;
     @BindView(R.id.director_name)
     TextView mDirectorName;
+    @BindView(R.id.producer_profile_picture)
+    ImageView mProducerPicture;
+    @BindView(R.id.producer_name)
+    TextView mProducerName;
     @BindView(R.id.movie_languages)
     TextView mLanguages;
     @BindView(R.id.movie_budget)
     TextView mBudget;
     @BindView(R.id.movie_revenue)
     TextView mRevenue;
+    @BindView(R.id.movie_prod_company)
+    TextView mProductionCompanies;
     @BindView(R.id.trailer_recycler_view)
     RecyclerView mTrailerRecyclerView;
 
@@ -169,9 +175,13 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener {
         populateImageViewNoCrossfade(initImageViewProperties(getActivity(), mMovie.getDirector().getProfilePath(),
                 mDirectorPicture));
         populateTextView(mMovie.getDirector().getName(), mDirectorName);
+        populateImageViewNoCrossfade(initImageViewProperties(getActivity(), mMovie.getProducer().getProfilePath(),
+                mProducerPicture));
+        populateTextView(mMovie.getProducer().getName(), mProducerName);
         populateStringListToTextView(mMovie.getLanguages(), mLanguages);
         populateTextViewWithSpaces(mMovie.getBudget(), mBudget);
         populateTextViewWithSpaces(mMovie.getRevenue(), mRevenue);
+        populateStringListToTextView(mMovie.getProductionCompanies(), mProductionCompanies);
 
         attachToTrailerAdapter(mMovie);
     }
