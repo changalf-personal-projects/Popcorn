@@ -43,6 +43,8 @@ public class ViewPopulator {
                     .transition(DrawableTransitionOptions.withCrossFade(crossfadeTime))
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .into(view);
+        } else {
+            setPlaceholder(view);
         }
     }
 
@@ -55,6 +57,9 @@ public class ViewPopulator {
                     .transition(DrawableTransitionOptions.withCrossFade(crossfadeTime))
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .into(view);
+        } else {
+            setPlaceholder(view);
+
         }
     }
 
@@ -77,25 +82,29 @@ public class ViewPopulator {
         final CollapsingToolbarLayout toolbarLayout = layoutProperties.getCollapseToolbar();
         final FloatingActionButton favouriteButton = layoutProperties.getfavouriteButton();
 
-        GlideApp.with(context).load(imagePath)
-                .listener(GlidePalette.with(layoutProperties.getImagePath())
-                        .intoCallBack(new GlidePalette.CallBack() {
-                            @Override
-                            public void onPaletteLoaded(Palette palette) {
-                                List<Palette.Swatch> swatches = palette.getSwatches();
-                                colourWithSwatch(background, toolbarLayout, swatches);
-                                colourTextViewWithSwatch(title, rating, runtime, release, genres, swatches);
+        if (imagePath != null) {
+            GlideApp.with(context).load(imagePath)
+                    .listener(GlidePalette.with(layoutProperties.getImagePath())
+                            .intoCallBack(new GlidePalette.CallBack() {
+                                @Override
+                                public void onPaletteLoaded(Palette palette) {
+                                    List<Palette.Swatch> swatches = palette.getSwatches();
+                                    colourWithSwatch(background, toolbarLayout, swatches);
+                                    colourTextViewWithSwatch(title, rating, runtime, release, genres, swatches);
+                                    int swatchRgb = getFirstAvailableSwatch(palette);
+                                    colourTmdbLogo(logo, swatchRgb);
+                                    colourTabLayout(tabLayout, swatchRgb);
+                                    colourFavouriteButton(favouriteButton, swatchRgb);
+                                }
+                            })
+                    )
+                    .transition(DrawableTransitionOptions.withCrossFade(crossfadeTime))
+                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                    .into(view);
+        } else {
+            setPlaceholder(view);
 
-                                int swatchRgb = getFirstAvailableSwatch(palette);
-                                colourTmdbLogo(logo, swatchRgb);
-                                colourTabLayout(tabLayout, swatchRgb);
-                                colourFavouriteButton(favouriteButton, swatchRgb);
-                            }
-                        })
-                )
-                .transition(DrawableTransitionOptions.withCrossFade(crossfadeTime))
-                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                .into(view);
+        }
     }
 
     // Overloaded method 4: Populate an imageview without crossfade.
@@ -108,6 +117,9 @@ public class ViewPopulator {
             GlideApp.with(context).load(imagePath)
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .into(view);
+        } else {
+            setPlaceholder(view);
+
         }
     }
 
@@ -117,11 +129,16 @@ public class ViewPopulator {
         ImageView view = layoutProperties.getImage();
         int crossfadeTime = layoutProperties.getCrossfadeTime();
 
-        GlideApp.with(context).load(imagePath)
-                .centerCrop()
-                .transition(DrawableTransitionOptions.withCrossFade(crossfadeTime))
-                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                .into(view);
+        if (imagePath != null) {
+            GlideApp.with(context).load(imagePath)
+                    .centerCrop()
+                    .transition(DrawableTransitionOptions.withCrossFade(crossfadeTime))
+                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                    .into(view);
+        } else {
+            setPlaceholder(view);
+
+        }
     }
 
     public static void populateTextView(String content, TextView view) {
@@ -164,5 +181,9 @@ public class ViewPopulator {
         } else {
             view.setText(message);
         }
+    }
+
+    private static void setPlaceholder(ImageView view) {
+        view.setBackgroundResource(R.color.grey);
     }
 }

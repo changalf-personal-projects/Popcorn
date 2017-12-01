@@ -5,4 +5,4 @@
 #TODO: Add rate movie button in reviews section.
 #TODO: Combine fetchJsonCast() and fetchJsonCrew().
 #TODO: Change all populateImageViews() parameters to LayoutProperties type.
-#TODO: Add another person to details.
+#TODO: Combine spoken languages and original language.
