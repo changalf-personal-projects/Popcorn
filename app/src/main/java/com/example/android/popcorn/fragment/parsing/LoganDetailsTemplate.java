@@ -60,6 +60,9 @@ public class LoganDetailsTemplate extends MovieLogan {
         }
     }
 
+    @JsonField(name = "original_language")
+    private String originalLanguage;
+
     @JsonField(name = "original_title")
     private String title;
 
@@ -119,6 +122,14 @@ public class LoganDetailsTemplate extends MovieLogan {
 
     @JsonField(name = "vote_average")
     private String voteAverage;
+
+    public String getOriginalLanguage() {
+        return originalLanguage;
+    }
+
+    public void setOriginalLanguage(String originalLanguage) {
+        this.originalLanguage = originalLanguage;
+    }
 
     public String getTitle() {
         return title;

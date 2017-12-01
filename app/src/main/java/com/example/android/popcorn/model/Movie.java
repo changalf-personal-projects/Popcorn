@@ -21,6 +21,7 @@ public class Movie implements Parcelable {
     private String title;
     private String runtime;
     private String rating;
+    private String originalLanguage;
     private String overview;
     private String id;
     private String releaseDate;
@@ -49,6 +50,7 @@ public class Movie implements Parcelable {
         title = in.readString();
         runtime = in.readString();
         rating = in.readString();
+        originalLanguage = in.readString();
         overview = in.readString();
         id = in.readString();
         releaseDate = in.readString();
@@ -74,6 +76,7 @@ public class Movie implements Parcelable {
         parcel.writeString(title);
         parcel.writeString(runtime);
         parcel.writeString(rating);
+        parcel.writeString(originalLanguage);
         parcel.writeString(overview);
         parcel.writeString(id);
         parcel.writeString(releaseDate);
@@ -156,6 +159,14 @@ public class Movie implements Parcelable {
 
     public void setRating(String rating) {
         this.rating = rating;
+    }
+
+    public String getOriginalLanguage() {
+        return originalLanguage;
+    }
+
+    public void setOriginalLanguage(String originalLanguage) {
+        this.originalLanguage = originalLanguage;
     }
 
     public String getOverview() {

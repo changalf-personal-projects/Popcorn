@@ -57,6 +57,8 @@ import static com.example.android.popcorn.networking.UrlCreator.createUrlWithApp
 public class PopularFragment extends Fragment implements OnMovieClickListener {
 
     private final String LOG_TAG = PopularFragment.class.getSimpleName();
+    private final String ISO_ENGLISH = "en";
+    private final String ENGLISH = "English";
     private final String DIRECTOR = "Director";
     private final String PRODUCER = "Producer";
     private final int LAYOUT_COL_SPAN = 2;
@@ -290,14 +292,21 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
             movie.setProductionCompanies(company.getName());
         }
 
-        for (LoganDetailsTemplate.Language language: movieLogan.getLanguages()) {
-            movie.setLanguages(language.getLanguage());
-        }
-
         movie.setBudget(movieLogan.getBudget());
         movie.setTitle(movieLogan.getTitle());
         movie.setRuntime(movieLogan.getRuntime());
         movie.setRating(movieLogan.getVoteAverage());
+
+        // This ordering of for-loop after setting original language allows original language to be
+        // displayed first in languages.
+        if (movieLogan.getOriginalLanguage().equals(ISO_ENGLISH)) {
+            movie.setLanguages(ENGLISH);
+        }
+
+        for (LoganDetailsTemplate.Language language: movieLogan.getLanguages()) {
+            movie.setLanguages(language.getLanguage());
+        }
+
         movie.setOverview(movieLogan.getOverview());
         movie.setReleaseDate(movieLogan.getRelease());
         movie.setRevenue(movieLogan.getRevenue());
