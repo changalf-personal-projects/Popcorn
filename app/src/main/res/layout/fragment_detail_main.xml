@@ -223,16 +223,34 @@
             android:layout_marginStart="@dimen/detail_info_left_and_right_margin"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:layout_marginRight="5dp"
-                android:fontFamily="sans-serif-light"
-                android:letterSpacing="0.075"
-                android:text="@string/production_companies"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
+            <!--<LinearLayout-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="vertical">-->
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginRight="5dp"
+                    android:fontFamily="sans-serif-light"
+                    android:letterSpacing="0.075"
+                    android:text="@string/production_studios"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginEnd="5dp"-->
+                    <!--android:layout_marginRight="5dp"-->
+                    <!--android:fontFamily="sans-serif-light"-->
+                    <!--android:letterSpacing="0.075"-->
+                    <!--android:text="@string/companies"-->
+                    <!--android:textColor="@color/black"-->
+                    <!--android:textStyle="bold" />-->
+
+            <!--</LinearLayout>-->
 
             <TextView
                 android:id="@+id/movie_prod_company"
