@@ -1,8 +1,8 @@
 #TODO: Implement favourite button function.
 #TODO: Display title or image when toolbar is collapsed.
-#TODO: Placeholder when poster/backdrop is null.
+#TODO: Placeholder in all populateImageView(...) methods; need new placeholders for each one.
 #TODO: Why every second search no results are shown?
 #TODO: Add rate movie button in reviews section.
-#TODO: Combine fetchJsonCast() and fetchJsonCrew().
-#TODO: Change all populateImageViews() parameters to LayoutProperties type.
-#TODO: Change list of languages to set of languages.
+#TODO: Why not placing first comma when 10 characters in revenue?
+
+

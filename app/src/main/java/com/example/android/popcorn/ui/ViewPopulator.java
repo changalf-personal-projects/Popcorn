@@ -124,13 +124,6 @@ public class ViewPopulator {
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .into(view);
         }
-
-        if (imagePath.equals("")) {
-//            Log.v(LOG_TAG, "In setPlaceholder(...) method.");
-//            GlideApp.with(context).load(imagePath)
-//                    .circle_placeholder(new ColorDrawable(R.color.grey))
-//                    .into(view);
-        }
     }
 
     public static void populateCenterCropImageView(DetailActivityLayoutProperties layoutProperties) {
