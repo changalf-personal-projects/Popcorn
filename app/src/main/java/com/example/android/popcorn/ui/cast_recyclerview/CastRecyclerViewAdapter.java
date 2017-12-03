@@ -63,10 +63,10 @@ public class CastRecyclerViewAdapter extends RecyclerView.Adapter<CastRecyclerVi
     }
 
     private void onBindProfilePicture(Cast cast, CastViewHolder holder) {
-        if (cast.getProfilePath() != null) {
+//        if (cast.getProfilePath() != null) {
             ViewPopulator.populateImageViewNoCrossfade(initImageViewProperties(mContext, cast.getProfilePath(),
                     holder.mProfilePicture));
-        }
+//        }
     }
 
     private void onBindMemberName(Cast cast, CastViewHolder holder) {

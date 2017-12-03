@@ -119,12 +119,10 @@ public class ViewPopulator {
         RequestOptions requestOptions = new RequestOptions();
         requestOptions.placeholder(R.color.grey);
 
-        if (imagePath != null) {
-            GlideApp.with(context).load(imagePath)
-                    .placeholder(R.drawable.circle_placeholder)
-                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                    .into(view);
-        }
+        GlideApp.with(context).load(imagePath)
+                .placeholder(R.drawable.circle_placeholder)
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                .into(view);
     }
 
     public static void populateCenterCropImageView(DetailActivityLayoutProperties layoutProperties) {
