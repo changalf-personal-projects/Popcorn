@@ -105,6 +105,7 @@
 
     <!-- Placeholder dimensions. -->
     <dimen name="circle_image_placeholder">70dp</dimen>
+    <dimen name="circle_placeholder_stroke_width">1dp</dimen>
 
     <!-- Everything else. -->
     <dimen name="green_rectangle_height">250dp</dimen>
