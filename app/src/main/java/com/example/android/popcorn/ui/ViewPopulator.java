@@ -19,6 +19,7 @@ import java.util.Set;
 
 import static com.example.android.popcorn.NullChecker.isNotEmptyString;
 import static com.example.android.popcorn.NullChecker.isNotNullString;
+import static com.example.android.popcorn.Utilities.NOT_AVAILABLE;
 import static com.example.android.popcorn.Utilities.convertDoubleToString;
 import static com.example.android.popcorn.Utilities.formatDate;
 import static com.example.android.popcorn.Utilities.formatString;
@@ -140,12 +141,15 @@ public class ViewPopulator {
                     .into(view);
         } else {
             setPlaceholder(view);
-
         }
     }
 
     public static void populateTextView(String content, TextView view) {
-        view.setText(content);
+        if (hasContent(content)) {
+            view.setText(content);
+        } else {
+            view.setText(NOT_AVAILABLE);
+        }
     }
 
     public static void populateTextViewWithSpaces(String content, TextView view) {
@@ -192,5 +196,9 @@ public class ViewPopulator {
 
     private static void setPlaceholder(ImageView view) {
         view.setColorFilter(R.color.grey);
+    }
+
+    private static boolean hasContent(String content) {
+        return content != null;
     }
 }

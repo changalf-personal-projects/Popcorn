@@ -22,7 +22,9 @@ import com.example.android.popcorn.YoutubePlayerActivity;
 import com.example.android.popcorn.fragment.parsing.LoganCastMemberDetailTemplate;
 import com.example.android.popcorn.fragment.parsing.MovieParser;
 import com.example.android.popcorn.model.Cast;
+import com.example.android.popcorn.model.Director;
 import com.example.android.popcorn.model.Movie;
+import com.example.android.popcorn.model.Producer;
 import com.example.android.popcorn.model.Trailer;
 import com.example.android.popcorn.networking.RequestQueueSingleton;
 import com.example.android.popcorn.ui.trailer_recyclerview.OnTrailerClickListener;
@@ -171,10 +173,20 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener {
 
     private void setParcelableDetailsIntoViews() {
         String tagline = mMovie.getTagline();
+        Director director = mMovie.getDirector();
+        Producer producer = mMovie.getProducer();
 
         if (hasTagline(tagline)) {
             mTagline.setVisibility(View.VISIBLE);
             populateTextView(mMovie.getTagline(), mTagline);
+        }
+
+        if (!hasDirector(director)) {
+            mMovie.setDirector(new Director());
+        }
+
+        if (!hasProducer(producer)) {
+            mMovie.setProducer(new Producer());
         }
 
         populateTextView(mMovie.getOverview(), mSynopsis);
@@ -194,5 +206,13 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener {
 
     private boolean hasTagline(String tagline) {
         return !tagline.equals("");
+    }
+
+    private boolean hasDirector(Director director) {
+        return director != null;
+    }
+
+    private boolean hasProducer(Producer producer) {
+        return producer != null;
     }
 }

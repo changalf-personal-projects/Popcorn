@@ -32,7 +32,8 @@ public class Utilities {
     public static final String SEARCH_ACTIVITY_PARENT = "search results activity";
     public static final String PARENT_ACTIVITY = "parent activity";
     public static final String SEARCH_KEY = "query";
-    private static final String NOT_AVAILABLE = "N/A";
+    public static final String NOT_AVAILABLE = "Not available";
+    private static final String N_A = "N/A";
     private static final String DOLLAR_SIGN = "$";
     private static final String COMMA = ",";
     private static final int THREE_CHARS = 3;
@@ -54,7 +55,7 @@ public class Utilities {
     }
 
     public static String formatString(String string) {
-        String formattedGenres = NOT_AVAILABLE;
+        String formattedGenres = N_A;
 
         if (isNotNullString(string)) {
             // For clearer purposes, these are two variables with same values.
@@ -69,7 +70,7 @@ public class Utilities {
 
     public static String formatDate(String arg, String format) {
         Date date = null;
-        String formattedDate = NOT_AVAILABLE;
+        String formattedDate = N_A;
         // Start with the original format of releaseDate (ie. 2016-12-10).
         SimpleDateFormat originalFormat = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -102,7 +103,7 @@ public class Utilities {
             }
             return formatWithDollarSign(stringBuilder.toString());
         }
-        return NOT_AVAILABLE;
+        return N_A;
     }
 
     public static String formatWithCommas(String stringValue) {
@@ -113,7 +114,7 @@ public class Utilities {
             }
             return formatWithDollarSign(stringBuilder.toString());
         }
-        return NOT_AVAILABLE;
+        return N_A;
     }
 
     public static String formatWithDollarSign(String value) {
