@@ -5,6 +5,7 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v7.graphics.Palette;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,6 +15,7 @@ import com.example.android.popcorn.R;
 import com.github.florent37.glidepalette.GlidePalette;
 
 import java.util.List;
+import java.util.Set;
 
 import static com.example.android.popcorn.NullChecker.isNotEmptyString;
 import static com.example.android.popcorn.NullChecker.isNotNullString;
@@ -117,9 +119,11 @@ public class ViewPopulator {
             GlideApp.with(context).load(imagePath)
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .into(view);
-        } else {
-            setPlaceholder(view);
+        }
 
+        if (imagePath.equals("")) {
+            Log.v(LOG_TAG, "In setPlaceholder(...) method.");
+            setPlaceholder(view);
         }
     }
 
@@ -163,6 +167,10 @@ public class ViewPopulator {
         view.setText(formatString(content.toString()));
     }
 
+    public static void populateStringSetToTextView(Set<String> content, TextView view) {
+        view.setText(formatString(content.toString()));
+    }
+
     public static void populateDateToTextView(String content, TextView view, String format) {
         view.setText(formatDate(content, format));
     }
@@ -184,6 +192,6 @@ public class ViewPopulator {
     }
 
     private static void setPlaceholder(ImageView view) {
-        view.setBackgroundResource(R.color.grey);
+        view.setColorFilter(R.color.grey);
     }
 }

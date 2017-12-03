@@ -29,15 +29,18 @@ import com.example.android.popcorn.ui.trailer_recyclerview.OnTrailerClickListene
 import com.example.android.popcorn.ui.trailer_recyclerview.TrailerRecyclerViewAdapter;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.example.android.popcorn.networking.UrlCreator.createCastMemberDetailUrl;
 import static com.example.android.popcorn.ui.LayoutPropertiesInitializer.initImageViewProperties;
-import static com.example.android.popcorn.ui.ViewPopulator.populateStringListToTextView;
 import static com.example.android.popcorn.ui.ViewPopulator.populateImageViewNoCrossfade;
+import static com.example.android.popcorn.ui.ViewPopulator.populateStringListToTextView;
+import static com.example.android.popcorn.ui.ViewPopulator.populateStringSetToTextView;
 import static com.example.android.popcorn.ui.ViewPopulator.populateTextView;
 import static com.example.android.popcorn.ui.ViewPopulator.populateTextViewWithSpaces;
 
@@ -52,6 +55,7 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener {
 
     private TrailerRecyclerViewAdapter mTrailerRecyclerAdapter;
     private Movie mMovie;
+    private Set<String> languageSet = new HashSet<>();
 
     @BindView(R.id.tagline)
     TextView mTagline;
@@ -84,6 +88,8 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener {
 
         setupTrailerRecyclerView();
         getParcelableMovie();
+
+        languageSet.addAll(mMovie.getLanguages());
 
         setParcelableDetailsIntoViews();
         fetchJsonCastMemberDetails();
@@ -178,7 +184,7 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener {
         populateImageViewNoCrossfade(initImageViewProperties(getActivity(), mMovie.getProducer().getProfilePath(),
                 mProducerPicture));
         populateTextView(mMovie.getProducer().getName(), mProducerName);
-        populateStringListToTextView(mMovie.getLanguages(), mLanguages);
+        populateStringSetToTextView(languageSet, mLanguages);
         populateTextViewWithSpaces(mMovie.getBudget(), mBudget);
         populateTextViewWithSpaces(mMovie.getRevenue(), mRevenue);
         populateStringListToTextView(mMovie.getProductionCompanies(), mProductionCompanies);

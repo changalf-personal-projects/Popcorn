@@ -45,19 +45,19 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_marginEnd="@dimen/detail_info_left_and_right_margin"
             android:layout_marginLeft="@dimen/detail_info_left_and_right_margin"
             android:layout_marginRight="@dimen/detail_info_left_and_right_margin"
-            android:layout_marginStart="@dimen/detail_info_left_and_right_margin">
+            android:layout_marginStart="@dimen/detail_info_left_and_right_margin"
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_marginEnd="@dimen/detail_info_left_and_right_margin"
                 android:layout_marginRight="@dimen/detail_info_left_and_right_margin"
-                android:layout_marginEnd="@dimen/detail_info_left_and_right_margin">
+                android:layout_weight="1"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -89,11 +89,11 @@
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_marginLeft="@dimen/detail_info_left_and_right_margin"
-                android:layout_marginStart="@dimen/detail_info_left_and_right_margin">
+                android:layout_marginStart="@dimen/detail_info_left_and_right_margin"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -223,34 +223,16 @@
             android:layout_marginStart="@dimen/detail_info_left_and_right_margin"
             android:orientation="horizontal">
 
-            <!--<LinearLayout-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:orientation="vertical">-->
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginRight="5dp"
-                    android:fontFamily="sans-serif-light"
-                    android:letterSpacing="0.075"
-                    android:text="@string/production_studios"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
-
-                <!--<TextView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginEnd="5dp"-->
-                    <!--android:layout_marginRight="5dp"-->
-                    <!--android:fontFamily="sans-serif-light"-->
-                    <!--android:letterSpacing="0.075"-->
-                    <!--android:text="@string/companies"-->
-                    <!--android:textColor="@color/black"-->
-                    <!--android:textStyle="bold" />-->
-
-            <!--</LinearLayout>-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:fontFamily="sans-serif-light"
+                android:letterSpacing="0.075"
+                android:text="@string/production_studios"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/movie_prod_company"
