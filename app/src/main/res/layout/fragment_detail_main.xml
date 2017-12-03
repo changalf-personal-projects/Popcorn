@@ -74,12 +74,15 @@
                     android:id="@+id/director_profile_picture"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center" />
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/detail_crew_photo_margin"
+                    android:layout_marginBottom="@dimen/detail_crew_photo_margin" />
 
                 <TextView
                     android:id="@+id/director_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:layout_gravity="center"
                     android:fontFamily="sans-serif"
                     android:letterSpacing="0.025"
@@ -110,12 +113,15 @@
                     android:id="@+id/producer_profile_picture"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center" />
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/detail_crew_photo_margin"
+                    android:layout_marginBottom="@dimen/detail_crew_photo_margin" />
 
                 <TextView
                     android:id="@+id/producer_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:layout_gravity="center"
                     android:fontFamily="sans-serif"
                     android:letterSpacing="0.025"

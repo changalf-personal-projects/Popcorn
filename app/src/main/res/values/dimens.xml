@@ -63,6 +63,7 @@
     <dimen name="details_left_margin">22dp</dimen>
     <dimen name="detail_bottom_margin">18dp</dimen>
     <dimen name="detail_additional_bottom_margin">5dp</dimen>
+    <dimen name="detail_crew_photo_margin">10dp</dimen>
 
     <!-- Single review fragment layout. -->
     <dimen name="cardview_review_content_side_padding">10dp</dimen>
@@ -101,6 +102,9 @@
     <dimen name="button_corner_radius">2dp</dimen>
     <dimen name="button_stroke_width">5dp</dimen>
     <dimen name="rate_movie_button_side_margin">50dp</dimen>
+
+    <!-- Placeholder dimensions. -->
+    <dimen name="circle_image_placeholder">70dp</dimen>
 
     <!-- Everything else. -->
     <dimen name="green_rectangle_height">250dp</dimen>

@@ -34,6 +34,7 @@ public class Utilities {
     public static final String SEARCH_KEY = "query";
     private static final String NOT_AVAILABLE = "N/A";
     private static final String DOLLAR_SIGN = "$";
+    private static final String COMMA = ",";
     private static final int THREE_CHARS = 3;
 
     public static double roundToNearestTenth(String rating) {
@@ -108,7 +109,7 @@ public class Utilities {
         if (moreThanThreeChars(stringValue)) {
             StringBuilder stringBuilder = new StringBuilder(stringValue);
             for (int i = stringValue.length() - 3; i >= stringValue.length() / 3; i -= 3) {
-                stringBuilder.insert(i, ",");
+                stringBuilder.insert(i, COMMA);
             }
             return formatWithDollarSign(stringBuilder.toString());
         }

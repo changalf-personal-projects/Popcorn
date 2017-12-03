@@ -5,12 +5,12 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v7.graphics.Palette;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.android.popcorn.R;
 import com.github.florent37.glidepalette.GlidePalette;
 
@@ -115,15 +115,21 @@ public class ViewPopulator {
         String imagePath = layoutProperties.getImagePath();
         ImageView view = layoutProperties.getImage();
 
+        RequestOptions requestOptions = new RequestOptions();
+        requestOptions.placeholder(R.color.grey);
+
         if (imagePath != null) {
             GlideApp.with(context).load(imagePath)
+                    .placeholder(R.drawable.circle_placeholder)
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .into(view);
         }
 
         if (imagePath.equals("")) {
-            Log.v(LOG_TAG, "In setPlaceholder(...) method.");
-            setPlaceholder(view);
+//            Log.v(LOG_TAG, "In setPlaceholder(...) method.");
+//            GlideApp.with(context).load(imagePath)
+//                    .circle_placeholder(new ColorDrawable(R.color.grey))
+//                    .into(view);
         }
     }
 
