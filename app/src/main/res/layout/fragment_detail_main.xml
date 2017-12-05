@@ -262,7 +262,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/detail_trailers_margin"
+                android:layout_margin="@dimen/details_left_margin"
                 android:fontFamily="sans-serif"
                 android:text="@string/trailers_label"
                 android:textColor="@color/black"
@@ -273,8 +273,33 @@
                 android:id="@+id/trailer_recycler_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/detail_trailer_recyclerview_bottom_margin"
-                android:layout_marginTop="@dimen/detail_trailer_recyclerview_top_margin"
+                android:layout_marginBottom="@dimen/detail_recyclerview_bottom_margin"
+                android:layout_marginTop="@dimen/detail_recyclerview_top_margin"
+                android:scrollbars="none" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/details_left_margin"
+                android:fontFamily="sans-serif"
+                android:text="@string/recommended_movies"
+                android:textColor="@color/black"
+                android:textSize="@dimen/detail_label_size"
+                android:textStyle="bold" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recommendations"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/detail_recyclerview_bottom_margin"
+                android:layout_marginTop="@dimen/detail_recyclerview_top_margin"
                 android:scrollbars="none" />
 
         </LinearLayout>

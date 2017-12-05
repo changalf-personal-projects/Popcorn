@@ -4,6 +4,8 @@
     <string name="action_search">Search</string>
     <string name="cast_label">Cast</string>
     <string name="trailers_label">Trailers</string>
+    <string name="recommended_movies">Recommended Movies</string>
+    <string name="similar_movies">Similar Movies</string>
     <string name="reviews_label">Reviews</string>
     <string name="biography_subheading">Biography</string>
     <string name="birth_date">Birthday:</string>
@@ -15,12 +17,8 @@
     <string name="languages">Languages:</string>
     <string name="budget">Budget:</string>
     <string name="revenue">Revenue:</string>
-    <string name="search_hint">Search movie...</string>
-
-    <!-- Production companies are separate values because "Prouction" will be on line above "Companies".-->
-    <string name="production">Prod.</string>
-    <string name="companies">Companies:</string>
     <string name="production_studios">Prod. Studios:</string>
+    <string name="search_hint">Search movie...</string>
 
     <!-- Button labels. -->
     <string name="view_all_reviews">View All</string>
