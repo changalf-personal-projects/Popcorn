@@ -41,29 +41,22 @@ public class ViewPopulator {
 
     // Overloaded method 1: Populate any normal image view.
     public static void populateImageView(Context context, String imagePath, int crossfadeTime, ImageView view) {
-        if (imagePath != null) {
             GlideApp.with(context).load(imagePath)
+                    .placeholder(R.drawable.poster_placeholder)
                     .transition(DrawableTransitionOptions.withCrossFade(crossfadeTime))
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .into(view);
-        } else {
-            setPlaceholder(view);
-        }
     }
 
     // Overloaded method 2: Populate a circle-cropped image.
     public static void populateImageView(Context context, String imagePath, ImageView view,
                                          int width, int height, int crossfadeTime) {
-        if (imagePath != null) {
             GlideApp.with(context).load(imagePath).circleCrop()
                     .override(width, height)
+                    .placeholder(R.drawable.circle_placeholder)
                     .transition(DrawableTransitionOptions.withCrossFade(crossfadeTime))
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .into(view);
-        } else {
-            setPlaceholder(view);
-
-        }
     }
 
     // Overloaded method 3: Populate an imageview and colour the background.
@@ -85,8 +78,8 @@ public class ViewPopulator {
         final CollapsingToolbarLayout toolbarLayout = layoutProperties.getCollapseToolbar();
         final FloatingActionButton favouriteButton = layoutProperties.getfavouriteButton();
 
-        if (imagePath != null) {
             GlideApp.with(context).load(imagePath)
+                    .placeholder(R.drawable.poster_placeholder)
                     .listener(GlidePalette.with(layoutProperties.getImagePath())
                             .intoCallBack(new GlidePalette.CallBack() {
                                 @Override
@@ -104,10 +97,6 @@ public class ViewPopulator {
                     .transition(DrawableTransitionOptions.withCrossFade(crossfadeTime))
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .into(view);
-        } else {
-            setPlaceholder(view);
-
-        }
     }
 
     // Overloaded method 4: Populate an imageview without crossfade.
@@ -125,21 +114,19 @@ public class ViewPopulator {
                 .into(view);
     }
 
+    // Currently used for backdrops.
     public static void populateCenterCropImageView(DetailActivityLayoutProperties layoutProperties) {
         Context context = layoutProperties.getContext();
         String imagePath = layoutProperties.getImagePath();
         ImageView view = layoutProperties.getImage();
         int crossfadeTime = layoutProperties.getCrossfadeTime();
 
-        if (imagePath != null) {
-            GlideApp.with(context).load(imagePath)
-                    .centerCrop()
-                    .transition(DrawableTransitionOptions.withCrossFade(crossfadeTime))
-                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                    .into(view);
-        } else {
-            setPlaceholder(view);
-        }
+        GlideApp.with(context).load(imagePath)
+                .centerCrop()
+                .placeholder(R.drawable.backdrop_placeholder)
+                .transition(DrawableTransitionOptions.withCrossFade(crossfadeTime))
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                .into(view);
     }
 
     public static void populateTextView(String content, TextView view) {

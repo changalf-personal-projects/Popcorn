@@ -11,7 +11,7 @@
         android:useLevel="true" />
 
     <size
-        android:width="@dimen/poster_placeholder_width"
-        android:height="@dimen/poster_placeholder_height" />
+        android:width="@dimen/backdrop_placeholder_width"
+        android:height="@dimen/backdrop_placeholder_height" />
 
 </shape>

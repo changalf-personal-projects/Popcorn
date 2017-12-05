@@ -1,6 +1,5 @@
 #TODO: Implement favourite button function.
 #TODO: Display title or image when toolbar is collapsed.
-#TODO: Placeholder in all populateImageView(...) methods; need new placeholders for each one; remove if (imagePath != null) checks.
 #TODO: Why every second search no results are shown?
 #TODO: Add rate movie button in reviews section.
 
