@@ -109,7 +109,7 @@ public class Utilities {
     public static String formatWithCommas(String stringValue) {
         if (moreThanThreeChars(stringValue)) {
             StringBuilder stringBuilder = new StringBuilder(stringValue);
-            for (int i = stringValue.length() - 3; i >= stringValue.length() / 3; i -= 3) {
+            for (int i = stringValue.length() - 3; i >= 1; i -= 3) {
                 stringBuilder.insert(i, COMMA);
             }
             return formatWithDollarSign(stringBuilder.toString());
