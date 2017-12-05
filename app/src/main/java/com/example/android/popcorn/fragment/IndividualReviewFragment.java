@@ -18,6 +18,8 @@ import com.example.android.popcorn.ui.ViewPopulator;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.android.popcorn.ui.LayoutPropertiesInitializer.initImageViewProperties;
+
 /**
  * Created by alfredchang on 2017-10-18.
  */
@@ -56,7 +58,7 @@ public class IndividualReviewFragment extends Fragment {
     }
 
     private void setParcelableDetailsIntoViews(Movie movie, Review review) {
-        ViewPopulator.populateImageView(getActivity(), movie.getDetailPosterPath(), POSTER_CROSSFADE_TIME, mMoviePoster);
+        ViewPopulator.populateImageView(initImageViewProperties(getActivity(), movie.getDetailPosterPath(), POSTER_CROSSFADE_TIME, mMoviePoster));
         ViewPopulator.populateTextView(review.getAuthor(), mReviewAuthor);
         ViewPopulator.populateTextView(review.getContent(), mReviewContent);
     }

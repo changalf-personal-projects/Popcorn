@@ -39,33 +39,41 @@ public class ViewPopulator {
 
     private final static String LOG_TAG = ViewPopulator.class.getSimpleName();
 
-    // Overloaded method 1: Populate any normal image view.
-    public static void populateImageView(Context context, String imagePath, int crossfadeTime, ImageView view) {
-            GlideApp.with(context).load(imagePath)
-                    .placeholder(R.drawable.poster_placeholder)
-                    .transition(DrawableTransitionOptions.withCrossFade(crossfadeTime))
-                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                    .into(view);
+    public static void populateImageView(DetailActivityLayoutProperties layoutProperties) {
+        Context context = layoutProperties.getContext();
+        String imagePath = layoutProperties.getImagePath();
+        int crossFadeTime = layoutProperties.getCrossFadeTime();
+        ImageView view = layoutProperties.getImage();
+
+        GlideApp.with(context).load(imagePath)
+                .placeholder(R.drawable.poster_placeholder)
+                .transition(DrawableTransitionOptions.withCrossFade(crossFadeTime))
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                .into(view);
     }
 
-    // Overloaded method 2: Populate a circle-cropped image.
-    public static void populateImageView(Context context, String imagePath, ImageView view,
-                                         int width, int height, int crossfadeTime) {
+    public static void populateImageViewCustomSize(DetailActivityLayoutProperties layoutProperties) {
+        Context context = layoutProperties.getContext();
+        String imagePath = layoutProperties.getImagePath();
+        int width = layoutProperties.getWidth();
+        int height = layoutProperties.getHeight();
+        int crossFadeTime = layoutProperties.getCrossFadeTime();
+        ImageView view = layoutProperties.getImage();
+
             GlideApp.with(context).load(imagePath).circleCrop()
                     .override(width, height)
                     .placeholder(R.drawable.circle_placeholder)
-                    .transition(DrawableTransitionOptions.withCrossFade(crossfadeTime))
+                    .transition(DrawableTransitionOptions.withCrossFade(crossFadeTime))
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .into(view);
     }
 
-    // Overloaded method 3: Populate an imageview and colour the background.
-    public static void populateImageView(DetailActivityLayoutProperties layoutProperties) {
+    public static void populateImageViewWithCrossFade(DetailActivityLayoutProperties layoutProperties) {
         Context context = layoutProperties.getContext();
         String imagePath = layoutProperties.getImagePath();
         ImageView view = layoutProperties.getImage();
 
-        int crossfadeTime = layoutProperties.getCrossfadeTime();
+        int crossfadeTime = layoutProperties.getCrossFadeTime();
 
         final TextView title = layoutProperties.getTitle();
         final TextView rating = layoutProperties.getRating();
@@ -99,7 +107,6 @@ public class ViewPopulator {
                     .into(view);
     }
 
-    // Overloaded method 4: Populate an imageview without crossfade.
     public static void populateImageViewNoCrossfade(DetailActivityLayoutProperties layoutProperties) {
         Context context = layoutProperties.getContext();
         String imagePath = layoutProperties.getImagePath();
@@ -119,7 +126,7 @@ public class ViewPopulator {
         Context context = layoutProperties.getContext();
         String imagePath = layoutProperties.getImagePath();
         ImageView view = layoutProperties.getImage();
-        int crossfadeTime = layoutProperties.getCrossfadeTime();
+        int crossfadeTime = layoutProperties.getCrossFadeTime();
 
         GlideApp.with(context).load(imagePath)
                 .centerCrop()

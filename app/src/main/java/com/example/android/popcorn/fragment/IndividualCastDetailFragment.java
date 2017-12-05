@@ -17,6 +17,8 @@ import com.example.android.popcorn.ui.ViewPopulator;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.android.popcorn.ui.LayoutPropertiesInitializer.initImageViewProperties;
+
 /**
  * Created by alfredchang on 2017-10-08.
  */
@@ -51,8 +53,8 @@ public class IndividualCastDetailFragment extends Fragment {
     }
 
     private void setParcelabeDetailIntoViews(Cast castMember) {
-        ViewPopulator.populateImageView(getActivity(), castMember.getProfilePath(), mProfilePicture,
-                PROFILE_PIC_WIDTH, PROFILE_PIC_HEIGHT, PROFILE_PIC_CROSSFADE_TIME);
+        ViewPopulator.populateImageViewCustomSize(initImageViewProperties(getActivity(), castMember.getProfilePath(), mProfilePicture,
+                PROFILE_PIC_WIDTH, PROFILE_PIC_HEIGHT, PROFILE_PIC_CROSSFADE_TIME));
         ViewPopulator.populateTextView(castMember.getName(), mName);
         ViewPopulator.populateDateToTextView(castMember.getBirthday(), mBirthday, "MMMM dd, yyyy");
         ViewPopulator.populateDateToTextView(castMember.getDeathday(), mDeath, "MMMM dd, yyyy");

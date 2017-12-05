@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
- * A class to reduce the number of parameters passed in ViewPopulator.populateImageView(...) methods.
+ * A class to reduce the number of parameters passed in ViewPopulator.populateImageViewCustomSize(...) methods.
  */
 
 public class DetailActivityLayoutProperties {
@@ -87,7 +87,7 @@ public class DetailActivityLayoutProperties {
         return mHeight;
     }
 
-    public int getCrossfadeTime() {
+    public int getCrossFadeTime() {
         return mCrossfadeTime;
     }
 

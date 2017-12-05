@@ -34,7 +34,7 @@ import static com.example.android.popcorn.Utilities.PARENT_ACTIVITY;
 import static com.example.android.popcorn.ui.LayoutPropertiesInitializer.initImageViewProperties;
 import static com.example.android.popcorn.ui.ViewPopulator.populateCenterCropImageView;
 import static com.example.android.popcorn.ui.ViewPopulator.populateDateToTextView;
-import static com.example.android.popcorn.ui.ViewPopulator.populateImageView;
+import static com.example.android.popcorn.ui.ViewPopulator.populateImageViewWithCrossFade;
 import static com.example.android.popcorn.ui.ViewPopulator.populateImageViewNoCrossfade;
 import static com.example.android.popcorn.ui.ViewPopulator.populateRatingTextView;
 import static com.example.android.popcorn.ui.ViewPopulator.populateRuntimeTextView;
@@ -153,7 +153,7 @@ public class DetailActivity extends AppCompatActivity {
         populateCenterCropImageView(initImageViewProperties(this,
                 movie.getBackdropPath(), BACKDROP_CROSSFADE_TIME, mBackdrop));
 
-        populateImageView(initImageViewProperties(this, movie.getPosterPath(),
+        populateImageViewWithCrossFade(initImageViewProperties(this, movie.getPosterPath(),
                 POSTER_CROSSFADE_TIME, mPoster, mPosterBackground, tmdbBranding, mTitle, mRating,
                 mRuntime, mRelease, mGenres, mTabLayout, mCollapsingToolbarLayout, favouriteButton));
 
