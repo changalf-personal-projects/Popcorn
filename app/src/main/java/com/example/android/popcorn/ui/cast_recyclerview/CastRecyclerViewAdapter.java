@@ -63,10 +63,8 @@ public class CastRecyclerViewAdapter extends RecyclerView.Adapter<CastRecyclerVi
     }
 
     private void onBindProfilePicture(Cast cast, CastViewHolder holder) {
-//        if (cast.getProfilePath() != null) {
-            ViewPopulator.populateImageViewNoCrossfade(initImageViewProperties(mContext, cast.getProfilePath(),
-                    holder.mProfilePicture));
-//        }
+        ViewPopulator.populateImageViewNoCrossfade(initImageViewProperties(mContext, cast.getProfilePath(),
+                holder.mProfilePicture));
     }
 
     private void onBindMemberName(Cast cast, CastViewHolder holder) {
@@ -79,9 +77,12 @@ public class CastRecyclerViewAdapter extends RecyclerView.Adapter<CastRecyclerVi
 
     public class CastViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        @BindView(R.id.cast_member_image) ImageView mProfilePicture;
-        @BindView(R.id.cast_member_name) TextView mMemberName;
-        @BindView(R.id.cast_member_character) TextView mCharacterName;
+        @BindView(R.id.cast_member_image)
+        ImageView mProfilePicture;
+        @BindView(R.id.cast_member_name)
+        TextView mMemberName;
+        @BindView(R.id.cast_member_character)
+        TextView mCharacterName;
 
         public CastViewHolder(View itemView) {
             super(itemView);
