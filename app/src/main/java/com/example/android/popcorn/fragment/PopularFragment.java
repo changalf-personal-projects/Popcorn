@@ -162,7 +162,6 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
             for (int j = 0; j < mListOfMovies.get(i).getRecMovies().size(); j++) {
                 final int recMovieIndex = j;
                 String url = createUrl(movie.getRecMovies().get(j).getId());
-                final int index = i;
                 StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                         new Response.Listener<String>() {
                             @Override
@@ -430,6 +429,8 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
     }
 
     private void attachAdapter() {
+        Log.v(LOG_TAG, "List of popular movies: " + getPopularMoviesSingleton());
+
         mRecyclerAdapter = new PosterRecyclerViewAdapter(getPopularMoviesSingleton(), this);
         mRecyclerView.setAdapter(mRecyclerAdapter);
         mProgressBar.setVisibility(View.GONE);

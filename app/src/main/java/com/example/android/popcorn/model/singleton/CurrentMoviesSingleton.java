@@ -1,24 +1,23 @@
 package com.example.android.popcorn.model.singleton;
 
-
 import com.example.android.popcorn.model.Movie;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Singleton movies instance to be shared by all classes.  No class should need to create a new list of
- * movies because same movies will be referenced.
+ * Created by alfredchang on 2017-12-05.
  */
-public class PopularMoviesSingleton {
+
+public class CurrentMoviesSingleton {
 
     private static List<Movie> singletonMovies;
 
-    public PopularMoviesSingleton() {
+    public CurrentMoviesSingleton() {
 
     }
 
-    public static List<Movie> getPopularMoviesSingleton() {
+    public static List<Movie> getCurrentMoviesSingleton() {
         if (singletonMovies == null) {
             singletonMovies = new ArrayList<>();
         }

@@ -18,8 +18,8 @@ public class UriTerms {
 
     // Query terms.
     public static final String POPULAR = "popular";
-    public static final String TOP = "top";
-    public static final String CURRENT = "current";
+    public static final String TOP = "top_rated";
+    public static final String CURRENT = "now_playing";
     public static final String LANGUAGE = "en-US";
     public static final String PAGE = "1";
 
