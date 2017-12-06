@@ -54,7 +54,6 @@ import static com.example.android.popcorn.ui.ViewPopulator.populateTextViewWithS
 public class DetailFragment extends Fragment implements OnTrailerClickListener {
 
     private final String LOG_TAG = DetailFragment.class.getSimpleName();
-    private final int DIRECTOR_PICTURE_DIMS = 50;
 
     private TrailerRecyclerViewAdapter mTrailerRecyclerAdapter;
     private RecommendationRecyclerViewAdapter mRecRecyclerAdapter;
@@ -95,7 +94,6 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener {
         setupTrailerRecyclerView();
         setupRecMoviesRecyclerView();
         getParcelableMovie();
-
 
         languageSet.addAll(mMovie.getLanguages());
 
