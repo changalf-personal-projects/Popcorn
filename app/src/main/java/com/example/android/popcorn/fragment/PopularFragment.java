@@ -257,8 +257,6 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
             final int position = i;
             String url = createRecommendedMoviesUrl(movie.getId());
 
-            Log.v(LOG_TAG, "Recommended movies url: " + url);
-
             StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                     new Response.Listener<String>() {
                         @Override
@@ -291,8 +289,6 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
             Movie movie = new Movie();
             movie.setId(result.getId());
             mListOfMovies.get(position).setRecMovies(movie);
-
-            Log.v(LOG_TAG, "Recommended movie: " + mListOfMovies.get(position).getRecMovies());
         }
 
         fetchRecJsonDetails();
@@ -391,36 +387,36 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
     private void saveRecMovieDetails(LoganDetailsTemplate movieLogan, int movieIndex, int recMovieIndex) {
         Movie movie = mListOfMovies.get(movieIndex).getRecMovies().get(recMovieIndex);
 
-        for (LoganDetailsTemplate.Genre genre: movieLogan.getGenres()) {
-            movie.setGenres(genre.getName());
-        }
-
-        for (LoganDetailsTemplate.ProductionCompany company: movieLogan.getProductionCompanies()) {
-            movie.setProductionCompanies(company.getName());
-        }
-
-        movie.setBudget(movieLogan.getBudget());
+//        for (LoganDetailsTemplate.Genre genre: movieLogan.getGenres()) {
+//            movie.setGenres(genre.getName());
+//        }
+//
+//        for (LoganDetailsTemplate.ProductionCompany company: movieLogan.getProductionCompanies()) {
+//            movie.setProductionCompanies(company.getName());
+//        }
+//
+//        movie.setBudget(movieLogan.getBudget());
         movie.setTitle(movieLogan.getTitle());
-        movie.setRuntime(movieLogan.getRuntime());
-        movie.setRating(movieLogan.getVoteAverage());
+//        movie.setRuntime(movieLogan.getRuntime());
+//        movie.setRating(movieLogan.getVoteAverage());
 
         // This ordering of for-loop after setting original language allows original language to be
         // displayed first in languages.
-        if (movieLogan.getOriginalLanguage().equals(ISO_ENGLISH)) {
-            movie.setLanguages(ENGLISH);
-        }
-
-        for (LoganDetailsTemplate.Language language: movieLogan.getLanguages()) {
-            movie.setLanguages(language.getLanguage());
-        }
-
-        movie.setOverview(movieLogan.getOverview());
+//        if (movieLogan.getOriginalLanguage().equals(ISO_ENGLISH)) {
+//            movie.setLanguages(ENGLISH);
+//        }
+//
+//        for (LoganDetailsTemplate.Language language: movieLogan.getLanguages()) {
+//            movie.setLanguages(language.getLanguage());
+//        }
+//
+//        movie.setOverview(movieLogan.getOverview());
         movie.setReleaseDate(movieLogan.getRelease());
-        movie.setRevenue(movieLogan.getRevenue());
-        movie.setTagline(movieLogan.getTagline());
-        movie.setPosterPath(createImageUrl(movieLogan.getPosterPath(), UriTerms.IMAGE_SIZE_W500));
+//        movie.setRevenue(movieLogan.getRevenue());
+//        movie.setTagline(movieLogan.getTagline());
+//        movie.setPosterPath(createImageUrl(movieLogan.getPosterPath(), UriTerms.IMAGE_SIZE_W500));
         movie.setDetailPosterPath(createImageUrl(movieLogan.getPosterPath(), UriTerms.IMAGE_SIZE_W342));
-        movie.setBackdropPath(createImageUrl(movieLogan.getBackdropPath(), UriTerms.POSTER_SIZE_ORIGINAL));
+//        movie.setBackdropPath(createImageUrl(movieLogan.getBackdropPath(), UriTerms.POSTER_SIZE_ORIGINAL));
 
     }
 

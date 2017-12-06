@@ -96,6 +96,7 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener {
         setupRecMoviesRecyclerView();
         getParcelableMovie();
 
+
         languageSet.addAll(mMovie.getLanguages());
 
         setParcelableDetailsIntoViews();
