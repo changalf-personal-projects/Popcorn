@@ -47,6 +47,7 @@ import butterknife.ButterKnife;
 import static com.example.android.popcorn.model.singleton.PopularMoviesSingleton.getPopularMoviesSingleton;
 import static com.example.android.popcorn.networking.UrlCreator.createCreditsUrl;
 import static com.example.android.popcorn.networking.UrlCreator.createImageUrl;
+import static com.example.android.popcorn.networking.UrlCreator.createRecommendedMoviesUrl;
 import static com.example.android.popcorn.networking.UrlCreator.createUrl;
 import static com.example.android.popcorn.networking.UrlCreator.createUrlWithAppendedResponse;
 
@@ -154,6 +155,33 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
         }
     }
 
+    private void fetchRecJsonDetails() {
+        for (int i = 0; i < mListOfMovies.size(); i++) {
+            final int movieIndex = i;
+            Movie movie = mListOfMovies.get(i);
+            for (int j = 0; j < mListOfMovies.get(i).getRecMovies().size(); j++) {
+                final int recMovieIndex = j;
+                String url = createUrl(movie.getRecMovies().get(j).getId());
+                final int index = i;
+                StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                LoganDetailsTemplate movieLogan = MovieParser.parseJsonDetailsData(response);
+                                saveRecMovieDetails(movieLogan, movieIndex, recMovieIndex);
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e(LOG_TAG, "Response error (fetchJsonDetails): " + error);
+                    }
+                });
+
+                RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
+            }
+        }
+    }
+
     private void fetchJsonCast() {
         for (int i = 0; i < mListOfMovies.size(); i++) {
             final Movie movie = this.mListOfMovies.get(i);
@@ -223,18 +251,60 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
         }
     }
 
+    private void fetchJsonRecMovies() {
+        for (int i = 0; i < mListOfMovies.size(); i++) {
+            final Movie movie = mListOfMovies.get(i);
+            final int position = i;
+            String url = createRecommendedMoviesUrl(movie.getId());
+
+            Log.v(LOG_TAG, "Recommended movies url: " + url);
+
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            LoganIdTemplate movieLogan = MovieParser.parseJsonIdData(response);
+                            saveRecMovieId(movieLogan, position);
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.e(LOG_TAG, "Response error (fetchJsonCast): " + error);
+                }
+            });
+
+            RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
+        }
+    }
+
     private void saveMovieId(LoganIdTemplate movieLogan) {
         for (LoganIdTemplate.Results result: movieLogan.getResults()) {
             Movie movie = new Movie();
             movie.setId(result.getId());
             mListOfMovies.add(movie);
         }
+        fetchData();
+    }
 
+    private void saveRecMovieId(LoganIdTemplate movieLogan, int position) {
+        for (LoganIdTemplate.Results result: movieLogan.getResults()) {
+            Movie movie = new Movie();
+            movie.setId(result.getId());
+            mListOfMovies.get(position).setRecMovies(movie);
+
+            Log.v(LOG_TAG, "Recommended movie: " + mListOfMovies.get(position).getRecMovies());
+        }
+
+        fetchRecJsonDetails();
+    }
+
+    private void fetchData() {
         fetchJsonDetails();
         fetchJsonCast();
         fetchJsonDirector();
         fetchJsonReviews();
         fetchJsonTrailers();
+        fetchJsonRecMovies();
     }
 
     private void saveMovieTrailers(Movie movie, LoganTrailersTemplate trailerLogan) {
@@ -316,6 +386,42 @@ public class PopularFragment extends Fragment implements OnMovieClickListener {
         movie.setBackdropPath(createImageUrl(movieLogan.getBackdropPath(), UriTerms.POSTER_SIZE_ORIGINAL));
 
         attachAdapter();
+    }
+
+    private void saveRecMovieDetails(LoganDetailsTemplate movieLogan, int movieIndex, int recMovieIndex) {
+        Movie movie = mListOfMovies.get(movieIndex).getRecMovies().get(recMovieIndex);
+
+        for (LoganDetailsTemplate.Genre genre: movieLogan.getGenres()) {
+            movie.setGenres(genre.getName());
+        }
+
+        for (LoganDetailsTemplate.ProductionCompany company: movieLogan.getProductionCompanies()) {
+            movie.setProductionCompanies(company.getName());
+        }
+
+        movie.setBudget(movieLogan.getBudget());
+        movie.setTitle(movieLogan.getTitle());
+        movie.setRuntime(movieLogan.getRuntime());
+        movie.setRating(movieLogan.getVoteAverage());
+
+        // This ordering of for-loop after setting original language allows original language to be
+        // displayed first in languages.
+        if (movieLogan.getOriginalLanguage().equals(ISO_ENGLISH)) {
+            movie.setLanguages(ENGLISH);
+        }
+
+        for (LoganDetailsTemplate.Language language: movieLogan.getLanguages()) {
+            movie.setLanguages(language.getLanguage());
+        }
+
+        movie.setOverview(movieLogan.getOverview());
+        movie.setReleaseDate(movieLogan.getRelease());
+        movie.setRevenue(movieLogan.getRevenue());
+        movie.setTagline(movieLogan.getTagline());
+        movie.setPosterPath(createImageUrl(movieLogan.getPosterPath(), UriTerms.IMAGE_SIZE_W500));
+        movie.setDetailPosterPath(createImageUrl(movieLogan.getPosterPath(), UriTerms.IMAGE_SIZE_W342));
+        movie.setBackdropPath(createImageUrl(movieLogan.getBackdropPath(), UriTerms.POSTER_SIZE_ORIGINAL));
+
     }
 
     private void saveMovieReview(Movie movie, LoganReviewTemplate reviewLogan) {

@@ -8,12 +8,13 @@ public class UriTerms {
 
     // TODO: Use enums for each category of strings.
 
-    //Query paths.
+    // Endpoints.
     public static final String CREDITS = "credits";
     public static final String VIDEOS = "videos";
     public static final String REVIEWS = "reviews";
     public static final String YOUTUBE_V = "v";
     public static final String QUERY = "query";
+    public static final String RECOMMENDATIONS = "recommendations";
 
     // Query terms.
     public static final String POPULAR = "popular";

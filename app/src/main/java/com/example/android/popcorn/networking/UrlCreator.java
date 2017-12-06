@@ -56,6 +56,15 @@ public class UrlCreator {
                 .build().toString();
     }
 
+    public static String createRecommendedMoviesUrl(String id) {
+        return Uri.parse(UriTerms.MOVIE_BASE_URL).buildUpon()
+                .appendPath(id)
+                .appendPath(UriTerms.RECOMMENDATIONS)
+                .appendQueryParameter(UriTerms.TMDB_API_KEY, BuildConfig.MOVIE_DP_API_KEY)
+                .appendQueryParameter(UriTerms.TMDB_LANGUAGE, UriTerms.LANGUAGE)
+                .build().toString();
+    }
+
     public static String createSearchMovieUrl(String query) {
         return Uri.parse(UriTerms.SEARCH_MOVIE_URL).buildUpon()
                 .appendQueryParameter(UriTerms.TMDB_API_KEY, BuildConfig.MOVIE_DP_API_KEY)

@@ -27,6 +27,7 @@ import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.model.Producer;
 import com.example.android.popcorn.model.Trailer;
 import com.example.android.popcorn.networking.RequestQueueSingleton;
+import com.example.android.popcorn.ui.recommendation_recyclerview.RecommendationRecyclerViewAdapter;
 import com.example.android.popcorn.ui.trailer_recyclerview.OnTrailerClickListener;
 import com.example.android.popcorn.ui.trailer_recyclerview.TrailerRecyclerViewAdapter;
 
@@ -56,6 +57,7 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener {
     private final int DIRECTOR_PICTURE_DIMS = 50;
 
     private TrailerRecyclerViewAdapter mTrailerRecyclerAdapter;
+    private RecommendationRecyclerViewAdapter mRecRecyclerAdapter;
     private Movie mMovie;
     private Set<String> languageSet = new HashSet<>();
 
@@ -81,6 +83,8 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener {
     TextView mProductionCompanies;
     @BindView(R.id.trailer_recycler_view)
     RecyclerView mTrailerRecyclerView;
+    @BindView(R.id.recommendation_recycler_view)
+    RecyclerView mRecRecyclerView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -89,6 +93,7 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener {
         ButterKnife.bind(this, rootView);
 
         setupTrailerRecyclerView();
+        setupRecMoviesRecyclerView();
         getParcelableMovie();
 
         languageSet.addAll(mMovie.getLanguages());
@@ -106,9 +111,20 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener {
         mTrailerRecyclerView.setLayoutManager(layoutManager);
     }
 
+    private void setupRecMoviesRecyclerView() {
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),
+                LinearLayoutManager.HORIZONTAL, false);
+        mRecRecyclerView.setLayoutManager(layoutManager);
+    }
+
     private void attachToTrailerAdapter(Movie movie) {
         mTrailerRecyclerAdapter = new TrailerRecyclerViewAdapter(getActivity(), movie.getTrailers(), this);
         mTrailerRecyclerView.setAdapter(mTrailerRecyclerAdapter);
+    }
+
+    private void attachToRecommendationAdapter(Movie movie) {
+        mRecRecyclerAdapter = new RecommendationRecyclerViewAdapter(getActivity(), movie.getRecMovies());
+        mRecRecyclerView.setAdapter(mRecRecyclerAdapter);
     }
 
     @Override
@@ -202,6 +218,7 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener {
         populateStringListToTextView(mMovie.getProductionCompanies(), mProductionCompanies);
 
         attachToTrailerAdapter(mMovie);
+        attachToRecommendationAdapter(mMovie);
     }
 
     private boolean hasTagline(String tagline) {

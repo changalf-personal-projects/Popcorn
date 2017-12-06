@@ -8,6 +8,8 @@
     <dimen name="detail_title_size">20sp</dimen>
     <dimen name="detail_label_size">18sp</dimen>
     <dimen name="detail_trailer_title_size">13sp</dimen>
+    <dimen name="detail_rec_poster_title_size">13sp</dimen>
+    <dimen name="detail_rec_poster_release_size">10sp</dimen>
     <dimen name="cast_character_size">12sp</dimen>
     <dimen name="cast_member_name_size">25sp</dimen>
     <dimen name="add_review_font_size">12sp</dimen>
@@ -49,7 +51,7 @@
     <dimen name="detail_review_bottom_margin">22dp</dimen>
     <dimen name="detail_review_author_bottom_margin">8dp</dimen>
     <dimen name="detail_trailer_side_margin">22dp</dimen>
-    <dimen name="detail_trailer_bottom_margin">10dp</dimen>
+    <dimen name="detail_image_bottom_margin">10dp</dimen>
     <dimen name="detail_trailer_description_bottom_margin">12dp</dimen>
     <dimen name="detail_trailer_description_side_margin">22dp</dimen>
     <dimen name="detail_recyclerview_top_margin">6dp</dimen>
@@ -70,9 +72,10 @@
 
     <!-- Detail poster. -->
     <dimen name="detail_poster_width">120dp</dimen>
-    <dimen name="detail_poster_height">170dp</dimen>
+    <dimen name="detail_poster_height">180dp</dimen>
     <dimen name="detail_poster_margin">15dp</dimen>
-    <dimen name="detail_poster_bottom_margin">20dp</dimen>
+    <dimen name="detail_poster_bottom_margin">10dp</dimen>
+    <dimen name="detail_rec_poster_width">90dp</dimen>
 
     <!-- Backdrop width and height. -->
     <dimen name="backdrop_height">250dp</dimen>

@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.ui.GlideApp;
@@ -19,6 +20,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.example.android.popcorn.NullChecker.isNotNullPath;
+import static com.example.android.popcorn.Utilities.formatDate;
 
 /**
  * Created by alfredchang on 2017-12-05.
@@ -27,6 +29,9 @@ import static com.example.android.popcorn.NullChecker.isNotNullPath;
 public class RecommendationRecyclerViewAdapter extends RecyclerView.Adapter<RecommendationRecyclerViewAdapter.RecommendationViewHolder> {
 
     private final String LOG_TAG = RecommendationRecyclerViewAdapter.class.getSimpleName();
+    private final int POSTER_WIDTH = 300;
+    private final int POSTER_HEIGHT = 400;
+    private final int CROSSFADE_TIME = 400;
 
     private Context mContext;
     private List<Movie> mMovies;
@@ -58,8 +63,9 @@ public class RecommendationRecyclerViewAdapter extends RecyclerView.Adapter<Reco
     private void onBindPoster(Movie movie, RecommendationViewHolder holder) {
         if (isNotNullPath(movie)) {
             GlideApp.with(mContext).load(movie.getPosterPath())
-//                    .override(POSTER_WIDTH, POSTER_HEIGHT)
-//                    .transition(DrawableTransitionOptions.withCrossFade(CROSSFADE_TIME))
+                    .override(POSTER_WIDTH, POSTER_HEIGHT)
+                    .placeholder(R.drawable.rec_poster_placeholder)
+                    .transition(DrawableTransitionOptions.withCrossFade(CROSSFADE_TIME))
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .into(holder.mRecPoster);
         }
@@ -70,7 +76,7 @@ public class RecommendationRecyclerViewAdapter extends RecyclerView.Adapter<Reco
     }
 
     private void onBindRelease(Movie movie, RecommendationViewHolder holder) {
-        holder.mRecPosterRelease.setText(movie.getReleaseDate());
+        holder.mRecPosterRelease.setText(formatDate(movie.getReleaseDate(), "yyyy"));
     }
 
     @Override

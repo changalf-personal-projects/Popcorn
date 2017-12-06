@@ -1,21 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    android:layout_marginLeft="22dp"
+    android:layout_marginStart="22dp">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/recommended_poster" />
+        android:id="@+id/recommended_poster"
+        android:layout_marginBottom="@dimen/detail_image_bottom_margin" />
+
+    <TextView
+        android:layout_width="@dimen/detail_rec_poster_width"
+        android:layout_height="wrap_content"
+        android:id="@+id/recommended_poster_title"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/detail_rec_poster_title_size"
+        android:fontFamily="sans-serif-light" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/recommended_poster_title" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/recommended_poster_release" />
+        android:id="@+id/recommended_poster_release"
+        android:layout_gravity="center"
+        android:textSize="@dimen/detail_rec_poster_release_size"
+        android:fontFamily="sans-serif-light" />
 
 </LinearLayout>

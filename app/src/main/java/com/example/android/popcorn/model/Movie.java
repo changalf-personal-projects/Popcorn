@@ -37,6 +37,7 @@ public class Movie implements Parcelable {
     private List<Review> reviews = new ArrayList<>();
     private List<Trailer> trailers = new ArrayList<>();
     private List<String> trailerIds = new ArrayList<String>();
+    private List<Movie> recMovies = new ArrayList<>();
 
     public Movie() {
 
@@ -65,6 +66,7 @@ public class Movie implements Parcelable {
         in.readList(reviews, Review.class.getClassLoader());
         in.readList(trailers, Trailer.class.getClassLoader());
         in.readList(trailerIds, String.class.getClassLoader());
+        in.readList(recMovies, Movie.class.getClassLoader());
     }
 
     @Override
@@ -91,6 +93,7 @@ public class Movie implements Parcelable {
         parcel.writeList(reviews);
         parcel.writeList(trailers);
         parcel.writeList(trailerIds);
+        parcel.writeList(recMovies);
     }
 
     public static final Creator<Movie> CREATOR = new Creator<Movie>() {
@@ -279,6 +282,14 @@ public class Movie implements Parcelable {
 
     public void setTrailerIds(String id) {
         trailerIds.add(id);
+    }
+
+    public List<Movie> getRecMovies() {
+        return recMovies;
+    }
+
+    public void setRecMovies(Movie movie) {
+        recMovies.add(movie);
     }
 
     // Method left alone because this class has no children.
