@@ -40,7 +40,7 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
     private final int POSTER_WIDTH = 700;
     private final int POSTER_HEIGHT = 800;
 
-    private final int CROSSFADE_TIME = 450;
+    private final int CROSSFADE_TIME = 800;
     private final int FIRST_GENRE = 0;
     private final String NO_GENRE = "No genre";
 

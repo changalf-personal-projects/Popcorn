@@ -60,13 +60,12 @@ public class RecommendationRecyclerViewAdapter extends RecyclerView.Adapter<Reco
     }
 
     private void onBindPoster(Movie movie, RecommendationViewHolder holder) {
-
-            GlideApp.with(mContext).load(movie.getDetailPosterPath())
-                    .override(POSTER_WIDTH, POSTER_HEIGHT)
-                    .placeholder(R.drawable.rec_poster_placeholder)
-                    .transition(DrawableTransitionOptions.withCrossFade(CROSSFADE_TIME))
-                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                    .into(holder.mRecPoster);
+        GlideApp.with(mContext).load(movie.getDetailPosterPath())
+                .placeholder(R.drawable.rec_poster_placeholder)
+                .override(POSTER_WIDTH, POSTER_HEIGHT)
+                .transition(DrawableTransitionOptions.withCrossFade(CROSSFADE_TIME))
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                .into(holder.mRecPoster);
     }
 
     private void onBindTitle(Movie movie, RecommendationViewHolder holder) {
