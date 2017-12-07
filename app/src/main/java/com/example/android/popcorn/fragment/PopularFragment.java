@@ -1,7 +1,5 @@
 package com.example.android.popcorn.fragment;
 
-import android.view.View;
-
 import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.networking.UriTerms;
 import com.example.android.popcorn.networking.UrlCreator;
@@ -17,7 +15,6 @@ import static com.example.android.popcorn.model.singleton.PopularMoviesSingleton
 
 public class PopularFragment extends ParentFragment {
 
-
     @Override
     List<Movie> getSingletonList() {
         return getPopularMoviesSingleton();
@@ -29,9 +26,7 @@ public class PopularFragment extends ParentFragment {
     }
 
     @Override
-    void attachAdapter() {
-        mRecyclerAdapter = new PosterRecyclerViewAdapter(getPopularMoviesSingleton(), this);
-        mRecyclerView.setAdapter(mRecyclerAdapter);
-        mProgressBar.setVisibility(View.GONE);
+    PosterRecyclerViewAdapter initRVAdapter() {
+        return new PosterRecyclerViewAdapter(getPopularMoviesSingleton(), this);
     }
 }

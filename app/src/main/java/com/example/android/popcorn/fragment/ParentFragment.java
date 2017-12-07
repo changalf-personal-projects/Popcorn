@@ -430,13 +430,11 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
         }
     }
 
-//    private void attachAdapter() {
-//        Log.v(LOG_TAG, "List of popular movies: " + getPopularMoviesSingleton());
-//
-//        mRecyclerAdapter = new PosterRecyclerViewAdapter(getPopularMoviesSingleton(), this);
-//        mRecyclerView.setAdapter(mRecyclerAdapter);
-//        mProgressBar.setVisibility(View.GONE);
-//    }
+    private void attachAdapter() {
+        mRecyclerAdapter = initRVAdapter();
+        mRecyclerView.setAdapter(mRecyclerAdapter);
+        mProgressBar.setVisibility(View.GONE);
+    }
 
     @Override
     public void onClick(Movie movie) {
@@ -489,5 +487,5 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
 
     abstract String createUrl();
 
-    abstract void attachAdapter();
+    abstract PosterRecyclerViewAdapter initRVAdapter();
 }
