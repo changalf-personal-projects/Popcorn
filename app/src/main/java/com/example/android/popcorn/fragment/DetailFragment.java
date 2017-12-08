@@ -221,7 +221,7 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener {
     }
 
     private boolean hasTagline(String tagline) {
-        return !tagline.equals("");
+        return tagline != null && !tagline.equals("");
     }
 
     private boolean hasDirector(Director director) {

@@ -133,6 +133,9 @@ public class Utilities {
     }
 
     private static boolean moreThanThreeChars(String value) {
-        return value.length() > 3;
+        if (isNotNull(value)) {
+            return value.length() > 3;
+        }
+        return false;
     }
 }
