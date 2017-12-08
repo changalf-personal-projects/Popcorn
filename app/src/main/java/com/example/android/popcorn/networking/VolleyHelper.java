@@ -23,16 +23,14 @@ public class VolleyHelper {
         mVolleyReqHandler = volleyReqHandler;
     }
 
-    public void getJsonData(String url) {
+    public void getJsonResponse(String url) {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         if (mVolleyReqHandler != null) {
-                            mVolleyReqHandler.onSuccess(response);
+                            mVolleyReqHandler.onSuccessId(response);
                         }
-//                        LoganIdTemplate movieLogan = MovieParser.parseJsonIdData(response);
-//                        saveMovieId(movieLogan);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -40,7 +38,27 @@ public class VolleyHelper {
                 if (mVolleyReqHandler != null) {
                     mVolleyReqHandler.onFail(error);
                 }
-//                Log.e(LOG_TAG, "Response error (fetchJsonId): " + error);
+            }
+        });
+
+        RequestQueueSingleton.getSingletonInstance(mContext).addToRequestQueue(stringRequest);
+    }
+
+    public void getJsonResponse(String url, final int index) {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if (mVolleyReqHandler != null) {
+                            mVolleyReqHandler.onSuccessDetails(response, index);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if (mVolleyReqHandler != null) {
+                    mVolleyReqHandler.onFail(error);
+                }
             }
         });
 

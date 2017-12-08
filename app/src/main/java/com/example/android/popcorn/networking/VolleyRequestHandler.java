@@ -8,7 +8,8 @@ import com.android.volley.VolleyError;
 
 public interface VolleyRequestHandler {
 
-    public void onSuccess(String response);
-    public void onFail(VolleyError error);
+    void onSuccessId(String response);
+    void onSuccessDetails(String response, int index);
+    void onFail(VolleyError error);
 
 }
