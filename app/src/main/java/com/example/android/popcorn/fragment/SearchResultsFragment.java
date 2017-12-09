@@ -20,7 +20,6 @@ import com.example.android.popcorn.Utilities;
 import com.example.android.popcorn.activity.DetailActivity;
 import com.example.android.popcorn.fragment.parsing.LoganDetailsTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganIdTemplate;
-import com.example.android.popcorn.fragment.parsing.LoganReviewTemplate;
 import com.example.android.popcorn.fragment.parsing.MovieParser;
 import com.example.android.popcorn.model.Cast;
 import com.example.android.popcorn.model.Movie;
@@ -155,7 +154,7 @@ public class SearchResultsFragment extends Fragment implements OnMovieClickListe
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            LoganReviewTemplate reviewLogan = MovieParser.parseJsonReviewsData(response);
+                            LoganDetailsTemplate reviewLogan = MovieParser.parseJsonDetailsData(response);
                             saveMovieReview(movie, reviewLogan);
                         }
                     }, new Response.ErrorListener() {
@@ -250,8 +249,8 @@ public class SearchResultsFragment extends Fragment implements OnMovieClickListe
         attachAdapter();
     }
 
-    private void saveMovieReview(Movie movie, LoganReviewTemplate reviewLogan) {
-        for (LoganReviewTemplate.Reviews.Results result: reviewLogan.getReviews().getResults()) {
+    private void saveMovieReview(Movie movie, LoganDetailsTemplate reviewLogan) {
+        for (LoganDetailsTemplate.Reviews.Results result: reviewLogan.getReviews().getResults()) {
             Review review = new Review();
             review.setAuthor(result.getAuthor());
             review.setContent(result.getContent());

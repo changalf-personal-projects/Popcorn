@@ -384,4 +384,97 @@ public class LoganDetailsTemplate extends MovieLogan {
             }
         }
     }
+
+    @JsonField
+    private Reviews reviews;
+
+    public Reviews getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(Reviews reviews) {
+        this.reviews = reviews;
+    }
+
+    @JsonObject
+    public static class Reviews {
+
+        @JsonField
+        private List<Results> results;
+
+        public List<Results> getResults() {
+            return results;
+        }
+
+        public void setResults(List<Results> results) {
+            this.results = results;
+        }
+
+        @JsonObject
+        public static class Results {
+
+            @JsonField
+            private String author;
+
+            @JsonField
+            private String content;
+
+            public String getAuthor() {
+                return author;
+            }
+
+            public void setAuthor(String author) {
+                this.author = author;
+            }
+
+            public String getContent() {
+                return content;
+            }
+
+            public void setContent(String content) {
+                this.content = content;
+            }
+        }
+    }
+
+    @JsonField
+    private Recommendations recommendations;
+
+    public Recommendations getRecommendations() {
+        return recommendations;
+    }
+
+    public void setRecommendations(Recommendations recommendations) {
+        this.recommendations = recommendations;
+    }
+
+    @JsonObject
+    public static class Recommendations {
+
+        @JsonField
+        private List<Results> results;
+
+        public List<Results> getResults() {
+            return results;
+        }
+
+        public void setResults(List<Results> results) {
+            this.results = results;
+        }
+
+        @JsonObject
+        public static class Results {
+
+            @JsonField
+            private String id;
+
+            public String getId() {
+                return id;
+            }
+
+            public void setId(String id) {
+                this.id = id;
+            }
+        }
+    }
 }

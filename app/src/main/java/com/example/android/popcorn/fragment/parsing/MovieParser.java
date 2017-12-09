@@ -29,11 +29,6 @@ public class MovieParser {
         return (LoganCastMemberDetailTemplate) parseData(response, LoganCastMemberDetailTemplate.class);
     }
 
-    // Get reviews and parse them.
-    public static LoganReviewTemplate parseJsonReviewsData(String response) {
-        return (LoganReviewTemplate) parseData(response, LoganReviewTemplate.class);
-    }
-
     private static MovieLogan parseData(String response, Class template) {
         MovieLogan movieLogan = null;
         try {
