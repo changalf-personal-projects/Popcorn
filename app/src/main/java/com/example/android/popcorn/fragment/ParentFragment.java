@@ -20,12 +20,8 @@ import com.example.android.popcorn.dagger.component.FragmentComponent;
 import com.example.android.popcorn.fragment.parsing.LoganDetailsTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganIdTemplate;
 import com.example.android.popcorn.fragment.parsing.MovieParser;
-import com.example.android.popcorn.model.Cast;
-import com.example.android.popcorn.model.Director;
+import com.example.android.popcorn.fragment.saving.DataSaver;
 import com.example.android.popcorn.model.Movie;
-import com.example.android.popcorn.model.Producer;
-import com.example.android.popcorn.model.Review;
-import com.example.android.popcorn.model.Trailer;
 import com.example.android.popcorn.networking.UriTerms;
 import com.example.android.popcorn.networking.UrlCreator;
 import com.example.android.popcorn.networking.VolleyHelper;
@@ -39,7 +35,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.example.android.popcorn.networking.UrlCreator.createImageUrl;
 import static com.example.android.popcorn.networking.UrlCreator.createUrlWithAppendedResponse;
 
 /**
@@ -49,10 +44,6 @@ import static com.example.android.popcorn.networking.UrlCreator.createUrlWithApp
 public abstract class ParentFragment extends Fragment implements OnMovieClickListener {
 
     private final String LOG_TAG = PopularFragment.class.getSimpleName();
-    private final String ISO_ENGLISH = "en";
-    private final String ENGLISH = "English";
-    private final String DIRECTOR = "Director";
-    private final String PRODUCER = "Producer";
     private final String COMMA = ",";
     private final int LAYOUT_COL_SPAN = 2;
 
@@ -61,6 +52,7 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
     private VolleyHelper mVolleyHelper;
     private List<Movie> mListOfMovies;
     private List<Integer> mListOfRefreshColours = new ArrayList<>();
+    private DataSaver mDataSaver;
     PosterRecyclerViewAdapter mRecyclerAdapter;
 
     @BindView(R.id.progress_bar)
@@ -80,6 +72,7 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
         onPullScreenDown();
 
         mListOfMovies = getSingletonList();
+        mDataSaver = new DataSaver(this, mListOfMovies);
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), LAYOUT_COL_SPAN);
         mRecyclerView.setLayoutManager(layoutManager);
 
@@ -101,24 +94,24 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
             @Override
             public void onSuccessId(String response) {
                 LoganIdTemplate loganId = MovieParser.parseJsonIdData(response);
-                saveMovieId(loganId);
+                mDataSaver.saveMovieId(loganId);
             }
 
             @Override
             public void onSuccessDetails(String response, Movie movie) {
                 LoganDetailsTemplate loganDetails = MovieParser.parseJsonDetailsData(response);
-                saveMovieDetails(movie, loganDetails);
-                saveMovieCast(movie, loganDetails);
-                saveMovieCrew(movie, loganDetails);
-                saveMovieTrailers(movie, loganDetails);
-                saveMovieReviews(movie, loganDetails);
-                saveRecMovieId(movie, loganDetails);
+                mDataSaver.saveMovieDetails(movie, loganDetails);
+                mDataSaver.saveMovieCast(movie, loganDetails);
+                mDataSaver.saveMovieCrew(movie, loganDetails);
+                mDataSaver.saveMovieTrailers(movie, loganDetails);
+                mDataSaver.saveMovieReviews(movie, loganDetails);
+                mDataSaver.saveRecMovieId(movie, loganDetails);
             }
 
             @Override
             public void onSuccessRecommendedDetails(String response, Movie movie) {
                 LoganDetailsTemplate loganDetails = MovieParser.parseJsonDetailsData(response);
-                saveRecMovieDetails(loganDetails, movie);
+                mDataSaver.saveRecMovieDetails(loganDetails, movie);
             }
 
             @Override
@@ -133,7 +126,7 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
         mVolleyHelper.fetchJsonId(url);
     }
 
-    private void fetchJsonDetails() {
+    public void fetchJsonDetails() {
         String appendedEndpoints = UriTerms.CREDITS + COMMA
                 + UriTerms.VIDEOS + COMMA
                 + UriTerms.REVIEWS + COMMA
@@ -146,7 +139,7 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
         }
     }
 
-    private void fetchRecJsonDetails(Movie movie) {
+    public void fetchRecJsonDetails(Movie movie) {
         for (int i = 0; i < movie.getRecMovies().size(); i++) {
             Movie recMovie = movie.getRecMovies().get(i);
             String url = UrlCreator.createUrl(recMovie.getId());
@@ -154,150 +147,7 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
         }
     }
 
-    private void saveMovieId(LoganIdTemplate movieLogan) {
-        for (LoganIdTemplate.Results result: movieLogan.getResults()) {
-            Movie movie = new Movie();
-            movie.setId(result.getId());
-            mListOfMovies.add(movie);
-        }
-        fetchJsonDetails();
-    }
-
-    private void saveRecMovieId(Movie movie, LoganDetailsTemplate movieLogan) {
-        for (LoganDetailsTemplate.Recommendations.Results result: movieLogan.getRecommendations().getResults()) {
-            Movie recommendedMovie = new Movie();
-            recommendedMovie.setId(result.getId());
-            movie.setRecMovies(recommendedMovie);
-        }
-
-        fetchRecJsonDetails(movie);
-    }
-
-    private void saveMovieTrailers(Movie movie, LoganDetailsTemplate trailerLogan) {
-        for (LoganDetailsTemplate.Videos.Results result: trailerLogan.getVideos().getResults()) {
-            Trailer trailer = new Trailer();
-            trailer.setKey(result.getKey());
-            trailer.setTrailerDescription(result.getTrailerDescription());
-            movie.setTrailerIds(result.getKey());
-            movie.setTrailers(trailer);
-        }
-    }
-
-    private void saveMovieCast(Movie movie, LoganDetailsTemplate castLogan) {
-        for (LoganDetailsTemplate.Credits.Cast result: castLogan.getCredits().getCast()) {
-            Cast cast = new Cast();
-            cast.setName(result.getName());
-            cast.setCharacter(result.getCharacter());
-            cast.setId(result.getId());
-
-            String profilePath = result.getProfilePath();
-            if (profilePath != null) {
-                cast.setProfilePath(createImageUrl(profilePath, UriTerms.IMAGE_SIZE_W185));
-            }
-
-            movie.getCast().add(cast);
-        }
-    }
-
-    private void saveMovieCrew(Movie movie, LoganDetailsTemplate creditsLogan) {
-        for (LoganDetailsTemplate.Credits.Crew crewMember: creditsLogan.getCredits().getCrew()) {
-            if (isDirector(crewMember)) {
-                Director director = new Director();
-                director.setName(crewMember.getName());
-                director.setProfilePath(createImageUrl(crewMember.getProfilePath(), UriTerms.IMAGE_SIZE_W185));
-                movie.setDirector(director);
-            }
-            if (isProducer(crewMember)) {
-                Producer producer = new Producer();
-                producer.setName(crewMember.getName());
-                producer.setProfilePath(createImageUrl(crewMember.getProfilePath(), UriTerms.IMAGE_SIZE_W185));
-                movie.setProducer(producer);
-            }
-        }
-    }
-
-    // AttachAdapter method needs to be done after all required info has been saved to mListOfMovies object.
-    private void saveMovieDetails(Movie movie, LoganDetailsTemplate movieLogan) {
-        for (LoganDetailsTemplate.Genre genre: movieLogan.getGenres()) {
-            movie.setGenres(genre.getName());
-        }
-
-        for (LoganDetailsTemplate.ProductionCompany company: movieLogan.getProductionCompanies()) {
-            movie.setProductionCompanies(company.getName());
-        }
-
-        movie.setBudget(movieLogan.getBudget());
-        movie.setTitle(movieLogan.getTitle());
-        movie.setRuntime(movieLogan.getRuntime());
-        movie.setRating(movieLogan.getVoteAverage());
-
-        // This ordering of for-loop after setting original language allows original language to be
-        // displayed first in languages.
-        if (movieLogan.getOriginalLanguage().equals(ISO_ENGLISH)) {
-            movie.setLanguages(ENGLISH);
-        }
-
-        for (LoganDetailsTemplate.Language language: movieLogan.getLanguages()) {
-            movie.setLanguages(language.getLanguage());
-        }
-
-        movie.setOverview(movieLogan.getOverview());
-        movie.setReleaseDate(movieLogan.getRelease());
-        movie.setRevenue(movieLogan.getRevenue());
-        movie.setTagline(movieLogan.getTagline());
-        movie.setPosterPath(createImageUrl(movieLogan.getPosterPath(), UriTerms.IMAGE_SIZE_W500));
-        movie.setDetailPosterPath(createImageUrl(movieLogan.getPosterPath(), UriTerms.IMAGE_SIZE_W342));
-        movie.setBackdropPath(createImageUrl(movieLogan.getBackdropPath(), UriTerms.POSTER_SIZE_ORIGINAL));
-
-        attachAdapter();
-    }
-
-    private void saveRecMovieDetails(LoganDetailsTemplate movieLogan, Movie movie) {
-//        Movie movie = mListOfMovies.get(movieIndex).getRecMovies().get(recMovieIndex);
-
-//        for (LoganDetailsTemplate.Genre genre: movieLogan.getGenres()) {
-//            movie.setGenres(genre.getName());
-//        }
-//
-//        for (LoganDetailsTemplate.ProductionCompany company: movieLogan.getProductionCompanies()) {
-//            movie.setProductionCompanies(company.getName());
-//        }
-//
-//        movie.setBudget(movieLogan.getBudget());
-        movie.setTitle(movieLogan.getTitle());
-//        movie.setRuntime(movieLogan.getRuntime());
-//        movie.setRating(movieLogan.getVoteAverage());
-
-        // This ordering of for-loop after setting original language allows original language to be
-        // displayed first in languages.
-//        if (movieLogan.getOriginalLanguage().equals(ISO_ENGLISH)) {
-//            movie.setLanguages(ENGLISH);
-//        }
-//
-//        for (LoganDetailsTemplate.Language language: movieLogan.getLanguages()) {
-//            movie.setLanguages(language.getLanguage());
-//        }
-//
-//        movie.setOverview(movieLogan.getOverview());
-        movie.setReleaseDate(movieLogan.getRelease());
-//        movie.setRevenue(movieLogan.getRevenue());
-//        movie.setTagline(movieLogan.getTagline());
-//        movie.setPosterPath(createImageUrl(movieLogan.getPosterPath(), UriTerms.IMAGE_SIZE_W500));
-        movie.setDetailPosterPath(createImageUrl(movieLogan.getPosterPath(), UriTerms.IMAGE_SIZE_W342));
-//        movie.setBackdropPath(createImageUrl(movieLogan.getBackdropPath(), UriTerms.POSTER_SIZE_ORIGINAL));
-
-    }
-
-    private void saveMovieReviews(Movie movie, LoganDetailsTemplate reviewLogan) {
-        for (LoganDetailsTemplate.Reviews.Results result: reviewLogan.getReviews().getResults()) {
-            Review review = new Review();
-            review.setAuthor(result.getAuthor());
-            review.setContent(result.getContent());
-            movie.setReviews(review);
-        }
-    }
-
-    private void attachAdapter() {
+    public void attachAdapter() {
         mRecyclerAdapter = initRVAdapter();
         mRecyclerView.setAdapter(mRecyclerAdapter);
         mProgressBar.setVisibility(View.GONE);
@@ -334,20 +184,6 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
         for (int colour: mListOfRefreshColours) {
             mPullRefreshLayout.setColorSchemeResources(colour);
         }
-    }
-
-    private boolean isDirector(LoganDetailsTemplate.Credits.Crew crewMember) {
-        if (crewMember.getJob().equals(DIRECTOR)) {
-            return true;
-        }
-        return false;
-    }
-
-    private boolean isProducer(LoganDetailsTemplate.Credits.Crew crewMember) {
-        if (crewMember.getJob().equals(PRODUCER)) {
-            return true;
-        }
-        return false;
     }
 
     abstract List<Movie> getSingletonList();

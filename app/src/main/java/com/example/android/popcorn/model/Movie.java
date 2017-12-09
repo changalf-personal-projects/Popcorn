@@ -164,14 +164,6 @@ public class Movie implements Parcelable {
         this.rating = rating;
     }
 
-    public String getOriginalLanguage() {
-        return originalLanguage;
-    }
-
-    public void setOriginalLanguage(String originalLanguage) {
-        this.originalLanguage = originalLanguage;
-    }
-
     public String getOverview() {
         return overview;
     }
