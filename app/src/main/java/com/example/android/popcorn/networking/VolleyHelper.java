@@ -45,13 +45,13 @@ public class VolleyHelper {
         RequestQueueSingleton.getSingletonInstance(mContext).addToRequestQueue(stringRequest);
     }
 
-    public void fetchJsonDetails(String url, final int index) {
+    public void fetchJsonDetails(String url, final Movie movie) {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         if (mVolleyReqHandler != null) {
-                            mVolleyReqHandler.onSuccessDetails(response, index);
+                            mVolleyReqHandler.onSuccessDetails(response, movie);
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -108,13 +108,13 @@ public class VolleyHelper {
         RequestQueueSingleton.getSingletonInstance(mContext).addToRequestQueue(stringRequest);
     }
 
-    public void fetchJsonCast(String url, final Movie movie) {
+    public void fetchJsonCredits(String url, final Movie movie) {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         if (mVolleyReqHandler != null) {
-                            mVolleyReqHandler.onSuccessCast(response, movie);
+                            mVolleyReqHandler.onSuccessCredits(response, movie);
                         }
                     }
                 }, new Response.ErrorListener() {

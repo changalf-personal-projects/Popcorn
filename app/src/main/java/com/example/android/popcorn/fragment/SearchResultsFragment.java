@@ -140,7 +140,7 @@ public class SearchResultsFragment extends Fragment implements OnMovieClickListe
                     }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.e(LOG_TAG, "Response error (fetchJsonCast): " + error);
+                    Log.e(LOG_TAG, "Response error (fetchJsonCredits): " + error);
                 }
             });
 
@@ -186,7 +186,7 @@ public class SearchResultsFragment extends Fragment implements OnMovieClickListe
                     }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.e(LOG_TAG, "Response error (fetchJsonCast): " + error);
+                    Log.e(LOG_TAG, "Response error (fetchJsonCredits): " + error);
                 }
             });
 
