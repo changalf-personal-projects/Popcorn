@@ -6,6 +6,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.android.popcorn.model.Movie;
 
 /**
  * Created by alfredchang on 2017-12-07.
@@ -23,7 +24,7 @@ public class VolleyHelper {
         mVolleyReqHandler = volleyReqHandler;
     }
 
-    public void getJsonResponse(String url) {
+    public void fetchJsonId(String url) {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
@@ -44,13 +45,55 @@ public class VolleyHelper {
         RequestQueueSingleton.getSingletonInstance(mContext).addToRequestQueue(stringRequest);
     }
 
-    public void getJsonResponse(String url, final int index) {
+    public void fetchJsonDetails(String url, final int index) {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         if (mVolleyReqHandler != null) {
                             mVolleyReqHandler.onSuccessDetails(response, index);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if (mVolleyReqHandler != null) {
+                    mVolleyReqHandler.onFail(error);
+                }
+            }
+        });
+
+        RequestQueueSingleton.getSingletonInstance(mContext).addToRequestQueue(stringRequest);
+    }
+
+    public void fetchJsonTrailers(String url, final Movie movie) {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if (mVolleyReqHandler != null) {
+                            mVolleyReqHandler.onSuccessTrailers(response, movie);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if (mVolleyReqHandler != null) {
+                    mVolleyReqHandler.onFail(error);
+                }
+            }
+        });
+
+        RequestQueueSingleton.getSingletonInstance(mContext).addToRequestQueue(stringRequest);
+    }
+
+    public void fetchJsonCrew(String url, final Movie movie) {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if (mVolleyReqHandler != null) {
+                            mVolleyReqHandler.onSuccessCrew(response, movie);
                         }
                     }
                 }, new Response.ErrorListener() {
