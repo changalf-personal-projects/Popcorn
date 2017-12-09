@@ -34,10 +34,12 @@ public class RecommendationRecyclerViewAdapter extends RecyclerView.Adapter<Reco
 
     private Context mContext;
     private List<Movie> mMovies;
+    private OnRecommendationClickListener mClickListener;
 
-    public RecommendationRecyclerViewAdapter(Context context, List<Movie> movies) {
+    public RecommendationRecyclerViewAdapter(Context context, List<Movie> movies, OnRecommendationClickListener clickListener) {
         mContext = context;
         mMovies = movies;
+        mClickListener = clickListener;
     }
 
     @Override
@@ -81,7 +83,7 @@ public class RecommendationRecyclerViewAdapter extends RecyclerView.Adapter<Reco
         return mMovies.size();
     }
 
-    public class RecommendationViewHolder extends RecyclerView.ViewHolder {
+    public class RecommendationViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         @BindView(R.id.recommended_poster)
         ImageView mRecPoster;
@@ -93,6 +95,12 @@ public class RecommendationRecyclerViewAdapter extends RecyclerView.Adapter<Reco
         public RecommendationViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            mClickListener.onClick(mMovies.get(getAdapterPosition()));
         }
     }
 }

@@ -22,8 +22,6 @@ import com.example.android.popcorn.fragment.parsing.LoganIdTemplate;
 import com.example.android.popcorn.fragment.parsing.MovieParser;
 import com.example.android.popcorn.fragment.saving.DataSaver;
 import com.example.android.popcorn.model.Movie;
-import com.example.android.popcorn.networking.UriTerms;
-import com.example.android.popcorn.networking.UrlCreator;
 import com.example.android.popcorn.networking.VolleyHelper;
 import com.example.android.popcorn.networking.VolleyRequestHandler;
 import com.example.android.popcorn.ui.poster_recyclerview.OnMovieClickListener;
@@ -35,6 +33,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.android.popcorn.networking.UrlCreator.appendEndpoints;
 import static com.example.android.popcorn.networking.UrlCreator.createUrlWithAppendedResponse;
 
 /**
@@ -44,7 +43,6 @@ import static com.example.android.popcorn.networking.UrlCreator.createUrlWithApp
 public abstract class ParentFragment extends Fragment implements OnMovieClickListener {
 
     private final String LOG_TAG = PopularFragment.class.getSimpleName();
-    private final String COMMA = ",";
     private final int LAYOUT_COL_SPAN = 2;
 
     private FragmentComponent mFragmentComponent;
@@ -101,6 +99,8 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
             public void onSuccessDetails(String response, Movie movie) {
                 LoganDetailsTemplate loganDetails = MovieParser.parseJsonDetailsData(response);
                 mDataSaver.saveMovieDetails(movie, loganDetails);
+                // Can't call mDataSaver.saveAllData(...) because attachAdapter needs to come in between.
+                attachAdapter();
                 mDataSaver.saveMovieCast(movie, loganDetails);
                 mDataSaver.saveMovieCrew(movie, loganDetails);
                 mDataSaver.saveMovieTrailers(movie, loganDetails);
@@ -111,7 +111,14 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
             @Override
             public void onSuccessRecommendedDetails(String response, Movie movie) {
                 LoganDetailsTemplate loganDetails = MovieParser.parseJsonDetailsData(response);
-                mDataSaver.saveRecMovieDetails(loganDetails, movie);
+                mDataSaver.saveMovieDetails(movie, loganDetails);
+                mDataSaver.saveMovieCast(movie, loganDetails);
+                mDataSaver.saveMovieCrew(movie, loganDetails);
+                mDataSaver.saveMovieTrailers(movie, loganDetails);
+
+                // Screen blacks out.
+//                mDataSaver.saveMovieReviews(movie, loganDetails);
+//                movie.setRecMovies(null);
             }
 
             @Override
@@ -127,13 +134,8 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
     }
 
     public void fetchJsonDetails() {
-        String appendedEndpoints = UriTerms.CREDITS + COMMA
-                + UriTerms.VIDEOS + COMMA
-                + UriTerms.REVIEWS + COMMA
-                + UriTerms.RECOMMENDATIONS;
-
         for (int i = 0; i < mListOfMovies.size(); i++) {
-            String url = createUrlWithAppendedResponse(mListOfMovies.get(i).getId(), appendedEndpoints);
+            String url = createUrlWithAppendedResponse(mListOfMovies.get(i).getId(), appendEndpoints());
             Movie movie = mListOfMovies.get(i);
             mVolleyHelper.fetchJsonDetails(url, movie);
         }
@@ -142,12 +144,12 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
     public void fetchRecJsonDetails(Movie movie) {
         for (int i = 0; i < movie.getRecMovies().size(); i++) {
             Movie recMovie = movie.getRecMovies().get(i);
-            String url = UrlCreator.createUrl(recMovie.getId());
+            String url = createUrlWithAppendedResponse(recMovie.getId(), appendEndpoints());
             mVolleyHelper.fetchJsonRecommendedDetails(url, recMovie);
         }
     }
 
-    public void attachAdapter() {
+    private void attachAdapter() {
         mRecyclerAdapter = initRVAdapter();
         mRecyclerView.setAdapter(mRecyclerAdapter);
         mProgressBar.setVisibility(View.GONE);

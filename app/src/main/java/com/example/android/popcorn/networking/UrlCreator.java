@@ -13,6 +13,7 @@ import static com.example.android.popcorn.Utilities.isNotNull;
 public class UrlCreator {
 
     private static final String LOG_TAG = UrlCreator.class.getSimpleName();
+    private static final String COMMA = ",";
 
     // Request for movie details.
     public static String createUrl(String query) {
@@ -70,5 +71,13 @@ public class UrlCreator {
                 .appendPath(id)
                 .appendPath(UriTerms.YOUTUBE_THUMBNAIL_HIGHRES)
                 .build().toString();
+    }
+
+    public static String appendEndpoints() {
+        return UriTerms.CREDITS + COMMA
+                + UriTerms.VIDEOS + COMMA
+                + UriTerms.REVIEWS + COMMA
+                + UriTerms.RECOMMENDATIONS;
+
     }
 }

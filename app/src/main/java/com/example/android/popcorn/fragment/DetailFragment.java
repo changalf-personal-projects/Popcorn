@@ -19,6 +19,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.Utilities;
 import com.example.android.popcorn.YoutubePlayerActivity;
+import com.example.android.popcorn.activity.DetailActivity;
 import com.example.android.popcorn.fragment.parsing.LoganCastMemberDetailTemplate;
 import com.example.android.popcorn.fragment.parsing.MovieParser;
 import com.example.android.popcorn.model.Cast;
@@ -27,6 +28,7 @@ import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.model.Producer;
 import com.example.android.popcorn.model.Trailer;
 import com.example.android.popcorn.networking.RequestQueueSingleton;
+import com.example.android.popcorn.ui.recommendation_recyclerview.OnRecommendationClickListener;
 import com.example.android.popcorn.ui.recommendation_recyclerview.RecommendationRecyclerViewAdapter;
 import com.example.android.popcorn.ui.trailer_recyclerview.OnTrailerClickListener;
 import com.example.android.popcorn.ui.trailer_recyclerview.TrailerRecyclerViewAdapter;
@@ -51,7 +53,7 @@ import static com.example.android.popcorn.ui.ViewPopulator.populateTextViewWithS
  * Created by alfredchang on 2017-09-27.
  */
 
-public class DetailFragment extends Fragment implements OnTrailerClickListener {
+public class DetailFragment extends Fragment implements OnTrailerClickListener, OnRecommendationClickListener {
 
     private final String LOG_TAG = DetailFragment.class.getSimpleName();
 
@@ -122,7 +124,7 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener {
     }
 
     private void attachToRecommendationAdapter(Movie movie) {
-        mRecRecyclerAdapter = new RecommendationRecyclerViewAdapter(getActivity(), movie.getRecMovies());
+        mRecRecyclerAdapter = new RecommendationRecyclerViewAdapter(getActivity(), movie.getRecMovies(), this);
         mRecRecyclerView.setAdapter(mRecRecyclerAdapter);
     }
 
@@ -132,6 +134,13 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener {
         playerTrailerIntent.putExtra(Utilities.PARCELABLE_TRAILER_KEY, trailer);
         playerTrailerIntent.putStringArrayListExtra(Utilities.PARCELABLE_TRAILER_IDS_KEY, (ArrayList<String>) mMovie.getTrailerIds());
         startActivity(playerTrailerIntent);
+    }
+
+    @Override
+    public void onClick(Movie movie) {
+        Intent recommendedIntent = new Intent(getActivity(), DetailActivity.class);
+        recommendedIntent.putExtra(Utilities.PARCELABLE_MOVIE_KEY, movie);
+        startActivity(recommendedIntent);
     }
 
     private void onClickFavouriteButton() {
@@ -217,7 +226,18 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener {
         populateStringListToTextView(mMovie.getProductionCompanies(), mProductionCompanies);
 
         attachToTrailerAdapter(mMovie);
-        attachToRecommendationAdapter(mMovie);
+
+        if (mMovie.getTrailers() == null) {
+            mTrailerRecyclerView.setVisibility(View.GONE);
+        } else {
+            attachToTrailerAdapter(mMovie);
+        }
+
+        if (mMovie.getRecMovies() == null) {
+            mRecRecyclerView.setVisibility(View.GONE);
+        } else {
+            attachToRecommendationAdapter(mMovie);
+        }
     }
 
     private boolean hasTagline(String tagline) {

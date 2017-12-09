@@ -128,8 +128,6 @@ public class DataSaver {
         movie.setPosterPath(createImageUrl(movieLogan.getPosterPath(), UriTerms.IMAGE_SIZE_W500));
         movie.setDetailPosterPath(createImageUrl(movieLogan.getPosterPath(), UriTerms.IMAGE_SIZE_W342));
         movie.setBackdropPath(createImageUrl(movieLogan.getBackdropPath(), UriTerms.POSTER_SIZE_ORIGINAL));
-
-        mFragment.attachAdapter();
     }
 
     public void saveRecMovieDetails(LoganDetailsTemplate movieLogan, Movie movie) {
@@ -175,6 +173,15 @@ public class DataSaver {
             review.setContent(result.getContent());
             movie.setReviews(review);
         }
+    }
+
+    public void saveAllData(Movie movie, LoganDetailsTemplate loganDetails) {
+        saveMovieDetails(movie, loganDetails);
+        saveMovieCast(movie, loganDetails);
+        saveMovieCrew(movie, loganDetails);
+        saveMovieTrailers(movie, loganDetails);
+        saveMovieReviews(movie, loganDetails);
+        saveRecMovieId(movie, loganDetails);
     }
 
     private boolean isDirector(LoganDetailsTemplate.Credits.Crew crewMember) {
