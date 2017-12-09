@@ -66,27 +66,6 @@ public class VolleyHelper {
         RequestQueueSingleton.getSingletonInstance(mContext).addToRequestQueue(stringRequest);
     }
 
-//    public void fetchJsonRecommendedId(String url, final Movie movie) {
-//        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-//                new Response.Listener<String>() {
-//                    @Override
-//                    public void onResponse(String response) {
-//                        if (mVolleyReqHandler != null) {
-//                            mVolleyReqHandler.onSuccessRecommendedId(response, movie);
-//                        }
-//                    }
-//                }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                if (mVolleyReqHandler != null) {
-//                    mVolleyReqHandler.onFail(error);
-//                }
-//            }
-//        });
-//
-//        RequestQueueSingleton.getSingletonInstance(mContext).addToRequestQueue(stringRequest);
-//    }
-
     public void fetchJsonRecommendedDetails(String url, final Movie movie) {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {

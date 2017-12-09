@@ -11,7 +11,6 @@ public interface VolleyRequestHandler {
 
     void onSuccessId(String response);
     void onSuccessDetails(String response, Movie movie);
-//    void onSuccessRecommendedId(String response, Movie movie);
     void onSuccessRecommendedDetails(String response, Movie movie);
     void onFail(VolleyError error);
 

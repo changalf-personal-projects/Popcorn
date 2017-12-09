@@ -115,12 +115,6 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
                 saveRecMovieId(movie, loganDetails);
             }
 
-//            @Override
-//            public void onSuccessRecommendedId(String response, Movie movie) {
-//                LoganDetailsTemplate loganId = MovieParser.parseJsonDetailsData(response);
-//                saveRecMovieId(loganId, movie);
-//            }
-
             @Override
             public void onSuccessRecommendedDetails(String response, Movie movie) {
                 LoganDetailsTemplate loganDetails = MovieParser.parseJsonDetailsData(response);
@@ -132,11 +126,6 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
                 Log.e(LOG_TAG, "initVolleyHandler() error: " + error);
             }
         };
-    }
-
-    private void fetchData() {
-        fetchJsonDetails();
-//        fetchJsonRecId();
     }
 
     private void fetchJsonId() {
@@ -157,29 +146,10 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
         }
     }
 
-//    private void fetchJsonRecId() {
-//        for (int i = 0; i < mListOfMovies.size(); i++) {
-//            Movie movie = mListOfMovies.get(i);
-//            String url = createRecommendedMoviesUrl(movie.getId());
-//            mVolleyHelper.fetchJsonRecommendedId(url, movie);
-//        }
-//    }
-
-//    private void fetchRecJsonDetails(Movie movie) {
-//        for (int i = 0; i < mListOfMovies.size(); i++) {
-//            for (int j = 0; j < mListOfMovies.get(i).getRecMovies().size(); j++) {
-//                Movie recMovie = movie.getRecMovies().get(j);
-//                String url = UrlCreator.createUrl(recMovie.getId());
-//                mVolleyHelper.fetchJsonRecommendedDetails(url, recMovie);
-//            }
-//        }
-//    }
-
     private void fetchRecJsonDetails(Movie movie) {
         for (int i = 0; i < movie.getRecMovies().size(); i++) {
             Movie recMovie = movie.getRecMovies().get(i);
             String url = UrlCreator.createUrl(recMovie.getId());
-            Log.v(LOG_TAG, "Rec details url: " + url);
             mVolleyHelper.fetchJsonRecommendedDetails(url, recMovie);
         }
     }
@@ -190,7 +160,7 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
             movie.setId(result.getId());
             mListOfMovies.add(movie);
         }
-        fetchData();
+        fetchJsonDetails();
     }
 
     private void saveRecMovieId(Movie movie, LoganDetailsTemplate movieLogan) {
