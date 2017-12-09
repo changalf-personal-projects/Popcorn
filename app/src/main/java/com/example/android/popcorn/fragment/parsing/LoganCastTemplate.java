@@ -86,6 +86,54 @@ public class LoganCastTemplate extends MovieLogan {
                 this.id = id;
             }
         }
+
+        @JsonField
+        private List<Crew> crew;
+
+        @JsonObject
+        public static class Crew {
+
+            @JsonField
+            private String job;
+
+            @JsonField
+            private String name;
+
+            @JsonField(name = "profile_path")
+            private String profilePath;
+
+            public String getJob() {
+                return job;
+            }
+
+            public void setJob(String job) {
+                this.job = job;
+            }
+
+            public String getName() {
+                return name;
+            }
+
+            public void setName(String name) {
+                this.name = name;
+            }
+
+            public String getProfilePath() {
+                return profilePath;
+            }
+
+            public void setProfilePath(String profilePath) {
+                this.profilePath = profilePath;
+            }
+        }
+
+        public List<Crew> getCrew() {
+            return crew;
+        }
+
+        public void setCrew(List<Crew> crew) {
+            this.crew = crew;
+        }
     }
 }
 
