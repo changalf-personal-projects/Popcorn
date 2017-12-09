@@ -107,4 +107,88 @@ public class VolleyHelper {
 
         RequestQueueSingleton.getSingletonInstance(mContext).addToRequestQueue(stringRequest);
     }
+
+    public void fetchJsonCast(String url, final Movie movie) {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if (mVolleyReqHandler != null) {
+                            mVolleyReqHandler.onSuccessCast(response, movie);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if (mVolleyReqHandler != null) {
+                    mVolleyReqHandler.onFail(error);
+                }
+            }
+        });
+
+        RequestQueueSingleton.getSingletonInstance(mContext).addToRequestQueue(stringRequest);
+    }
+
+    public void fetchJsonReviews(String url, final Movie movie) {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if (mVolleyReqHandler != null) {
+                            mVolleyReqHandler.onSuccessReviews(response, movie);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if (mVolleyReqHandler != null) {
+                    mVolleyReqHandler.onFail(error);
+                }
+            }
+        });
+
+        RequestQueueSingleton.getSingletonInstance(mContext).addToRequestQueue(stringRequest);
+    }
+
+    public void fetchJsonRecommendedId(String url, final int index) {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if (mVolleyReqHandler != null) {
+                            mVolleyReqHandler.onSuccessRecommendedId(response, index);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if (mVolleyReqHandler != null) {
+                    mVolleyReqHandler.onFail(error);
+                }
+            }
+        });
+
+        RequestQueueSingleton.getSingletonInstance(mContext).addToRequestQueue(stringRequest);
+    }
+
+    public void fetchJsonRecommendedDetails(String url, final Movie movie) {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if (mVolleyReqHandler != null) {
+                            mVolleyReqHandler.onSuccessRecommendedDetails(response, movie);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if (mVolleyReqHandler != null) {
+                    mVolleyReqHandler.onFail(error);
+                }
+            }
+        });
+
+        RequestQueueSingleton.getSingletonInstance(mContext).addToRequestQueue(stringRequest);
+    }
 }

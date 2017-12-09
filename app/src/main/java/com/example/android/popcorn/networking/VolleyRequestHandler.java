@@ -13,6 +13,10 @@ public interface VolleyRequestHandler {
     void onSuccessDetails(String response, int index);
     void onSuccessTrailers(String response, Movie movie);
     void onSuccessCrew(String response, Movie movie);
+    void onSuccessCast(String response, Movie movie);
+    void onSuccessReviews(String response, Movie movie);
+    void onSuccessRecommendedId(String response, int index);
+    void onSuccessRecommendedDetails(String response, Movie movie);
     void onFail(VolleyError error);
 
 }

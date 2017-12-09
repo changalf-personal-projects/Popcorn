@@ -12,10 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.Utilities;
 import com.example.android.popcorn.activity.DetailActivity;
@@ -33,7 +30,6 @@ import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.model.Producer;
 import com.example.android.popcorn.model.Review;
 import com.example.android.popcorn.model.Trailer;
-import com.example.android.popcorn.networking.RequestQueueSingleton;
 import com.example.android.popcorn.networking.UriTerms;
 import com.example.android.popcorn.networking.UrlCreator;
 import com.example.android.popcorn.networking.VolleyHelper;
@@ -102,6 +98,12 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
         return rootView;
     }
 
+    private void initVolleyHelper() {
+        mVolleyHelper = new VolleyHelper(getActivity(), mVolleyReqHandler);
+    }
+
+    // Source: https://stackoverflow.com/questions/35628142/how-to-make-separate-class-for-volley-
+    // library-and-call-all-method-of-volley-from.
     private void initVolleyHandler() {
         mVolleyReqHandler = new VolleyRequestHandler() {
             @Override
@@ -129,14 +131,34 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
             }
 
             @Override
+            public void onSuccessCast(String response, Movie movie) {
+                LoganCastTemplate loganCast = MovieParser.parseJsonCastData(response);
+                saveMovieCast(movie, loganCast);
+            }
+
+            @Override
+            public void onSuccessReviews(String response, Movie movie) {
+                LoganReviewTemplate loganReviews = MovieParser.parseJsonReviewsData(response);
+                saveMovieReviews(movie, loganReviews);
+            }
+
+            @Override
+            public void onSuccessRecommendedId(String response, int index) {
+                LoganIdTemplate loganId = MovieParser.parseJsonIdData(response);
+                saveRecMovieId(loganId, index);
+            }
+
+            @Override
+            public void onSuccessRecommendedDetails(String response, Movie movie) {
+                LoganDetailsTemplate loganDetails = MovieParser.parseJsonDetailsData(response);
+                saveRecMovieDetails(loganDetails, movie);
+            }
+
+            @Override
             public void onFail(VolleyError error) {
                 Log.e(LOG_TAG, "initVolleyHandler() error: " + error);
             }
         };
-    }
-
-    private void initVolleyHelper() {
-        mVolleyHelper = new VolleyHelper(getActivity(), mVolleyReqHandler);
     }
 
     // Can do append_response with id -> details.
@@ -162,105 +184,44 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
 
     private void fetchJsonCrew() {
         for (int i = 0; i < mListOfMovies.size(); i++) {
+            Movie movie = mListOfMovies.get(i);
             String url = createCreditsUrl(mListOfMovies.get(i).getId());
-            Movie movie = mListOfMovies.get(i);
             mVolleyHelper.fetchJsonCrew(url, movie);
-        }
-    }
-
-    private void fetchRecJsonDetails() {
-        for (int i = 0; i < mListOfMovies.size(); i++) {
-            final int movieIndex = i;
-            Movie movie = mListOfMovies.get(i);
-            for (int j = 0; j < mListOfMovies.get(i).getRecMovies().size(); j++) {
-                final int recMovieIndex = j;
-                String url = UrlCreator.createUrl(movie.getRecMovies().get(j).getId());
-                StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                LoganDetailsTemplate movieLogan = MovieParser.parseJsonDetailsData(response);
-                                saveRecMovieDetails(movieLogan, movieIndex, recMovieIndex);
-                            }
-                        }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.e(LOG_TAG, "Response error (fetchJsonDetails): " + error);
-                    }
-                });
-
-                RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
-            }
         }
     }
 
     private void fetchJsonCast() {
         for (int i = 0; i < mListOfMovies.size(); i++) {
-            final Movie movie = this.mListOfMovies.get(i);
+            Movie movie = this.mListOfMovies.get(i);
             String url = createUrlWithAppendedResponse(movie.getId(), UriTerms.CREDITS);
-
-            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            LoganCastTemplate castLogan = MovieParser.parseJsonCastData(response);
-                            saveMovieCast(movie, castLogan);
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Log.e(LOG_TAG, "Response error (fetchJsonCast): " + error);
-                }
-            });
-
-            RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
+            mVolleyHelper.fetchJsonCast(url, movie);
         }
     }
 
     private void fetchJsonReviews() {
         for (int i = 0; i < mListOfMovies.size(); i++) {
-            final Movie movie = this.mListOfMovies.get(i);
+            Movie movie = this.mListOfMovies.get(i);
             String url = createUrlWithAppendedResponse(movie.getId(), UriTerms.REVIEWS);
-
-            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            LoganReviewTemplate reviewLogan = MovieParser.parseJsonReviewsData(response);
-                            saveMovieReview(movie, reviewLogan);
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Log.e(LOG_TAG, "Response error (fetchJsonReviews): " + error);
-                }
-            });
-
-            RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
+            mVolleyHelper.fetchJsonReviews(url, movie);
         }
     }
 
-    private void fetchJsonRecMovies() {
+    private void fetchJsonRecId() {
         for (int i = 0; i < mListOfMovies.size(); i++) {
-            final Movie movie = mListOfMovies.get(i);
-            final int position = i;
+            Movie movie = mListOfMovies.get(i);
             String url = createRecommendedMoviesUrl(movie.getId());
+            mVolleyHelper.fetchJsonRecommendedId(url, i);
+        }
+    }
 
-            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            LoganIdTemplate movieLogan = MovieParser.parseJsonIdData(response);
-                            saveRecMovieId(movieLogan, position);
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Log.e(LOG_TAG, "Response error (fetchJsonCast): " + error);
-                }
-            });
-
-            RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
+    private void fetchRecJsonDetails() {
+        for (int i = 0; i < mListOfMovies.size(); i++) {
+            Movie movie = mListOfMovies.get(i);
+            for (int j = 0; j < mListOfMovies.get(i).getRecMovies().size(); j++) {
+                Movie recMovie = movie.getRecMovies().get(j);
+                String url = UrlCreator.createUrl(recMovie.getId());
+                mVolleyHelper.fetchJsonRecommendedDetails(url, recMovie);
+            }
         }
     }
 
@@ -289,7 +250,7 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
         fetchJsonCrew();
         fetchJsonReviews();
         fetchJsonTrailers();
-        fetchJsonRecMovies();
+        fetchJsonRecId();
     }
 
     private void saveMovieTrailers(Movie movie, LoganTrailersTemplate trailerLogan) {
@@ -373,8 +334,8 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
         attachAdapter();
     }
 
-    private void saveRecMovieDetails(LoganDetailsTemplate movieLogan, int movieIndex, int recMovieIndex) {
-        Movie movie = mListOfMovies.get(movieIndex).getRecMovies().get(recMovieIndex);
+    private void saveRecMovieDetails(LoganDetailsTemplate movieLogan, Movie movie) {
+//        Movie movie = mListOfMovies.get(movieIndex).getRecMovies().get(recMovieIndex);
 
 //        for (LoganDetailsTemplate.Genre genre: movieLogan.getGenres()) {
 //            movie.setGenres(genre.getName());
@@ -409,7 +370,7 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
 
     }
 
-    private void saveMovieReview(Movie movie, LoganReviewTemplate reviewLogan) {
+    private void saveMovieReviews(Movie movie, LoganReviewTemplate reviewLogan) {
         for (LoganReviewTemplate.Reviews.Results result: reviewLogan.getReviews().getResults()) {
             Review review = new Review();
             review.setAuthor(result.getAuthor());
