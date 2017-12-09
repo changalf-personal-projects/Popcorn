@@ -1,7 +1,6 @@
 package com.example.android.popcorn.networking;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -53,49 +52,6 @@ public class VolleyHelper {
                     public void onResponse(String response) {
                         if (mVolleyReqHandler != null) {
                             mVolleyReqHandler.onSuccessDetails(response, movie);
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (mVolleyReqHandler != null) {
-                    mVolleyReqHandler.onFail(error);
-                }
-            }
-        });
-
-        RequestQueueSingleton.getSingletonInstance(mContext).addToRequestQueue(stringRequest);
-    }
-
-    public void fetchJsonTrailers(String url, final Movie movie) {
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        if (mVolleyReqHandler != null) {
-                            mVolleyReqHandler.onSuccessTrailers(response, movie);
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (mVolleyReqHandler != null) {
-                    mVolleyReqHandler.onFail(error);
-                }
-            }
-        });
-
-        RequestQueueSingleton.getSingletonInstance(mContext).addToRequestQueue(stringRequest);
-    }
-
-    public void fetchJsonCredits(String url, final Movie movie) {
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        if (mVolleyReqHandler != null) {
-                            Log.v(LOG_TAG, "Response: " + response);
-                            mVolleyReqHandler.onSuccessCredits(response, movie);
                         }
                     }
                 }, new Response.ErrorListener() {

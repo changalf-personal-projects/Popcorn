@@ -18,11 +18,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.Utilities;
 import com.example.android.popcorn.activity.DetailActivity;
-import com.example.android.popcorn.fragment.parsing.LoganCastTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganDetailsTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganIdTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganReviewTemplate;
-import com.example.android.popcorn.fragment.parsing.LoganTrailersTemplate;
 import com.example.android.popcorn.fragment.parsing.MovieParser;
 import com.example.android.popcorn.model.Cast;
 import com.example.android.popcorn.model.Movie;
@@ -134,7 +132,7 @@ public class SearchResultsFragment extends Fragment implements OnMovieClickListe
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            LoganCastTemplate castLogan = MovieParser.parseJsonCastData(response);
+                            LoganDetailsTemplate castLogan = MovieParser.parseJsonDetailsData(response);
                             saveMovieCast(movie, castLogan);
                         }
                     }, new Response.ErrorListener() {
@@ -180,7 +178,7 @@ public class SearchResultsFragment extends Fragment implements OnMovieClickListe
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            LoganTrailersTemplate trailerLogan = MovieParser.parseJsonTrailersData(response);
+                            LoganDetailsTemplate trailerLogan = MovieParser.parseJsonDetailsData(response);
                             saveMovieTrailers(movie, trailerLogan);
                         }
                     }, new Response.ErrorListener() {
@@ -207,8 +205,8 @@ public class SearchResultsFragment extends Fragment implements OnMovieClickListe
         fetchJsonTrailers();
     }
 
-    private void saveMovieTrailers(Movie movie, LoganTrailersTemplate trailerLogan) {
-        for (LoganTrailersTemplate.Videos.Results result : trailerLogan.getVideos().getResults()) {
+    private void saveMovieTrailers(Movie movie, LoganDetailsTemplate trailerLogan) {
+        for (LoganDetailsTemplate.Videos.Results result : trailerLogan.getVideos().getResults()) {
             Trailer trailer = new Trailer();
             trailer.setKey(result.getKey());
             trailer.setTrailerDescription(result.getTrailerDescription());
@@ -217,8 +215,8 @@ public class SearchResultsFragment extends Fragment implements OnMovieClickListe
         }
     }
 
-    private void saveMovieCast(Movie movie, LoganCastTemplate castLogan) {
-        for (LoganCastTemplate.Credits.Cast result : castLogan.getCredits().getCast()) {
+    private void saveMovieCast(Movie movie, LoganDetailsTemplate castLogan) {
+        for (LoganDetailsTemplate.Credits.Cast result : castLogan.getCredits().getCast()) {
             Cast cast = new Cast();
             cast.setName(result.getName());
             cast.setCharacter(result.getCharacter());

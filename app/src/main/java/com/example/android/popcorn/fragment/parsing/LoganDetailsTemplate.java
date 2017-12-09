@@ -210,4 +210,178 @@ public class LoganDetailsTemplate extends MovieLogan {
     public void setVoteAverage(String voteAverage) {
         this.voteAverage = voteAverage;
     }
+
+    @JsonField
+    private Credits credits;
+
+    public Credits getCredits() {
+        return credits;
+    }
+
+    public void setCredits(Credits credits) {
+        this.credits = credits;
+    }
+
+    @JsonObject
+    public static class Credits {
+
+        @JsonField
+        private List<Cast> cast;
+
+        public List<Cast> getCast() {
+            return cast;
+        }
+
+        public void setCast(List<Cast> cast) {
+            this.cast = cast;
+        }
+
+        @JsonObject
+        public static class Cast {
+
+            @JsonField
+            private String name;
+
+            @JsonField(name = "profile_path")
+            private String profilePath;
+
+            @JsonField
+            private String character;
+
+            @JsonField
+            private String id;
+
+            public String getName() {
+                return name;
+            }
+
+            public void setName(String name) {
+                this.name = name;
+            }
+
+            public String getProfilePath() {
+                return profilePath;
+            }
+
+            public void setProfilePath(String profilePath) {
+                this.profilePath = profilePath;
+            }
+
+            public String getCharacter() {
+                return character;
+            }
+
+            public void setCharacter(String character) {
+                this.character = character;
+            }
+
+            public String getId() {
+                return id;
+            }
+
+            public void setId(String id) {
+                this.id = id;
+            }
+        }
+
+        @JsonField
+        private List<Crew> crew;
+
+        @JsonObject
+        public static class Crew {
+
+            @JsonField
+            private String job;
+
+            @JsonField
+            private String name;
+
+            @JsonField(name = "profile_path")
+            private String profilePath;
+
+            public String getJob() {
+                return job;
+            }
+
+            public void setJob(String job) {
+                this.job = job;
+            }
+
+            public String getName() {
+                return name;
+            }
+
+            public void setName(String name) {
+                this.name = name;
+            }
+
+            public String getProfilePath() {
+                return profilePath;
+            }
+
+            public void setProfilePath(String profilePath) {
+                this.profilePath = profilePath;
+            }
+        }
+
+        public List<Crew> getCrew() {
+            return crew;
+        }
+
+        public void setCrew(List<Crew> crew) {
+            this.crew = crew;
+        }
+    }
+
+    @JsonField
+    private Videos videos;
+
+    public Videos getVideos() {
+        return videos;
+    }
+
+    public void setVideos(Videos videos) {
+        this.videos = videos;
+    }
+
+    @JsonObject
+    public static class Videos {
+
+        @JsonField
+        private List<Results> results;
+
+        public List<Results> getResults() {
+            return results;
+        }
+
+        public void setResults(List<Results> results) {
+            this.results = results;
+        }
+
+        @JsonObject
+        public static class Results {
+
+            @JsonField
+            private String key;
+
+            @JsonField (name = "name")
+            private String trailerDescription;
+
+            public String getKey() {
+                return key;
+            }
+
+            public void setKey(String key) {
+                this.key = key;
+            }
+
+            public String getTrailerDescription() {
+                return trailerDescription;
+            }
+
+            public void setTrailerDescription(String trailerDescription) {
+                this.trailerDescription = trailerDescription;
+            }
+        }
+    }
 }

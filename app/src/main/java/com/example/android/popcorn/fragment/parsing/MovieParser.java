@@ -24,16 +24,6 @@ public class MovieParser {
         return (LoganDetailsTemplate) parseData(response, LoganDetailsTemplate.class);
     }
 
-    // Using movie id and appending credits as response, get the cast details.
-    public static LoganCastTemplate parseJsonCastData(String response) {
-        return (LoganCastTemplate) parseData(response, LoganCastTemplate.class);
-    }
-
-    // Using movie id, get the trailers for a movie.
-    public static LoganTrailersTemplate parseJsonTrailersData(String response) {
-        return (LoganTrailersTemplate) parseData(response, LoganTrailersTemplate.class);
-    }
-
     // Get cast member details from json data.
     public static LoganCastMemberDetailTemplate parseJsonCastMemberData(String response) {
         return (LoganCastMemberDetailTemplate) parseData(response, LoganCastMemberDetailTemplate.class);
@@ -42,11 +32,6 @@ public class MovieParser {
     // Get reviews and parse them.
     public static LoganReviewTemplate parseJsonReviewsData(String response) {
         return (LoganReviewTemplate) parseData(response, LoganReviewTemplate.class);
-    }
-
-    // Get movie director.
-    public static LoganCreditsTemplate parseJsonCreditsData(String response) {
-        return (LoganCreditsTemplate) parseData(response, LoganCreditsTemplate.class);
     }
 
     private static MovieLogan parseData(String response, Class template) {

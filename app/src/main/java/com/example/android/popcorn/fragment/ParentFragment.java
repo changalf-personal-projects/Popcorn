@@ -17,11 +17,9 @@ import com.example.android.popcorn.R;
 import com.example.android.popcorn.Utilities;
 import com.example.android.popcorn.activity.DetailActivity;
 import com.example.android.popcorn.dagger.component.FragmentComponent;
-import com.example.android.popcorn.fragment.parsing.LoganCastTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganDetailsTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganIdTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganReviewTemplate;
-import com.example.android.popcorn.fragment.parsing.LoganTrailersTemplate;
 import com.example.android.popcorn.fragment.parsing.MovieParser;
 import com.example.android.popcorn.model.Cast;
 import com.example.android.popcorn.model.Director;
@@ -57,6 +55,7 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
     private final String ENGLISH = "English";
     private final String DIRECTOR = "Director";
     private final String PRODUCER = "Producer";
+    private final String COMMA = ",";
     private final int LAYOUT_COL_SPAN = 2;
 
     private FragmentComponent mFragmentComponent;
@@ -111,19 +110,9 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
             public void onSuccessDetails(String response, Movie movie) {
                 LoganDetailsTemplate loganDetails = MovieParser.parseJsonDetailsData(response);
                 saveMovieDetails(movie, loganDetails);
-            }
-
-            @Override
-            public void onSuccessTrailers(String response, Movie movie) {
-                LoganTrailersTemplate loganTrailer = MovieParser.parseJsonTrailersData(response);
-                saveMovieTrailers(movie, loganTrailer);
-            }
-
-            @Override
-            public void onSuccessCredits(String response, Movie movie) {
-                LoganCastTemplate loganCast = MovieParser.parseJsonCastData(response);
-                saveMovieCast(movie, loganCast);
-                saveMovieCrew(movie, loganCast);
+                saveMovieCast(movie, loganDetails);
+                saveMovieCrew(movie, loganDetails);
+                saveMovieTrailers(movie, loganDetails);
             }
 
             @Override
@@ -157,18 +146,16 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
     }
 
     private void fetchJsonDetails() {
+        String appendedEndpoints = UriTerms.CREDITS + COMMA
+                + UriTerms.VIDEOS + COMMA
+                + UriTerms.REVIEWS + COMMA
+                + UriTerms.RECOMMENDATIONS;
+
         for (int i = 0; i < mListOfMovies.size(); i++) {
-            String url = UrlCreator.createUrl(mListOfMovies.get(i).getId());
+            String url = createUrlWithAppendedResponse(mListOfMovies.get(i).getId(), appendedEndpoints);
+            Log.v(LOG_TAG, "Details url: " + url);
             Movie movie = mListOfMovies.get(i);
             mVolleyHelper.fetchJsonDetails(url, movie);
-        }
-    }
-
-    private void fetchJsonTrailers() {
-        for (int i = 0; i < mListOfMovies.size(); i++) {
-            Movie movie = mListOfMovies.get(i);
-            String url = createUrlWithAppendedResponse(movie.getId(), UriTerms.VIDEOS);
-            mVolleyHelper.fetchJsonTrailers(url, movie);
         }
     }
 
@@ -177,15 +164,6 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
             Movie movie = mListOfMovies.get(i);
             String url = createUrlWithAppendedResponse(movie.getId(), UriTerms.REVIEWS);
             mVolleyHelper.fetchJsonReviews(url, movie);
-        }
-    }
-
-    private void fetchJsonCredits() {
-        for (int i = 0; i < mListOfMovies.size(); i++) {
-            Movie movie = mListOfMovies.get(i);
-            String url = createUrlWithAppendedResponse(movie.getId(), UriTerms.CREDITS);
-            Log.v(LOG_TAG, "Credits url: " + url);
-            mVolleyHelper.fetchJsonCredits(url, movie);
         }
     }
 
@@ -229,14 +207,12 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
 
     private void fetchData() {
         fetchJsonDetails();
-        fetchJsonCredits();
         fetchJsonReviews();
-        fetchJsonTrailers();
         fetchJsonRecId();
     }
 
-    private void saveMovieTrailers(Movie movie, LoganTrailersTemplate trailerLogan) {
-        for (LoganTrailersTemplate.Videos.Results result: trailerLogan.getVideos().getResults()) {
+    private void saveMovieTrailers(Movie movie, LoganDetailsTemplate trailerLogan) {
+        for (LoganDetailsTemplate.Videos.Results result: trailerLogan.getVideos().getResults()) {
             Trailer trailer = new Trailer();
             trailer.setKey(result.getKey());
             trailer.setTrailerDescription(result.getTrailerDescription());
@@ -245,8 +221,8 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
         }
     }
 
-    private void saveMovieCast(Movie movie, LoganCastTemplate castLogan) {
-        for (LoganCastTemplate.Credits.Cast result: castLogan.getCredits().getCast()) {
+    private void saveMovieCast(Movie movie, LoganDetailsTemplate castLogan) {
+        for (LoganDetailsTemplate.Credits.Cast result: castLogan.getCredits().getCast()) {
             Cast cast = new Cast();
             cast.setName(result.getName());
             cast.setCharacter(result.getCharacter());
@@ -261,8 +237,8 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
         }
     }
 
-    private void saveMovieCrew(Movie movie, LoganCastTemplate creditsLogan) {
-        for (LoganCastTemplate.Credits.Crew crewMember: creditsLogan.getCredits().getCrew()) {
+    private void saveMovieCrew(Movie movie, LoganDetailsTemplate creditsLogan) {
+        for (LoganDetailsTemplate.Credits.Crew crewMember: creditsLogan.getCredits().getCrew()) {
             if (isDirector(crewMember)) {
                 Director director = new Director();
                 director.setName(crewMember.getName());
@@ -398,14 +374,14 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
         }
     }
 
-    private boolean isDirector(LoganCastTemplate.Credits.Crew crewMember) {
+    private boolean isDirector(LoganDetailsTemplate.Credits.Crew crewMember) {
         if (crewMember.getJob().equals(DIRECTOR)) {
             return true;
         }
         return false;
     }
 
-    private boolean isProducer(LoganCastTemplate.Credits.Crew crewMember) {
+    private boolean isProducer(LoganDetailsTemplate.Credits.Crew crewMember) {
         if (crewMember.getJob().equals(PRODUCER)) {
             return true;
         }
