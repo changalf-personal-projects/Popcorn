@@ -118,7 +118,6 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
 
                 // Screen blacks out.
 //                mDataSaver.saveMovieReviews(movie, loganDetails);
-//                movie.setRecMovies(null);
             }
 
             @Override

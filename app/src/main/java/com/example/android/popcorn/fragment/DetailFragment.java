@@ -233,11 +233,7 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener, 
             attachToTrailerAdapter(mMovie);
         }
 
-        if (mMovie.getRecMovies() == null) {
-            mRecRecyclerView.setVisibility(View.GONE);
-        } else {
-            attachToRecommendationAdapter(mMovie);
-        }
+        attachToRecommendationAdapter(mMovie);
     }
 
     private boolean hasTagline(String tagline) {
