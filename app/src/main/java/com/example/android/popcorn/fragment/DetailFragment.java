@@ -12,10 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.Utilities;
 import com.example.android.popcorn.YoutubePlayerActivity;
@@ -27,7 +24,8 @@ import com.example.android.popcorn.model.Director;
 import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.model.Producer;
 import com.example.android.popcorn.model.Trailer;
-import com.example.android.popcorn.networking.RequestQueueSingleton;
+import com.example.android.popcorn.networking.VolleyHelperChild;
+import com.example.android.popcorn.networking.VolleyRequestHandlerChild;
 import com.example.android.popcorn.ui.recommendation_recyclerview.OnRecommendationClickListener;
 import com.example.android.popcorn.ui.recommendation_recyclerview.RecommendationRecyclerViewAdapter;
 import com.example.android.popcorn.ui.trailer_recyclerview.OnTrailerClickListener;
@@ -59,6 +57,8 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener, 
 
     private TrailerRecyclerViewAdapter mTrailerRecyclerAdapter;
     private RecommendationRecyclerViewAdapter mRecRecyclerAdapter;
+    private VolleyRequestHandlerChild mVolleyReqHandler;
+    private VolleyHelperChild mVolleyHelper;
     private Movie mMovie;
     private Set<String> languageSet = new HashSet<>();
 
@@ -97,6 +97,9 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener, 
         setupRecMoviesRecyclerView();
         getParcelableMovie();
 
+        initVolleyHandler();
+        initVolleyHelper();
+
         languageSet.addAll(mMovie.getLanguages());
 
         setParcelableDetailsIntoViews();
@@ -104,6 +107,25 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener, 
         onClickFavouriteButton();
 
         return rootView;
+    }
+
+    private void initVolleyHelper() {
+        mVolleyHelper = new VolleyHelperChild(getActivity(), mVolleyReqHandler);
+    }
+
+    private void initVolleyHandler() {
+        mVolleyReqHandler = new VolleyRequestHandlerChild() {
+            @Override
+            public void onSuccessCastMember(String response, Cast member) {
+                LoganCastMemberDetailTemplate castMemberLogan = MovieParser.parseJsonCastMemberData(response);
+                saveCastMemberDetails(member, castMemberLogan);
+            }
+
+            @Override
+            public void onFail(VolleyError error) {
+                Log.e(LOG_TAG, "initVolleyHandler() error: " + error);
+            }
+        };
     }
 
     private void setupTrailerRecyclerView() {
@@ -164,22 +186,7 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener, 
         for (int i = 0; i < cast.size(); i++) {
             final Cast castMember = cast.get(i);
             String url = createCastMemberDetailUrl(castMember.getId());
-
-            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            LoganCastMemberDetailTemplate castMemberLogan = MovieParser.parseJsonCastMemberData(response);
-                            saveCastMemberDetails(castMember, castMemberLogan);
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Log.e(LOG_TAG, "Response error (fetchJsonCastMemberDetails): " + error);
-                }
-            });
-
-            RequestQueueSingleton.getSingletonInstance(getActivity()).addToRequestQueue(stringRequest);
+            mVolleyHelper.fetchJsonCastMember(url, castMember);
         }
     }
 

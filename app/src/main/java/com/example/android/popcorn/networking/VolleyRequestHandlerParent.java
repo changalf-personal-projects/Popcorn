@@ -7,7 +7,7 @@ import com.example.android.popcorn.model.Movie;
  * Created by alfredchang on 2017-12-07.
  */
 
-public interface VolleyRequestHandler {
+public interface VolleyRequestHandlerParent {
 
     void onSuccessId(String response);
     void onSuccessDetails(String response, Movie movie);

@@ -12,16 +12,16 @@ import com.example.android.popcorn.model.Movie;
  * Created by alfredchang on 2017-12-07.
  */
 
-public class VolleyHelper {
+public class VolleyHelperParent {
 
-    private final String LOG_TAG = VolleyHelper.class.getSimpleName();
+    private final String LOG_TAG = VolleyHelperParent.class.getSimpleName();
 
-    VolleyRequestHandler mVolleyReqHandler = null;
+    VolleyRequestHandlerParent mVolleyReqHandlerParent = null;
     Context mContext;
 
-    public VolleyHelper(Context context, VolleyRequestHandler volleyReqHandler) {
+    public VolleyHelperParent(Context context, VolleyRequestHandlerParent volleyReqHandler) {
         mContext = context;
-        mVolleyReqHandler = volleyReqHandler;
+        mVolleyReqHandlerParent = volleyReqHandler;
     }
 
     public void fetchJsonId(String url) {
@@ -29,15 +29,15 @@ public class VolleyHelper {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        if (mVolleyReqHandler != null) {
-                            mVolleyReqHandler.onSuccessId(response);
+                        if (mVolleyReqHandlerParent != null) {
+                            mVolleyReqHandlerParent.onSuccessId(response);
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                if (mVolleyReqHandler != null) {
-                    mVolleyReqHandler.onFail(error);
+                if (mVolleyReqHandlerParent != null) {
+                    mVolleyReqHandlerParent.onFail(error);
                 }
             }
         });
@@ -50,15 +50,15 @@ public class VolleyHelper {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        if (mVolleyReqHandler != null) {
-                            mVolleyReqHandler.onSuccessDetails(response, movie);
+                        if (mVolleyReqHandlerParent != null) {
+                            mVolleyReqHandlerParent.onSuccessDetails(response, movie);
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                if (mVolleyReqHandler != null) {
-                    mVolleyReqHandler.onFail(error);
+                if (mVolleyReqHandlerParent != null) {
+                    mVolleyReqHandlerParent.onFail(error);
                 }
             }
         });
@@ -71,15 +71,15 @@ public class VolleyHelper {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        if (mVolleyReqHandler != null) {
-                            mVolleyReqHandler.onSuccessRecommendedDetails(response, movie);
+                        if (mVolleyReqHandlerParent != null) {
+                            mVolleyReqHandlerParent.onSuccessRecommendedDetails(response, movie);
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                if (mVolleyReqHandler != null) {
-                    mVolleyReqHandler.onFail(error);
+                if (mVolleyReqHandlerParent != null) {
+                    mVolleyReqHandlerParent.onFail(error);
                 }
             }
         });

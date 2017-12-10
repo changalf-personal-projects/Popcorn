@@ -22,8 +22,8 @@ import com.example.android.popcorn.fragment.parsing.LoganIdTemplate;
 import com.example.android.popcorn.fragment.parsing.MovieParser;
 import com.example.android.popcorn.fragment.saving.DataSaver;
 import com.example.android.popcorn.model.Movie;
-import com.example.android.popcorn.networking.VolleyHelper;
-import com.example.android.popcorn.networking.VolleyRequestHandler;
+import com.example.android.popcorn.networking.VolleyHelperParent;
+import com.example.android.popcorn.networking.VolleyRequestHandlerParent;
 import com.example.android.popcorn.ui.poster_recyclerview.OnMovieClickListener;
 import com.example.android.popcorn.ui.poster_recyclerview.PosterRecyclerViewAdapter;
 
@@ -46,8 +46,8 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
     private final int LAYOUT_COL_SPAN = 2;
 
     private FragmentComponent mFragmentComponent;
-    private VolleyRequestHandler mVolleyReqHandler;
-    private VolleyHelper mVolleyHelper;
+    private VolleyRequestHandlerParent mVolleyReqHandler;
+    private VolleyHelperParent mVolleyHelper;
     private List<Movie> mListOfMovies;
     private List<Integer> mListOfRefreshColours = new ArrayList<>();
     private DataSaver mDataSaver;
@@ -82,13 +82,13 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
     }
 
     private void initVolleyHelper() {
-        mVolleyHelper = new VolleyHelper(getActivity(), mVolleyReqHandler);
+        mVolleyHelper = new VolleyHelperParent(getActivity(), mVolleyReqHandler);
     }
 
     // Source: https://stackoverflow.com/questions/35628142/how-to-make-separate-class-for-volley-
     // library-and-call-all-method-of-volley-from.
     private void initVolleyHandler() {
-        mVolleyReqHandler = new VolleyRequestHandler() {
+        mVolleyReqHandler = new VolleyRequestHandlerParent() {
             @Override
             public void onSuccessId(String response) {
                 LoganIdTemplate loganId = MovieParser.parseJsonIdData(response);

@@ -1,5 +1,7 @@
 package com.example.android.popcorn.fragment.saving;
 
+import android.util.Log;
+
 import com.example.android.popcorn.fragment.ParentFragment;
 import com.example.android.popcorn.fragment.parsing.LoganDetailsTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganIdTemplate;
@@ -21,6 +23,7 @@ import static com.example.android.popcorn.networking.UrlCreator.createImageUrl;
 
 public class DataSaver {
 
+    private final String LOG_TAG = DataSaver.class.getSimpleName();
     private final String ISO_ENGLISH = "en";
     private final String ENGLISH = "English";
     private final String DIRECTOR = "Director";
@@ -167,6 +170,9 @@ public class DataSaver {
     }
 
     public void saveMovieReviews(Movie movie, LoganDetailsTemplate reviewLogan) {
+        Log.v(LOG_TAG, "Movie name: " + movie);
+        Log.v(LOG_TAG, "Parsed response: " + reviewLogan.getReviews());
+
         for (LoganDetailsTemplate.Reviews.Results result: reviewLogan.getReviews().getResults()) {
             Review review = new Review();
             review.setAuthor(result.getAuthor());
