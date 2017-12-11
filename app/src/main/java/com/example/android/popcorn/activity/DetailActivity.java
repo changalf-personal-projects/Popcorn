@@ -50,6 +50,7 @@ public class DetailActivity extends AppCompatActivity {
 
     private final int BACKDROP_CROSSFADE_TIME = 300;
     private final int POSTER_CROSSFADE_TIME = 500;
+    private final int PAGES_TO_RETAIN = 2;
     private final String SAVED_MOVIE = "Saved to favourites!";
 
     @BindView(R.id.toolbar) Toolbar mToolbar;
@@ -172,6 +173,7 @@ public class DetailActivity extends AppCompatActivity {
         addFragments(pagerAdapter);
         addFragmentTitles(pagerAdapter);
         viewPager.setAdapter(pagerAdapter);
+        mViewPager.setOffscreenPageLimit(PAGES_TO_RETAIN);
     }
 
     private void addFragments(DetailTabsPagerAdapter pagerAdapter) {

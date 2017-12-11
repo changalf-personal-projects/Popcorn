@@ -2,7 +2,9 @@
 #TODO: Display title or image when toolbar is collapsed.
 #TODO: Why every second search no results are shown?
 #TODO: Add rate movie button in reviews section.
-#TODO: Append to response trailers, cast, crew, reviews, and recommendations.
+#TODO: 1. Get id of current movie (already saved).
+       2. Pass id into api appended endpoints.
+       3. Save parsed data.
 
 
 

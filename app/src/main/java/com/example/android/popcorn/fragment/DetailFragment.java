@@ -123,7 +123,7 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener, 
 
             @Override
             public void onFail(VolleyError error) {
-                Log.e(LOG_TAG, "initVolleyHandler() error: " + error);
+                Log.e(LOG_TAG, "initVolleyHandler() error: " + error.networkResponse.statusCode);
             }
         };
     }
@@ -184,7 +184,7 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener, 
     private void fetchJsonCastMemberDetails() {
         List<Cast> cast = mMovie.getCast();
         for (int i = 0; i < cast.size(); i++) {
-            final Cast castMember = cast.get(i);
+            Cast castMember = cast.get(i);
             String url = createCastMemberDetailUrl(castMember.getId());
             mVolleyHelper.fetchJsonCastMember(url, castMember);
         }
@@ -200,6 +200,8 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener, 
     private void getParcelableMovie() {
         Intent movieIntent = getActivity().getIntent();
         mMovie = movieIntent.getParcelableExtra(Utilities.PARCELABLE_MOVIE_KEY);
+        Log.v(LOG_TAG, "Movie title: " + mMovie.getTitle());
+        Log.v(LOG_TAG, "Movie id: " + mMovie.getId());
     }
 
     private void setParcelableDetailsIntoViews() {
