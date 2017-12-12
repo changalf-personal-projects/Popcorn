@@ -147,6 +147,8 @@ public class DataSaver {
         movie.setPosterPath(createImageUrl(movieLogan.getPosterPath(), UriTerms.IMAGE_SIZE_W500));
         movie.setDetailPosterPath(createImageUrl(movieLogan.getPosterPath(), UriTerms.IMAGE_SIZE_W342));
         movie.setBackdropPath(createImageUrl(movieLogan.getBackdropPath(), UriTerms.POSTER_SIZE_ORIGINAL));
+
+        Log.v(LOG_TAG, "Recommended movie title: " + movie.getTitle());
     }
 
     public void saveRecMovieDetails(LoganDetailsTemplate movieLogan, Movie movie) {

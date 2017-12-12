@@ -21,7 +21,6 @@ import com.example.android.popcorn.fragment.parsing.LoganDetailsTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganIdTemplate;
 import com.example.android.popcorn.fragment.parsing.MovieParser;
 import com.example.android.popcorn.fragment.saving.DataSaver;
-import com.example.android.popcorn.model.Cast;
 import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.networking.VolleyHelper;
 import com.example.android.popcorn.networking.VolleyRequestHandler;
@@ -110,11 +109,6 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
             }
 
             @Override
-            public void onSuccessRecommendedIds(String response) {
-                // Unused.
-            }
-
-            @Override
             public void onSuccessRecommendedDetails(String response, Movie movie) {
                 LoganDetailsTemplate loganDetails = MovieParser.parseJsonDetailsData(response);
                 mDataSaver.saveMovieDetails(movie, loganDetails);
@@ -124,11 +118,6 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
 
                 // Screen blacks out.
 //                mDataSaver.saveMovieReviews(movie, loganDetails);
-            }
-
-            @Override
-            public void onSuccessCastMember(String response, Cast member) {
-                // Unused.
             }
 
             @Override

@@ -27,8 +27,8 @@ import com.example.android.popcorn.model.Director;
 import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.model.Producer;
 import com.example.android.popcorn.model.Trailer;
-import com.example.android.popcorn.networking.VolleyHelper;
-import com.example.android.popcorn.networking.VolleyRequestHandler;
+import com.example.android.popcorn.networking.VolleyHelperChild;
+import com.example.android.popcorn.networking.VolleyRequestHandlerChild;
 import com.example.android.popcorn.ui.recommendation_recyclerview.OnRecommendationClickListener;
 import com.example.android.popcorn.ui.recommendation_recyclerview.RecommendationRecyclerViewAdapter;
 import com.example.android.popcorn.ui.trailer_recyclerview.OnTrailerClickListener;
@@ -63,8 +63,8 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener, 
 
     private TrailerRecyclerViewAdapter mTrailerRecyclerAdapter;
     private RecommendationRecyclerViewAdapter mRecRecyclerAdapter;
-    private VolleyRequestHandler mVolleyReqHandler;
-    private VolleyHelper mVolleyHelper;
+    private VolleyRequestHandlerChild mVolleyReqHandlerChild;
+    private VolleyHelperChild mVolleyHelperChild;
     private DataSaver mDataSaver;
     private Movie mMovie;
     private Set<String> languageSet = new HashSet<>();
@@ -109,9 +109,9 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener, 
         initVolleyHelper();
         getLanguages();
 
+        fetchJsonRecommendedIds();
         setParcelableDetailsIntoViews();
         fetchJsonCastMemberDetails();
-        fetchJsonRecommendedIds();
 
         onClickFavouriteButton();
 
@@ -127,20 +127,11 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener, 
     }
 
     private void initVolleyHelper() {
-        mVolleyHelper = new VolleyHelper(getActivity(), mVolleyReqHandler);
+        mVolleyHelperChild = new VolleyHelperChild(getActivity(), mVolleyReqHandlerChild);
     }
 
     private void initVolleyHandler() {
-        mVolleyReqHandler = new VolleyRequestHandler() {
-            @Override
-            public void onSuccessId(String response) {
-                // Unused.
-            }
-
-            @Override
-            public void onSuccessDetails(String response, Movie movie) {
-                // Unused.
-            }
+        mVolleyReqHandlerChild = new VolleyRequestHandlerChild() {
 
             @Override
             public void onSuccessRecommendedIds(String response) {
@@ -203,7 +194,7 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener, 
     @Override
     public void onClick(Movie movie) {
         Intent recommendedIntent = new Intent(getActivity(), DetailActivity.class);
-        recommendedIntent.putExtra(Utilities.PARCELABLE_MOVIE_KEY, movie);
+        recommendedIntent.putExtra(Utilities.PARCELABLE_MOVIE_KEY, mMovie);
         startActivity(recommendedIntent);
     }
 
@@ -225,7 +216,7 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener, 
 
     private void fetchJsonRecommendedIds() {
         String url = createRecommendedMoviesUrl(mMovie.getId());
-        mVolleyHelper.fetchJsonRecommendedIds(url);
+        mVolleyHelperChild.fetchJsonRecommendedIds(url);
     }
 
     private void fetchJsonCastMemberDetails() {
@@ -233,7 +224,7 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener, 
         for (int i = 0; i < cast.size(); i++) {
             Cast castMember = cast.get(i);
             String url = createCastMemberDetailUrl(castMember.getId());
-            mVolleyHelper.fetchJsonCastMember(url, castMember);
+            mVolleyHelperChild.fetchJsonCastMember(url, castMember);
         }
     }
 
@@ -241,7 +232,7 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener, 
         List<Movie> recommendedMovies = movie.getRecMovies();
         for (int i = 0; i < recommendedMovies.size(); i++) {
             String url = createUrlWithAppendedResponse(recommendedMovies.get(i).getId(), appendEndpoints());
-            mVolleyHelper.fetchJsonRecommendedDetails(url, recommendedMovies.get(i));
+            mVolleyHelperChild.fetchJsonRecommendedDetails(url, recommendedMovies.get(i));
         }
     }
 
@@ -255,8 +246,6 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener, 
     private void getParcelableMovie() {
         Intent movieIntent = getActivity().getIntent();
         mMovie = movieIntent.getParcelableExtra(Utilities.PARCELABLE_MOVIE_KEY);
-        Log.v(LOG_TAG, "Movie title: " + mMovie.getTitle());
-        Log.v(LOG_TAG, "Movie id: " + mMovie.getId());
     }
 
     private void setParcelableDetailsIntoViews() {
