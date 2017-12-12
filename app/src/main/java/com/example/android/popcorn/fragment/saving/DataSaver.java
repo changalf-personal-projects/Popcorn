@@ -2,6 +2,7 @@ package com.example.android.popcorn.fragment.saving;
 
 import android.util.Log;
 
+import com.example.android.popcorn.fragment.DetailFragment;
 import com.example.android.popcorn.fragment.ParentFragment;
 import com.example.android.popcorn.fragment.parsing.LoganDetailsTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganIdTemplate;
@@ -30,7 +31,12 @@ public class DataSaver {
     private final String PRODUCER = "Producer";
 
     private ParentFragment mFragment;
+    private DetailFragment mDetailFragment;
     private List<Movie> mListOfMovies;
+
+    public DataSaver(DetailFragment fragment) {
+        mDetailFragment = fragment;
+    }
 
     public DataSaver(ParentFragment fragment, List<Movie> listOfMovies) {
         mFragment = fragment;
@@ -46,6 +52,16 @@ public class DataSaver {
         mFragment.fetchJsonDetails();
     }
 
+    public void saveRecMovieIdInDetail(Movie movie, LoganIdTemplate idLogan) {
+        for (LoganIdTemplate.Results result: idLogan.getResults()) {
+            Movie recommendedMovie = new Movie();
+            recommendedMovie.setId(result.getId());
+            movie.setRecMovies(recommendedMovie);
+        }
+
+        mDetailFragment.fetchJsonRecommendedDetails(movie);
+    }
+
     public void saveRecMovieId(Movie movie, LoganDetailsTemplate movieLogan) {
         for (LoganDetailsTemplate.Recommendations.Results result: movieLogan.getRecommendations().getResults()) {
             Movie recommendedMovie = new Movie();
@@ -53,7 +69,7 @@ public class DataSaver {
             movie.setRecMovies(recommendedMovie);
         }
 
-        mFragment.fetchRecJsonDetails(movie);
+        mFragment.fetchJsonRecommendedDetails(movie);
     }
 
     public void saveMovieTrailers(Movie movie, LoganDetailsTemplate trailerLogan) {

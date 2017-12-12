@@ -18,14 +18,17 @@ import com.example.android.popcorn.Utilities;
 import com.example.android.popcorn.YoutubePlayerActivity;
 import com.example.android.popcorn.activity.DetailActivity;
 import com.example.android.popcorn.fragment.parsing.LoganCastMemberDetailTemplate;
+import com.example.android.popcorn.fragment.parsing.LoganDetailsTemplate;
+import com.example.android.popcorn.fragment.parsing.LoganIdTemplate;
 import com.example.android.popcorn.fragment.parsing.MovieParser;
+import com.example.android.popcorn.fragment.saving.DataSaver;
 import com.example.android.popcorn.model.Cast;
 import com.example.android.popcorn.model.Director;
 import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.model.Producer;
 import com.example.android.popcorn.model.Trailer;
-import com.example.android.popcorn.networking.VolleyHelperChild;
-import com.example.android.popcorn.networking.VolleyRequestHandlerChild;
+import com.example.android.popcorn.networking.VolleyHelper;
+import com.example.android.popcorn.networking.VolleyRequestHandler;
 import com.example.android.popcorn.ui.recommendation_recyclerview.OnRecommendationClickListener;
 import com.example.android.popcorn.ui.recommendation_recyclerview.RecommendationRecyclerViewAdapter;
 import com.example.android.popcorn.ui.trailer_recyclerview.OnTrailerClickListener;
@@ -39,7 +42,10 @@ import java.util.Set;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.android.popcorn.networking.UrlCreator.appendEndpoints;
 import static com.example.android.popcorn.networking.UrlCreator.createCastMemberDetailUrl;
+import static com.example.android.popcorn.networking.UrlCreator.createRecommendedMoviesUrl;
+import static com.example.android.popcorn.networking.UrlCreator.createUrlWithAppendedResponse;
 import static com.example.android.popcorn.ui.LayoutPropertiesInitializer.initImageViewProperties;
 import static com.example.android.popcorn.ui.ViewPopulator.populateImageViewNoCrossfade;
 import static com.example.android.popcorn.ui.ViewPopulator.populateStringListToTextView;
@@ -57,8 +63,9 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener, 
 
     private TrailerRecyclerViewAdapter mTrailerRecyclerAdapter;
     private RecommendationRecyclerViewAdapter mRecRecyclerAdapter;
-    private VolleyRequestHandlerChild mVolleyReqHandler;
-    private VolleyHelperChild mVolleyHelper;
+    private VolleyRequestHandler mVolleyReqHandler;
+    private VolleyHelper mVolleyHelper;
+    private DataSaver mDataSaver;
     private Movie mMovie;
     private Set<String> languageSet = new HashSet<>();
 
@@ -97,24 +104,59 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener, 
         setupRecMoviesRecyclerView();
         getParcelableMovie();
 
+        initDataSaver();
         initVolleyHandler();
         initVolleyHelper();
-
-        languageSet.addAll(mMovie.getLanguages());
+        getLanguages();
 
         setParcelableDetailsIntoViews();
         fetchJsonCastMemberDetails();
+        fetchJsonRecommendedIds();
+
         onClickFavouriteButton();
 
         return rootView;
     }
 
+    private void getLanguages() {
+        languageSet.addAll(mMovie.getLanguages());
+    }
+
+    private void initDataSaver() {
+        mDataSaver = new DataSaver(this);
+    }
+
     private void initVolleyHelper() {
-        mVolleyHelper = new VolleyHelperChild(getActivity(), mVolleyReqHandler);
+        mVolleyHelper = new VolleyHelper(getActivity(), mVolleyReqHandler);
     }
 
     private void initVolleyHandler() {
-        mVolleyReqHandler = new VolleyRequestHandlerChild() {
+        mVolleyReqHandler = new VolleyRequestHandler() {
+            @Override
+            public void onSuccessId(String response) {
+                // Unused.
+            }
+
+            @Override
+            public void onSuccessDetails(String response, Movie movie) {
+                // Unused.
+            }
+
+            @Override
+            public void onSuccessRecommendedIds(String response) {
+                LoganIdTemplate loganIds = MovieParser.parseJsonIdData(response);
+                mDataSaver.saveRecMovieIdInDetail(mMovie, loganIds);
+            }
+
+            @Override
+            public void onSuccessRecommendedDetails(String response, Movie movie) {
+                LoganDetailsTemplate loganDetails = MovieParser.parseJsonDetailsData(response);
+                mDataSaver.saveMovieDetails(movie, loganDetails);
+                mDataSaver.saveMovieCast(movie, loganDetails);
+                mDataSaver.saveMovieCrew(movie, loganDetails);
+                mDataSaver.saveMovieTrailers(movie, loganDetails);
+            }
+
             @Override
             public void onSuccessCastMember(String response, Cast member) {
                 LoganCastMemberDetailTemplate castMemberLogan = MovieParser.parseJsonCastMemberData(response);
@@ -181,12 +223,25 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener, 
 //        });
     }
 
+    private void fetchJsonRecommendedIds() {
+        String url = createRecommendedMoviesUrl(mMovie.getId());
+        mVolleyHelper.fetchJsonRecommendedIds(url);
+    }
+
     private void fetchJsonCastMemberDetails() {
         List<Cast> cast = mMovie.getCast();
         for (int i = 0; i < cast.size(); i++) {
             Cast castMember = cast.get(i);
             String url = createCastMemberDetailUrl(castMember.getId());
             mVolleyHelper.fetchJsonCastMember(url, castMember);
+        }
+    }
+
+    public void fetchJsonRecommendedDetails(Movie movie) {
+        List<Movie> recommendedMovies = movie.getRecMovies();
+        for (int i = 0; i < recommendedMovies.size(); i++) {
+            String url = createUrlWithAppendedResponse(recommendedMovies.get(i).getId(), appendEndpoints());
+            mVolleyHelper.fetchJsonRecommendedDetails(url, recommendedMovies.get(i));
         }
     }
 

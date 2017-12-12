@@ -21,9 +21,10 @@ import com.example.android.popcorn.fragment.parsing.LoganDetailsTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganIdTemplate;
 import com.example.android.popcorn.fragment.parsing.MovieParser;
 import com.example.android.popcorn.fragment.saving.DataSaver;
+import com.example.android.popcorn.model.Cast;
 import com.example.android.popcorn.model.Movie;
-import com.example.android.popcorn.networking.VolleyHelperParent;
-import com.example.android.popcorn.networking.VolleyRequestHandlerParent;
+import com.example.android.popcorn.networking.VolleyHelper;
+import com.example.android.popcorn.networking.VolleyRequestHandler;
 import com.example.android.popcorn.ui.poster_recyclerview.OnMovieClickListener;
 import com.example.android.popcorn.ui.poster_recyclerview.PosterRecyclerViewAdapter;
 
@@ -46,8 +47,8 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
     private final int LAYOUT_COL_SPAN = 2;
 
     private FragmentComponent mFragmentComponent;
-    private VolleyRequestHandlerParent mVolleyReqHandler;
-    private VolleyHelperParent mVolleyHelper;
+    private VolleyRequestHandler mVolleyReqHandler;
+    private VolleyHelper mVolleyHelper;
     private List<Movie> mListOfMovies;
     private List<Integer> mListOfRefreshColours = new ArrayList<>();
     private DataSaver mDataSaver;
@@ -82,13 +83,13 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
     }
 
     private void initVolleyHelper() {
-        mVolleyHelper = new VolleyHelperParent(getActivity(), mVolleyReqHandler);
+        mVolleyHelper = new VolleyHelper(getActivity(), mVolleyReqHandler);
     }
 
     // Source: https://stackoverflow.com/questions/35628142/how-to-make-separate-class-for-volley-
     // library-and-call-all-method-of-volley-from.
     private void initVolleyHandler() {
-        mVolleyReqHandler = new VolleyRequestHandlerParent() {
+        mVolleyReqHandler = new VolleyRequestHandler() {
             @Override
             public void onSuccessId(String response) {
                 LoganIdTemplate loganId = MovieParser.parseJsonIdData(response);
@@ -109,6 +110,11 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
             }
 
             @Override
+            public void onSuccessRecommendedIds(String response) {
+                // Unused.
+            }
+
+            @Override
             public void onSuccessRecommendedDetails(String response, Movie movie) {
                 LoganDetailsTemplate loganDetails = MovieParser.parseJsonDetailsData(response);
                 mDataSaver.saveMovieDetails(movie, loganDetails);
@@ -118,6 +124,11 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
 
                 // Screen blacks out.
 //                mDataSaver.saveMovieReviews(movie, loganDetails);
+            }
+
+            @Override
+            public void onSuccessCastMember(String response, Cast member) {
+                // Unused.
             }
 
             @Override
@@ -140,7 +151,7 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
         }
     }
 
-    public void fetchRecJsonDetails(Movie movie) {
+    public void fetchJsonRecommendedDetails(Movie movie) {
         for (int i = 0; i < movie.getRecMovies().size(); i++) {
             Movie recMovie = movie.getRecMovies().get(i);
             String url = createUrlWithAppendedResponse(recMovie.getId(), appendEndpoints());
