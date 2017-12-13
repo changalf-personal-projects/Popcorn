@@ -68,6 +68,7 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener, 
     private DataSaver mDataSaver;
     private Movie mMovie;
     private Set<String> languageSet = new HashSet<>();
+    private boolean mIsPressedFlag = false;
 
     @BindView(R.id.tagline)
     TextView mTagline;
@@ -112,8 +113,6 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener, 
         setParcelableDetailsIntoViews();
         fetchJsonCastMemberDetails();
         setupRecMoviesRecyclerView();
-
-        onClickFavouriteButton();
 
         return rootView;
     }
@@ -196,24 +195,8 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener, 
     @Override
     public void onClick(Movie movie) {
         Intent recommendedIntent = new Intent(getActivity(), DetailActivity.class);
-        recommendedIntent.putExtra(Utilities.PARCELABLE_MOVIE_KEY, mMovie);
+        recommendedIntent.putExtra(Utilities.PARCELABLE_MOVIE_KEY, movie);
         startActivity(recommendedIntent);
-    }
-
-    private void onClickFavouriteButton() {
-        // TODO: Button will reset to unliked if current fragment is destroyed.
-//        mFavouriteButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if (!mIsPressedFlag) {
-//                    mFavouriteButton.setBackgroundResource(R.mipmap.ic_favourited);
-//                    mIsPressedFlag = true;
-//                } else {
-//                    mFavouriteButton.setBackgroundResource(R.mipmap.ic_favourite);
-//                    mIsPressedFlag = false;
-//                }
-//            }
-//        });
     }
 
     private void fetchJsonRecommendedIds() {

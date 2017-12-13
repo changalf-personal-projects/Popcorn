@@ -51,7 +51,8 @@ public class DetailActivity extends AppCompatActivity {
     private final int BACKDROP_CROSSFADE_TIME = 300;
     private final int POSTER_CROSSFADE_TIME = 500;
     private final int PAGES_TO_RETAIN = 2;
-    private final String SAVED_MOVIE = "Saved to favourites!";
+    private final String SAVED = "Saved to favourites!";
+    private final String UNSAVED = "Removed from favourites!";
 
     @BindView(R.id.toolbar) Toolbar mToolbar;
     @BindView(R.id.backdrop_poster) ImageView mBackdrop;
@@ -83,20 +84,48 @@ public class DetailActivity extends AppCompatActivity {
         setupViewPager(mViewPager);
         mTabLayout.setupWithViewPager(mViewPager);
 
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowTitleEnabled(true);
-        getSupportActionBar().setTitle(movie.getTitle());
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        displayTitleOnCollapsedToolbar(movie);
         initFab();
+    }
+
+    public void displayTitleOnCollapsedToolbar(final Movie movie) {
+        mAppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            int scrollRange = -1;
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                int diffRangeAndOffset = scrollRange + verticalOffset;
+
+                if (scrollRange == -1) {
+                    scrollRange = mAppBarLayout.getTotalScrollRange();
+                }
+
+                if (diffRangeAndOffset == 0) {
+                    mCollapsingToolbarLayout.setTitle(movie.getTitle());
+                } else {
+                    mCollapsingToolbarLayout.setTitle(" ");
+                }
+            }
+        });
     }
 
     private void initFab() {
         favouriteButton.setOnClickListener(new View.OnClickListener() {
+            private boolean isLiked = false;
+
             @Override
             public void onClick(View view) {
-                favouriteButton.setImageResource(R.mipmap.ic_favourited);
-                Toast.makeText(getBaseContext(), SAVED_MOVIE, Toast.LENGTH_SHORT).show();
+                if (!isLiked) {
+                    favouriteButton.setImageResource(R.mipmap.ic_favourited);
+                    Toast.makeText(getApplicationContext(), SAVED, Toast.LENGTH_SHORT).show();
+                    isLiked = true;
+                } else if (isLiked) {
+                    favouriteButton.setImageResource(R.mipmap.ic_favourite);
+                    Toast.makeText(getApplicationContext(), UNSAVED, Toast.LENGTH_SHORT).show();
+                    isLiked = false;
+                }
             }
         });
     }
@@ -113,13 +142,6 @@ public class DetailActivity extends AppCompatActivity {
 
         if (id == R.id.action_settings) {
 
-        }
-
-        // Source: https://stackoverflow.com/questions/16150205/android-action-bar-home-button.
-        if (id == android.R.id.home) {
-            Intent homeIntent = new Intent(this, MainActivity.class);
-            homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(homeIntent);
         }
 
         return super.onOptionsItemSelected(menuItem);
