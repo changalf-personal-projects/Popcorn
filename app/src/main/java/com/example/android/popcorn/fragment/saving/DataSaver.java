@@ -1,7 +1,5 @@
 package com.example.android.popcorn.fragment.saving;
 
-import android.util.Log;
-
 import com.example.android.popcorn.fragment.DetailFragment;
 import com.example.android.popcorn.fragment.ParentFragment;
 import com.example.android.popcorn.fragment.parsing.LoganDetailsTemplate;
@@ -147,8 +145,81 @@ public class DataSaver {
         movie.setPosterPath(createImageUrl(movieLogan.getPosterPath(), UriTerms.IMAGE_SIZE_W500));
         movie.setDetailPosterPath(createImageUrl(movieLogan.getPosterPath(), UriTerms.IMAGE_SIZE_W342));
         movie.setBackdropPath(createImageUrl(movieLogan.getBackdropPath(), UriTerms.POSTER_SIZE_ORIGINAL));
+    }
 
-        Log.v(LOG_TAG, "Recommended movie title: " + movie.getTitle());
+    // The following methods are separated from the one above to allow greater flexibility.
+    public void saveGenres(Movie movie, LoganDetailsTemplate movieLogan) {
+        for (LoganDetailsTemplate.Genre genre: movieLogan.getGenres()) {
+            movie.setGenres(genre.getName());
+        }
+    }
+
+    public void saveCompanies(Movie movie, LoganDetailsTemplate movieLogan) {
+        for (LoganDetailsTemplate.ProductionCompany company: movieLogan.getProductionCompanies()) {
+            movie.setProductionCompanies(company.getName());
+        }
+    }
+
+    public void saveBudget(Movie movie, LoganDetailsTemplate movieLogan) {
+        movie.setBudget(movieLogan.getBudget());
+    }
+
+    public void saveTitle(Movie movie, LoganDetailsTemplate movieLogan) {
+        movie.setTitle(movieLogan.getTitle());
+    }
+
+    public void saveRuntime(Movie movie, LoganDetailsTemplate movieLogan) {
+        movie.setRuntime(movieLogan.getRuntime());
+    }
+
+    public void saveRating(Movie movie, LoganDetailsTemplate movieLogan) {
+        movie.setRating(movieLogan.getVoteAverage());
+    }
+
+    public void saveLanguages(Movie movie, LoganDetailsTemplate movieLogan) {
+        // This ordering of for-loop after setting original language allows original language to be
+        // displayed first in languages.
+        if (isEnglish(movieLogan)) {
+            movie.setLanguages(ENGLISH);
+        }
+
+        for (LoganDetailsTemplate.Language language: movieLogan.getLanguages()) {
+            movie.setLanguages(language.getLanguage());
+        }
+    }
+
+    public void saveOverview(Movie movie, LoganDetailsTemplate movieLogan) {
+        movie.setOverview(movieLogan.getOverview());
+    }
+
+    public void saveTagline(Movie movie, LoganDetailsTemplate movieLogan) {
+        movie.setTagline(movieLogan.getTagline());
+    }
+
+    public void saveReleaseDate(Movie movie, LoganDetailsTemplate movieLogan) {
+        movie.setReleaseDate(movieLogan.getRelease());
+    }
+
+    public void saveRevenue(Movie movie, LoganDetailsTemplate movieLogan) {
+        movie.setRevenue(movieLogan.getRevenue());
+    }
+
+    public void savePosterPath(Movie movie, LoganDetailsTemplate movieLogan) {
+        movie.setPosterPath(createImageUrl(movieLogan.getPosterPath(), UriTerms.IMAGE_SIZE_W500));
+
+    }
+
+    public void saveDetailPosterPath(Movie movie, LoganDetailsTemplate movieLogan) {
+        movie.setDetailPosterPath(createImageUrl(movieLogan.getPosterPath(), UriTerms.IMAGE_SIZE_W342));
+
+    }
+
+    public void saveBackdropPath(Movie movie, LoganDetailsTemplate movieLogan) {
+        movie.setBackdropPath(createImageUrl(movieLogan.getBackdropPath(), UriTerms.POSTER_SIZE_ORIGINAL));
+    }
+
+    public boolean isEnglish(LoganDetailsTemplate movieLogan) {
+        return movieLogan.getOriginalLanguage().equals(ISO_ENGLISH);
     }
 
     public void saveRecMovieDetails(LoganDetailsTemplate movieLogan, Movie movie) {
@@ -188,9 +259,6 @@ public class DataSaver {
     }
 
     public void saveMovieReviews(Movie movie, LoganDetailsTemplate reviewLogan) {
-        Log.v(LOG_TAG, "Movie name: " + movie);
-        Log.v(LOG_TAG, "Parsed response: " + reviewLogan.getReviews());
-
         for (LoganDetailsTemplate.Reviews.Results result: reviewLogan.getReviews().getResults()) {
             Review review = new Review();
             review.setAuthor(result.getAuthor());

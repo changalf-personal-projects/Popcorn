@@ -23,6 +23,7 @@ public class Utilities {
 
     // TODO: Use an enum for these parcelable strings.
     public static final String PARCELABLE_MOVIE_KEY = "movie";
+    public static final String PARCELABLE_REC_MOVIE_KEY = "recommended movie";
     public static final String PARCELABLE_REVIEW_KEY = "review";
     public static final String PARCELABLE_CAST_MEMBER_KEY = "cast member";
     public static final String PARCELABLE_TRAILER_KEY = "trailers";
@@ -33,6 +34,8 @@ public class Utilities {
     public static final String PARENT_ACTIVITY = "parent activity";
     public static final String SEARCH_KEY = "query";
     public static final String NOT_AVAILABLE = "Not available";
+    public static final String FROM_PARENT = "from parent";
+    public static final String FROM_DETAIL = "from detail";
     private static final String N_A = "N/A";
     private static final String DOLLAR_SIGN = "$";
     private static final String COMMA = ",";
@@ -134,7 +137,7 @@ public class Utilities {
 
     private static boolean moreThanThreeChars(String value) {
         if (isNotNull(value)) {
-            return value.length() > 3;
+            return value.length() > THREE_CHARS;
         }
         return false;
     }

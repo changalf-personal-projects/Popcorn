@@ -101,7 +101,6 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener, 
         ButterKnife.bind(this, rootView);
 
         setupTrailerRecyclerView();
-        setupRecMoviesRecyclerView();
         getParcelableMovie();
 
         initDataSaver();
@@ -112,6 +111,7 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener, 
         fetchJsonRecommendedIds();
         setParcelableDetailsIntoViews();
         fetchJsonCastMemberDetails();
+        setupRecMoviesRecyclerView();
 
         onClickFavouriteButton();
 
@@ -142,7 +142,8 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener, 
             @Override
             public void onSuccessRecommendedDetails(String response, Movie movie) {
                 LoganDetailsTemplate loganDetails = MovieParser.parseJsonDetailsData(response);
-                mDataSaver.saveMovieDetails(movie, loganDetails);
+                mDataSaver.saveTitle(movie, loganDetails);
+                mDataSaver.saveBudget(movie, loganDetails);
                 mDataSaver.saveMovieCast(movie, loganDetails);
                 mDataSaver.saveMovieCrew(movie, loganDetails);
                 mDataSaver.saveMovieTrailers(movie, loganDetails);
@@ -194,7 +195,7 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener, 
     @Override
     public void onClick(Movie movie) {
         Intent recommendedIntent = new Intent(getActivity(), DetailActivity.class);
-        recommendedIntent.putExtra(Utilities.PARCELABLE_MOVIE_KEY, mMovie);
+        recommendedIntent.putExtra(Utilities.PARCELABLE_REC_MOVIE_KEY, movie);
         startActivity(recommendedIntent);
     }
 
