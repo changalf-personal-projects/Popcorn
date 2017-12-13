@@ -144,6 +144,7 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener, 
                 LoganDetailsTemplate loganDetails = MovieParser.parseJsonDetailsData(response);
                 mDataSaver.saveTitle(movie, loganDetails);
                 mDataSaver.saveBudget(movie, loganDetails);
+                mDataSaver.saveRating(movie, loganDetails);
                 mDataSaver.saveMovieCast(movie, loganDetails);
                 mDataSaver.saveMovieCrew(movie, loganDetails);
                 mDataSaver.saveMovieTrailers(movie, loganDetails);
@@ -195,7 +196,7 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener, 
     @Override
     public void onClick(Movie movie) {
         Intent recommendedIntent = new Intent(getActivity(), DetailActivity.class);
-        recommendedIntent.putExtra(Utilities.PARCELABLE_REC_MOVIE_KEY, movie);
+        recommendedIntent.putExtra(Utilities.PARCELABLE_MOVIE_KEY, movie);
         startActivity(recommendedIntent);
     }
 
@@ -245,8 +246,8 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener, 
     }
 
     private void getParcelableMovie() {
-        Intent movieIntent = getActivity().getIntent();
-        mMovie = movieIntent.getParcelableExtra(Utilities.PARCELABLE_MOVIE_KEY);
+        Intent intent = getActivity().getIntent();
+        mMovie = intent.getParcelableExtra(Utilities.PARCELABLE_MOVIE_KEY);
     }
 
     private void setParcelableDetailsIntoViews() {

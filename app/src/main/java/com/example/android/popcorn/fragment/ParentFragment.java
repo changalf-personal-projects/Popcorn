@@ -111,9 +111,7 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
             @Override
             public void onSuccessRecommendedDetails(String response, Movie movie) {
                 LoganDetailsTemplate loganDetails = MovieParser.parseJsonDetailsData(response);
-                mDataSaver.saveDetailPosterPath(movie, loganDetails);
-                mDataSaver.saveTitle(movie, loganDetails);
-                mDataSaver.saveReleaseDate(movie, loganDetails);
+                mDataSaver.saveMovieDetails(movie, loganDetails);
                 mDataSaver.saveMovieCast(movie, loganDetails);
                 mDataSaver.saveMovieCrew(movie, loganDetails);
                 mDataSaver.saveMovieTrailers(movie, loganDetails);
@@ -160,6 +158,7 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
     public void onClick(Movie movie) {
         Intent detailIntent = new Intent(getActivity(), DetailActivity.class);
         detailIntent.putExtra(Utilities.PARCELABLE_MOVIE_KEY, movie);
+        detailIntent.putExtra(Utilities.FROM, Utilities.PARENT);
         startActivity(detailIntent);
     }
 

@@ -34,8 +34,8 @@ import static com.example.android.popcorn.Utilities.PARENT_ACTIVITY;
 import static com.example.android.popcorn.ui.LayoutPropertiesInitializer.initImageViewProperties;
 import static com.example.android.popcorn.ui.ViewPopulator.populateCenterCropImageView;
 import static com.example.android.popcorn.ui.ViewPopulator.populateDateToTextView;
-import static com.example.android.popcorn.ui.ViewPopulator.populateImageViewWithCrossFade;
 import static com.example.android.popcorn.ui.ViewPopulator.populateImageViewNoCrossfade;
+import static com.example.android.popcorn.ui.ViewPopulator.populateImageViewWithCrossFade;
 import static com.example.android.popcorn.ui.ViewPopulator.populateRatingTextView;
 import static com.example.android.popcorn.ui.ViewPopulator.populateRuntimeTextView;
 import static com.example.android.popcorn.ui.ViewPopulator.populateStringListToTextView;
@@ -47,6 +47,8 @@ import static com.example.android.popcorn.ui.ViewPopulator.populateTextView;
 
 // Extend AppCompatActivity for back button layout.
 public class DetailActivity extends AppCompatActivity {
+
+    private final String LOG_TAG = DetailActivity.class.getSimpleName();
 
     private final int BACKDROP_CROSSFADE_TIME = 300;
     private final int POSTER_CROSSFADE_TIME = 500;
