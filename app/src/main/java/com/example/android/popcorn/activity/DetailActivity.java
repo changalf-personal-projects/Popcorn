@@ -28,13 +28,11 @@ import com.example.android.popcorn.ui.TabTitles;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import de.hdodenhof.circleimageview.CircleImageView;
 
 import static com.example.android.popcorn.Utilities.PARENT_ACTIVITY;
 import static com.example.android.popcorn.ui.LayoutPropertiesInitializer.initImageViewProperties;
 import static com.example.android.popcorn.ui.ViewPopulator.populateCenterCropImageView;
 import static com.example.android.popcorn.ui.ViewPopulator.populateDateToTextView;
-import static com.example.android.popcorn.ui.ViewPopulator.populateImageViewNoCrossfade;
 import static com.example.android.popcorn.ui.ViewPopulator.populateImageViewWithCrossFade;
 import static com.example.android.popcorn.ui.ViewPopulator.populateRatingTextView;
 import static com.example.android.popcorn.ui.ViewPopulator.populateRuntimeTextView;
@@ -65,7 +63,7 @@ public class DetailActivity extends AppCompatActivity {
     @BindView(R.id.view_pager) ViewPager mViewPager;
     @BindView(R.id.tmdb_branding) ImageView tmdbBranding;
     @BindView(R.id.favourite_fab) FloatingActionButton favouriteButton;
-    @BindView(R.id.avatar_poster) CircleImageView moviePosterAvatar;
+//    @BindView(R.id.avatar_poster) CircleImageView moviePosterAvatar;
 
     @BindView(R.id.title) TextView mTitle;
     @BindView(R.id.rating) TextView mRating;
@@ -82,12 +80,13 @@ public class DetailActivity extends AppCompatActivity {
 
         Movie movie = getParcelableMovieDetails();
         setParcelableDetailsIntoViews(movie);
-
         setupViewPager(mViewPager);
         mTabLayout.setupWithViewPager(mViewPager);
 
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        getSupportActionBar().setTitle(movie.getTitle());
 
         initFab();
     }
@@ -113,7 +112,14 @@ public class DetailActivity extends AppCompatActivity {
         int id = menuItem.getItemId();
 
         if (id == R.id.action_settings) {
-            return true;
+
+        }
+
+        // Source: https://stackoverflow.com/questions/16150205/android-action-bar-home-button.
+        if (id == android.R.id.home) {
+            Intent homeIntent = new Intent(this, MainActivity.class);
+            homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(homeIntent);
         }
 
         return super.onOptionsItemSelected(menuItem);
@@ -160,8 +166,8 @@ public class DetailActivity extends AppCompatActivity {
                 POSTER_CROSSFADE_TIME, mPoster, mPosterBackground, tmdbBranding, mTitle, mRating,
                 mRuntime, mRelease, mGenres, mTabLayout, mCollapsingToolbarLayout, favouriteButton));
 
-        populateImageViewNoCrossfade(initImageViewProperties(this, movie.getPosterPath(),
-                moviePosterAvatar));
+//        populateImageViewNoCrossfade(initImageViewProperties(this, movie.getPosterPath(),
+//                moviePosterAvatar));
 
         populateTextView(movie.getTitle(), mTitle);
         populateRatingTextView(this, movie.getRating(), mRating);

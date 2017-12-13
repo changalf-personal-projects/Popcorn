@@ -158,7 +158,7 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener, 
 
             @Override
             public void onFail(VolleyError error) {
-                Log.e(LOG_TAG, "initVolleyHandler() error: " + error.networkResponse.statusCode);
+                Log.e(LOG_TAG, "initVolleyHandler() error: " + error);
             }
         };
     }
@@ -196,7 +196,7 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener, 
     @Override
     public void onClick(Movie movie) {
         Intent recommendedIntent = new Intent(getActivity(), DetailActivity.class);
-        recommendedIntent.putExtra(Utilities.PARCELABLE_MOVIE_KEY, movie);
+        recommendedIntent.putExtra(Utilities.PARCELABLE_MOVIE_KEY, mMovie);
         startActivity(recommendedIntent);
     }
 
