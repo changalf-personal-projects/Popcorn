@@ -68,7 +68,6 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener, 
     private DataSaver mDataSaver;
     private Movie mMovie;
     private Set<String> languageSet = new HashSet<>();
-    private boolean mIsPressedFlag = false;
 
     @BindView(R.id.tagline)
     TextView mTagline;
