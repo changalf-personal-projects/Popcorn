@@ -81,6 +81,7 @@ public class ReviewFragment extends Fragment implements OnReviewClickListener {
     @Override
     public void onClick(Review review) {
         Intent singleReviewIntent = new Intent(getActivity(), IndividualReviewActivity.class);
+        singleReviewIntent.putExtra(Utilities.PARCELABLE_MOVIE_KEY, mMovie);
         singleReviewIntent.putExtra(Utilities.PARCELABLE_REVIEW_KEY, review);
         startActivity(singleReviewIntent);
     }
