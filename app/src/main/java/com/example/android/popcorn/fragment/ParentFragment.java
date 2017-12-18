@@ -1,8 +1,6 @@
 package com.example.android.popcorn.fragment;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -19,8 +17,6 @@ import com.example.android.popcorn.R;
 import com.example.android.popcorn.Utilities;
 import com.example.android.popcorn.activity.DetailActivity;
 import com.example.android.popcorn.dagger.component.FragmentComponent;
-import com.example.android.popcorn.data.DbContract;
-import com.example.android.popcorn.data.DbHelper;
 import com.example.android.popcorn.fragment.parsing.LoganDetailsTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganIdTemplate;
 import com.example.android.popcorn.fragment.parsing.MovieParser;
@@ -55,7 +51,6 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
     private List<Movie> mListOfMovies;
     private List<Integer> mListOfRefreshColours = new ArrayList<>();
     private DataSaver mDataSaver;
-    private SQLiteDatabase mSqlDb;
 
     PosterRecyclerViewAdapter mRecyclerAdapter;
 
@@ -83,10 +78,6 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
         initVolleyHandler();
         initVolleyHelper();
         fetchJsonId();
-
-        DbHelper dbHelper = new DbHelper(getActivity());
-        mSqlDb = dbHelper.getWritableDatabase();
-        Cursor cursor = getAllSavedMovies();
 
         return rootView;
     }
@@ -135,18 +126,6 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
                 Log.e(LOG_TAG, "initVolleyHandler() error: " + error);
             }
         };
-    }
-
-    private Cursor getAllSavedMovies() {
-        return mSqlDb.query(
-                DbContract.SavedMoviesEntry.TABLE_NAME,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null
-        );
     }
 
     private void fetchJsonId() {

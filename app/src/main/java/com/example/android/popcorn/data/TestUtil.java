@@ -19,6 +19,10 @@ public class TestUtil {
     public static void insertDummyData(SQLiteDatabase sqlDb) {
         List<ContentValues> dummyData = new ArrayList<>();
 
+        if (sqlDb == null) {
+            return;
+        }
+
         ContentValues cv = new ContentValues();
         cv.put(DbContract.SavedMoviesEntry.COLUMN_POSTER_PATH, "");
         cv.put(DbContract.SavedMoviesEntry.COLUMN_TITLE, "It");
@@ -26,18 +30,21 @@ public class TestUtil {
         cv.put(DbContract.SavedMoviesEntry.COLUMN_GENRES, "Action");
         dummyData.add(cv);
 
+        cv = new ContentValues();
         cv.put(DbContract.SavedMoviesEntry.COLUMN_POSTER_PATH, "");
         cv.put(DbContract.SavedMoviesEntry.COLUMN_TITLE, "Thor");
         cv.put(DbContract.SavedMoviesEntry.COLUMN_RATING, "0");
         cv.put(DbContract.SavedMoviesEntry.COLUMN_GENRES, "Comedy");
         dummyData.add(cv);
 
+        cv = new ContentValues();
         cv.put(DbContract.SavedMoviesEntry.COLUMN_POSTER_PATH, "");
         cv.put(DbContract.SavedMoviesEntry.COLUMN_TITLE, "Dunkirk");
         cv.put(DbContract.SavedMoviesEntry.COLUMN_RATING, "5");
         cv.put(DbContract.SavedMoviesEntry.COLUMN_GENRES, "Romance");
         dummyData.add(cv);
 
+        cv = new ContentValues();
         cv.put(DbContract.SavedMoviesEntry.COLUMN_POSTER_PATH, "");
         cv.put(DbContract.SavedMoviesEntry.COLUMN_TITLE, "Justice League");
         cv.put(DbContract.SavedMoviesEntry.COLUMN_RATING, "11");
@@ -49,6 +56,7 @@ public class TestUtil {
             sqlDb.delete(DbContract.SavedMoviesEntry.TABLE_NAME, null, null);
 
             for (ContentValues values: dummyData) {
+                Log.v(LOG_TAG, "Movie title test: " + values.getAsString(DbContract.SavedMoviesEntry.COLUMN_TITLE));
                 sqlDb.insert(DbContract.SavedMoviesEntry.TABLE_NAME, null, values);
             }
 
