@@ -56,7 +56,6 @@ public class TestUtil {
             sqlDb.delete(DbContract.SavedMoviesEntry.TABLE_NAME, null, null);
 
             for (ContentValues values: dummyData) {
-                Log.v(LOG_TAG, "Movie title test: " + values.getAsString(DbContract.SavedMoviesEntry.COLUMN_TITLE));
                 sqlDb.insert(DbContract.SavedMoviesEntry.TABLE_NAME, null, values);
             }
 
