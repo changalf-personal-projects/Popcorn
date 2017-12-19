@@ -106,6 +106,12 @@ public class DetailActivity extends AppCompatActivity {
         initFab();
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        mSqlDb.close();
+    }
+
     private Cursor getSavedMoviesTable() {
         return mSqlDb.query(
                 DbContract.SavedMoviesEntry.TABLE_NAME,
@@ -119,8 +125,8 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     // TODO: Can be removed.
-    public void addToDbTable() {
-        addSavedMovie();
+    public long addToDbTable() {
+        return addSavedMovie();
     }
 
     private long addSavedMovie() {
@@ -132,6 +138,11 @@ public class DetailActivity extends AppCompatActivity {
         cv.put(DbContract.SavedMoviesEntry.COLUMN_GENRES, mMovie.getGenres().get(FIRST_GENRE));
 
         return mSqlDb.insert(DbContract.SavedMoviesEntry.TABLE_NAME, null, cv);
+    }
+
+    public boolean removeFromDbTable(long rowId) {
+        return mSqlDb.delete(DbContract.SavedMoviesEntry.TABLE_NAME,
+                DbContract.SavedMoviesEntry._ID + "=" + rowId, null) > 0;
     }
 
     public void displayTitleOnCollapsedToolbar(final Movie movie) {
@@ -156,16 +167,18 @@ public class DetailActivity extends AppCompatActivity {
 
     private void initFab() {
         mFavouriteButton.setOnClickListener(new View.OnClickListener() {
+            private long rowId = -1;
             private boolean isLiked = false;
 
             @Override
             public void onClick(View view) {
                 if (!isLiked) {
-                    addToDbTable();
+                    rowId = addToDbTable();
                     mFavouriteButton.setImageResource(R.mipmap.ic_favourited);
                     Toast.makeText(getApplicationContext(), SAVED, Toast.LENGTH_SHORT).show();
                     isLiked = true;
                 } else {
+                    removeFromDbTable(rowId);
                     mFavouriteButton.setImageResource(R.mipmap.ic_favourite);
                     Toast.makeText(getApplicationContext(), UNSAVED, Toast.LENGTH_SHORT).show();
                     isLiked = false;
