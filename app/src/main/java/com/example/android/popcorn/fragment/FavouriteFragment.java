@@ -1,16 +1,13 @@
 package com.example.android.popcorn.fragment;
 
-import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,12 +22,10 @@ import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.ui.saved_movie_recyclerview.OnMovieClickListener;
 import com.example.android.popcorn.ui.saved_movie_recyclerview.SavedMoviesRVAdapter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.android.popcorn.data.DbHelper.getDbInstance;
 import static com.example.android.popcorn.model.singleton.SavedMoviesSingleton.getSavedMoviesSingleton;
 
 /**
@@ -42,13 +37,11 @@ public class FavouriteFragment extends Fragment implements OnMovieClickListener 
 
     private final String LOG_TAG = PopularFragment.class.getSimpleName();
     private final int LAYOUT_COL_SPAN = 2;
-    private final int FIRST_GENRE = 0;
 
-    private SQLiteDatabase mSqlDb;
     private DbHelper mDbHelper;
-
+    private SQLiteDatabase mSqlDb;
+    private Cursor mCursor;
     SavedMoviesRVAdapter mRecyclerAdapter;
-    Cursor mCursor;
 
     @BindView(R.id.progress_bar)
     ProgressBar mProgressBar;
@@ -65,21 +58,20 @@ public class FavouriteFragment extends Fragment implements OnMovieClickListener 
 
         onPullScreenDown();
 
+        mDbHelper = getDbInstance(getActivity().getApplicationContext());
+        mSqlDb = mDbHelper.getReadableDatabase();
+        mCursor = getSavedMoviesTable();
+
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), LAYOUT_COL_SPAN);
         mRecyclerView.setLayoutManager(layoutManager);
-
-        mDbHelper = new DbHelper(getActivity());
-        mSqlDb = mDbHelper.getWritableDatabase();
-        mCursor = getAllSavedMovies();
 
         attachAdapter();
 
         return rootView;
     }
 
-    private Cursor getAllSavedMovies() {
-        return mSqlDb.query(
-                DbContract.SavedMoviesEntry.TABLE_NAME,
+    private Cursor getSavedMoviesTable() {
+        return mSqlDb.query(DbContract.SavedMoviesEntry.TABLE_NAME,
                 null,
                 null,
                 null,
@@ -87,27 +79,6 @@ public class FavouriteFragment extends Fragment implements OnMovieClickListener 
                 null,
                 null
         );
-    }
-
-    public void addToDbTable(Movie movie) {
-        List<ContentValues> listOfValues = new ArrayList<>();
-
-        ContentValues cv = new ContentValues();
-        cv.put(DbContract.SavedMoviesEntry.COLUMN_POSTER_PATH, movie.getPosterPath());
-        cv.put(DbContract.SavedMoviesEntry.COLUMN_TITLE, movie.getTitle());
-        cv.put(DbContract.SavedMoviesEntry.COLUMN_RATING, movie.getRating());
-        cv.put(DbContract.SavedMoviesEntry.COLUMN_GENRES, movie.getGenres().get(FIRST_GENRE));
-        listOfValues.add(cv);
-
-        try {
-            mSqlDb.beginTransaction();
-            mSqlDb.insert(DbContract.SavedMoviesEntry.TABLE_NAME, null, cv);
-            mSqlDb.setTransactionSuccessful();
-        } catch(SQLException e) {
-            Log.e(LOG_TAG, "Error in addToDbTable(...): " + e);
-        } finally {
-            mSqlDb.endTransaction();
-        }
     }
 
     private void attachAdapter() {

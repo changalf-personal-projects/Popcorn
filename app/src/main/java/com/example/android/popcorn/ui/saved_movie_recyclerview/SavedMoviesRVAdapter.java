@@ -54,11 +54,6 @@ public class SavedMoviesRVAdapter extends RecyclerView.Adapter<SavedMoviesRVAdap
         mSavedMovies = savedMovies;
         mCursor = cursor;
         mClickListener = clickListener;
-
-        for (int i = 0; i < mCursor.getCount(); i++) {
-            mCursor.moveToPosition(i);
-            Log.v(LOG_TAG, "Movie title: " + mCursor.getString(mCursor.getColumnIndex(DbContract.SavedMoviesEntry.COLUMN_TITLE)));
-        }
     }
 
     @Override

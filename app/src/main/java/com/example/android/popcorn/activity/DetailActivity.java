@@ -1,6 +1,9 @@
 package com.example.android.popcorn.activity;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -19,6 +22,8 @@ import android.widget.Toast;
 import com.example.android.popcorn.MainActivity;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.Utilities;
+import com.example.android.popcorn.data.DbContract;
+import com.example.android.popcorn.data.DbHelper;
 import com.example.android.popcorn.fragment.CastFragment;
 import com.example.android.popcorn.fragment.DetailFragment;
 import com.example.android.popcorn.fragment.ReviewFragment;
@@ -30,6 +35,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.example.android.popcorn.Utilities.PARENT_ACTIVITY;
+import static com.example.android.popcorn.data.DbHelper.getDbInstance;
 import static com.example.android.popcorn.ui.LayoutPropertiesInitializer.initImageViewProperties;
 import static com.example.android.popcorn.ui.ViewPopulator.populateCenterCropImageView;
 import static com.example.android.popcorn.ui.ViewPopulator.populateDateToTextView;
@@ -51,8 +57,14 @@ public class DetailActivity extends AppCompatActivity {
     private final int BACKDROP_CROSSFADE_TIME = 300;
     private final int POSTER_CROSSFADE_TIME = 500;
     private final int PAGES_TO_RETAIN = 2;
+    private final int FIRST_GENRE = 0;
     private final String SAVED = "Saved to favourites!";
     private final String UNSAVED = "Removed from favourites!";
+
+    private SQLiteDatabase mSqlDb;
+    private DbHelper mDbHelper;
+    private Cursor mCursor;
+    private Movie mMovie;
 
     @BindView(R.id.toolbar) Toolbar mToolbar;
     @BindView(R.id.backdrop_poster) ImageView mBackdrop;
@@ -62,9 +74,8 @@ public class DetailActivity extends AppCompatActivity {
     @BindView(R.id.toolbar_layout) CollapsingToolbarLayout mCollapsingToolbarLayout;
     @BindView(R.id.detail_tabs) TabLayout mTabLayout;
     @BindView(R.id.view_pager) ViewPager mViewPager;
-    @BindView(R.id.tmdb_branding) ImageView tmdbBranding;
-    @BindView(R.id.favourite_fab) FloatingActionButton favouriteButton;
-//    @BindView(R.id.avatar_poster) CircleImageView moviePosterAvatar;
+    @BindView(R.id.tmdb_branding) ImageView mTmdbBranding;
+    @BindView(R.id.favourite_fab) FloatingActionButton mFavouriteButton;
 
     @BindView(R.id.title) TextView mTitle;
     @BindView(R.id.rating) TextView mRating;
@@ -79,16 +90,48 @@ public class DetailActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         setSupportActionBar(mToolbar);
 
-        Movie movie = getParcelableMovieDetails();
-        setParcelableDetailsIntoViews(movie);
+        mMovie = getParcelableMovieDetails();
+        setParcelableDetailsIntoViews(mMovie);
         setupViewPager(mViewPager);
         mTabLayout.setupWithViewPager(mViewPager);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        displayTitleOnCollapsedToolbar(movie);
+        mDbHelper = getDbInstance(this);
+        mSqlDb = mDbHelper.getWritableDatabase();
+        mCursor = getSavedMoviesTable();
+
+        displayTitleOnCollapsedToolbar(mMovie);
         initFab();
+    }
+
+    private Cursor getSavedMoviesTable() {
+        return mSqlDb.query(
+                DbContract.SavedMoviesEntry.TABLE_NAME,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+    }
+
+    // TODO: Can be removed.
+    public void addToDbTable() {
+        addSavedMovie();
+    }
+
+    private long addSavedMovie() {
+        ContentValues cv = new ContentValues();
+
+        cv.put(DbContract.SavedMoviesEntry.COLUMN_POSTER_PATH, mMovie.getPosterPath());
+        cv.put(DbContract.SavedMoviesEntry.COLUMN_TITLE, mMovie.getTitle());
+        cv.put(DbContract.SavedMoviesEntry.COLUMN_RATING, mMovie.getRating());
+        cv.put(DbContract.SavedMoviesEntry.COLUMN_GENRES, mMovie.getGenres().get(FIRST_GENRE));
+
+        return mSqlDb.insert(DbContract.SavedMoviesEntry.TABLE_NAME, null, cv);
     }
 
     public void displayTitleOnCollapsedToolbar(final Movie movie) {
@@ -112,17 +155,18 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void initFab() {
-        favouriteButton.setOnClickListener(new View.OnClickListener() {
+        mFavouriteButton.setOnClickListener(new View.OnClickListener() {
             private boolean isLiked = false;
 
             @Override
             public void onClick(View view) {
                 if (!isLiked) {
-                    favouriteButton.setImageResource(R.mipmap.ic_favourited);
+                    addToDbTable();
+                    mFavouriteButton.setImageResource(R.mipmap.ic_favourited);
                     Toast.makeText(getApplicationContext(), SAVED, Toast.LENGTH_SHORT).show();
                     isLiked = true;
-                } else if (isLiked) {
-                    favouriteButton.setImageResource(R.mipmap.ic_favourite);
+                } else {
+                    mFavouriteButton.setImageResource(R.mipmap.ic_favourite);
                     Toast.makeText(getApplicationContext(), UNSAVED, Toast.LENGTH_SHORT).show();
                     isLiked = false;
                 }
@@ -185,11 +229,8 @@ public class DetailActivity extends AppCompatActivity {
                 movie.getBackdropPath(), BACKDROP_CROSSFADE_TIME, mBackdrop));
 
         populateImageViewWithCrossFade(initImageViewProperties(this, movie.getPosterPath(),
-                POSTER_CROSSFADE_TIME, mPoster, mPosterBackground, tmdbBranding, mTitle, mRating,
-                mRuntime, mRelease, mGenres, mTabLayout, mCollapsingToolbarLayout, favouriteButton));
-
-//        populateImageViewNoCrossfade(initImageViewProperties(this, movie.getPosterPath(),
-//                moviePosterAvatar));
+                POSTER_CROSSFADE_TIME, mPoster, mPosterBackground, mTmdbBranding, mTitle, mRating,
+                mRuntime, mRelease, mGenres, mTabLayout, mCollapsingToolbarLayout, mFavouriteButton));
 
         populateTextView(movie.getTitle(), mTitle);
         populateRatingTextView(this, movie.getRating(), mRating);

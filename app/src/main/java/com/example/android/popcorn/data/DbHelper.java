@@ -15,8 +15,17 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final String DB_NAME = "SavedMovies.db";
     public static final int DB_VERSION = 1;
 
-    public DbHelper(Context context) {
+    private static DbHelper mInstance;
+
+    private DbHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
+    }
+
+    public static synchronized DbHelper getDbInstance(Context context) {
+        if (mInstance == null) {
+            mInstance = new DbHelper(context.getApplicationContext());
+        }
+        return mInstance;
     }
 
     @Override
