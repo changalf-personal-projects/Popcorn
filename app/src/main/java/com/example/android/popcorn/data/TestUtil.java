@@ -24,39 +24,39 @@ public class TestUtil {
         }
 
         ContentValues cv = new ContentValues();
-        cv.put(DbContract.SavedMoviesEntry.COLUMN_POSTER_PATH, "");
-        cv.put(DbContract.SavedMoviesEntry.COLUMN_TITLE, "It");
-        cv.put(DbContract.SavedMoviesEntry.COLUMN_RATING, "10");
-        cv.put(DbContract.SavedMoviesEntry.COLUMN_GENRES, "Action");
+        cv.put(DbContract.SavedMoviesEntryMain.COLUMN_POSTER_PATH, "");
+        cv.put(DbContract.SavedMoviesEntryMain.COLUMN_TITLE, "It");
+        cv.put(DbContract.SavedMoviesEntryMain.COLUMN_RATING, "10");
+        cv.put(DbContract.SavedMoviesEntryMain.COLUMN_GENRES, "Action");
         dummyData.add(cv);
 
         cv = new ContentValues();
-        cv.put(DbContract.SavedMoviesEntry.COLUMN_POSTER_PATH, "");
-        cv.put(DbContract.SavedMoviesEntry.COLUMN_TITLE, "Thor");
-        cv.put(DbContract.SavedMoviesEntry.COLUMN_RATING, "0");
-        cv.put(DbContract.SavedMoviesEntry.COLUMN_GENRES, "Comedy");
+        cv.put(DbContract.SavedMoviesEntryMain.COLUMN_POSTER_PATH, "");
+        cv.put(DbContract.SavedMoviesEntryMain.COLUMN_TITLE, "Thor");
+        cv.put(DbContract.SavedMoviesEntryMain.COLUMN_RATING, "0");
+        cv.put(DbContract.SavedMoviesEntryMain.COLUMN_GENRES, "Comedy");
         dummyData.add(cv);
 
         cv = new ContentValues();
-        cv.put(DbContract.SavedMoviesEntry.COLUMN_POSTER_PATH, "");
-        cv.put(DbContract.SavedMoviesEntry.COLUMN_TITLE, "Dunkirk");
-        cv.put(DbContract.SavedMoviesEntry.COLUMN_RATING, "5");
-        cv.put(DbContract.SavedMoviesEntry.COLUMN_GENRES, "Romance");
+        cv.put(DbContract.SavedMoviesEntryMain.COLUMN_POSTER_PATH, "");
+        cv.put(DbContract.SavedMoviesEntryMain.COLUMN_TITLE, "Dunkirk");
+        cv.put(DbContract.SavedMoviesEntryMain.COLUMN_RATING, "5");
+        cv.put(DbContract.SavedMoviesEntryMain.COLUMN_GENRES, "Romance");
         dummyData.add(cv);
 
         cv = new ContentValues();
-        cv.put(DbContract.SavedMoviesEntry.COLUMN_POSTER_PATH, "");
-        cv.put(DbContract.SavedMoviesEntry.COLUMN_TITLE, "Justice League");
-        cv.put(DbContract.SavedMoviesEntry.COLUMN_RATING, "11");
-        cv.put(DbContract.SavedMoviesEntry.COLUMN_GENRES, "Horror");
+        cv.put(DbContract.SavedMoviesEntryMain.COLUMN_POSTER_PATH, "");
+        cv.put(DbContract.SavedMoviesEntryMain.COLUMN_TITLE, "Justice League");
+        cv.put(DbContract.SavedMoviesEntryMain.COLUMN_RATING, "11");
+        cv.put(DbContract.SavedMoviesEntryMain.COLUMN_GENRES, "Horror");
         dummyData.add(cv);
 
         try {
             sqlDb.beginTransaction();
-            sqlDb.delete(DbContract.SavedMoviesEntry.TABLE_NAME, null, null);
+            sqlDb.delete(DbContract.SavedMoviesEntryMain.TABLE_NAME, null, null);
 
             for (ContentValues values: dummyData) {
-                sqlDb.insert(DbContract.SavedMoviesEntry.TABLE_NAME, null, values);
+                sqlDb.insert(DbContract.SavedMoviesEntryMain.TABLE_NAME, null, values);
             }
 
             sqlDb.setTransactionSuccessful();

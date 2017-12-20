@@ -72,7 +72,7 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener, 
     @BindView(R.id.tagline)
     TextView mTagline;
     @BindView(R.id.overview)
-    TextView mSynopsis;
+    TextView mOverview;
     @BindView(R.id.director_profile_picture)
     ImageView mDirectorPicture;
     @BindView(R.id.director_name)
@@ -250,7 +250,7 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener, 
             mMovie.setProducer(new Producer());
         }
 
-        populateTextView(mMovie.getOverview(), mSynopsis);
+        populateTextView(mMovie.getOverview(), mOverview);
         populateImageViewNoCrossfade(initImageViewProperties(getActivity(), mMovie.getDirector().getProfilePath(),
                 mDirectorPicture));
         populateTextView(mMovie.getDirector().getName(), mDirectorName);
