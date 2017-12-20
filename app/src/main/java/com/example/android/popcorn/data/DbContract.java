@@ -14,26 +14,17 @@ public class DbContract {
     }
 
     // BaseColumns interface already has the static id field, so no need to create on in this class.
-    public static class SavedMoviesEntryMain implements BaseColumns {
+    public static class SavedMoviesEntry implements BaseColumns {
 
         // Column names can't have space between words.
-        public static final String TABLE_NAME = "main_entry";
+        public static final String TABLE_NAME = "entry";
         public static final String COLUMN_TITLE = "title";
         public static final String COLUMN_POSTER_PATH = "poster";
         public static final String COLUMN_RATING = "rating";
         public static final String COLUMN_GENRES = "genres";
-    }
-
-    public static class SavedMoviesEntryDetails implements BaseColumns {
-
-        public static final String TABLE_NAME = "detail_entry";
         public static final String COLUMN_BACKDROP_PATH = "backdrop";
-        public static final String COLUMN_POSTER_PATH = "poster";
-        public static final String COLUMN_TITLE = "title";
-        public static final String COLUMN_RATING = "rating";
         public static final String COLUMN_RUNTIME = "runtime";
         public static final String COLUMN_RELEASE = "release";
-        public static final String COLUMN_GENRES = "genres";
         public static final String COLUMN_TAGLINE = "tagline";
         public static final String COLUMN_OVERVIEW = "overview";
         public static final String COLUMN_DIRECTOR_PHOTO_PATH = "director_profile";

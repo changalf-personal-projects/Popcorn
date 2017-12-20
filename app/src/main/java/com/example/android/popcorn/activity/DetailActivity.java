@@ -121,7 +121,7 @@ public class DetailActivity extends AppCompatActivity {
 
     private Cursor getSavedMoviesTable() {
         return mSqlDb.query(
-                DbContract.SavedMoviesEntryMain.TABLE_NAME,
+                DbContract.SavedMoviesEntry.TABLE_NAME,
                 null,
                 null,
                 null,
@@ -132,24 +132,37 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     public long addToDbTable() {
-        return addSavedMovie();
+        return addSavedMovieMainDetails();
     }
 
-    private long addSavedMovie() {
+    private long addSavedMovieMainDetails() {
         ContentValues cv = new ContentValues();
 
-        cv.put(DbContract.SavedMoviesEntryMain.COLUMN_POSTER_PATH, mMovie.getPosterPath());
-        cv.put(DbContract.SavedMoviesEntryMain.COLUMN_TITLE, mMovie.getTitle());
-        cv.put(DbContract.SavedMoviesEntryMain.COLUMN_RATING, mMovie.getRating());
-        cv.put(DbContract.SavedMoviesEntryMain.COLUMN_GENRES, mMovie.getGenres().get(FIRST_GENRE));
+        cv.put(DbContract.SavedMoviesEntry.COLUMN_POSTER_PATH, mMovie.getPosterPath());
+        cv.put(DbContract.SavedMoviesEntry.COLUMN_TITLE, mMovie.getTitle());
+        cv.put(DbContract.SavedMoviesEntry.COLUMN_RATING, mMovie.getRating());
+        cv.put(DbContract.SavedMoviesEntry.COLUMN_GENRES, mMovie.getGenres().get(FIRST_GENRE));
+        cv.put(DbContract.SavedMoviesEntry.COLUMN_BACKDROP_PATH, mMovie.getBackdropPath());
+        cv.put(DbContract.SavedMoviesEntry.COLUMN_RUNTIME, mMovie.getRuntime());
+        cv.put(DbContract.SavedMoviesEntry.COLUMN_RELEASE, mMovie.getReleaseDate());
+        cv.put(DbContract.SavedMoviesEntry.COLUMN_TAGLINE, mMovie.getTagline());
+        cv.put(DbContract.SavedMoviesEntry.COLUMN_OVERVIEW, mMovie.getOverview());
+        cv.put(DbContract.SavedMoviesEntry.COLUMN_DIRECTOR_PHOTO_PATH, mMovie.getDirector().getProfilePath());
+        cv.put(DbContract.SavedMoviesEntry.COLUMN_DIRECTOR_NAME, mMovie.getDirector().getName());
+        cv.put(DbContract.SavedMoviesEntry.COLUMN_PRODUCER_PHOTO_PATH, mMovie.getProducer().getProfilePath());
+        cv.put(DbContract.SavedMoviesEntry.COLUMN_PRODUCER_NAME, mMovie.getProducer().getName());
+        cv.put(DbContract.SavedMoviesEntry.COLUMN_LANGUAGES, Utilities.toString(mMovie.getLanguages()));
+        cv.put(DbContract.SavedMoviesEntry.COLUMN_BUDGET, mMovie.getBudget());
+        cv.put(DbContract.SavedMoviesEntry.COLUMN_REVENUE, mMovie.getRevenue());
+        cv.put(DbContract.SavedMoviesEntry.COLUMN_PROD_COMPANIES, Utilities.toString(mMovie.getProductionCompanies()));
 
-        return mSqlDb.insertWithOnConflict(DbContract.SavedMoviesEntryMain.TABLE_NAME,
+        return mSqlDb.insertWithOnConflict(DbContract.SavedMoviesEntry.TABLE_NAME,
                 null, cv, SQLiteDatabase.CONFLICT_REPLACE);
     }
 
     public boolean removeFromDbTable(long rowId) {
-        return mSqlDb.delete(DbContract.SavedMoviesEntryMain.TABLE_NAME,
-                DbContract.SavedMoviesEntryMain._ID + "=" + rowId, null) > 0;
+        return mSqlDb.delete(DbContract.SavedMoviesEntry.TABLE_NAME,
+                DbContract.SavedMoviesEntry._ID + "=" + rowId, null) > 0;
     }
 
     public void displayTitleOnCollapsedToolbar(final Movie movie) {
@@ -205,7 +218,7 @@ public class DetailActivity extends AppCompatActivity {
 
     private boolean isAlreadyLiked() {
         boolean isLiked = false;
-        String queryString = "SELECT * FROM " + DbContract.SavedMoviesEntryMain.TABLE_NAME
+        String queryString = "SELECT * FROM " + DbContract.SavedMoviesEntry.TABLE_NAME
                 + " WHERE TITLE = '" + mMovie.getTitle() + "'";
         Cursor cursor = mSqlDb.rawQuery(queryString, null);
 

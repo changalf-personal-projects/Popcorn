@@ -74,6 +74,17 @@ public class Utilities {
         return formattedGenres;
     }
 
+    public static String toString(List<String> listOfStrings) {
+        StringBuilder strBuilder = new StringBuilder();
+
+        for (String str: listOfStrings) {
+            strBuilder.append(str);
+        }
+
+        Log.v(LOG_TAG, "What is string builder result? " + strBuilder.toString());
+        return strBuilder.toString();
+    }
+
     public static String formatDate(String arg, String format) {
         Date date = null;
         String formattedDate = N_A;

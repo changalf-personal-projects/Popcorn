@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +21,8 @@ import com.example.android.popcorn.data.DbHelper;
 import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.ui.saved_movie_recyclerview.OnMovieClickListener;
 import com.example.android.popcorn.ui.saved_movie_recyclerview.SavedMoviesRVAdapter;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,6 +40,7 @@ public class FavouriteFragment extends Fragment implements OnMovieClickListener 
     private final String LOG_TAG = PopularFragment.class.getSimpleName();
     private final int LAYOUT_COL_SPAN = 2;
 
+    private List<Movie> mListOfSavedMovies;
     private DbHelper mDbHelper;
     private SQLiteDatabase mSqlDb;
     private Cursor mCursor;
@@ -59,6 +61,7 @@ public class FavouriteFragment extends Fragment implements OnMovieClickListener 
 
         onPullScreenDown();
 
+        mListOfSavedMovies = getSavedMoviesSingleton();
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), LAYOUT_COL_SPAN);
         mRecyclerView.setLayoutManager(layoutManager);
 
@@ -73,11 +76,25 @@ public class FavouriteFragment extends Fragment implements OnMovieClickListener 
         mSqlDb = mDbHelper.getReadableDatabase();
         mCursor = getSavedMoviesTable();
 
+        initListOfSavedMovies();
         attachAdapter();
     }
 
+    private void initListOfSavedMovies() {
+        if (mCursor != null && mCursor.moveToFirst()) {
+            do {
+                // Create new movie object.
+
+                // Fill in main details of movie, using all details added to content values in DetailActivity.java.
+
+                // Add movie to list of saved movies.
+
+            } while (mCursor.moveToNext());
+        }
+    }
+
     private Cursor getSavedMoviesTable() {
-        return mSqlDb.query(DbContract.SavedMoviesEntryMain.TABLE_NAME,
+        return mSqlDb.query(DbContract.SavedMoviesEntry.TABLE_NAME,
                 null,
                 null,
                 null,
@@ -102,8 +119,7 @@ public class FavouriteFragment extends Fragment implements OnMovieClickListener 
     }
 
     private SavedMoviesRVAdapter initRVAdapter() {
-        Log.v(LOG_TAG, "Saved movies singleton size: " + getSavedMoviesSingleton().size());
-        return new SavedMoviesRVAdapter(getSavedMoviesSingleton(), mCursor, this);
+        return new SavedMoviesRVAdapter(mListOfSavedMovies, mCursor, this);
     }
 
     private void onPullScreenDown() {

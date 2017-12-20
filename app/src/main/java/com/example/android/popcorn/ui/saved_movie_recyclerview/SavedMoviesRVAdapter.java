@@ -73,10 +73,10 @@ public class SavedMoviesRVAdapter extends RecyclerView.Adapter<SavedMoviesRVAdap
             return;
         }
 
-        String posterPath = mCursor.getString(mCursor.getColumnIndex(DbContract.SavedMoviesEntryMain.COLUMN_POSTER_PATH));
-        String title = mCursor.getString(mCursor.getColumnIndex(DbContract.SavedMoviesEntryMain.COLUMN_TITLE));
-        String rating = mCursor.getString(mCursor.getColumnIndex(DbContract.SavedMoviesEntryMain.COLUMN_RATING));
-        String genres = mCursor.getString(mCursor.getColumnIndex(DbContract.SavedMoviesEntryMain.COLUMN_GENRES));
+        String posterPath = mCursor.getString(mCursor.getColumnIndex(DbContract.SavedMoviesEntry.COLUMN_POSTER_PATH));
+        String title = mCursor.getString(mCursor.getColumnIndex(DbContract.SavedMoviesEntry.COLUMN_TITLE));
+        String rating = mCursor.getString(mCursor.getColumnIndex(DbContract.SavedMoviesEntry.COLUMN_RATING));
+        String genres = mCursor.getString(mCursor.getColumnIndex(DbContract.SavedMoviesEntry.COLUMN_GENRES));
 
         onBindPoster(posterPath, holder);
         onBindTitle(title, holder);
