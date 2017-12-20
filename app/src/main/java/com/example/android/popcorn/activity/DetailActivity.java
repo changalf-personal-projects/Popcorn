@@ -31,11 +31,14 @@ import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.ui.DetailTabsPagerAdapter;
 import com.example.android.popcorn.ui.TabTitles;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.example.android.popcorn.Utilities.PARENT_ACTIVITY;
 import static com.example.android.popcorn.data.DbHelper.getDbInstance;
+import static com.example.android.popcorn.model.singleton.SavedMoviesSingleton.getSavedMoviesSingleton;
 import static com.example.android.popcorn.ui.LayoutPropertiesInitializer.initImageViewProperties;
 import static com.example.android.popcorn.ui.ViewPopulator.populateCenterCropImageView;
 import static com.example.android.popcorn.ui.ViewPopulator.populateDateToTextView;
@@ -64,6 +67,7 @@ public class DetailActivity extends AppCompatActivity {
     private SQLiteDatabase mSqlDb;
     private DbHelper mDbHelper;
     private Cursor mCursor;
+    private List<Movie> listOfSavedMovies;
     private Movie mMovie;
 
     @BindView(R.id.toolbar) Toolbar mToolbar;
@@ -91,6 +95,7 @@ public class DetailActivity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
 
         mMovie = getParcelableMovieDetails();
+        listOfSavedMovies = getSavedMoviesSingleton();
         setParcelableDetailsIntoViews(mMovie);
         setupViewPager(mViewPager);
         mTabLayout.setupWithViewPager(mViewPager);
@@ -126,7 +131,6 @@ public class DetailActivity extends AppCompatActivity {
         );
     }
 
-    // TODO: Can be removed.
     public long addToDbTable() {
         return addSavedMovie();
     }
@@ -184,11 +188,13 @@ public class DetailActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (!isLiked) {
                     rowId = addToDbTable();
+                    listOfSavedMovies.add(mMovie);
                     mFavouriteButton.setImageResource(R.mipmap.ic_favourited);
                     Toast.makeText(getApplicationContext(), SAVED, Toast.LENGTH_SHORT).show();
                     isLiked = true;
-                } else if (isLiked) {
+                } else {
                     removeFromDbTable(rowId);
+                    listOfSavedMovies.remove(mMovie);
                     mFavouriteButton.setImageResource(R.mipmap.ic_favourite);
                     Toast.makeText(getApplicationContext(), UNSAVED, Toast.LENGTH_SHORT).show();
                     isLiked = false;
