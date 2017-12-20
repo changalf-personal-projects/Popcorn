@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -119,7 +118,6 @@ public class SavedMoviesRVAdapter extends RecyclerView.Adapter<SavedMoviesRVAdap
     }
 
     private void onBindTitle(String title, PosterViewHolder holder) {
-        Log.v(LOG_TAG, "Movie title rv: " + title);
         holder.mTitle.setText(title);
     }
 

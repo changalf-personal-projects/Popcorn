@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,16 +59,21 @@ public class FavouriteFragment extends Fragment implements OnMovieClickListener 
 
         onPullScreenDown();
 
+        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), LAYOUT_COL_SPAN);
+        mRecyclerView.setLayoutManager(layoutManager);
+
+        return rootView;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
         mDbHelper = getDbInstance(getActivity().getApplicationContext());
         mSqlDb = mDbHelper.getReadableDatabase();
         mCursor = getSavedMoviesTable();
 
-        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), LAYOUT_COL_SPAN);
-        mRecyclerView.setLayoutManager(layoutManager);
-
         attachAdapter();
-
-        return rootView;
     }
 
     private Cursor getSavedMoviesTable() {
@@ -103,6 +109,7 @@ public class FavouriteFragment extends Fragment implements OnMovieClickListener 
         mPullRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                attachAdapter();
                 mPullRefreshLayout.setRefreshing(false);
             }
         });

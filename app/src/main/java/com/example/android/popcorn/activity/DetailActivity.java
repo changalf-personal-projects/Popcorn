@@ -104,12 +104,14 @@ public class DetailActivity extends AppCompatActivity {
 
         displayTitleOnCollapsedToolbar(mMovie);
         initFab();
+        setClickListenerFab();
     }
 
     @Override
     public void onStop() {
         super.onStop();
         mSqlDb.close();
+        mCursor.close();
     }
 
     private Cursor getSavedMoviesTable() {
@@ -167,6 +169,13 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void initFab() {
+        // If a movie is already saved, choose right heart image.
+        if (isAlreadyLiked()) {
+            mFavouriteButton.setImageResource(R.mipmap.ic_favourited);
+        }
+    }
+
+    private void setClickListenerFab() {
         mFavouriteButton.setOnClickListener(new View.OnClickListener() {
             private long rowId = -1;
             private boolean isLiked = false;
@@ -186,6 +195,20 @@ public class DetailActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private boolean isAlreadyLiked() {
+        boolean isLiked = false;
+        String queryString = "SELECT * FROM " + DbContract.SavedMoviesEntry.TABLE_NAME
+                + " WHERE TITLE = '" + mMovie.getTitle() + "'";
+        Cursor cursor = mSqlDb.rawQuery(queryString, null);
+
+        if (cursor.getCount() >= 1) {
+            isLiked = true;
+        }
+
+        cursor.close();
+        return isLiked;
     }
 
     @Override
