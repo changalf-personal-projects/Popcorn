@@ -34,7 +34,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 SavedMoviesEntry.TABLE_NAME + " (" +
                 SavedMoviesEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 SavedMoviesEntry.COLUMN_POSTER_PATH + " TEXT, " +
-                SavedMoviesEntry.COLUMN_TITLE + " TEXT NOT NULL, " +
+                SavedMoviesEntry.COLUMN_TITLE + " TEXT NOT NULL UNIQUE, " +
                 SavedMoviesEntry.COLUMN_RATING + " TEXT," +
                 SavedMoviesEntry.COLUMN_GENRES + " TEXT" +
                 "); ";

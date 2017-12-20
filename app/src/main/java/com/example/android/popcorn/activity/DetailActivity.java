@@ -137,7 +137,8 @@ public class DetailActivity extends AppCompatActivity {
         cv.put(DbContract.SavedMoviesEntry.COLUMN_RATING, mMovie.getRating());
         cv.put(DbContract.SavedMoviesEntry.COLUMN_GENRES, mMovie.getGenres().get(FIRST_GENRE));
 
-        return mSqlDb.insert(DbContract.SavedMoviesEntry.TABLE_NAME, null, cv);
+        return mSqlDb.insertWithOnConflict(DbContract.SavedMoviesEntry.TABLE_NAME,
+                null, cv, SQLiteDatabase.CONFLICT_REPLACE);
     }
 
     public boolean removeFromDbTable(long rowId) {
@@ -177,7 +178,7 @@ public class DetailActivity extends AppCompatActivity {
                     mFavouriteButton.setImageResource(R.mipmap.ic_favourited);
                     Toast.makeText(getApplicationContext(), SAVED, Toast.LENGTH_SHORT).show();
                     isLiked = true;
-                } else {
+                } else if (isLiked) {
                     removeFromDbTable(rowId);
                     mFavouriteButton.setImageResource(R.mipmap.ic_favourite);
                     Toast.makeText(getApplicationContext(), UNSAVED, Toast.LENGTH_SHORT).show();
