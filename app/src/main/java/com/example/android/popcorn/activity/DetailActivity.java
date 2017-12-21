@@ -23,6 +23,7 @@ import com.example.android.popcorn.MainActivity;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.Utilities;
 import com.example.android.popcorn.data.DbContract;
+import com.example.android.popcorn.data.DbContract.SavedMoviesEntry;
 import com.example.android.popcorn.data.DbHelper;
 import com.example.android.popcorn.fragment.CastFragment;
 import com.example.android.popcorn.fragment.DetailFragment;
@@ -31,7 +32,7 @@ import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.ui.DetailTabsPagerAdapter;
 import com.example.android.popcorn.ui.TabTitles;
 
-import java.util.List;
+import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,6 +48,8 @@ import static com.example.android.popcorn.ui.ViewPopulator.populateRatingTextVie
 import static com.example.android.popcorn.ui.ViewPopulator.populateRuntimeTextView;
 import static com.example.android.popcorn.ui.ViewPopulator.populateStringListToTextView;
 import static com.example.android.popcorn.ui.ViewPopulator.populateTextView;
+
+
 
 /**
  * Created by alfredchang on 2017-09-27.
@@ -67,7 +70,7 @@ public class DetailActivity extends AppCompatActivity {
     private SQLiteDatabase mSqlDb;
     private DbHelper mDbHelper;
     private Cursor mCursor;
-    private List<Movie> listOfSavedMovies;
+    private Set<Movie> listOfSavedMovies;
     private Movie mMovie;
 
     @BindView(R.id.toolbar) Toolbar mToolbar;
@@ -138,23 +141,23 @@ public class DetailActivity extends AppCompatActivity {
     private long addSavedMovieMainDetails() {
         ContentValues cv = new ContentValues();
 
-        cv.put(DbContract.SavedMoviesEntry.COLUMN_POSTER_PATH, mMovie.getPosterPath());
-        cv.put(DbContract.SavedMoviesEntry.COLUMN_TITLE, mMovie.getTitle());
-        cv.put(DbContract.SavedMoviesEntry.COLUMN_RATING, mMovie.getRating());
-        cv.put(DbContract.SavedMoviesEntry.COLUMN_GENRES, mMovie.getGenres().get(FIRST_GENRE));
-        cv.put(DbContract.SavedMoviesEntry.COLUMN_BACKDROP_PATH, mMovie.getBackdropPath());
-        cv.put(DbContract.SavedMoviesEntry.COLUMN_RUNTIME, mMovie.getRuntime());
-        cv.put(DbContract.SavedMoviesEntry.COLUMN_RELEASE, mMovie.getReleaseDate());
-        cv.put(DbContract.SavedMoviesEntry.COLUMN_TAGLINE, mMovie.getTagline());
-        cv.put(DbContract.SavedMoviesEntry.COLUMN_OVERVIEW, mMovie.getOverview());
-        cv.put(DbContract.SavedMoviesEntry.COLUMN_DIRECTOR_PHOTO_PATH, mMovie.getDirector().getProfilePath());
-        cv.put(DbContract.SavedMoviesEntry.COLUMN_DIRECTOR_NAME, mMovie.getDirector().getName());
-        cv.put(DbContract.SavedMoviesEntry.COLUMN_PRODUCER_PHOTO_PATH, mMovie.getProducer().getProfilePath());
-        cv.put(DbContract.SavedMoviesEntry.COLUMN_PRODUCER_NAME, mMovie.getProducer().getName());
-        cv.put(DbContract.SavedMoviesEntry.COLUMN_LANGUAGES, Utilities.toString(mMovie.getLanguages()));
-        cv.put(DbContract.SavedMoviesEntry.COLUMN_BUDGET, mMovie.getBudget());
-        cv.put(DbContract.SavedMoviesEntry.COLUMN_REVENUE, mMovie.getRevenue());
-        cv.put(DbContract.SavedMoviesEntry.COLUMN_PROD_COMPANIES, Utilities.toString(mMovie.getProductionCompanies()));
+        cv.put(SavedMoviesEntry.COLUMN_POSTER_PATH, mMovie.getPosterPath());
+        cv.put(SavedMoviesEntry.COLUMN_TITLE, mMovie.getTitle());
+        cv.put(SavedMoviesEntry.COLUMN_RATING, mMovie.getRating());
+        cv.put(SavedMoviesEntry.COLUMN_GENRES, mMovie.getGenres().get(FIRST_GENRE));
+        cv.put(SavedMoviesEntry.COLUMN_BACKDROP_PATH, mMovie.getBackdropPath());
+        cv.put(SavedMoviesEntry.COLUMN_RUNTIME, mMovie.getRuntime());
+        cv.put(SavedMoviesEntry.COLUMN_RELEASE, mMovie.getReleaseDate());
+        cv.put(SavedMoviesEntry.COLUMN_TAGLINE, mMovie.getTagline());
+        cv.put(SavedMoviesEntry.COLUMN_OVERVIEW, mMovie.getOverview());
+        cv.put(SavedMoviesEntry.COLUMN_DIRECTOR_PHOTO_PATH, mMovie.getDirector().getProfilePath());
+        cv.put(SavedMoviesEntry.COLUMN_DIRECTOR_NAME, mMovie.getDirector().getName());
+        cv.put(SavedMoviesEntry.COLUMN_PRODUCER_PHOTO_PATH, mMovie.getProducer().getProfilePath());
+        cv.put(SavedMoviesEntry.COLUMN_PRODUCER_NAME, mMovie.getProducer().getName());
+        cv.put(SavedMoviesEntry.COLUMN_LANGUAGES, Utilities.convertListToString(mMovie.getLanguages()));
+        cv.put(SavedMoviesEntry.COLUMN_BUDGET, mMovie.getBudget());
+        cv.put(SavedMoviesEntry.COLUMN_REVENUE, mMovie.getRevenue());
+        cv.put(SavedMoviesEntry.COLUMN_PROD_COMPANIES, Utilities.convertListToString(mMovie.getProductionCompanies()));
 
         return mSqlDb.insertWithOnConflict(DbContract.SavedMoviesEntry.TABLE_NAME,
                 null, cv, SQLiteDatabase.CONFLICT_REPLACE);

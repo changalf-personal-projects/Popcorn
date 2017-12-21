@@ -3,10 +3,10 @@ package com.example.android.popcorn;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.util.Log;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -74,15 +74,23 @@ public class Utilities {
         return formattedGenres;
     }
 
-    public static String toString(List<String> listOfStrings) {
+    public static String convertListToString(List<String> listOfStrings) {
         StringBuilder strBuilder = new StringBuilder();
 
-        for (String str: listOfStrings) {
-            strBuilder.append(str);
+        for (int i = 0; i < listOfStrings.size(); i++) {
+            strBuilder.append(listOfStrings.get(i));
+
+            if (i < listOfStrings.size() - 1) {
+                strBuilder.append(COMMA);
+            }
         }
 
-        Log.v(LOG_TAG, "What is string builder result? " + strBuilder.toString());
         return strBuilder.toString();
+    }
+
+    public static List<String> convertStringToList(String arg) {
+        String[] arrayOfStrings = arg.split(COMMA);
+        return Arrays.asList(arrayOfStrings);
     }
 
     public static String formatDate(String arg, String format) {
@@ -93,7 +101,6 @@ public class Utilities {
 
         try {
             // Get a new Date object from releaseDate.
-            Log.v(LOG_TAG, "Release date: " + date);
             if (isNotNullString(arg)) {
                 date = originalFormat.parse(arg);
             }

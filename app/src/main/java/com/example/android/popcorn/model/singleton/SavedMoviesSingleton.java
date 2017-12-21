@@ -2,8 +2,8 @@ package com.example.android.popcorn.model.singleton;
 
 import com.example.android.popcorn.model.Movie;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by alfredchang on 2017-12-17.
@@ -11,15 +11,15 @@ import java.util.List;
 
 public class SavedMoviesSingleton {
 
-    private static List<Movie> singletonMovies;
+    private static Set<Movie> singletonMovies;
 
     public SavedMoviesSingleton() {
 
     }
 
-    public static List<Movie> getSavedMoviesSingleton() {
+    public static Set<Movie> getSavedMoviesSingleton() {
         if (singletonMovies == null) {
-            singletonMovies = new ArrayList<>();
+            singletonMovies = new HashSet<>();
         }
         return singletonMovies;
     }
