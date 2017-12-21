@@ -70,7 +70,7 @@ public class DetailActivity extends AppCompatActivity {
     private SQLiteDatabase mSqlDb;
     private DbHelper mDbHelper;
     private Cursor mCursor;
-    private Set<Movie> listOfSavedMovies;
+    private Set<Movie> setOfSavedMovies;
     private Movie mMovie;
 
     @BindView(R.id.toolbar) Toolbar mToolbar;
@@ -98,7 +98,7 @@ public class DetailActivity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
 
         mMovie = getParcelableMovieDetails();
-        listOfSavedMovies = getSavedMoviesSingleton();
+        setOfSavedMovies = getSavedMoviesSingleton();
         setParcelableDetailsIntoViews(mMovie);
         setupViewPager(mViewPager);
         mTabLayout.setupWithViewPager(mViewPager);
@@ -204,13 +204,13 @@ public class DetailActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (!isLiked) {
                     rowId = addToDbTable();
-                    listOfSavedMovies.add(mMovie);
+                    setOfSavedMovies.add(mMovie);
                     mFavouriteButton.setImageResource(R.mipmap.ic_favourited);
                     Toast.makeText(getApplicationContext(), SAVED, Toast.LENGTH_SHORT).show();
                     isLiked = true;
                 } else {
                     removeFromDbTable(rowId);
-                    listOfSavedMovies.remove(mMovie);
+                    setOfSavedMovies.remove(mMovie);
                     mFavouriteButton.setImageResource(R.mipmap.ic_favourite);
                     Toast.makeText(getApplicationContext(), UNSAVED, Toast.LENGTH_SHORT).show();
                     isLiked = false;
