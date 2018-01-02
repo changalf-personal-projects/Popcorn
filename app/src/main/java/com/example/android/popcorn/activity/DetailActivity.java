@@ -134,11 +134,19 @@ public class DetailActivity extends AppCompatActivity {
         );
     }
 
-    public long addToDbTable() {
-        return addSavedMovieMainDetails();
+    private long addDetailToDbTable() {
+        return addSavedMovieDetails();
     }
 
-    private long addSavedMovieMainDetails() {
+    private long addCastToDbTable() {
+        return addSavedMovieCast();
+    }
+
+    private long addReviewToDbTable() {
+        return addSaveMovieReview();
+    }
+
+    private long addSavedMovieDetails() {
         ContentValues cv = new ContentValues();
 
         cv.put(SavedMoviesEntry.COLUMN_POSTER_PATH, mMovie.getPosterPath());
@@ -163,7 +171,17 @@ public class DetailActivity extends AppCompatActivity {
                 null, cv, SQLiteDatabase.CONFLICT_REPLACE);
     }
 
-    public boolean removeFromDbTable(long rowId) {
+    // TODO.
+    private long addSavedMovieCast() {
+        return 0;
+    }
+
+    // TODO.
+    private long addSaveMovieReview() {
+        return 0;
+    }
+
+    public boolean removeDetailFromDbTable(long rowId) {
         return mSqlDb.delete(DbContract.SavedMoviesEntry.TABLE_NAME,
                 DbContract.SavedMoviesEntry._ID + "=" + rowId, null) > 0;
     }
@@ -197,19 +215,23 @@ public class DetailActivity extends AppCompatActivity {
 
     private void setClickListenerFab() {
         mFavouriteButton.setOnClickListener(new View.OnClickListener() {
-            private long rowId = -1;
+            private long rowIdDetail = -1;
+            private long rowIdCast = -1;
+            private long rowIdReview = -1;
             private boolean isLiked = false;
 
             @Override
             public void onClick(View view) {
                 if (!isLiked) {
-                    rowId = addToDbTable();
+                    rowIdDetail = addDetailToDbTable();
+                    rowIdCast = addCastToDbTable();
+                    rowIdReview = addReviewToDbTable();
                     setOfSavedMovies.add(mMovie);
                     mFavouriteButton.setImageResource(R.mipmap.ic_favourited);
                     Toast.makeText(getApplicationContext(), SAVED, Toast.LENGTH_SHORT).show();
                     isLiked = true;
                 } else {
-                    removeFromDbTable(rowId);
+                    removeDetailFromDbTable(rowIdDetail);
                     setOfSavedMovies.remove(mMovie);
                     mFavouriteButton.setImageResource(R.mipmap.ic_favourite);
                     Toast.makeText(getApplicationContext(), UNSAVED, Toast.LENGTH_SHORT).show();
