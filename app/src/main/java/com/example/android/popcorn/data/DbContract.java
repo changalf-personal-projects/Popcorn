@@ -35,5 +35,7 @@ public class DbContract {
         public static final String COLUMN_BUDGET = "budget";
         public static final String COLUMN_REVENUE = "revenue";
         public static final String COLUMN_PROD_COMPANIES = "production_companies";
+        public static final String COLUMN_TRAILER_KEY = "trailer_key";
+        public static final String COLUMN_TRAILER_DETAIL = "trailer_description";
     }
 }

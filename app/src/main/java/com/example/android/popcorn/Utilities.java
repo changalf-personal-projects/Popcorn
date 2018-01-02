@@ -28,7 +28,6 @@ public class Utilities {
     public static final String PARCELABLE_CAST_MEMBER_KEY = "cast member";
     public static final String PARCELABLE_TRAILER_KEY = "trailers";
     public static final String PARCELABLE_TRAILER_IDS_KEY = "trailer ids";
-    public static final String PARCELABLE_SAVES_TABLE = "saved movies";
 
     public static final String MAIN_ACTIVITY_PARENT = "main activity";
     public static final String SEARCH_ACTIVITY_PARENT = "search results activity";
@@ -37,8 +36,6 @@ public class Utilities {
     public static final String NOT_AVAILABLE = "Not available";
     public static final String FROM = "from which fragment?";
     public static final int PARENT = 0;
-    public static final int CHILD = 1;
-    public static final int DEFAULT_VALUE = -1;
     private static final String N_A = "N/A";
     private static final String DOLLAR_SIGN = "$";
     private static final String COMMA = ",";

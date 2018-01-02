@@ -13,7 +13,7 @@ import com.example.android.popcorn.data.DbContract.SavedMoviesEntry;
 public class DbHelper extends SQLiteOpenHelper {
 
     public static final String DB_NAME = "SavedMovies.db";
-    public static final int DB_VERSION = 5;
+    public static final int DB_VERSION = 6;
 
     private static DbHelper mInstance;
 
@@ -49,7 +49,9 @@ public class DbHelper extends SQLiteOpenHelper {
                 SavedMoviesEntry.COLUMN_LANGUAGES + " TEXT, " +
                 SavedMoviesEntry.COLUMN_BUDGET + " TEXT, " +
                 SavedMoviesEntry.COLUMN_REVENUE + " TEXT, " +
-                SavedMoviesEntry.COLUMN_PROD_COMPANIES + " TEXT" +
+                SavedMoviesEntry.COLUMN_PROD_COMPANIES + " TEXT, " +
+                SavedMoviesEntry.COLUMN_TRAILER_KEY + " TEXT, " +
+                SavedMoviesEntry.COLUMN_TRAILER_DETAIL + " TEXT" +
                 "); ";
 
         sqLiteDatabase.execSQL(SQL_CREATE_MAIN_TABLE);
