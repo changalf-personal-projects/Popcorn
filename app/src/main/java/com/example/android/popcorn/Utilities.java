@@ -42,6 +42,7 @@ public class Utilities {
     private static final String N_A = "N/A";
     private static final String DOLLAR_SIGN = "$";
     private static final String COMMA = ",";
+    private static final String COMMA_SPACE = ", ";
     private static final int THREE_CHARS = 3;
 
     public static double roundToNearestTenth(String rating) {
@@ -81,7 +82,7 @@ public class Utilities {
             strBuilder.append(listOfStrings.get(i));
 
             if (i < listOfStrings.size() - 1) {
-                strBuilder.append(COMMA);
+                strBuilder.append(COMMA_SPACE);
             }
         }
 
