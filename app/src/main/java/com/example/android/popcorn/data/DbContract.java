@@ -43,4 +43,24 @@ public class DbContract {
         public static final String COLUMN_KEY = "key";
         public static final String COLUMN_DETAIL = "description";
     }
+
+    public static class CastEntry implements BaseColumns {
+
+        public static final String TABLE_NAME = "casts";
+        public static final String COLUMN_NAME = "name";
+        public static final String COLUMN_PROFILE = "profile_path";
+        public static final String COLUMN_CHARACTER = "character";
+        public static final String COLUMN_ID = "id";
+        public static final String COLUMN_BIRTHDAY = "birthday";
+        public static final String COLUMN_DEATHDAY = "death";
+        public static final String COLUMN_BIO = "biography";
+        public static final String COLUMN_BIRTH_PLACE = "place_of_birth";
+    }
+
+    public static class ReviewsEntry implements BaseColumns {
+
+        public static final String TABLE_NAME = "reviews";
+        public static final String COLUMN_AUTHOR = "author";
+        public static final String COLUMN_CONTENT = "content";
+    }
 }

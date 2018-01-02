@@ -19,7 +19,6 @@ import com.example.android.popcorn.R;
 import com.example.android.popcorn.Utilities;
 import com.example.android.popcorn.YoutubePlayerActivity;
 import com.example.android.popcorn.activity.DetailActivity;
-import com.example.android.popcorn.data.DbContract;
 import com.example.android.popcorn.data.DbHelper;
 import com.example.android.popcorn.fragment.parsing.LoganCastMemberDetailTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganDetailsTemplate;
@@ -46,7 +45,6 @@ import java.util.Set;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.example.android.popcorn.data.DbHelper.getDbInstance;
 import static com.example.android.popcorn.networking.UrlCreator.appendEndpoints;
 import static com.example.android.popcorn.networking.UrlCreator.createCastMemberDetailUrl;
 import static com.example.android.popcorn.networking.UrlCreator.createRecommendedMoviesUrl;
@@ -117,28 +115,12 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener, 
         initVolleyHelper();
         getLanguages();
 
-        mDbHelper = getDbInstance(getActivity());
-        mSqlDb = mDbHelper.getReadableDatabase();
-        mCursor = getSavedTrailersTable();
-
         fetchJsonRecommendedIds();
         setParcelableDetailsIntoViews();
         fetchJsonCastMemberDetails();
         setupRecMoviesRecyclerView();
 
         return rootView;
-    }
-
-    private Cursor getSavedTrailersTable() {
-        return mSqlDb.query(
-                DbContract.TrailersEntry.TABLE_NAME,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null
-        );
     }
 
     private void getLanguages() {
@@ -286,8 +268,6 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener, 
         populateTextViewWithSpaces(mMovie.getBudget(), mBudget);
         populateTextViewWithSpaces(mMovie.getRevenue(), mRevenue);
         populateStringListToTextView(mMovie.getProductionCompanies(), mProductionCompanies);
-
-//        attachToTrailerAdapter(mMovie);
 
         if (mMovie.getTrailers() == null) {
             mTrailerRecyclerView.setVisibility(View.GONE);
