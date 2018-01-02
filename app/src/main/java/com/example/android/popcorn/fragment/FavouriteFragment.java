@@ -22,6 +22,7 @@ import com.example.android.popcorn.data.DbHelper;
 import com.example.android.popcorn.model.Director;
 import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.model.Producer;
+import com.example.android.popcorn.model.Trailer;
 import com.example.android.popcorn.ui.saved_movie_recyclerview.OnMovieClickListener;
 import com.example.android.popcorn.ui.saved_movie_recyclerview.SavedMoviesRVAdapter;
 
@@ -46,7 +47,8 @@ public class FavouriteFragment extends Fragment implements OnMovieClickListener 
     private List<Movie> mListOfSavedMovies;
     private DbHelper mDbHelper;
     private SQLiteDatabase mSqlDb;
-    private Cursor mCursor;
+    private Cursor mMovieCursor;
+    private Cursor mTrailerCursor;
     SavedMoviesRVAdapter mRecyclerAdapter;
 
     @BindView(R.id.progress_bar)
@@ -77,7 +79,8 @@ public class FavouriteFragment extends Fragment implements OnMovieClickListener 
 
         mDbHelper = getDbInstance(getActivity().getApplicationContext());
         mSqlDb = mDbHelper.getReadableDatabase();
-        mCursor = getSavedMoviesTable();
+        mMovieCursor = getSavedMoviesTable();
+        mTrailerCursor = getTrailersTable();
 
         initListOfSavedMovies();
         attachAdapter();
@@ -86,49 +89,68 @@ public class FavouriteFragment extends Fragment implements OnMovieClickListener 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        mCursor.close();
+        mMovieCursor.close();
+        mTrailerCursor.close();
         mSqlDb.close();
     }
 
     private void initListOfSavedMovies() {
-        if (mCursor != null && mCursor.moveToFirst()) {
-            do {
-                // Create new movie object.
-                Movie savedMovie = new Movie();
+        Movie savedMovie = new Movie();
 
+        if (mMovieCursor != null && mMovieCursor.moveToFirst()) {
+            do {
                 // Fill in main details of movie, using all details added to content values in DetailActivity.java.
-                savedMovie.setBackdropPath(mCursor.getString(mCursor.getColumnIndex(SavedMoviesEntry.COLUMN_BACKDROP_PATH)));
-                savedMovie.setPosterPath(mCursor.getString(mCursor.getColumnIndex(SavedMoviesEntry.COLUMN_POSTER_PATH)));
-                savedMovie.setTitle(mCursor.getString(mCursor.getColumnIndex(SavedMoviesEntry.COLUMN_TITLE)));
-                savedMovie.setRating(mCursor.getString(mCursor.getColumnIndex(SavedMoviesEntry.COLUMN_RATING)));
-                savedMovie.setGenres(mCursor.getString(mCursor.getColumnIndex(SavedMoviesEntry.COLUMN_GENRES)));
-                savedMovie.setRuntime(mCursor.getString(mCursor.getColumnIndex(SavedMoviesEntry.COLUMN_RUNTIME)));
-                savedMovie.setReleaseDate(mCursor.getString(mCursor.getColumnIndex(SavedMoviesEntry.COLUMN_RELEASE)));
-                savedMovie.setTagline(mCursor.getString(mCursor.getColumnIndex(SavedMoviesEntry.COLUMN_TAGLINE)));
-                savedMovie.setOverview(mCursor.getString(mCursor.getColumnIndex(SavedMoviesEntry.COLUMN_OVERVIEW)));
-                savedMovie.setLanguages(mCursor.getString(mCursor.getColumnIndex(SavedMoviesEntry.COLUMN_LANGUAGES)));
-                savedMovie.setBudget(mCursor.getString(mCursor.getColumnIndex(SavedMoviesEntry.COLUMN_BUDGET)));
-                savedMovie.setRevenue(mCursor.getString(mCursor.getColumnIndex(SavedMoviesEntry.COLUMN_REVENUE)));
-                savedMovie.setProductionCompanies(mCursor.getString(mCursor.getColumnIndex(SavedMoviesEntry.COLUMN_PROD_COMPANIES)));
+                savedMovie.setBackdropPath(mMovieCursor.getString(mMovieCursor.getColumnIndex(SavedMoviesEntry.COLUMN_BACKDROP_PATH)));
+                savedMovie.setPosterPath(mMovieCursor.getString(mMovieCursor.getColumnIndex(SavedMoviesEntry.COLUMN_POSTER_PATH)));
+                savedMovie.setTitle(mMovieCursor.getString(mMovieCursor.getColumnIndex(SavedMoviesEntry.COLUMN_TITLE)));
+                savedMovie.setRating(mMovieCursor.getString(mMovieCursor.getColumnIndex(SavedMoviesEntry.COLUMN_RATING)));
+                savedMovie.setGenres(mMovieCursor.getString(mMovieCursor.getColumnIndex(SavedMoviesEntry.COLUMN_GENRES)));
+                savedMovie.setRuntime(mMovieCursor.getString(mMovieCursor.getColumnIndex(SavedMoviesEntry.COLUMN_RUNTIME)));
+                savedMovie.setReleaseDate(mMovieCursor.getString(mMovieCursor.getColumnIndex(SavedMoviesEntry.COLUMN_RELEASE)));
+                savedMovie.setTagline(mMovieCursor.getString(mMovieCursor.getColumnIndex(SavedMoviesEntry.COLUMN_TAGLINE)));
+                savedMovie.setOverview(mMovieCursor.getString(mMovieCursor.getColumnIndex(SavedMoviesEntry.COLUMN_OVERVIEW)));
+                savedMovie.setLanguages(mMovieCursor.getString(mMovieCursor.getColumnIndex(SavedMoviesEntry.COLUMN_LANGUAGES)));
+                savedMovie.setBudget(mMovieCursor.getString(mMovieCursor.getColumnIndex(SavedMoviesEntry.COLUMN_BUDGET)));
+                savedMovie.setRevenue(mMovieCursor.getString(mMovieCursor.getColumnIndex(SavedMoviesEntry.COLUMN_REVENUE)));
+                savedMovie.setProductionCompanies(mMovieCursor.getString(mMovieCursor.getColumnIndex(SavedMoviesEntry.COLUMN_PROD_COMPANIES)));
 
                 Director director = new Director();
-                director.setProfilePath(mCursor.getString(mCursor.getColumnIndex(SavedMoviesEntry.COLUMN_DIRECTOR_PHOTO_PATH)));
-                director.setName(mCursor.getString(mCursor.getColumnIndex(SavedMoviesEntry.COLUMN_DIRECTOR_NAME)));
+                director.setProfilePath(mMovieCursor.getString(mMovieCursor.getColumnIndex(SavedMoviesEntry.COLUMN_DIRECTOR_PHOTO_PATH)));
+                director.setName(mMovieCursor.getString(mMovieCursor.getColumnIndex(SavedMoviesEntry.COLUMN_DIRECTOR_NAME)));
                 savedMovie.setDirector(director);
 
                 Producer producer = new Producer();
-                producer.setProfilePath(mCursor.getString(mCursor.getColumnIndex(SavedMoviesEntry.COLUMN_PRODUCER_PHOTO_PATH)));
-                producer.setName(mCursor.getString(mCursor.getColumnIndex(SavedMoviesEntry.COLUMN_PRODUCER_NAME)));
+                producer.setProfilePath(mMovieCursor.getString(mMovieCursor.getColumnIndex(SavedMoviesEntry.COLUMN_PRODUCER_PHOTO_PATH)));
+                producer.setName(mMovieCursor.getString(mMovieCursor.getColumnIndex(SavedMoviesEntry.COLUMN_PRODUCER_NAME)));
                 savedMovie.setProducer(producer);
 
-                // Add movie to list of saved movies.
+                if (mTrailerCursor != null && mTrailerCursor.moveToFirst()) {
+                    do {
+                        Trailer trailer = new Trailer();
+                        trailer.setKey(mTrailerCursor.getString(mTrailerCursor.getColumnIndex(DbContract.TrailersEntry.COLUMN_KEY)));
+                        trailer.setTrailerDescription(mTrailerCursor.getString(mTrailerCursor.getColumnIndex(DbContract.TrailersEntry.COLUMN_DETAIL)));
+                        savedMovie.setTrailers(trailer);
+                    } while (mTrailerCursor.moveToNext());
+                }
+
                 mListOfSavedMovies.add(savedMovie);
-            } while (mCursor.moveToNext());
+            } while (mMovieCursor.moveToNext());
         }
     }
 
     private Cursor getSavedMoviesTable() {
         return mSqlDb.query(DbContract.SavedMoviesEntry.TABLE_NAME,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+    }
+
+    private Cursor getTrailersTable() {
+        return mSqlDb.query(DbContract.TrailersEntry.TABLE_NAME,
                 null,
                 null,
                 null,
@@ -153,7 +175,7 @@ public class FavouriteFragment extends Fragment implements OnMovieClickListener 
     }
 
     private SavedMoviesRVAdapter initRVAdapter() {
-        return new SavedMoviesRVAdapter(mListOfSavedMovies, mCursor, this);
+        return new SavedMoviesRVAdapter(mListOfSavedMovies, mMovieCursor, this);
     }
 
     private void onPullScreenDown() {

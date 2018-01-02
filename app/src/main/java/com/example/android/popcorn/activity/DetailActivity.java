@@ -24,6 +24,7 @@ import com.example.android.popcorn.R;
 import com.example.android.popcorn.Utilities;
 import com.example.android.popcorn.data.DbContract;
 import com.example.android.popcorn.data.DbContract.SavedMoviesEntry;
+import com.example.android.popcorn.data.DbContract.TrailersEntry;
 import com.example.android.popcorn.data.DbHelper;
 import com.example.android.popcorn.fragment.CastFragment;
 import com.example.android.popcorn.fragment.DetailFragment;
@@ -143,7 +144,11 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private long addReviewToDbTable() {
-        return addSaveMovieReview();
+        return addSavedMovieReview();
+    }
+
+    private long addTrailersToDbTable() {
+        return addSavedTrailer();
     }
 
     private long addSavedMovieDetails() {
@@ -167,7 +172,7 @@ public class DetailActivity extends AppCompatActivity {
         cv.put(SavedMoviesEntry.COLUMN_REVENUE, mMovie.getRevenue());
         cv.put(SavedMoviesEntry.COLUMN_PROD_COMPANIES, Utilities.convertListToString(mMovie.getProductionCompanies()));
 
-        return mSqlDb.insertWithOnConflict(DbContract.SavedMoviesEntry.TABLE_NAME,
+        return mSqlDb.insertWithOnConflict(SavedMoviesEntry.TABLE_NAME,
                 null, cv, SQLiteDatabase.CONFLICT_REPLACE);
     }
 
@@ -177,12 +182,31 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     // TODO.
-    private long addSaveMovieReview() {
+    private long addSavedMovieReview() {
         return 0;
+    }
+
+    private long addSavedTrailer() {
+        long id = -1;
+        ContentValues cv = new ContentValues();
+
+        if (mMovie.getTrailers().size() >= 1) {
+            cv.put(TrailersEntry.COLUMN_KEY, mMovie.getTrailers().get(0).getKey());
+            cv.put(TrailersEntry.COLUMN_DETAIL, mMovie.getTrailers().get(0).getTrailerDescription());
+            id = mSqlDb.insertWithOnConflict(TrailersEntry.TABLE_NAME, null, cv,
+                    SQLiteDatabase.CONFLICT_REPLACE);
+        }
+
+        return id;
     }
 
     public boolean removeDetailFromDbTable(long rowId) {
         return mSqlDb.delete(DbContract.SavedMoviesEntry.TABLE_NAME,
+                DbContract.SavedMoviesEntry._ID + "=" + rowId, null) > 0;
+    }
+
+    public boolean removeTrailerFromDbTable(long rowId) {
+        return mSqlDb.delete(DbContract.TrailersEntry.TABLE_NAME,
                 DbContract.SavedMoviesEntry._ID + "=" + rowId, null) > 0;
     }
 
@@ -216,6 +240,7 @@ public class DetailActivity extends AppCompatActivity {
     private void setClickListenerFab() {
         mFavouriteButton.setOnClickListener(new View.OnClickListener() {
             private long rowIdDetail = -1;
+            private long rowIdTrailer = -1;
             private long rowIdCast = -1;
             private long rowIdReview = -1;
             private boolean isLiked = false;
@@ -224,6 +249,7 @@ public class DetailActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (!isLiked) {
                     rowIdDetail = addDetailToDbTable();
+                    rowIdTrailer = addTrailersToDbTable();
                     rowIdCast = addCastToDbTable();
                     rowIdReview = addReviewToDbTable();
                     setOfSavedMovies.add(mMovie);
@@ -232,6 +258,7 @@ public class DetailActivity extends AppCompatActivity {
                     isLiked = true;
                 } else {
                     removeDetailFromDbTable(rowIdDetail);
+                    removeTrailerFromDbTable(rowIdTrailer);
                     setOfSavedMovies.remove(mMovie);
                     mFavouriteButton.setImageResource(R.mipmap.ic_favourite);
                     Toast.makeText(getApplicationContext(), UNSAVED, Toast.LENGTH_SHORT).show();

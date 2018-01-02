@@ -1,6 +1,8 @@
 package com.example.android.popcorn.fragment;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,6 +19,8 @@ import com.example.android.popcorn.R;
 import com.example.android.popcorn.Utilities;
 import com.example.android.popcorn.YoutubePlayerActivity;
 import com.example.android.popcorn.activity.DetailActivity;
+import com.example.android.popcorn.data.DbContract;
+import com.example.android.popcorn.data.DbHelper;
 import com.example.android.popcorn.fragment.parsing.LoganCastMemberDetailTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganDetailsTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganIdTemplate;
@@ -42,6 +46,7 @@ import java.util.Set;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.android.popcorn.data.DbHelper.getDbInstance;
 import static com.example.android.popcorn.networking.UrlCreator.appendEndpoints;
 import static com.example.android.popcorn.networking.UrlCreator.createCastMemberDetailUrl;
 import static com.example.android.popcorn.networking.UrlCreator.createRecommendedMoviesUrl;
@@ -60,6 +65,10 @@ import static com.example.android.popcorn.ui.ViewPopulator.populateTextViewWithS
 public class DetailFragment extends Fragment implements OnTrailerClickListener, OnRecommendationClickListener {
 
     private final String LOG_TAG = DetailFragment.class.getSimpleName();
+
+    private SQLiteDatabase mSqlDb;
+    private DbHelper mDbHelper;
+    private Cursor mCursor;
 
     private TrailerRecyclerViewAdapter mTrailerRecyclerAdapter;
     private RecommendationRecyclerViewAdapter mRecRecyclerAdapter;
@@ -108,12 +117,28 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener, 
         initVolleyHelper();
         getLanguages();
 
+        mDbHelper = getDbInstance(getActivity());
+        mSqlDb = mDbHelper.getReadableDatabase();
+        mCursor = getSavedTrailersTable();
+
         fetchJsonRecommendedIds();
         setParcelableDetailsIntoViews();
         fetchJsonCastMemberDetails();
         setupRecMoviesRecyclerView();
 
         return rootView;
+    }
+
+    private Cursor getSavedTrailersTable() {
+        return mSqlDb.query(
+                DbContract.TrailersEntry.TABLE_NAME,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+        );
     }
 
     private void getLanguages() {
@@ -262,7 +287,7 @@ public class DetailFragment extends Fragment implements OnTrailerClickListener, 
         populateTextViewWithSpaces(mMovie.getRevenue(), mRevenue);
         populateStringListToTextView(mMovie.getProductionCompanies(), mProductionCompanies);
 
-        attachToTrailerAdapter(mMovie);
+//        attachToTrailerAdapter(mMovie);
 
         if (mMovie.getTrailers() == null) {
             mTrailerRecyclerView.setVisibility(View.GONE);

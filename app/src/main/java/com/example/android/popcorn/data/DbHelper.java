@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.android.popcorn.data.DbContract.SavedMoviesEntry;
+import com.example.android.popcorn.data.DbContract.TrailersEntry;
 
 /**
  * Created by alfredchang on 2017-12-17.
@@ -13,7 +14,7 @@ import com.example.android.popcorn.data.DbContract.SavedMoviesEntry;
 public class DbHelper extends SQLiteOpenHelper {
 
     public static final String DB_NAME = "SavedMovies.db";
-    public static final int DB_VERSION = 6;
+    public static final int DB_VERSION = 7;
 
     private static DbHelper mInstance;
 
@@ -49,17 +50,24 @@ public class DbHelper extends SQLiteOpenHelper {
                 SavedMoviesEntry.COLUMN_LANGUAGES + " TEXT, " +
                 SavedMoviesEntry.COLUMN_BUDGET + " TEXT, " +
                 SavedMoviesEntry.COLUMN_REVENUE + " TEXT, " +
-                SavedMoviesEntry.COLUMN_PROD_COMPANIES + " TEXT, " +
-                SavedMoviesEntry.COLUMN_TRAILER_KEY + " TEXT, " +
-                SavedMoviesEntry.COLUMN_TRAILER_DETAIL + " TEXT" +
+                SavedMoviesEntry.COLUMN_PROD_COMPANIES + " TEXT" +
+                "); ";
+
+        final String SQL_CREATE_TRAILERS_TABLE = "CREATE TABLE " +
+                TrailersEntry.TABLE_NAME + " (" +
+                TrailersEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                TrailersEntry.COLUMN_KEY + " TEXT NOT NULL, " +
+                TrailersEntry.COLUMN_DETAIL + " TEXT" +
                 "); ";
 
         sqLiteDatabase.execSQL(SQL_CREATE_MAIN_TABLE);
+        sqLiteDatabase.execSQL(SQL_CREATE_TRAILERS_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + SavedMoviesEntry.TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TrailersEntry.TABLE_NAME);
         onCreate(sqLiteDatabase);
     }
 }
