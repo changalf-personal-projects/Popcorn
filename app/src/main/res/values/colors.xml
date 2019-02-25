@@ -13,6 +13,10 @@
     <color name="image_border_color">#FF0000</color>
     <color name="detail_font_color">#BDBDBD</color>
 
+    <!-- Snackbar colours. -->
+    <color name="yellow">#FFFF00</color>
+    <color name="red">#FF0000</color>
+
     <!-- Colors for debugging background. -->
     <color name="blueTest">#1F618D</color>
     <color name="greenTest">#28B463</color>
