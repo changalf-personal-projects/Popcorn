@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.example.android.popcorn.R;
@@ -25,6 +26,7 @@ import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.networking.VolleyHelper;
 import com.example.android.popcorn.networking.VolleyRequestHandler;
 import com.example.android.popcorn.ui.poster_recyclerview.OnMovieClickListener;
+import com.example.android.popcorn.ui.poster_recyclerview.OnMovieLongClickListener;
 import com.example.android.popcorn.ui.poster_recyclerview.PosterRecyclerViewAdapter;
 
 import java.util.ArrayList;
@@ -40,7 +42,8 @@ import static com.example.android.popcorn.networking.UrlCreator.createUrlWithApp
  * Created by alfredchang on 2017-12-06.
  */
 
-public abstract class ParentFragment extends Fragment implements OnMovieClickListener {
+public abstract class ParentFragment extends Fragment implements OnMovieClickListener,
+        OnMovieLongClickListener {
 
     private final String LOG_TAG = PopularFragment.class.getSimpleName();
     private final int LAYOUT_COL_SPAN = 2;
@@ -90,6 +93,7 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
     // library-and-call-all-method-of-volley-from.
     private void initVolleyHandler() {
         mVolleyReqHandler = new VolleyRequestHandler() {
+
             @Override
             public void onSuccessId(String response) {
                 LoganIdTemplate loganId = MovieParser.parseJsonIdData(response);
@@ -161,6 +165,11 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
         detailIntent.putExtra(Utilities.PARCELABLE_MOVIE_KEY, movie);
         detailIntent.putExtra(Utilities.FROM, Utilities.PARENT);
         startActivity(detailIntent);
+    }
+
+    @Override
+    public void onLongClick(Movie movie) {
+        Toast.makeText(getContext(), "Clicked and saved!", Toast.LENGTH_SHORT).show();
     }
 
     private void onPullScreenDown() {

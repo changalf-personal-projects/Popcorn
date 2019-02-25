@@ -28,6 +28,7 @@ import com.example.android.popcorn.model.Trailer;
 import com.example.android.popcorn.networking.RequestQueueSingleton;
 import com.example.android.popcorn.networking.UriTerms;
 import com.example.android.popcorn.ui.poster_recyclerview.OnMovieClickListener;
+import com.example.android.popcorn.ui.poster_recyclerview.OnMovieLongClickListener;
 import com.example.android.popcorn.ui.poster_recyclerview.PosterRecyclerViewAdapter;
 
 import java.util.List;
@@ -45,7 +46,7 @@ import static com.example.android.popcorn.networking.UrlCreator.createUrlWithApp
  * Created by alfredchang on 2017-11-20.
  */
 
-public class SearchResultsFragment extends Fragment implements OnMovieClickListener {
+public class SearchResultsFragment extends Fragment implements OnMovieClickListener, OnMovieLongClickListener {
 
     private final String LOG_TAG = SearchResultsFragment.class.getSimpleName();
     private final int LAYOUT_COL_SPAN = 2;
@@ -259,7 +260,7 @@ public class SearchResultsFragment extends Fragment implements OnMovieClickListe
     }
 
     private void attachAdapter() {
-        mRecyclerAdapter = new PosterRecyclerViewAdapter(mListOfMovies, this);
+        mRecyclerAdapter = new PosterRecyclerViewAdapter(mListOfMovies, this, this);
         mRecyclerView.setAdapter(mRecyclerAdapter);
         mProgressBar.setVisibility(View.GONE);
     }
@@ -269,5 +270,10 @@ public class SearchResultsFragment extends Fragment implements OnMovieClickListe
         Intent detailIntent = new Intent(getActivity(), DetailActivity.class);
         detailIntent.putExtra(Utilities.PARCELABLE_MOVIE_KEY, movie);
         startActivity(detailIntent);
+    }
+
+    @Override
+    public void onLongClick(Movie movie) {
+
     }
 }

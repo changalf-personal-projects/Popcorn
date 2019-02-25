@@ -27,6 +27,6 @@ public class PopularFragment extends ParentFragment {
 
     @Override
     PosterRecyclerViewAdapter initRVAdapter() {
-        return new PosterRecyclerViewAdapter(getPopularMoviesSingleton(), this);
+        return new PosterRecyclerViewAdapter(getPopularMoviesSingleton(), this, this);
     }
 }

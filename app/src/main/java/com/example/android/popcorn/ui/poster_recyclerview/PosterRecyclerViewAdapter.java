@@ -46,10 +46,13 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
     private Context mContext;
     private List<Movie> mListOfMovies;
     private OnMovieClickListener mClickListener;
+    private OnMovieLongClickListener mLongClickListener;
 
-    public PosterRecyclerViewAdapter(List<Movie> listOfMovies, OnMovieClickListener clickListener) {
+    public PosterRecyclerViewAdapter(List<Movie> listOfMovies, OnMovieClickListener clickListener,
+                                     OnMovieLongClickListener longClickListener) {
         mListOfMovies = listOfMovies;
         mClickListener = clickListener;
+        mLongClickListener = longClickListener;
     }
 
     @Override
@@ -143,7 +146,8 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
         return mListOfMovies.size();
     }
 
-    public class PosterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class PosterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
+            View.OnLongClickListener {
 
         @BindView(R.id.movie_poster)
         ImageView mPoster;
@@ -160,11 +164,18 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
             super(itemView);
             ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
             mClickListener.onClick(mListOfMovies.get(getAdapterPosition()));
+        }
+
+        @Override
+        public boolean onLongClick(View view) {
+            mLongClickListener.onLongClick(mListOfMovies.get(getAdapterPosition()));
+            return true;
         }
     }
 }

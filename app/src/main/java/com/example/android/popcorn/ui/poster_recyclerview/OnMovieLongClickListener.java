@@ -4,5 +4,5 @@ import com.example.android.popcorn.model.Movie;
 
 public interface OnMovieLongClickListener {
 
-    void onMovieLongClickListener(Movie movie);
+    void onLongClick(Movie movie);
 }

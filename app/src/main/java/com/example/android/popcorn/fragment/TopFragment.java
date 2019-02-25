@@ -27,6 +27,6 @@ public class TopFragment extends ParentFragment {
 
     @Override
     PosterRecyclerViewAdapter initRVAdapter() {
-        return new PosterRecyclerViewAdapter(getTopMoviesSingleton(), this);
+        return new PosterRecyclerViewAdapter(getTopMoviesSingleton(), this, this);
     }
 }
