@@ -1,11 +1,15 @@
 package com.example.android.popcorn.ui.poster_recyclerview;
 
 import android.content.Context;
+import android.support.design.widget.Snackbar;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -42,6 +46,8 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
     private final int CROSSFADE_TIME = 800;
     private final int FIRST_GENRE = 0;
     private final String NO_GENRE = "No genre";
+    private final String SNACKBAR_MESSAGE = "Saved to favourites!";
+    private final String SNACKBAR_ACTION_MESSAGE = "Dismiss";
 
     private Context mContext;
     private List<Movie> mListOfMovies;
@@ -157,6 +163,10 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
         TextView mRating;
         @BindView(R.id.genres)
         TextView mGenres;
+        @BindView(R.id.unbookmark)
+        ImageButton mUnbookmark;
+        @BindView(R.id.bookmark)
+        ImageButton mBookmark;
         @BindView(R.id.linear_layout)
         LinearLayout mLinearLayout;
 
@@ -165,6 +175,8 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
             ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);
+
+            onClickBookmark();
         }
 
         @Override
@@ -176,6 +188,37 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
         public boolean onLongClick(View view) {
             mLongClickListener.onLongClick(mListOfMovies.get(getAdapterPosition()));
             return true;
+        }
+
+        private void onClickBookmark() {
+            mBookmark.setVisibility(View.GONE);
+
+            mUnbookmark.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+                    final Snackbar snackbar = Snackbar.make(mLinearLayout, SNACKBAR_MESSAGE, Snackbar.LENGTH_LONG)
+                            .setActionTextColor(mContext.getResources().getColor(R.color.red));
+                    snackbar.setAction(SNACKBAR_ACTION_MESSAGE, new View.OnClickListener() {
+
+                        @Override
+                        public void onClick(View view) {
+                            snackbar.dismiss();
+                        }
+                    });
+
+                    mUnbookmark.setVisibility(View.GONE);
+                    mBookmark.setVisibility(View.VISIBLE);
+
+                    RotateAnimation rotation = new RotateAnimation(0, 360,
+                            Animation.RELATIVE_TO_SELF, 0.5f,
+                            Animation.RELATIVE_TO_SELF, 0.5f);
+                    rotation.setDuration(750);
+                    mBookmark.startAnimation(rotation);
+
+                    snackbar.show();
+                }
+            });
         }
     }
 }

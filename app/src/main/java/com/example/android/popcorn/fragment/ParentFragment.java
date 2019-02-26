@@ -2,7 +2,6 @@ package com.example.android.popcorn.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
@@ -11,7 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 
 import com.android.volley.VolleyError;
@@ -60,8 +58,6 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
 
     PosterRecyclerViewAdapter mRecyclerAdapter;
 
-    @BindView(R.id.frame_layout)
-    FrameLayout mFrameLayout;
     @BindView(R.id.progress_bar)
     ProgressBar mProgressBar;
     @BindView(R.id.posters_recyclerview)
@@ -175,17 +171,17 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
     // Source: https://www.journaldev.com/10324/android-snackbar-example-tutorial.
     @Override
     public void onLongClick(Movie movie) {
-        final Snackbar snackbar = Snackbar.make(mFrameLayout, SNACKBAR_MESSAGE, Snackbar.LENGTH_LONG)
-                .setActionTextColor(getResources().getColor(R.color.red));
-        snackbar.setAction(SNACKBAR_ACTION_MESSAGE, new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                snackbar.dismiss();
-            }
-        });
-
-        snackbar.show();
+//        final Snackbar snackbar = Snackbar.make(mFrameLayout, SNACKBAR_MESSAGE, Snackbar.LENGTH_LONG)
+//                .setActionTextColor(getResources().getColor(R.color.red));
+//        snackbar.setAction(SNACKBAR_ACTION_MESSAGE, new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View view) {
+//                snackbar.dismiss();
+//            }
+//        });
+//
+//        snackbar.show();
     }
 
     private void onPullScreenDown() {

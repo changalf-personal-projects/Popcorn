@@ -60,7 +60,19 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/unbookmark"
             android:src="@mipmap/ic_favourite"
+            android:background="?android:selectableItemBackground"
+            android:layout_gravity="bottom|end"
+            android:paddingBottom="@dimen/bookmark_icon_bottom_padding"
+            android:paddingRight="@dimen/bookmark_icon_right_padding"
+            android:paddingEnd="@dimen/bookmark_icon_right_padding" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/bookmark"
+            android:src="@mipmap/ic_favourited"
             android:background="?android:selectableItemBackground"
             android:layout_gravity="bottom|end"
             android:paddingBottom="@dimen/bookmark_icon_bottom_padding"
