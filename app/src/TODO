@@ -5,6 +5,7 @@
        2. Pass id into api appended endpoints.
        3. Save parsed data.
 #TODO: Add home button.
+#TODO: Display saved movies along with bookmarked icons (vice-versa).
 
 
 

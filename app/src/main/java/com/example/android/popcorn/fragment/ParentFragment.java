@@ -171,6 +171,7 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
     // Source: https://www.journaldev.com/10324/android-snackbar-example-tutorial.
     @Override
     public void onLongClick(Movie movie) {
+        // TODO.
 //        final Snackbar snackbar = Snackbar.make(mFrameLayout, SNACKBAR_MESSAGE, Snackbar.LENGTH_LONG)
 //                .setActionTextColor(getResources().getColor(R.color.red));
 //        snackbar.setAction(SNACKBAR_ACTION_MESSAGE, new View.OnClickListener() {
