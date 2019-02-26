@@ -45,8 +45,10 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
     private final int POSTER_HEIGHT = 800;
     private final int CROSSFADE_TIME = 800;
     private final int FIRST_GENRE = 0;
+
     private final String NO_GENRE = "No genre";
-    private final String SNACKBAR_MESSAGE = "Saved to favourites!";
+    private final String SNACKBAR_SAVE_MESSAGE = "Saved to favourites!";
+    private final String SNACKBAR_UNSAVE_MESSAGE = "Removed from favourites!";
     private final String SNACKBAR_ACTION_MESSAGE = "Dismiss";
 
     private Context mContext;
@@ -191,13 +193,11 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
         }
 
         private void onClickBookmark() {
-            mBookmark.setVisibility(View.GONE);
-
             mUnbookmark.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View view) {
-                    final Snackbar snackbar = Snackbar.make(mLinearLayout, SNACKBAR_MESSAGE, Snackbar.LENGTH_LONG)
+                    final Snackbar snackbar = Snackbar.make(mLinearLayout, SNACKBAR_SAVE_MESSAGE, Snackbar.LENGTH_LONG)
                             .setActionTextColor(mContext.getResources().getColor(R.color.red));
                     snackbar.setAction(SNACKBAR_ACTION_MESSAGE, new View.OnClickListener() {
 
@@ -207,14 +207,44 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
                         }
                     });
 
-                    mUnbookmark.setVisibility(View.GONE);
-                    mBookmark.setVisibility(View.VISIBLE);
+                    if (mBookmark.getVisibility() == View.GONE) {
+                        mUnbookmark.setVisibility(View.GONE);
+                        mBookmark.setVisibility(View.VISIBLE);
 
-                    RotateAnimation rotation = new RotateAnimation(0, 360,
-                            Animation.RELATIVE_TO_SELF, 0.5f,
-                            Animation.RELATIVE_TO_SELF, 0.5f);
-                    rotation.setDuration(750);
-                    mBookmark.startAnimation(rotation);
+                        RotateAnimation rotation = new RotateAnimation(0, 360,
+                                Animation.RELATIVE_TO_SELF, 0.5f,
+                                Animation.RELATIVE_TO_SELF, 0.5f);
+                        rotation.setDuration(750);
+                        mBookmark.startAnimation(rotation);
+                    }
+
+                    snackbar.show();
+                }
+            });
+
+            mBookmark.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    final Snackbar snackbar = Snackbar.make(mLinearLayout, SNACKBAR_UNSAVE_MESSAGE, Snackbar.LENGTH_LONG)
+                            .setActionTextColor(mContext.getResources().getColor(R.color.red));
+                    snackbar.setAction(SNACKBAR_ACTION_MESSAGE, new View.OnClickListener() {
+
+                        @Override
+                        public void onClick(View view) {
+                            snackbar.dismiss();
+                        }
+                    });
+
+                    if (mUnbookmark.getVisibility() == View.GONE) {
+                        mBookmark.setVisibility(View.GONE);
+                        mUnbookmark.setVisibility(View.VISIBLE);
+
+                        RotateAnimation rotation = new RotateAnimation(0, -360,
+                                Animation.RELATIVE_TO_SELF, 0.5f,
+                                Animation.RELATIVE_TO_SELF, 0.5f);
+                        rotation.setDuration(750);
+                        mUnbookmark.startAnimation(rotation);
+                    }
 
                     snackbar.show();
                 }
