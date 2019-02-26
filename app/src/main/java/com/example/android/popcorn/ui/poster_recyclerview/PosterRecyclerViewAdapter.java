@@ -46,6 +46,13 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
     private final int CROSSFADE_TIME = 800;
     private final int FIRST_GENRE = 0;
 
+    private final int ROTATION_FROM_DEGREES = 0;
+    private final int ROTATION_TO_DEGREES = 360;
+    private final int ROTATION_TO_DEGREES_REVERSE = -360;
+    private final int ANIMATION_DURATION = 500;
+    private final float PIVOT_X = 0.5f;
+    private final float PIVOT_Y = 0.5f;
+
     private final String NO_GENRE = "No genre";
     private final String SNACKBAR_SAVE_MESSAGE = "Saved to favourites!";
     private final String SNACKBAR_UNSAVE_MESSAGE = "Removed from favourites!";
@@ -193,6 +200,9 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
         }
 
         private void onClickBookmark() {
+            // Refactor with flag ("isLiked()").
+            boolean isLiked = false;
+
             mUnbookmark.setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -211,10 +221,10 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
                         mUnbookmark.setVisibility(View.GONE);
                         mBookmark.setVisibility(View.VISIBLE);
 
-                        RotateAnimation rotation = new RotateAnimation(0, 360,
-                                Animation.RELATIVE_TO_SELF, 0.5f,
-                                Animation.RELATIVE_TO_SELF, 0.5f);
-                        rotation.setDuration(750);
+                        RotateAnimation rotation = new RotateAnimation(ROTATION_FROM_DEGREES, ROTATION_TO_DEGREES,
+                                Animation.RELATIVE_TO_SELF, PIVOT_X,
+                                Animation.RELATIVE_TO_SELF, PIVOT_Y);
+                        rotation.setDuration(ANIMATION_DURATION);
                         mBookmark.startAnimation(rotation);
                     }
 
@@ -239,10 +249,10 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
                         mBookmark.setVisibility(View.GONE);
                         mUnbookmark.setVisibility(View.VISIBLE);
 
-                        RotateAnimation rotation = new RotateAnimation(0, -360,
-                                Animation.RELATIVE_TO_SELF, 0.5f,
-                                Animation.RELATIVE_TO_SELF, 0.5f);
-                        rotation.setDuration(750);
+                        RotateAnimation rotation = new RotateAnimation(ROTATION_FROM_DEGREES, ROTATION_TO_DEGREES_REVERSE,
+                                Animation.RELATIVE_TO_SELF, PIVOT_X,
+                                Animation.RELATIVE_TO_SELF, PIVOT_Y);
+                        rotation.setDuration(ANIMATION_DURATION);
                         mUnbookmark.startAnimation(rotation);
                     }
 
