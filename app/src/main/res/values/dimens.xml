@@ -114,6 +114,10 @@
     <dimen name="backdrop_placeholder_width">360dp</dimen>
     <dimen name="backdrop_placeholder_height">250dp</dimen>
 
+    <!-- Bookmark icon padding. -->
+    <dimen name="bookmark_icon_right_padding">5dp</dimen>
+    <dimen name="bookmark_icon_bottom_padding">8dp</dimen>
+
     <!-- Everything else. -->
     <dimen name="green_rectangle_height">250dp</dimen>
     <dimen name="fab_margin">15dp</dimen>

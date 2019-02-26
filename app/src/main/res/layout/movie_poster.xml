@@ -18,24 +18,11 @@
             android:orientation="vertical"
             android:id="@+id/linear_layout">
 
-            <FrameLayout
+            <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/movie_poster"
-                    android:adjustViewBounds="true" />
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_favourite"
-                    android:background="?android:selectableItemBackground"
-                    android:layout_gravity="top|end" />
-
-            </FrameLayout>
+                android:layout_height="wrap_content"
+                android:id="@+id/movie_poster"
+                android:adjustViewBounds="true" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -69,6 +56,16 @@
                 android:layout_marginBottom="@dimen/cardview_genre_bottom_margin" />
 
         </LinearLayout>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_favourite"
+            android:background="?android:selectableItemBackground"
+            android:layout_gravity="bottom|end"
+            android:paddingBottom="@dimen/bookmark_icon_bottom_padding"
+            android:paddingRight="@dimen/bookmark_icon_right_padding"
+            android:paddingEnd="@dimen/bookmark_icon_right_padding" />
 
     </android.support.v7.widget.CardView>
 
