@@ -18,11 +18,24 @@
             android:orientation="vertical"
             android:id="@+id/linear_layout">
 
-            <ImageView
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/movie_poster"
-                android:adjustViewBounds="true" />
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/movie_poster"
+                    android:adjustViewBounds="true" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_favourite"
+                    android:background="?android:selectableItemBackground"
+                    android:layout_gravity="top|end" />
+
+            </FrameLayout>
 
             <TextView
                 android:layout_width="wrap_content"

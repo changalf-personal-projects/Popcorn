@@ -35,6 +35,7 @@ public class MovieCollectionPagerAdapter extends FragmentPagerAdapter {
         return mFragments.size();
     }
 
+
     public void addFragment(Fragment fragment) {
         mFragments.add(fragment);
     }
