@@ -115,7 +115,7 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
     }
 
     private void onBindColorToCardView(PosterViewHolder holder, List<Palette.Swatch> swatches) {
-        for (Palette.Swatch swatch: swatches) {
+        for (Palette.Swatch swatch : swatches) {
             if (hasSwatch(swatch)) {
                 holder.mLinearLayout.setBackgroundColor(swatch.getRgb());
                 holder.mTitle.setTextColor(swatch.getTitleTextColor());
@@ -199,64 +199,50 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
             return true;
         }
 
-        private void onClickBookmark() {
-            // Refactor with flag ("isLiked()").
-            boolean isLiked = false;
+        private void displaySnackbar(String snackbarMessage) {
+            final Snackbar snackbar = Snackbar.make(mLinearLayout, snackbarMessage, Snackbar.LENGTH_LONG)
+                    .setActionTextColor(mContext.getResources().getColor(R.color.red));
+            snackbar.setAction(SNACKBAR_ACTION_MESSAGE, new View.OnClickListener() {
 
+                @Override
+                public void onClick(View view) {
+                    snackbar.dismiss();
+                }
+            });
+
+            snackbar.show();
+        }
+
+        private void onClickBookmarkResult(ImageButton bookmarkIconOne, ImageButton bookmarkIconTwo,
+                                           float rotationToDegrees) {
+            if (bookmarkIconTwo.getVisibility() == View.GONE) {
+                bookmarkIconOne.setVisibility(View.GONE);
+                bookmarkIconTwo.setVisibility(View.VISIBLE);
+
+                RotateAnimation rotation = new RotateAnimation(ROTATION_FROM_DEGREES, rotationToDegrees,
+                        Animation.RELATIVE_TO_SELF, PIVOT_X,
+                        Animation.RELATIVE_TO_SELF, PIVOT_Y);
+                rotation.setDuration(ANIMATION_DURATION);
+                bookmarkIconTwo.startAnimation(rotation);
+            }
+        }
+
+        private void onClickBookmark() {
             mUnbookmark.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View view) {
-                    final Snackbar snackbar = Snackbar.make(mLinearLayout, SNACKBAR_SAVE_MESSAGE, Snackbar.LENGTH_LONG)
-                            .setActionTextColor(mContext.getResources().getColor(R.color.red));
-                    snackbar.setAction(SNACKBAR_ACTION_MESSAGE, new View.OnClickListener() {
-
-                        @Override
-                        public void onClick(View view) {
-                            snackbar.dismiss();
-                        }
-                    });
-
-                    if (mBookmark.getVisibility() == View.GONE) {
-                        mUnbookmark.setVisibility(View.GONE);
-                        mBookmark.setVisibility(View.VISIBLE);
-
-                        RotateAnimation rotation = new RotateAnimation(ROTATION_FROM_DEGREES, ROTATION_TO_DEGREES,
-                                Animation.RELATIVE_TO_SELF, PIVOT_X,
-                                Animation.RELATIVE_TO_SELF, PIVOT_Y);
-                        rotation.setDuration(ANIMATION_DURATION);
-                        mBookmark.startAnimation(rotation);
-                    }
-
-                    snackbar.show();
+                    displaySnackbar(SNACKBAR_SAVE_MESSAGE);
+                    onClickBookmarkResult(mUnbookmark, mBookmark, ROTATION_TO_DEGREES);
                 }
             });
 
             mBookmark.setOnClickListener(new View.OnClickListener() {
+
                 @Override
                 public void onClick(View view) {
-                    final Snackbar snackbar = Snackbar.make(mLinearLayout, SNACKBAR_UNSAVE_MESSAGE, Snackbar.LENGTH_LONG)
-                            .setActionTextColor(mContext.getResources().getColor(R.color.red));
-                    snackbar.setAction(SNACKBAR_ACTION_MESSAGE, new View.OnClickListener() {
-
-                        @Override
-                        public void onClick(View view) {
-                            snackbar.dismiss();
-                        }
-                    });
-
-                    if (mUnbookmark.getVisibility() == View.GONE) {
-                        mBookmark.setVisibility(View.GONE);
-                        mUnbookmark.setVisibility(View.VISIBLE);
-
-                        RotateAnimation rotation = new RotateAnimation(ROTATION_FROM_DEGREES, ROTATION_TO_DEGREES_REVERSE,
-                                Animation.RELATIVE_TO_SELF, PIVOT_X,
-                                Animation.RELATIVE_TO_SELF, PIVOT_Y);
-                        rotation.setDuration(ANIMATION_DURATION);
-                        mUnbookmark.startAnimation(rotation);
-                    }
-
-                    snackbar.show();
+                    displaySnackbar(SNACKBAR_UNSAVE_MESSAGE);
+                    onClickBookmarkResult(mBookmark, mUnbookmark, ROTATION_TO_DEGREES_REVERSE);
                 }
             });
         }
