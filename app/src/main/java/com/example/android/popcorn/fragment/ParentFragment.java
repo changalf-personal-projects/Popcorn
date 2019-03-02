@@ -1,22 +1,31 @@
 package com.example.android.popcorn.fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build.VERSION;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.view.animation.AnimationUtils;
+import android.widget.FrameLayout;
+import android.widget.PopupWindow;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.android.volley.VolleyError;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.Utilities;
 import com.example.android.popcorn.activity.DetailActivity;
-import com.example.android.popcorn.dagger.component.FragmentComponent;
 import com.example.android.popcorn.fragment.parsing.LoganDetailsTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganIdTemplate;
 import com.example.android.popcorn.fragment.parsing.MovieParser;
@@ -45,16 +54,14 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
         OnMovieLongClickListener {
 
     private final String LOG_TAG = PopularFragment.class.getSimpleName();
-    private final String SNACKBAR_MESSAGE = "Saved to favourites!";
-    private final String SNACKBAR_ACTION_MESSAGE = "Dismiss";
     private final int LAYOUT_COL_SPAN = 2;
 
-    private FragmentComponent mFragmentComponent;
     private VolleyRequestHandler mVolleyReqHandler;
     private VolleyHelper mVolleyHelper;
     private List<Movie> mListOfMovies;
     private List<Integer> mListOfRefreshColours = new ArrayList<>();
     private DataSaver mDataSaver;
+    private View mRootView;
 
     PosterRecyclerViewAdapter mRecyclerAdapter;
 
@@ -64,12 +71,14 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
     RecyclerView mRecyclerView;
     @BindView(R.id.pull_refresh_layout)
     SwipeRefreshLayout mPullRefreshLayout;
+    @BindView(R.id.frame_layout)
+    FrameLayout mFrameLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-        ButterKnife.bind(this, rootView);
+        mRootView = inflater.inflate(R.layout.fragment_main, container, false);
+        ButterKnife.bind(this, mRootView);
 
         getRefreshColours();
         onPullScreenDown();
@@ -83,7 +92,7 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
         initVolleyHelper();
         fetchJsonId();
 
-        return rootView;
+        return mRootView;
     }
 
     private void initVolleyHelper() {
@@ -168,21 +177,39 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
         startActivity(detailIntent);
     }
 
-    // Source: https://www.journaldev.com/10324/android-snackbar-example-tutorial.
+    // Source: https://android--code.blogspot.com/2016/01/android-popup-window-example.html.
     @Override
     public void onLongClick(Movie movie) {
-        // TODO.
-//        final Snackbar snackbar = Snackbar.make(mFrameLayout, SNACKBAR_MESSAGE, Snackbar.LENGTH_LONG)
-//                .setActionTextColor(getResources().getColor(R.color.red));
-//        snackbar.setAction(SNACKBAR_ACTION_MESSAGE, new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View view) {
-//                snackbar.dismiss();
-//            }
-//        });
-//
-//        snackbar.show();
+        LayoutInflater inflater = (LayoutInflater) mRootView.getContext()
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.on_long_click_movie_details, null);
+        popupView.setAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.translation_top_to_bottom));
+
+        View movieRatingPopup = popupView.findViewById(R.id.movie_rating_popup);
+        View movieOverviewPopup = popupView.findViewById(R.id.movie_overview_popup);
+        ((TextView) movieRatingPopup).setText(movie.getRating());
+        ((TextView) movieOverviewPopup).setText(movie.getOverview());
+
+        final PopupWindow popupWindow = new PopupWindow(popupView, LayoutParams.WRAP_CONTENT,
+                LayoutParams.WRAP_CONTENT);
+        popupWindow.setOutsideTouchable(true);
+        popupWindow.setFocusable(true);
+        popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        View exitButton = popupView.findViewById(R.id.movie_rating_exit_icon);
+        exitButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                popupWindow.dismiss();
+            }
+        });
+
+        if (VERSION.SDK_INT >= 21) {
+            popupWindow.setElevation(5.0f);
+        }
+
+        popupWindow.showAtLocation(mFrameLayout, Gravity.CENTER, 0, 0);
     }
 
     private void onPullScreenDown() {

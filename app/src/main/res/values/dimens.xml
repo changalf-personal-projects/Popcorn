@@ -105,6 +105,7 @@
     <dimen name="button_corner_radius">2dp</dimen>
     <dimen name="button_stroke_width">5dp</dimen>
     <dimen name="rate_movie_button_side_margin">50dp</dimen>
+    <dimen name="exit_icon_right_padding">-10dp</dimen>
 
     <!-- Placeholder dimensions. -->
     <dimen name="circle_image_placeholder">70dp</dimen>
@@ -121,5 +122,10 @@
     <!-- Everything else. -->
     <dimen name="green_rectangle_height">250dp</dimen>
     <dimen name="fab_margin">15dp</dimen>
+    <dimen name="popup_padding">25dp</dimen>
+    <dimen name="popup_top_padding">15dp</dimen>
+    <dimen name="popup_rating_top_margin">10dp</dimen>
+    <dimen name="popup_overview_title_top_margin">15dp</dimen>
+    <dimen name="popup_overview_top_margin">12dp</dimen>
 
 </resources>

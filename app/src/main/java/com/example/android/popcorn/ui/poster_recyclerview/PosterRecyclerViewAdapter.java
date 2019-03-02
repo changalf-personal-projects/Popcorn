@@ -2,6 +2,7 @@ package com.example.android.popcorn.ui.poster_recyclerview;
 
 import android.content.Context;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -201,7 +202,7 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
 
         private void displaySnackbar(String snackbarMessage) {
             final Snackbar snackbar = Snackbar.make(mLinearLayout, snackbarMessage, Snackbar.LENGTH_LONG)
-                    .setActionTextColor(mContext.getResources().getColor(R.color.red));
+                    .setActionTextColor(ContextCompat.getColor(mContext, R.color.red));
             snackbar.setAction(SNACKBAR_ACTION_MESSAGE, new View.OnClickListener() {
 
                 @Override

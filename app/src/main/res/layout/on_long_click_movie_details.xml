@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/popup_top_padding"
+        android:paddingLeft="@dimen/popup_padding"
+        android:paddingStart="@dimen/popup_padding"
+        android:paddingRight="@dimen/popup_padding"
+        android:paddingEnd="@dimen/popup_padding"
+        android:paddingBottom="@dimen/popup_padding">
+
+        <ImageButton
+            android:id="@+id/movie_rating_exit_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|end"
+            android:paddingRight="@dimen/exit_icon_right_padding"
+            android:paddingEnd="@dimen/exit_icon_right_padding"
+            android:background="?android:selectableItemBackground"
+            android:src="@mipmap/ic_exit" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/popup_stars"
+                android:layout_gravity="start"
+                android:src="@mipmap/ic_full_star" />
+
+            <TextView
+                android:id="@+id/movie_rating_popup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/popup_rating_top_margin"
+                android:fontFamily="sans-serif-light"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/popup_overview_title_top_margin"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="@string/overview"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/movie_overview_popup"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/popup_overview_top_margin"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+</ScrollView>
+

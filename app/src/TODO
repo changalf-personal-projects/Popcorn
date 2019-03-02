@@ -1,11 +1,12 @@
-#TODO: Implement favourite button function.
-#TODO: Why every second search no results are shown?
+#TODO: Handle no connection with error message and retry button.
+#TODO: Add navigation drawer. (MainActivity, 36)
 #TODO: Add rate movie button in reviews section.
-#TODO: 1. Get id of current movie (already saved).
-       2. Pass id into api appended endpoints.
-       3. Save parsed data.
-#TODO: Add home button.
+#TODO: Add saved movie cast. (DetailActivity, 179)
+#TODO: Add saved movie review. (DetailActivity, 184)
 #TODO: Display saved movies along with bookmarked icons (vice-versa).
+#TODO: Why every second search no results are shown?
+#TODO: Animate popup window.
+
 
 
 

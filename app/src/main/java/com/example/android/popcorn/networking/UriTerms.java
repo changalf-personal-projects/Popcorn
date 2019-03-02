@@ -6,8 +6,6 @@ package com.example.android.popcorn.networking;
 
 public class UriTerms {
 
-    // TODO: Use enums for each category of strings.
-
     // Endpoints.
     public static final String CREDITS = "credits";
     public static final String VIDEOS = "videos";
