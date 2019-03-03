@@ -3,9 +3,11 @@ package com.example.android.popcorn.networking;
 import android.content.Context;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.android.popcorn.model.Movie;
 
 /**
@@ -16,12 +18,18 @@ public class VolleyHelper {
 
     private final String LOG_TAG = VolleyHelper.class.getSimpleName();
 
-    VolleyRequestHandler mVolleyReqHandler = null;
-    Context mContext;
+    private final int TIMEOUT_DURATION = 5000;
+    private final int TIMEOUT_RETRIES = 3;
+    private final int TIMEOUT_BACKOFF = 0;
+
+    private VolleyRequestHandler mVolleyReqHandler;
+    private RequestQueue mRequestQueue;
+    private Context mContext;
 
     public VolleyHelper(Context context, VolleyRequestHandler volleyReqHandler) {
         mContext = context;
         mVolleyReqHandler = volleyReqHandler;
+        mRequestQueue = Volley.newRequestQueue(context);
     }
 
     public void fetchJsonId(String url) {
@@ -41,6 +49,24 @@ public class VolleyHelper {
                 }
             }
         });
+
+//        stringRequest.setRetryPolicy(new RetryPolicy() {
+//            @Override
+//            public int getCurrentTimeout() {
+//                return TIMEOUT_DURATION;
+//            }
+//
+//            @Override
+//            public int getCurrentRetryCount() {
+//                return TIMEOUT_RETRIES;
+//            }
+//
+//            @Override
+//            public void retry(VolleyError error) {
+//                Toast.makeText(mContext, "Tryout", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//        mRequestQueue.add(stringRequest);
 
         RequestQueueSingleton.getSingletonInstance(mContext).addToRequestQueue(stringRequest);
     }
@@ -63,6 +89,24 @@ public class VolleyHelper {
             }
         });
 
+//        stringRequest.setRetryPolicy(new RetryPolicy() {
+//            @Override
+//            public int getCurrentTimeout() {
+//                return TIMEOUT_DURATION;
+//            }
+//
+//            @Override
+//            public int getCurrentRetryCount() {
+//                return TIMEOUT_RETRIES;
+//            }
+//
+//            @Override
+//            public void retry(VolleyError error) {
+//                Toast.makeText(mContext, "Tryout", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//        mRequestQueue.add(stringRequest);
+
         RequestQueueSingleton.getSingletonInstance(mContext).addToRequestQueue(stringRequest);
     }
 
@@ -83,6 +127,24 @@ public class VolleyHelper {
                 }
             }
         });
+
+//        stringRequest.setRetryPolicy(new RetryPolicy() {
+//            @Override
+//            public int getCurrentTimeout() {
+//                return TIMEOUT_DURATION;
+//            }
+//
+//            @Override
+//            public int getCurrentRetryCount() {
+//                return TIMEOUT_RETRIES;
+//            }
+//
+//            @Override
+//            public void retry(VolleyError error) {
+//                Toast.makeText(mContext, "Tryout", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//        mRequestQueue.add(stringRequest);
 
         RequestQueueSingleton.getSingletonInstance(mContext).addToRequestQueue(stringRequest);
     }

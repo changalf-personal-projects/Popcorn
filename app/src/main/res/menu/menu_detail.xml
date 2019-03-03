@@ -8,7 +8,9 @@
         android:orderInCategory="100"
         android:title="@string/action_share"
         android:icon="@mipmap/ic_share"
-        app:showAsAction="ifRoom" />
+        android:actionProviderClass="android.widget.ShareActionProvider"
+        app:showAsAction="ifRoom"
+        tools:ignore="AppCompatResource" />
 
     <item
         android:id="@+id/action_settings"

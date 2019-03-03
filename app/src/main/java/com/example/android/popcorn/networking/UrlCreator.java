@@ -15,8 +15,14 @@ public class UrlCreator {
     private static final String LOG_TAG = UrlCreator.class.getSimpleName();
     private static final String COMMA = ",";
 
+    public static String createUrl(String id) {
+        return Uri.parse(UriTerms.MOVIE_SHARE_BASE_URL).buildUpon()
+                .appendPath(id)
+                .build().toString();
+    }
+
     // Request for movie details.
-    public static String createUrl(String query) {
+    public static String createUrlWithCategory(String query) {
         return Uri.parse(UriTerms.MOVIE_BASE_URL).buildUpon()
                 .appendPath(query)
                 .appendQueryParameter(UriTerms.TMDB_API_KEY, BuildConfig.MOVIE_DP_API_KEY)

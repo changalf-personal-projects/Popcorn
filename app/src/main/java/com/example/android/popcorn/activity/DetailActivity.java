@@ -12,6 +12,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,6 +31,7 @@ import com.example.android.popcorn.fragment.CastFragment;
 import com.example.android.popcorn.fragment.DetailFragment;
 import com.example.android.popcorn.fragment.ReviewFragment;
 import com.example.android.popcorn.model.Movie;
+import com.example.android.popcorn.networking.UrlCreator;
 import com.example.android.popcorn.ui.DetailTabsPagerAdapter;
 import com.example.android.popcorn.ui.TabTitles;
 
@@ -294,6 +296,8 @@ public class DetailActivity extends AppCompatActivity {
 
         if (id == R.id.action_settings) {
 
+        } else if (id == R.id.action_share) {
+            shareItem();
         }
 
         return super.onOptionsItemSelected(menuItem);
@@ -323,12 +327,24 @@ public class DetailActivity extends AppCompatActivity {
         return lastParentIntent;
     }
 
+    private void shareItem() {
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.putExtra(Intent.EXTRA_TEXT, UrlCreator.createUrl(mMovie.getId()));
+
+        Log.d(LOG_TAG, "Url created: " + UrlCreator.createUrl(mMovie.getId()));
+
+        shareIntent.setType("text/plain");
+        startActivity(Intent.createChooser(shareIntent, getResources().getString(R.string.share_intent_title)));
+    }
+
     private String getParentName() {
         return getIntent().getStringExtra(PARENT_ACTIVITY);
     }
 
     private Movie getParcelableMovieDetails() {
         Intent intent = getIntent();
+        Log.d(LOG_TAG, "What is this? " + intent.getParcelableExtra(Utilities.PARCELABLE_MOVIE_KEY));
         return intent.getParcelableExtra(Utilities.PARCELABLE_MOVIE_KEY);
     }
 

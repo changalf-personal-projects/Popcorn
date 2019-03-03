@@ -29,7 +29,6 @@
     <string name="rating_out_of_ten">%1$s/10</string>
     <string name="runtime">%1$s min</string>
     <string name="overview">Overview</string>
+    <string name="share_intent_title">Share</string>
 
-    <!-- Test strings. -->
-    <string name="test_string">Test</string>
 </resources>

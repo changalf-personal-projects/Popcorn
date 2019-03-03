@@ -1,4 +1,4 @@
-#TODO: Handle no connection with error message and retry button.
+#TODO: Add share functionality.
 #TODO: Add navigation drawer. (MainActivity, 36)
 #TODO: Add rate movie button in reviews section.
 #TODO: Add saved movie cast. (DetailActivity, 179)
@@ -6,6 +6,8 @@
 #TODO: Display saved movies along with bookmarked icons (vice-versa).
 #TODO: Why every second search no results are shown?
 #TODO: Animate popup window.
+#TODO: Add splash page.
+#TODO: Handle no connection with error message and retry button.
 
 
 

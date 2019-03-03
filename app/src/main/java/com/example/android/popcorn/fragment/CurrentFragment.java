@@ -22,7 +22,7 @@ public class CurrentFragment extends ParentFragment {
 
     @Override
     String createUrl() {
-        return UrlCreator.createUrl(UriTerms.CURRENT);
+        return UrlCreator.createUrlWithCategory(UriTerms.CURRENT);
     }
 
     @Override

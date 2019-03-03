@@ -18,7 +18,7 @@
     <!-- Source: https://developer.android.com/training/search/setup.html -->
     <item
         android:id="@+id/search_icon"
-        android:title="@string/test_string"
+        android:title="@string/action_search"
         android:icon="@mipmap/ic_search"
         app:actionViewClass="android.support.v7.widget.SearchView"
         app:showAsAction="ifRoom" />

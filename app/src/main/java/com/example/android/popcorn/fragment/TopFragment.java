@@ -22,7 +22,7 @@ public class TopFragment extends ParentFragment {
 
     @Override
     String createUrl() {
-        return UrlCreator.createUrl(UriTerms.TOP);
+        return UrlCreator.createUrlWithCategory(UriTerms.TOP);
     }
 
     @Override

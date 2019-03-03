@@ -22,7 +22,7 @@ public class PopularFragment extends ParentFragment {
 
     @Override
     String createUrl() {
-        return UrlCreator.createUrl(UriTerms.POPULAR);
+        return UrlCreator.createUrlWithCategory(UriTerms.POPULAR);
     }
 
     @Override
