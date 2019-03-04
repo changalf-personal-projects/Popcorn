@@ -1,4 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group android:checkableBehavior="single"
+        android:id="@+id/navigation_movie_categories">
+
+        <item android:id="@+id/category_popular"
+            android:title="@string/popular"
+            android:orderInCategory="100"
+            android:icon="@mipmap/ic_popular"
+            app:showAsAction="never" />
+
+        <item android:id="@+id/category_top"
+            android:title="@string/top"
+            android:orderInCategory="100"
+            android:icon="@drawable/ic_top"
+            app:showAsAction="never" />
+
+    </group>
+
 
 </menu>

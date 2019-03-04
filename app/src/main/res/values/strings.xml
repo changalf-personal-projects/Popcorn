@@ -31,4 +31,8 @@
     <string name="overview">Overview</string>
     <string name="share_intent_title">Share</string>
 
+    <!-- Navigation labels. -->
+    <string name="popular">Popular</string>
+    <string name="top">Top</string>
+
 </resources>

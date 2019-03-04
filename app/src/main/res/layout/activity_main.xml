@@ -34,8 +34,8 @@
                         android:layout_height="wrap_content"
                         android:src="@mipmap/ic_launcher"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="35dp"
-                        android:layout_marginStart="35dp" />
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginStart="7dp" />
 
                 </FrameLayout>
 
