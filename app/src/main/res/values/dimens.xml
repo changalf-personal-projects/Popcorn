@@ -20,7 +20,7 @@
     <dimen name="cardview_genre_bottom_margin">15dp</dimen>
     <dimen name="cardview_title_top_margin">10dp</dimen>
     <dimen name="cast_member_name_top_margin">95dp</dimen>
-    <dimen name="progress_bar_top_margin">150dp</dimen>
+    <dimen name="progress_bar_top_margin">200dp</dimen>
 
     <!-- Divider dimensions. -->
     <dimen name="layout_height_half">0.5dp</dimen>

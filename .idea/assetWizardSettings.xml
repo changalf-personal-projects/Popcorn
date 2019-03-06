@@ -161,7 +161,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/Applications/Android%20Studio.app/Contents/plugins/android/lib/android.jar!/images/material_design_icons/image/ic_looks_one_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/Applications/Android%20Studio.app/Contents/plugins/android/lib/android.jar!/images/material_design_icons/av/ic_play_circle_filled_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -171,9 +171,12 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_top" />
+                            <entry key="color" value="ff3e00" />
+                            <entry key="height" value="72" />
+                            <entry key="outputName" value="navigation_header_play_icon" />
                             <entry key="overrideSize" value="true" />
                             <entry key="sourceFile" value="$USER_HOME$" />
+                            <entry key="width" value="72" />
                           </map>
                         </option>
                       </PersistentState>
