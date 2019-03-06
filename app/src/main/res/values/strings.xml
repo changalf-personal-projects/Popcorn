@@ -34,5 +34,7 @@
     <!-- Navigation labels. -->
     <string name="popular">Popular</string>
     <string name="top">Top</string>
+    <string name="current">Current</string>
+    <string name="favourites">Saved</string>
 
 </resources>
