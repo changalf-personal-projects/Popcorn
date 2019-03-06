@@ -54,7 +54,8 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu);
 
-        setupNavigtionDrawer();
+        setupFragmentReplacement();
+        setupNavigationDrawer();
         setupViewPager();
         mTabLayout.setupWithViewPager(mViewPager);
     }
@@ -101,15 +102,20 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void setupNavigtionDrawer() {
+    private void setupFragmentReplacement() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_main_frame_layout,
+                new PopularFragment()).commit();
+    }
+
+    private void setupNavigationDrawer() {
         mNavigationView.setNavigationItemSelectedListener(new OnNavigationItemSelectedListener() {
 
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.category_popular:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.content_main, new PopularFragment())
-                                .commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.content_main_frame_layout,
+                                new PopularFragment()).commit();
                         break;
 
                     case R.id.category_top:

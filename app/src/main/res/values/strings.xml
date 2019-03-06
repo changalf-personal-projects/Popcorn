@@ -4,16 +4,12 @@
     <string name="action_search">Search</string>
     <string name="action_sort_by">Sort By</string>
     <string name="action_share">Share</string>
-    <string name="cast_label">Cast</string>
     <string name="trailers_label">Trailers</string>
     <string name="recommended_movies">Recommended Movies</string>
-    <string name="similar_movies">Similar Movies</string>
-    <string name="reviews_label">Reviews</string>
     <string name="biography_subheading">Biography</string>
     <string name="birth_date">Birthday:</string>
     <string name="death_date">Death:</string>
     <string name="place_of_birth">Place of birth:</string>
-    <string name="rate">Rate Movie</string>
     <string name="produced_by">Produced by</string>
     <string name="directed_by">Directed by</string>
     <string name="languages">Languages:</string>
@@ -23,7 +19,6 @@
     <string name="search_hint">Search movie...</string>
 
     <!-- Button labels. -->
-    <string name="view_all_reviews">View All</string>
 
     <!-- String resources. -->
     <string name="rating_out_of_ten">%1$s/10</string>

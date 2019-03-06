@@ -1,7 +1,5 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
 
     <!-- Various font sizes. -->
     <dimen name="cardview_title_size">22sp</dimen>
@@ -10,12 +8,9 @@
     <dimen name="detail_trailer_title_size">13sp</dimen>
     <dimen name="detail_rec_poster_title_size">13sp</dimen>
     <dimen name="detail_rec_poster_release_size">10sp</dimen>
-    <dimen name="cast_character_size">12sp</dimen>
     <dimen name="cast_member_name_size">25sp</dimen>
-    <dimen name="add_review_font_size">12sp</dimen>
 
     <!-- Random margins. -->
-    <dimen name="tabs_and_posters_divider">105dp</dimen>
     <dimen name="cardview_margin">14dp</dimen>
     <dimen name="cardview_genre_bottom_margin">15dp</dimen>
     <dimen name="cardview_title_top_margin">10dp</dimen>
@@ -30,12 +25,9 @@
     <!-- Detail view margins. -->
     <dimen name="detail_text_left_margin">5dp</dimen>
     <dimen name="detail_text_top_margin">5dp</dimen>
-    <dimen name="detail_label_margin">12dp</dimen>
     <dimen name="details_top_margin">50dp</dimen>
     <dimen name="details_side_margin">15dp</dimen>
     <dimen name="detail_cast_member_left_margin">22dp</dimen>
-    <dimen name="detail_cast_member_top_margin">10dp</dimen>
-    <dimen name="detail_cast_member_bottom_margin">12dp</dimen>
     <dimen name="detail_cast_name_width">145dp</dimen>
     <dimen name="detail_cast_name_right_padding">10dp</dimen>
     <dimen name="detail_cast_name_top_margin">10dp</dimen>
@@ -45,7 +37,6 @@
     <dimen name="detail_synopsis_top_margin">30dp</dimen>
     <dimen name="detail_info_left_and_right_margin">22dp</dimen>
     <dimen name="detail_synopsis_bottom_margin">26dp</dimen>
-    <dimen name="detail_review_header_bottom_margin">2dp</dimen>
     <dimen name="detail_review_side_margin">22dp</dimen>
     <dimen name="detail_review_top_margin">22dp</dimen>
     <dimen name="detail_review_bottom_margin">22dp</dimen>
@@ -56,7 +47,6 @@
     <dimen name="detail_trailer_description_side_margin">22dp</dimen>
     <dimen name="detail_recyclerview_top_margin">6dp</dimen>
     <dimen name="detail_recyclerview_bottom_margin">4dp</dimen>
-    <dimen name="detail_trailers_margin">12dp</dimen>
     <dimen name="detail_poster_bg_height">150dp</dimen>
     <dimen name="detail_tmdb_logo_left_margin">-4dp</dimen>
     <dimen name="detail_rating_left_margin">2dp</dimen>
@@ -97,14 +87,8 @@
 
     <!-- Widths and heights. -->
     <dimen name="progress_bar_dims">50dp</dimen>
-    <dimen name="zero_dp">0dp</dimen>
 
     <!-- Button design. -->
-    <dimen name="add_review_button_height">26dp</dimen>
-    <dimen name="add_review_button_margin">12dp</dimen>
-    <dimen name="button_corner_radius">2dp</dimen>
-    <dimen name="button_stroke_width">5dp</dimen>
-    <dimen name="rate_movie_button_side_margin">50dp</dimen>
     <dimen name="exit_icon_right_padding">-10dp</dimen>
 
     <!-- Placeholder dimensions. -->

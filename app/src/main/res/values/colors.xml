@@ -3,7 +3,6 @@
     <color name="colorPrimary">#1A1A1A</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="button_color">#0066CC</color>
 
     <!-- Colors for various uses. -->
     <color name="white">#FFFFFF</color>
@@ -14,10 +13,7 @@
     <color name="detail_font_color">#BDBDBD</color>
 
     <!-- Snackbar colours. -->
-    <color name="yellow">#FFFF00</color>
     <color name="red">#FF0000</color>
 
     <!-- Colors for debugging background. -->
-    <color name="blueTest">#1F618D</color>
-    <color name="greenTest">#28B463</color>
 </resources>
