@@ -27,4 +27,18 @@
 
     </group>
 
+    <group android:checkableBehavior="single"
+        android:id="@+id/navigation_extra_options">
+
+        <item android:id="@+id/action_settings"
+            android:title="@string/action_settings" />
+
+        <item android:id="@+id/action_feedback"
+            android:title="@string/action_feedback" />
+
+        <item android:id="@+id/action_about"
+            android:title="@string/action_about" />
+
+    </group>
+
 </menu>
