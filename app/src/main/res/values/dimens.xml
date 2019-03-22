@@ -16,6 +16,8 @@
     <dimen name="cardview_title_top_margin">10dp</dimen>
     <dimen name="cast_member_name_top_margin">95dp</dimen>
     <dimen name="progress_bar_top_margin">200dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
 
     <!-- Divider dimensions. -->
     <dimen name="layout_height_half">0.5dp</dimen>
@@ -111,5 +113,6 @@
     <dimen name="popup_rating_top_margin">10dp</dimen>
     <dimen name="popup_overview_title_top_margin">15dp</dimen>
     <dimen name="popup_overview_top_margin">12dp</dimen>
+    <dimen name="tabs_and_posters_divider">105dp</dimen>
 
 </resources>
