@@ -16,6 +16,7 @@ import com.example.android.popcorn.activity.SearchResultsActivity;
 import com.example.android.popcorn.fragment.CurrentFragment;
 import com.example.android.popcorn.fragment.FavouriteFragment;
 import com.example.android.popcorn.fragment.PopularFragment;
+import com.example.android.popcorn.fragment.SortByDialogFragment;
 import com.example.android.popcorn.fragment.TopFragment;
 import com.example.android.popcorn.ui.MovieCollectionPagerAdapter;
 import com.example.android.popcorn.ui.TabTitles;
@@ -89,6 +90,8 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
             case R.id.action_sort :
+                SortByDialogFragment dialogFragment = new SortByDialogFragment();
+                dialogFragment.show(getSupportFragmentManager(),"DialogFragment");
 
             case R.id.action_settings :
 
