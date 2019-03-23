@@ -11,6 +11,7 @@
     <color name="grey">#D0D0D0</color>
     <color name="image_border_color">#FF0000</color>
     <color name="detail_font_color">#BDBDBD</color>
+    <color name="dialog_dark_layout_color">#303030</color>
 
     <!-- Snackbar colours. -->
     <color name="red">#FF0000</color>
