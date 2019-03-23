@@ -10,7 +10,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -32,8 +31,6 @@ public class MainActivity extends AppCompatActivity implements OnSortByChoiceCli
     private final String LOG_TAG = MainActivity.class.getSimpleName();
 
     private final int PAGES_TO_RETAIN = 1;
-
-    private int mSortByChoice;
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -112,8 +109,7 @@ public class MainActivity extends AppCompatActivity implements OnSortByChoiceCli
 
     @Override
     public void onClick(DialogFragment dialogFragment, int choice) {
-        mSortByChoice = choice;
-        Log.d(LOG_TAG, "The choice is " + choice);
+
     }
 
     private void setupViewPager() {
