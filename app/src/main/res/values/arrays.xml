@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="sort_by_choices">
+        <item>@string/random</item>
+        <item>@string/best_to_worst</item>
+        <item>@string/worst_to_best</item>
+    </array>
+
+</resources>

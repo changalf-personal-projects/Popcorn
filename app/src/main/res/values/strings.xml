@@ -35,7 +35,9 @@
     <string name="action_about">About Us</string>
 
     <!-- Dialog strings. -->
-    <string name="dialog_message">Message</string>
-    <string name="dialog_title">Title</string>
+    <string name="dialog_title">Sort By</string>
+    <string name="best_to_worst">Best</string>
+    <string name="worst_to_best">Worst</string>
+    <string name="random">Random</string>
 
 </resources>
