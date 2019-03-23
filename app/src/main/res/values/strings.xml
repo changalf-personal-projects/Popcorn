@@ -36,8 +36,7 @@
 
     <!-- Dialog strings. -->
     <string name="dialog_title">Sort By</string>
-    <string name="best_to_worst">Best</string>
-    <string name="worst_to_best">Worst</string>
-    <string name="random">Random</string>
+    <string name="best_to_worst">Best to worst</string>
+    <string name="worst_to_best">Worst to best</string>
 
 </resources>

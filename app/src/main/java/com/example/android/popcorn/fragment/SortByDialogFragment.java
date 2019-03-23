@@ -23,6 +23,7 @@ public class SortByDialogFragment extends DialogFragment {
                 R.array.sort_by_choices, NO_CHECKED_ITEM, new OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        // Display the user choice on toolbar.
                         mSelectedChoice = i;
                         dialogInterface.dismiss();
                     }
