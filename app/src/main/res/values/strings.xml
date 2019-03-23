@@ -34,4 +34,8 @@
     <string name="action_feedback">Feedback</string>
     <string name="action_about">About Us</string>
 
+    <!-- Dialog strings. -->
+    <string name="dialog_message">Message</string>
+    <string name="dialog_title">Title</string>
+
 </resources>
