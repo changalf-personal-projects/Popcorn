@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements OnSortByChoiceCli
     private final String LOG_TAG = MainActivity.class.getSimpleName();
 
     private final int PAGES_TO_RETAIN = 1;
+    private final int SORT_BEST_TO_WORST = 0;
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -109,7 +110,20 @@ public class MainActivity extends AppCompatActivity implements OnSortByChoiceCli
 
     @Override
     public void onClick(DialogFragment dialogFragment, int choice) {
+        sortMovies(choice, getCurrentTab());
+    }
 
+    // Refactor this method later.
+    private void sortMovies(int choice, int currentTabIndex) {
+        if (choice == SORT_BEST_TO_WORST) {
+
+        } else {
+
+        }
+    }
+
+    private int getCurrentTab() {
+        return mTabLayout.getSelectedTabPosition();
     }
 
     private void setupViewPager() {
