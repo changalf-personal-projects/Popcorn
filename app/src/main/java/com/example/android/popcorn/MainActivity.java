@@ -16,6 +16,7 @@ import android.view.MenuItem;
 
 import com.example.android.popcorn.activity.SearchResultsActivity;
 import com.example.android.popcorn.fragment.CurrentFragment;
+import com.example.android.popcorn.fragment.DialogFragment.DialogComparator;
 import com.example.android.popcorn.fragment.DialogFragment.OnSortByChoiceClickListener;
 import com.example.android.popcorn.fragment.DialogFragment.SortByDialogFragment;
 import com.example.android.popcorn.fragment.FavouriteFragment;
@@ -26,6 +27,7 @@ import com.example.android.popcorn.ui.MovieCollectionPagerAdapter;
 import com.example.android.popcorn.ui.TabTitles;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
@@ -134,6 +136,7 @@ public class MainActivity extends AppCompatActivity implements OnSortByChoiceCli
     private void sortBestBasedOnTab(int currentTabIndex) {
         List<Movie> listOfMovies = new ArrayList<>();
         listOfMovies.addAll(getPopularMoviesSingleton());
+        Collections.sort(listOfMovies, DialogComparator.BestToWorstComparator);
 
         for (Movie movie : listOfMovies) {
             Log.d(LOG_TAG, "Movie title and rating: " + movie.getTitle() + " " + movie.getRating());
