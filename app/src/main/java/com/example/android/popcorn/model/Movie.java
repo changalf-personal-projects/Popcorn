@@ -289,4 +289,5 @@ public class Movie implements Parcelable {
     public int describeContents() {
         return hashCode();
     }
+
 }

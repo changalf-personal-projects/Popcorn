@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -20,11 +21,17 @@ import com.example.android.popcorn.fragment.DialogFragment.SortByDialogFragment;
 import com.example.android.popcorn.fragment.FavouriteFragment;
 import com.example.android.popcorn.fragment.PopularFragment;
 import com.example.android.popcorn.fragment.TopFragment;
+import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.ui.MovieCollectionPagerAdapter;
 import com.example.android.popcorn.ui.TabTitles;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.example.android.popcorn.model.singleton.PopularMoviesSingleton.getPopularMoviesSingleton;
 
 public class MainActivity extends AppCompatActivity implements OnSortByChoiceClickListener {
 
@@ -32,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements OnSortByChoiceCli
 
     private final int PAGES_TO_RETAIN = 1;
     private final int SORT_BEST_TO_WORST = 0;
+    private final String DIALOG_FRAGMENT = "dialog fragment";
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -92,17 +100,17 @@ public class MainActivity extends AppCompatActivity implements OnSortByChoiceCli
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
-            case R.id.action_sort :
+            case R.id.action_sort:
                 SortByDialogFragment dialogFragment = new SortByDialogFragment();
-                dialogFragment.show(getSupportFragmentManager(),"DialogFragment");
+                dialogFragment.show(getSupportFragmentManager(), DIALOG_FRAGMENT);
 
-            case R.id.action_settings :
+            case R.id.action_settings:
 
-            case R.id.action_feedback :
+            case R.id.action_feedback:
 
-            case R.id.action_about :
+            case R.id.action_about:
 
-            default :
+            default:
         }
 
         return super.onOptionsItemSelected(item);
@@ -116,10 +124,25 @@ public class MainActivity extends AppCompatActivity implements OnSortByChoiceCli
     // Refactor this method later.
     private void sortMovies(int choice, int currentTabIndex) {
         if (choice == SORT_BEST_TO_WORST) {
-
+            sortBestBasedOnTab(currentTabIndex);
         } else {
-
+            sortWorstBasedOnTab(currentTabIndex);
         }
+    }
+
+    // Refactor this method later.
+    private void sortBestBasedOnTab(int currentTabIndex) {
+        List<Movie> listOfMovies = new ArrayList<>();
+        listOfMovies.addAll(getPopularMoviesSingleton());
+
+        for (Movie movie : listOfMovies) {
+            Log.d(LOG_TAG, "Movie title and rating: " + movie.getTitle() + " " + movie.getRating());
+        }
+    }
+
+    // Refactor this method later.
+    private void sortWorstBasedOnTab(int currentTabIndex) {
+
     }
 
     private int getCurrentTab() {
