@@ -18,7 +18,7 @@ public class SortByDialogFragment extends DialogFragment implements OnClickListe
 
     private static final String LOG_TAG = SortByDialogFragment.class.getSimpleName();
 
-    private final int NO_CHECKED_ITEM = -1;
+    private final int DEFAULT_CHECKED = 0;
 
     private OnSortByChoiceClickListener mChoiceClickListener;
 
@@ -28,7 +28,7 @@ public class SortByDialogFragment extends DialogFragment implements OnClickListe
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Builder alertDialogBuilder = new Builder(getActivity(), android.R.style.Theme_Material_Dialog_Alert);
         alertDialogBuilder.setTitle(R.string.dialog_title).setSingleChoiceItems(
-                R.array.sort_by_choices, NO_CHECKED_ITEM, this);
+                R.array.sort_by_choices, DEFAULT_CHECKED, this);
 
         return alertDialogBuilder.create();
     }

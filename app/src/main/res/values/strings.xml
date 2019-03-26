@@ -36,7 +36,10 @@
 
     <!-- Dialog strings. -->
     <string name="dialog_title">Sort By</string>
-    <string name="best_to_worst">Best to worst</string>
-    <string name="worst_to_best">Worst to best</string>
+    <string name="top_rated">Best</string>
+    <string name="alphabetical_name">Name</string>
+    <string name="longest_runtime">Runtime</string>
+    <string name="newest_release">Newest</string>
+    <string name="default_order">Default</string>
 
 </resources>

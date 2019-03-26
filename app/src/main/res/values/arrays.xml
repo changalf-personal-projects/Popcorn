@@ -2,8 +2,11 @@
 <resources>
 
     <array name="sort_by_choices">
-        <item>@string/best_to_worst</item>
-        <item>@string/worst_to_best</item>
+        <item>@string/default_order</item>
+        <item>@string/top_rated</item>
+        <item>@string/alphabetical_name</item>
+        <item>@string/longest_runtime</item>
+        <item>@string/newest_release</item>
     </array>
 
 </resources>

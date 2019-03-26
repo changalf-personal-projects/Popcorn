@@ -33,15 +33,22 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.android.popcorn.model.singleton.CurrentMoviesSingleton.getCurrentMoviesSingleton;
 import static com.example.android.popcorn.model.singleton.PopularMoviesSingleton.getPopularMoviesSingleton;
+import static com.example.android.popcorn.model.singleton.SavedMoviesSingleton.getSavedMoviesSingleton;
+import static com.example.android.popcorn.model.singleton.TopMoviesSingleton.getTopMoviesSingleton;
 
 public class MainActivity extends AppCompatActivity implements OnSortByChoiceClickListener {
 
     private final String LOG_TAG = MainActivity.class.getSimpleName();
 
     private final int PAGES_TO_RETAIN = 1;
-    private final int SORT_BEST_TO_WORST = 0;
     private final String DIALOG_FRAGMENT = "dialog fragment";
+
+    private final int SORT_TOP_RATED = 0;
+    private final int SORT_NAME_ALPHABETICAL = 1;
+    private final int SORT_LONGEST_RUNTIME = 2;
+    private final int SORT_NEWEST_RELEASE = 3;
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -125,15 +132,30 @@ public class MainActivity extends AppCompatActivity implements OnSortByChoiceCli
 
     // Refactor this method later.
     private void sortMovies(int choice, int currentTabIndex) {
-        if (choice == SORT_BEST_TO_WORST) {
-            sortBestBasedOnTab(currentTabIndex);
-        } else {
-            sortWorstBasedOnTab(currentTabIndex);
+        switch (choice) {
+            case SORT_TOP_RATED:
+                sortTopRatedBasedOnTab(currentTabIndex);
+                break;
+
+            case SORT_NAME_ALPHABETICAL:
+                sortNameBasedOnTab(currentTabIndex);
+                break;
+
+            case SORT_LONGEST_RUNTIME:
+                sortLongestRuntimeBasedOnTab(currentTabIndex);
+                break;
+
+            case SORT_NEWEST_RELEASE:
+                sortNewestReleaseBasedOnTab(currentTabIndex);
+                break;
+
+            default:
+                sortDefaultOrder(currentTabIndex);
         }
     }
 
     // Refactor this method later.
-    private void sortBestBasedOnTab(int currentTabIndex) {
+    private void sortTopRatedBasedOnTab(int currentTabIndex) {
         List<Movie> listOfMovies = new ArrayList<>();
         listOfMovies.addAll(getPopularMoviesSingleton());
         Collections.sort(listOfMovies, DialogComparator.BestToWorstComparator);
@@ -143,14 +165,13 @@ public class MainActivity extends AppCompatActivity implements OnSortByChoiceCli
         }
     }
 
-    // Refactor this method later.
-    private void sortWorstBasedOnTab(int currentTabIndex) {
+    private void sortNameBasedOnTab(int currentTabIndex) {
         List<Movie> listOfMovies = new ArrayList<>();
         listOfMovies.addAll(getPopularMoviesSingleton());
-        Collections.sort(listOfMovies, DialogComparator.WorstToBestComparator);
+        Collections.sort(listOfMovies, DialogComparator.NameComparator);
 
         for (Movie movie : listOfMovies) {
-            Log.d(LOG_TAG, "Movie title and rating: " + movie.getTitle() + " " + movie.getRating());
+            Log.d(LOG_TAG, "Movie title: " + movie.getTitle());
         }
     }
 
@@ -162,6 +183,24 @@ public class MainActivity extends AppCompatActivity implements OnSortByChoiceCli
         for (Movie movie : listOfMovies) {
             Log.d(LOG_TAG, "Movie title and rating: " + movie.getTitle() + " " + movie.getRuntime());
         }
+    }
+
+    private void sortNewestReleaseBasedOnTab(int currentTabIndex) {
+        List<Movie> listOfMovies = new ArrayList<>();
+        listOfMovies.addAll(getPopularMoviesSingleton());
+        Collections.sort(listOfMovies, DialogComparator.NewestReleaseComparator);
+
+        for (Movie movie : listOfMovies) {
+            Log.d(LOG_TAG, "Movie title and rating: " + movie.getTitle() + " " + movie.getReleaseDate());
+        }
+    }
+
+    // TODO.
+    private void sortDefaultOrder(int currentTabIndex) {
+        getPopularMoviesSingleton();
+        getTopMoviesSingleton();
+        getCurrentMoviesSingleton();
+        getSavedMoviesSingleton();
     }
 
     private int getCurrentTab() {

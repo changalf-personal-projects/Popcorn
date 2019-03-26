@@ -15,14 +15,7 @@ public class DialogComparator {
         }
     };
 
-    public static Comparator<Movie> WorstToBestComparator = new Comparator<Movie>() {
-        @Override
-        public int compare(Movie movie, Movie t1) {
-            return (int) ((Double.parseDouble(movie.getRating()) - Double.parseDouble(t1.getRating())) * 10.0);
-        }
-    };
-
-    public static Comparator<Movie> NameCompparator = new Comparator<Movie>() {
+    public static Comparator<Movie> NameComparator = new Comparator<Movie>() {
         @Override
         public int compare(Movie movie, Movie t1) {
             return t1.getTitle().toLowerCase().compareTo(movie.getTitle().toLowerCase());
@@ -36,10 +29,10 @@ public class DialogComparator {
         }
     };
 
-    public static Comparator<Movie> ShortestRuntimeComparator = new Comparator<Movie>() {
+    public static Comparator<Movie> NewestReleaseComparator = new Comparator<Movie>() {
         @Override
         public int compare(Movie movie, Movie t1) {
-            return (int) (Double.parseDouble(movie.getRuntime()) - Double.parseDouble(t1.getRuntime()));
+            return t1.getReleaseDate().compareTo(movie.getReleaseDate());
         }
     };
 
