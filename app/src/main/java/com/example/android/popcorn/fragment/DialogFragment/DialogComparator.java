@@ -18,21 +18,28 @@ public class DialogComparator {
     public static Comparator<Movie> WorstToBestComparator = new Comparator<Movie>() {
         @Override
         public int compare(Movie movie, Movie t1) {
-            return 0;
+            return (int) ((Double.parseDouble(movie.getRating()) - Double.parseDouble(t1.getRating())) * 10.0);
         }
     };
 
     public static Comparator<Movie> NameCompparator = new Comparator<Movie>() {
         @Override
         public int compare(Movie movie, Movie t1) {
-            return 0;
+            return t1.getTitle().toLowerCase().compareTo(movie.getTitle().toLowerCase());
         }
     };
 
-    public static Comparator<Movie> RuntimeComparator = new Comparator<Movie>() {
+    public static Comparator<Movie> LongestRuntimeComparator = new Comparator<Movie>() {
         @Override
         public int compare(Movie movie, Movie t1) {
-            return 0;
+            return (int) (Double.parseDouble(t1.getRuntime()) - Double.parseDouble(movie.getRuntime()));
+        }
+    };
+
+    public static Comparator<Movie> ShortestRuntimeComparator = new Comparator<Movie>() {
+        @Override
+        public int compare(Movie movie, Movie t1) {
+            return (int) (Double.parseDouble(movie.getRuntime()) - Double.parseDouble(t1.getRuntime()));
         }
     };
 

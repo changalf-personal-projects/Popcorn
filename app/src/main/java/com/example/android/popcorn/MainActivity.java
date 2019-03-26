@@ -145,7 +145,23 @@ public class MainActivity extends AppCompatActivity implements OnSortByChoiceCli
 
     // Refactor this method later.
     private void sortWorstBasedOnTab(int currentTabIndex) {
+        List<Movie> listOfMovies = new ArrayList<>();
+        listOfMovies.addAll(getPopularMoviesSingleton());
+        Collections.sort(listOfMovies, DialogComparator.WorstToBestComparator);
 
+        for (Movie movie : listOfMovies) {
+            Log.d(LOG_TAG, "Movie title and rating: " + movie.getTitle() + " " + movie.getRating());
+        }
+    }
+
+    private void sortLongestRuntimeBasedOnTab(int currentTabIndex) {
+        List<Movie> listOfMovies = new ArrayList<>();
+        listOfMovies.addAll(getPopularMoviesSingleton());
+        Collections.sort(listOfMovies, DialogComparator.LongestRuntimeComparator);
+
+        for (Movie movie : listOfMovies) {
+            Log.d(LOG_TAG, "Movie title and rating: " + movie.getTitle() + " " + movie.getRuntime());
+        }
     }
 
     private int getCurrentTab() {
