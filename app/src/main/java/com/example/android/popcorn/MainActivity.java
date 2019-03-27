@@ -134,23 +134,23 @@ public class MainActivity extends AppCompatActivity implements OnSortByChoiceCli
     private void sortMovies(int choice, int currentTabIndex) {
         switch (choice) {
             case SORT_TOP_RATED:
-                sortTopRatedBasedOnTab(currentTabIndex);
+//                sortTopRatedBasedOnTab(currentTabIndex);
                 break;
 
             case SORT_NAME_ALPHABETICAL:
-                sortNameBasedOnTab(currentTabIndex);
+//                sortNameBasedOnTab(currentTabIndex);
                 break;
 
             case SORT_LONGEST_RUNTIME:
-                sortLongestRuntimeBasedOnTab(currentTabIndex);
+//                sortLongestRuntimeBasedOnTab(currentTabIndex);
                 break;
 
             case SORT_NEWEST_RELEASE:
-                sortNewestReleaseBasedOnTab(currentTabIndex);
+//                sortNewestReleaseBasedOnTab(currentTabIndex);
                 break;
 
             default:
-                sortDefaultOrder(currentTabIndex);
+//                sortDefaultOrder(currentTabIndex);
         }
     }
 

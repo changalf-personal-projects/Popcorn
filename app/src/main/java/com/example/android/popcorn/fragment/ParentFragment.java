@@ -164,7 +164,7 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
     }
 
     private void attachAdapter() {
-        mRecyclerAdapter = initRVAdapter();
+        mRecyclerAdapter = initRecyclerViewAdapter();
         mRecyclerView.setAdapter(mRecyclerAdapter);
         mProgressBar.setVisibility(View.GONE);
     }
@@ -242,5 +242,5 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
 
     abstract String createUrl();
 
-    abstract PosterRecyclerViewAdapter initRVAdapter();
+    abstract PosterRecyclerViewAdapter initRecyclerViewAdapter();
 }

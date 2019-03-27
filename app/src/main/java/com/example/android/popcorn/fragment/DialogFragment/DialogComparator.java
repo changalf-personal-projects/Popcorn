@@ -32,6 +32,7 @@ public class DialogComparator {
     public static Comparator<Movie> NewestReleaseComparator = new Comparator<Movie>() {
         @Override
         public int compare(Movie movie, Movie t1) {
+            // Use DateFormat.parse(string).
             return t1.getReleaseDate().compareTo(movie.getReleaseDate());
         }
     };

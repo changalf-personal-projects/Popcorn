@@ -26,7 +26,7 @@ public class CurrentFragment extends ParentFragment {
     }
 
     @Override
-    PosterRecyclerViewAdapter initRVAdapter() {
+    PosterRecyclerViewAdapter initRecyclerViewAdapter() {
         return new PosterRecyclerViewAdapter(getCurrentMoviesSingleton(), this, this);
     }
 }
