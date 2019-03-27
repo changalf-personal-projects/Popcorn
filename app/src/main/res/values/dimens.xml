@@ -9,6 +9,7 @@
     <dimen name="detail_rec_poster_title_size">13sp</dimen>
     <dimen name="detail_rec_poster_release_size">10sp</dimen>
     <dimen name="cast_member_name_size">25sp</dimen>
+    <dimen name="toolbar_sort_category_size">12sp</dimen>
 
     <!-- Random margins. -->
     <dimen name="cardview_margin">14dp</dimen>

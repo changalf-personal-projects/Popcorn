@@ -134,6 +134,7 @@ public class MainActivity extends AppCompatActivity implements OnSortByChoiceCli
     private void sortMovies(int choice, int currentTabIndex) {
         switch (choice) {
             case SORT_TOP_RATED:
+                mToolbar.setTitle(getResources().getString(R.string.top_rated));
 //                sortTopRatedBasedOnTab(currentTabIndex);
                 break;
 

@@ -30,7 +30,7 @@
                     android:layout_gravity="start|center_vertical"
                     android:text="@string/default_order"
                     android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/toolbar_sort_category_size" />
 
                 <ImageView
                     android:layout_width="wrap_content"

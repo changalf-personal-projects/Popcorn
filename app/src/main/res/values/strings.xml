@@ -42,4 +42,10 @@
     <string name="newest_release">Newest</string>
     <string name="default_order">Default</string>
 
+    <!-- Toolbar sort category. -->
+    <string name="toolbar_sort_top">Best to Worst</string>
+    <string name="toolbar_sort_name">Title (A-Z)</string>
+    <string name="toolbar_sort_length">Longest to Shortest</string>
+    <string name="toolbar_sort_newest">Newest to Oldest</string>
+
 </resources>
