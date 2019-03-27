@@ -26,6 +26,7 @@ import com.android.volley.VolleyError;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.Utilities;
 import com.example.android.popcorn.activity.DetailActivity;
+import com.example.android.popcorn.fragment.DialogFragment.OnSortByChoiceClickListener;
 import com.example.android.popcorn.fragment.parsing.LoganDetailsTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganIdTemplate;
 import com.example.android.popcorn.fragment.parsing.MovieParser;
@@ -51,10 +52,18 @@ import static com.example.android.popcorn.networking.UrlCreator.createUrlWithApp
  */
 
 public abstract class ParentFragment extends Fragment implements OnMovieClickListener,
-        OnMovieLongClickListener {
+        OnMovieLongClickListener, OnSortByChoiceClickListener {
 
     private final String LOG_TAG = PopularFragment.class.getSimpleName();
     private final int LAYOUT_COL_SPAN = 2;
+
+    protected final int SORT_DEFAULT = 0;
+    protected final int SORT_TOP_RATED = 1;
+    protected final int SORT_NAME_ALPHABETICAL = 2;
+    protected final int SORT_LONGEST_RUNTIME = 3;
+    protected final int SORT_NEWEST_RELEASE = 4;
+    protected final int SORT_HIGHEST_REVENUE = 5;
+    protected final int SORT_HIGHEST_PROFIT = 6;
 
     private VolleyRequestHandler mVolleyReqHandler;
     private VolleyHelper mVolleyHelper;

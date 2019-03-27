@@ -10,6 +10,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
@@ -38,7 +39,7 @@ import static com.example.android.popcorn.data.DbHelper.getDbInstance;
  * Created by alfredchang on 2017-09-16.
  */
 
-public class FavouriteFragment extends Fragment implements OnMovieClickListener {
+public class FavouriteFragment extends Fragment implements OnMovieClickListener, OnLongClickListener {
 
 
     private final String LOG_TAG = PopularFragment.class.getSimpleName();
@@ -174,6 +175,11 @@ public class FavouriteFragment extends Fragment implements OnMovieClickListener 
         startActivity(detailIntent);
     }
 
+    @Override
+    public boolean onLongClick(View view) {
+        return false;
+    }
+
     private SavedMoviesRVAdapter initRVAdapter() {
         return new SavedMoviesRVAdapter(mListOfSavedMovies, mMovieCursor, this);
     }
@@ -187,4 +193,5 @@ public class FavouriteFragment extends Fragment implements OnMovieClickListener 
             }
         });
     }
+
 }
