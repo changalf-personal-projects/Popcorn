@@ -36,4 +36,21 @@ public class DialogComparator {
         }
     };
 
+    public static Comparator<Movie> HighestRevenueComparator = new Comparator<Movie>() {
+        @Override
+        public int compare(Movie movie, Movie t1) {
+            return Integer.parseInt(t1.getRevenue()) - Integer.parseInt(movie.getRevenue());
+        }
+    };
+
+    public static Comparator<Movie> HighestProfitComparator = new Comparator<Movie>() {
+        @Override
+        public int compare(Movie movie, Movie t1) {
+            int t1Profit = Integer.parseInt(t1.getRevenue()) - Integer.parseInt(t1.getBudget());
+            int movieProfit = Integer.parseInt(movie.getRevenue()) - Integer.parseInt(movie.getBudget());
+
+            return t1Profit - movieProfit;
+        }
+    };
+
 }

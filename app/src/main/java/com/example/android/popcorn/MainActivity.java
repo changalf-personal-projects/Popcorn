@@ -48,6 +48,8 @@ public class MainActivity extends AppCompatActivity implements OnSortByChoiceCli
     private final int SORT_NAME_ALPHABETICAL = 2;
     private final int SORT_LONGEST_RUNTIME = 3;
     private final int SORT_NEWEST_RELEASE = 4;
+    private final int SORT_HIGHEST_REVENUE = 5;
+    private final int SORT_HIGHEST_PROFIT = 6;
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -150,6 +152,14 @@ public class MainActivity extends AppCompatActivity implements OnSortByChoiceCli
                 sortNewestReleaseBasedOnTab(currentTabIndex);
                 break;
 
+            case SORT_HIGHEST_REVENUE:
+                sortHighestRevenueBasedOnTab(currentTabIndex);
+                break;
+
+            case SORT_HIGHEST_PROFIT:
+                sortHighestProfitBasedOnTab(currentTabIndex);
+                break;
+
             default:
                 sortDefaultOrder(currentTabIndex);
         }
@@ -201,6 +211,31 @@ public class MainActivity extends AppCompatActivity implements OnSortByChoiceCli
 
         for (Movie movie : listOfMovies) {
             Log.d(LOG_TAG, "Movie title and release: " + movie.getTitle() + " " + movie.getReleaseDate());
+        }
+    }
+
+    private void sortHighestRevenueBasedOnTab(int currentTabIndex) {
+        List<Movie> listOfMovies = new ArrayList<>();
+        listOfMovies.addAll(getPopularMoviesSingleton());
+        Collections.sort(listOfMovies, DialogComparator.HighestRevenueComparator);
+
+        changeSortTitle(R.string.toolbar_sort_revenue);
+
+        for (Movie movie : listOfMovies) {
+            Log.d(LOG_TAG, "Movie title and revenue: " + movie.getTitle() + " " + movie.getRevenue());
+        }
+    }
+
+    private void sortHighestProfitBasedOnTab(int currentTabIndex) {
+        List<Movie> listOfMovies = new ArrayList<>();
+        listOfMovies.addAll(getPopularMoviesSingleton());
+        Collections.sort(listOfMovies, DialogComparator.HighestProfitComparator);
+
+        changeSortTitle(R.string.toolbar_sort_profit);
+
+        for (Movie movie : listOfMovies) {
+            int profit = Integer.parseInt(movie.getRevenue()) - Integer.parseInt(movie.getBudget());
+            Log.d(LOG_TAG, "Movie title and profit: " + movie.getTitle() + " " + profit);
         }
     }
 

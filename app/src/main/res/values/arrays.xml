@@ -7,6 +7,8 @@
         <item>@string/alphabetical_name</item>
         <item>@string/longest_runtime</item>
         <item>@string/newest_release</item>
+        <item>@string/highest_revenue</item>
+        <item>@string/highest_profit</item>
     </array>
 
 </resources>

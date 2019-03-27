@@ -40,12 +40,16 @@
     <string name="alphabetical_name">Name</string>
     <string name="longest_runtime">Runtime</string>
     <string name="newest_release">Newest</string>
+    <string name="highest_revenue">Revenue</string>
+    <string name="highest_profit">Profit</string>
     <string name="default_order">Default</string>
 
     <!-- Toolbar sort category. -->
-    <string name="toolbar_sort_top">Best to Worst</string>
+    <string name="toolbar_sort_top">Rating\n(Best to Worst)</string>
     <string name="toolbar_sort_name">Title (A-Z)</string>
-    <string name="toolbar_sort_length">Longest to Shortest</string>
-    <string name="toolbar_sort_newest">Newest to Oldest</string>
+    <string name="toolbar_sort_length">Runtime\n(Long to Short)</string>
+    <string name="toolbar_sort_newest">Release\n(New to Old)</string>
+    <string name="toolbar_sort_revenue">Revenue\n(High to Low)</string>
+    <string name="toolbar_sort_profit">Profit\n(High to Low)</string>
 
 </resources>
