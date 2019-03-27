@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.example.android.popcorn.activity.SearchResultsActivity;
 import com.example.android.popcorn.fragment.CurrentFragment;
@@ -33,10 +34,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.example.android.popcorn.model.singleton.CurrentMoviesSingleton.getCurrentMoviesSingleton;
 import static com.example.android.popcorn.model.singleton.PopularMoviesSingleton.getPopularMoviesSingleton;
-import static com.example.android.popcorn.model.singleton.SavedMoviesSingleton.getSavedMoviesSingleton;
-import static com.example.android.popcorn.model.singleton.TopMoviesSingleton.getTopMoviesSingleton;
 
 public class MainActivity extends AppCompatActivity implements OnSortByChoiceClickListener {
 
@@ -45,10 +43,11 @@ public class MainActivity extends AppCompatActivity implements OnSortByChoiceCli
     private final int PAGES_TO_RETAIN = 1;
     private final String DIALOG_FRAGMENT = "dialog fragment";
 
-    private final int SORT_TOP_RATED = 0;
-    private final int SORT_NAME_ALPHABETICAL = 1;
-    private final int SORT_LONGEST_RUNTIME = 2;
-    private final int SORT_NEWEST_RELEASE = 3;
+    private final int SORT_DEFAULT = 0;
+    private final int SORT_TOP_RATED = 1;
+    private final int SORT_NAME_ALPHABETICAL = 2;
+    private final int SORT_LONGEST_RUNTIME = 3;
+    private final int SORT_NEWEST_RELEASE = 4;
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -56,6 +55,8 @@ public class MainActivity extends AppCompatActivity implements OnSortByChoiceCli
     ViewPager mViewPager;
     @BindView(R.id.tab_layout)
     TabLayout mTabLayout;
+    @BindView(R.id.sort_category)
+    TextView mSortCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,24 +135,23 @@ public class MainActivity extends AppCompatActivity implements OnSortByChoiceCli
     private void sortMovies(int choice, int currentTabIndex) {
         switch (choice) {
             case SORT_TOP_RATED:
-                mToolbar.setTitle(getResources().getString(R.string.top_rated));
-//                sortTopRatedBasedOnTab(currentTabIndex);
+                sortTopRatedBasedOnTab(currentTabIndex);
                 break;
 
             case SORT_NAME_ALPHABETICAL:
-//                sortNameBasedOnTab(currentTabIndex);
+                sortNameBasedOnTab(currentTabIndex);
                 break;
 
             case SORT_LONGEST_RUNTIME:
-//                sortLongestRuntimeBasedOnTab(currentTabIndex);
+                sortLongestRuntimeBasedOnTab(currentTabIndex);
                 break;
 
             case SORT_NEWEST_RELEASE:
-//                sortNewestReleaseBasedOnTab(currentTabIndex);
+                sortNewestReleaseBasedOnTab(currentTabIndex);
                 break;
 
             default:
-//                sortDefaultOrder(currentTabIndex);
+                sortDefaultOrder(currentTabIndex);
         }
     }
 
@@ -160,6 +160,8 @@ public class MainActivity extends AppCompatActivity implements OnSortByChoiceCli
         List<Movie> listOfMovies = new ArrayList<>();
         listOfMovies.addAll(getPopularMoviesSingleton());
         Collections.sort(listOfMovies, DialogComparator.BestToWorstComparator);
+
+        changeSortTitle(R.string.toolbar_sort_top);
 
         for (Movie movie : listOfMovies) {
             Log.d(LOG_TAG, "Movie title and rating: " + movie.getTitle() + " " + movie.getRating());
@@ -171,8 +173,10 @@ public class MainActivity extends AppCompatActivity implements OnSortByChoiceCli
         listOfMovies.addAll(getPopularMoviesSingleton());
         Collections.sort(listOfMovies, DialogComparator.NameComparator);
 
+        changeSortTitle(R.string.toolbar_sort_name);
+
         for (Movie movie : listOfMovies) {
-            Log.d(LOG_TAG, "Movie title: " + movie.getTitle());
+            Log.d(LOG_TAG, "Movie name: " + movie.getTitle());
         }
     }
 
@@ -181,8 +185,10 @@ public class MainActivity extends AppCompatActivity implements OnSortByChoiceCli
         listOfMovies.addAll(getPopularMoviesSingleton());
         Collections.sort(listOfMovies, DialogComparator.LongestRuntimeComparator);
 
+        changeSortTitle(R.string.toolbar_sort_length);
+
         for (Movie movie : listOfMovies) {
-            Log.d(LOG_TAG, "Movie title and rating: " + movie.getTitle() + " " + movie.getRuntime());
+            Log.d(LOG_TAG, "Movie title and runtime: " + movie.getTitle() + " " + movie.getRuntime());
         }
     }
 
@@ -191,17 +197,23 @@ public class MainActivity extends AppCompatActivity implements OnSortByChoiceCli
         listOfMovies.addAll(getPopularMoviesSingleton());
         Collections.sort(listOfMovies, DialogComparator.NewestReleaseComparator);
 
+        changeSortTitle(R.string.toolbar_sort_newest);
+
         for (Movie movie : listOfMovies) {
-            Log.d(LOG_TAG, "Movie title and rating: " + movie.getTitle() + " " + movie.getReleaseDate());
+            Log.d(LOG_TAG, "Movie title and release: " + movie.getTitle() + " " + movie.getReleaseDate());
         }
     }
 
     // TODO.
     private void sortDefaultOrder(int currentTabIndex) {
-        getPopularMoviesSingleton();
-        getTopMoviesSingleton();
-        getCurrentMoviesSingleton();
-        getSavedMoviesSingleton();
+//        getPopularMoviesSingleton();
+//        getTopMoviesSingleton();
+//        getCurrentMoviesSingleton();
+//        getSavedMoviesSingleton();
+    }
+
+    private void changeSortTitle(int stringResource) {
+        mSortCategory.setText(stringResource);
     }
 
     private int getCurrentTab() {

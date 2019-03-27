@@ -18,7 +18,7 @@ public class DialogComparator {
     public static Comparator<Movie> NameComparator = new Comparator<Movie>() {
         @Override
         public int compare(Movie movie, Movie t1) {
-            return t1.getTitle().toLowerCase().compareTo(movie.getTitle().toLowerCase());
+            return movie.getTitle().compareTo(t1.getTitle());
         }
     };
 
@@ -32,7 +32,6 @@ public class DialogComparator {
     public static Comparator<Movie> NewestReleaseComparator = new Comparator<Movie>() {
         @Override
         public int compare(Movie movie, Movie t1) {
-            // Use DateFormat.parse(string).
             return t1.getReleaseDate().compareTo(movie.getReleaseDate());
         }
     };
