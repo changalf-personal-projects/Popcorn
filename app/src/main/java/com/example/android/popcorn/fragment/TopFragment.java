@@ -1,7 +1,5 @@
 package com.example.android.popcorn.fragment;
 
-import android.support.v4.app.DialogFragment;
-
 import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.networking.UriTerms;
 import com.example.android.popcorn.networking.UrlCreator;
@@ -33,7 +31,8 @@ public class TopFragment extends ParentFragment {
     }
 
     @Override
-    public void onClick(DialogFragment dialogFragment, int choice) {
+    void sortMovies(int choice, List<Movie> popularMoviesSingleton) {
 
     }
+
 }

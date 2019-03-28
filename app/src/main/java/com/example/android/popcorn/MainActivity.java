@@ -5,43 +5,30 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.android.popcorn.activity.SearchResultsActivity;
 import com.example.android.popcorn.fragment.CurrentFragment;
-import com.example.android.popcorn.fragment.DialogFragment.DialogComparator;
-import com.example.android.popcorn.fragment.DialogFragment.OnSortByChoiceClickListener;
-import com.example.android.popcorn.fragment.DialogFragment.SortByDialogFragment;
 import com.example.android.popcorn.fragment.FavouriteFragment;
 import com.example.android.popcorn.fragment.PopularFragment;
 import com.example.android.popcorn.fragment.TopFragment;
-import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.ui.MovieCollectionPagerAdapter;
 import com.example.android.popcorn.ui.TabTitles;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.example.android.popcorn.model.singleton.PopularMoviesSingleton.getPopularMoviesSingleton;
-
-public class MainActivity extends AppCompatActivity implements OnSortByChoiceClickListener {
+public class MainActivity extends AppCompatActivity {
 
     private final String LOG_TAG = MainActivity.class.getSimpleName();
 
     private final int PAGES_TO_RETAIN = 1;
-    private final String DIALOG_FRAGMENT = "dialog fragment";
 
     private final int SORT_DEFAULT = 0;
     private final int SORT_TOP_RATED = 1;
@@ -112,9 +99,9 @@ public class MainActivity extends AppCompatActivity implements OnSortByChoiceCli
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
-            case R.id.action_sort:
-                SortByDialogFragment dialogFragment = new SortByDialogFragment();
-                dialogFragment.show(getSupportFragmentManager(), DIALOG_FRAGMENT);
+//            case R.id.action_sort:
+//                SortByDialogFragment dialogFragment = new SortByDialogFragment();
+//                dialogFragment.show(getSupportFragmentManager(), DIALOG_FRAGMENT);
 
             case R.id.action_settings:
 
@@ -126,134 +113,6 @@ public class MainActivity extends AppCompatActivity implements OnSortByChoiceCli
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onClick(DialogFragment dialogFragment, int choice) {
-        sortMovies(choice, getCurrentTab());
-    }
-
-    // Refactor this method later.
-    private void sortMovies(int choice, int currentTabIndex) {
-        switch (choice) {
-            case SORT_TOP_RATED:
-//                sortTopRatedBasedOnTab(currentTabIndex);
-//                changeSortTitle(R.string.toolbar_sort_top);
-                break;
-
-            case SORT_NAME_ALPHABETICAL:
-//                sortNameBasedOnTab(currentTabIndex);
-                break;
-
-            case SORT_LONGEST_RUNTIME:
-//                sortLongestRuntimeBasedOnTab(currentTabIndex);
-                break;
-
-            case SORT_NEWEST_RELEASE:
-//                sortNewestReleaseBasedOnTab(currentTabIndex);
-                break;
-
-            case SORT_HIGHEST_REVENUE:
-//                sortHighestRevenueBasedOnTab(currentTabIndex);
-                break;
-
-            case SORT_HIGHEST_PROFIT:
-//                sortHighestProfitBasedOnTab(currentTabIndex);
-                break;
-
-            default:
-//                sortDefaultOrder(currentTabIndex);
-        }
-    }
-
-    // Refactor this method later.
-    private void sortTopRatedBasedOnTab(int currentTabIndex) {
-        List<Movie> listOfMovies = new ArrayList<>();
-        listOfMovies.addAll(getPopularMoviesSingleton());
-        Collections.sort(listOfMovies, DialogComparator.BestToWorstComparator);
-
-        changeSortTitle(R.string.toolbar_sort_top);
-
-        for (Movie movie : listOfMovies) {
-            Log.d(LOG_TAG, "Movie title and rating: " + movie.getTitle() + " " + movie.getRating());
-        }
-    }
-
-    private void sortNameBasedOnTab(int currentTabIndex) {
-        List<Movie> listOfMovies = new ArrayList<>();
-        listOfMovies.addAll(getPopularMoviesSingleton());
-        Collections.sort(listOfMovies, DialogComparator.NameComparator);
-
-        changeSortTitle(R.string.toolbar_sort_name);
-
-        for (Movie movie : listOfMovies) {
-            Log.d(LOG_TAG, "Movie name: " + movie.getTitle());
-        }
-    }
-
-    private void sortLongestRuntimeBasedOnTab(int currentTabIndex) {
-        List<Movie> listOfMovies = new ArrayList<>();
-        listOfMovies.addAll(getPopularMoviesSingleton());
-        Collections.sort(listOfMovies, DialogComparator.LongestRuntimeComparator);
-
-        changeSortTitle(R.string.toolbar_sort_length);
-
-        for (Movie movie : listOfMovies) {
-            Log.d(LOG_TAG, "Movie title and runtime: " + movie.getTitle() + " " + movie.getRuntime());
-        }
-    }
-
-    private void sortNewestReleaseBasedOnTab(int currentTabIndex) {
-        List<Movie> listOfMovies = new ArrayList<>();
-        listOfMovies.addAll(getPopularMoviesSingleton());
-        Collections.sort(listOfMovies, DialogComparator.NewestReleaseComparator);
-
-        changeSortTitle(R.string.toolbar_sort_newest);
-
-        for (Movie movie : listOfMovies) {
-            Log.d(LOG_TAG, "Movie title and release: " + movie.getTitle() + " " + movie.getReleaseDate());
-        }
-    }
-
-    private void sortHighestRevenueBasedOnTab(int currentTabIndex) {
-        List<Movie> listOfMovies = new ArrayList<>();
-        listOfMovies.addAll(getPopularMoviesSingleton());
-        Collections.sort(listOfMovies, DialogComparator.HighestRevenueComparator);
-
-        changeSortTitle(R.string.toolbar_sort_revenue);
-
-        for (Movie movie : listOfMovies) {
-            Log.d(LOG_TAG, "Movie title and revenue: " + movie.getTitle() + " " + movie.getRevenue());
-        }
-    }
-
-    private void sortHighestProfitBasedOnTab(int currentTabIndex) {
-        List<Movie> listOfMovies = new ArrayList<>();
-        listOfMovies.addAll(getPopularMoviesSingleton());
-        Collections.sort(listOfMovies, DialogComparator.HighestProfitComparator);
-
-        changeSortTitle(R.string.toolbar_sort_profit);
-
-        for (Movie movie : listOfMovies) {
-            int profit = Integer.parseInt(movie.getRevenue()) - Integer.parseInt(movie.getBudget());
-            Log.d(LOG_TAG, "Movie title and profit: " + movie.getTitle() + " " + profit);
-        }
-    }
-
-    // TODO.
-    private void sortDefaultOrder(int currentTabIndex) {
-//        getPopularMoviesSingleton();
-//        getTopMoviesSingleton();
-//        getCurrentMoviesSingleton();
-//        getSavedMoviesSingleton();
-    }
-
-    private void changeSortTitle(int stringResource) {
-        mSortCategory.setText(stringResource);
-    }
-
-    private int getCurrentTab() {
-        return mTabLayout.getSelectedTabPosition();
     }
 
     private void setupViewPager() {

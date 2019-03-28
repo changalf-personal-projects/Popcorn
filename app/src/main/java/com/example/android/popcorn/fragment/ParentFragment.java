@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build.VERSION;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
@@ -13,6 +14,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
@@ -26,7 +28,7 @@ import com.android.volley.VolleyError;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.Utilities;
 import com.example.android.popcorn.activity.DetailActivity;
-import com.example.android.popcorn.fragment.DialogFragment.OnSortByChoiceClickListener;
+import com.example.android.popcorn.fragment.DialogFragment.SortByDialogFragment;
 import com.example.android.popcorn.fragment.parsing.LoganDetailsTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganIdTemplate;
 import com.example.android.popcorn.fragment.parsing.MovieParser;
@@ -52,9 +54,10 @@ import static com.example.android.popcorn.networking.UrlCreator.createUrlWithApp
  */
 
 public abstract class ParentFragment extends Fragment implements OnMovieClickListener,
-        OnMovieLongClickListener, OnSortByChoiceClickListener {
+        OnMovieLongClickListener {
 
     private final String LOG_TAG = PopularFragment.class.getSimpleName();
+    private final String DIALOG_FRAGMENT = SortByDialogFragment.class.getName();
     private final int LAYOUT_COL_SPAN = 2;
 
     protected final int SORT_DEFAULT = 0;
@@ -87,6 +90,7 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         mRootView = inflater.inflate(R.layout.fragment_main, container, false);
+        setHasOptionsMenu(true);
         ButterKnife.bind(this, mRootView);
 
         getRefreshColours();
@@ -221,6 +225,30 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
         popupWindow.showAtLocation(mFrameLayout, Gravity.CENTER, 0, 0);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        switch (item.getItemId()) {
+            case R.id.action_sort:
+                Log.d(LOG_TAG, "Here in onOptionsItemSelected.");
+                DialogFragment dialogFragment = new SortByDialogFragment();
+//                        (DialogFragment) DialogFragment.instantiate(getActivity(), DIALOG_FRAGMENT);
+                dialogFragment.show(getFragmentManager(), DIALOG_FRAGMENT);
+
+            case R.id.action_settings:
+
+            case R.id.action_feedback:
+
+            case R.id.action_about:
+
+            default:
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
     private void onPullScreenDown() {
         configureWheelColours();
         mPullRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -252,4 +280,6 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
     abstract String createUrl();
 
     abstract PosterRecyclerViewAdapter initRecyclerViewAdapter();
+
+    abstract void sortMovies(int choice, List<Movie> popularMoviesSingleton);
 }

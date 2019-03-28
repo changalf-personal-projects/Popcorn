@@ -45,12 +45,6 @@ public class PopularFragment extends ParentFragment {
         return new PosterRecyclerViewAdapter(sortedListOfMovies, this, this);
     }
 
-    @Override
-    public void onClick(DialogFragment dialogFragment, int choice) {
-        Log.d(LOG_TAG, "OnClick activated in PopularFragment.");
-        sortMovies(choice, getPopularMoviesSingleton());
-    }
-
     void sortMovies(int choice, List<Movie> listOfMovies) {
         switch (choice) {
             case SORT_TOP_RATED:
@@ -61,26 +55,6 @@ public class PopularFragment extends ParentFragment {
                 sortTitle.setText(R.string.toolbar_sort_top);
 
                 break;
-
-//            case SORT_NAME_ALPHABETICAL:
-//                sortNameBasedOnTab(currentTabIndex);
-//                break;
-//
-//            case SORT_LONGEST_RUNTIME:
-//                sortLongestRuntimeBasedOnTab(currentTabIndex);
-//                break;
-//
-//            case SORT_NEWEST_RELEASE:
-//                sortNewestReleaseBasedOnTab(currentTabIndex);
-//                break;
-//
-//            case SORT_HIGHEST_REVENUE:
-//                sortHighestRevenueBasedOnTab(currentTabIndex);
-//                break;
-//
-//            case SORT_HIGHEST_PROFIT:
-//                sortHighestProfitBasedOnTab(currentTabIndex);
-//                break;
 
             default:
                 sortDefaultOrder();
