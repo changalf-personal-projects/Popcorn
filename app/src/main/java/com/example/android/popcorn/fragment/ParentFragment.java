@@ -1,5 +1,6 @@
 package com.example.android.popcorn.fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -11,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -28,6 +30,7 @@ import com.android.volley.VolleyError;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.Utilities;
 import com.example.android.popcorn.activity.DetailActivity;
+import com.example.android.popcorn.fragment.DialogFragment.DialogComparator;
 import com.example.android.popcorn.fragment.DialogFragment.SortByDialogFragment;
 import com.example.android.popcorn.fragment.parsing.LoganDetailsTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganIdTemplate;
@@ -41,11 +44,13 @@ import com.example.android.popcorn.ui.poster_recyclerview.OnMovieLongClickListen
 import com.example.android.popcorn.ui.poster_recyclerview.PosterRecyclerViewAdapter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.android.popcorn.model.singleton.PopularMoviesSingleton.getPopularMoviesSingleton;
 import static com.example.android.popcorn.networking.UrlCreator.appendEndpoints;
 import static com.example.android.popcorn.networking.UrlCreator.createUrlWithAppendedResponse;
 
@@ -247,7 +252,59 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
         return super.onOptionsItemSelected(item);
     }
 
-    private void displayDialog() {
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == Activity.RESULT_OK) {
+            Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
+            TextView sortTitle = (TextView) toolbar.findViewById(R.id.sort_category);
+            sortTitle.setText(R.string.toolbar_sort_top);
+            sortMovies(SORT_TOP_RATED);
+        } else {
+            Log.d(LOG_TAG, "Print result code: " + resultCode);
+        }
+    }
+
+    private void initSortRecyclerViewAdapter(List<Movie> sortedListOfMovies) {
+        mRecyclerAdapter.clearData();
+        mRecyclerAdapter.renewData(sortedListOfMovies);
+    }
+
+    private void sortDefaultOrder() {
+        initRecyclerViewAdapter();
+    }
+
+    void sortTopRatedBasedOnTab() {
+        List<Movie> listOfMovies = new ArrayList<>();
+        listOfMovies.addAll(getPopularMoviesSingleton());
+        Collections.sort(listOfMovies, DialogComparator.BestToWorstComparator);
+
+        for (Movie movie : listOfMovies) {
+            Log.d(LOG_TAG, "Movie title and rating: " + movie.getTitle() + " " + movie.getRating());
+        }
+
+        initSortRecyclerViewAdapter(listOfMovies);
+    }
+
+    void sortMovies(int choice) {
+        switch (choice) {
+            case SORT_TOP_RATED:
+                setSortTitle(R.string.toolbar_sort_top);
+                sortTopRatedBasedOnTab();
+                break;
+
+            default:
+                setSortTitle(R.string.toolbar_sort_default);
+                sortDefaultOrder();
+        }
+    }
+
+    private void setSortTitle(int category) {
+        Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
+        TextView sortTitle = (TextView) toolbar.findViewById(R.id.sort_category);
+        sortTitle.setText(category);
+    }
+
+    protected void displayDialog() {
         DialogFragment dialogFragment = SortByDialogFragment.newInstance(123);
         dialogFragment.setTargetFragment(this, DIALOG_FRAGMENT);
         dialogFragment.show(getFragmentManager().beginTransaction(), "dialog");
@@ -285,5 +342,5 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
 
     abstract PosterRecyclerViewAdapter initRecyclerViewAdapter();
 
-    abstract void sortMovies(int choice, List<Movie> popularMoviesSingleton);
+
 }

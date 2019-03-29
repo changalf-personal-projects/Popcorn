@@ -51,5 +51,6 @@
     <string name="toolbar_sort_newest">Release\n(New to Old)</string>
     <string name="toolbar_sort_revenue">Revenue\n(High to Low)</string>
     <string name="toolbar_sort_profit">Profit\n(High to Low)</string>
+    <string name="toolbar_sort_default">Default</string>
 
 </resources>

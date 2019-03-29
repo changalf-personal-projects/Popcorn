@@ -30,9 +30,4 @@ public class TopFragment extends ParentFragment {
         return new PosterRecyclerViewAdapter(getTopMoviesSingleton(), this, this);
     }
 
-    @Override
-    void sortMovies(int choice, List<Movie> popularMoviesSingleton) {
-
-    }
-
 }

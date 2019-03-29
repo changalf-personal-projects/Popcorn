@@ -34,6 +34,7 @@ public class SortByDialogFragment extends DialogFragment {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         getTargetFragment().onActivityResult(getTargetRequestCode(), Activity.RESULT_OK,
                                 getActivity().getIntent());
+                        dismiss();
                     }
                 });
 

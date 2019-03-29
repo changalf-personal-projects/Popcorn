@@ -1,19 +1,10 @@
 package com.example.android.popcorn.fragment;
 
-import android.support.v4.app.DialogFragment;
-import android.util.Log;
-import android.widget.TextView;
-import android.widget.Toolbar;
-
-import com.example.android.popcorn.R;
-import com.example.android.popcorn.fragment.DialogFragment.DialogComparator;
 import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.networking.UriTerms;
 import com.example.android.popcorn.networking.UrlCreator;
 import com.example.android.popcorn.ui.poster_recyclerview.PosterRecyclerViewAdapter;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static com.example.android.popcorn.model.singleton.PopularMoviesSingleton.getPopularMoviesSingleton;
@@ -39,42 +30,6 @@ public class PopularFragment extends ParentFragment {
     @Override
     PosterRecyclerViewAdapter initRecyclerViewAdapter() {
         return new PosterRecyclerViewAdapter(getPopularMoviesSingleton(), this, this);
-    }
-
-    private PosterRecyclerViewAdapter initSortRecyclerViewAdapter(List<Movie> sortedListOfMovies) {
-        return new PosterRecyclerViewAdapter(sortedListOfMovies, this, this);
-    }
-
-    void sortMovies(int choice, List<Movie> listOfMovies) {
-        switch (choice) {
-            case SORT_TOP_RATED:
-                sortTopRatedBasedOnTab(listOfMovies);
-
-                Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
-                TextView sortTitle = (TextView) toolbar.findViewById(R.id.sort_category);
-                sortTitle.setText(R.string.toolbar_sort_top);
-
-                break;
-
-            default:
-                sortDefaultOrder();
-        }
-    }
-
-    private void sortDefaultOrder() {
-        initRecyclerViewAdapter();
-    }
-
-    void sortTopRatedBasedOnTab(List<Movie> movies) {
-        List<Movie> listOfMovies = new ArrayList<>();
-        listOfMovies.addAll(movies);
-        Collections.sort(listOfMovies, DialogComparator.BestToWorstComparator);
-
-        for (Movie movie : listOfMovies) {
-            Log.d(LOG_TAG, "Movie title and rating: " + movie.getTitle() + " " + movie.getRating());
-        }
-
-        initSortRecyclerViewAdapter(listOfMovies);
     }
 
 }
