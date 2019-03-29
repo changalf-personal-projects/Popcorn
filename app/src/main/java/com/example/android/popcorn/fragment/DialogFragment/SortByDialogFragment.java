@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog.Builder;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,6 +18,7 @@ public class SortByDialogFragment extends DialogFragment {
     private static final String LOG_TAG = SortByDialogFragment.class.getSimpleName();
 
     private final int DEFAULT_CHECKED = 0;
+    private final String SORT_CHOICE = "sort choice";
 
     // Public constructor for other fragments to instantiate this class.
     public SortByDialogFragment() {
@@ -32,8 +34,9 @@ public class SortByDialogFragment extends DialogFragment {
                 R.array.sort_by_choices, DEFAULT_CHECKED, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = getActivity().getIntent().putExtra(SORT_CHOICE, i);
                         getTargetFragment().onActivityResult(getTargetRequestCode(), Activity.RESULT_OK,
-                                getActivity().getIntent());
+                                intent);
                         dismiss();
                     }
                 });

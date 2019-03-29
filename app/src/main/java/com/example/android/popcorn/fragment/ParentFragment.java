@@ -62,6 +62,8 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
         OnMovieLongClickListener {
 
     private final String LOG_TAG = PopularFragment.class.getSimpleName();
+    private final String SORT_CHOICE = "sort choice";
+    private final int DEFAULT_SORT_CHOICE = 0;
     private final int DIALOG_FRAGMENT = 1;
     private final int LAYOUT_COL_SPAN = 2;
 
@@ -255,22 +257,16 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
-            Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
-            TextView sortTitle = (TextView) toolbar.findViewById(R.id.sort_category);
-            sortTitle.setText(R.string.toolbar_sort_top);
-            sortMovies(SORT_TOP_RATED);
+            sortMovies(data.getIntExtra(SORT_CHOICE, DEFAULT_SORT_CHOICE));
         } else {
             Log.d(LOG_TAG, "Print result code: " + resultCode);
         }
     }
 
-    private void initSortRecyclerViewAdapter(List<Movie> sortedListOfMovies) {
-        mRecyclerAdapter.clearData();
-        mRecyclerAdapter.renewData(sortedListOfMovies);
-    }
-
-    private void sortDefaultOrder() {
-        initRecyclerViewAdapter();
+    private void sortDefaultOrder(List<Movie> unsortedList) {
+        Log.d(LOG_TAG, "Popular movies singleton size 3: " + unsortedList.size());
+        mRecyclerAdapter.renewDataAfterSort(unsortedList);
+        Log.d(LOG_TAG, "Popular movies singleton size 4: " + unsortedList.size());
     }
 
     void sortTopRatedBasedOnTab() {
@@ -278,23 +274,45 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
         listOfMovies.addAll(getPopularMoviesSingleton());
         Collections.sort(listOfMovies, DialogComparator.BestToWorstComparator);
 
-        for (Movie movie : listOfMovies) {
-            Log.d(LOG_TAG, "Movie title and rating: " + movie.getTitle() + " " + movie.getRating());
-        }
+        Log.d(LOG_TAG, "Popular movies singleton size 1: " + listOfMovies.size());
+        mRecyclerAdapter.renewDataAfterSort(listOfMovies);
+        Log.d(LOG_TAG, "Popular movies singleton size 2: " + listOfMovies.size());
+    }
 
-        initSortRecyclerViewAdapter(listOfMovies);
+    void sortNameBasedOnTab() {
+        List<Movie> listOfMovies = new ArrayList<>();
+        listOfMovies.addAll(getPopularMoviesSingleton());
+        Collections.sort(listOfMovies, DialogComparator.NameComparator);
+
+        Log.d(LOG_TAG, "Popular movies singleton size 1: " + listOfMovies.size());
+        mRecyclerAdapter.renewDataAfterSort(listOfMovies);
+        Log.d(LOG_TAG, "Popular movies singleton size 2: " + listOfMovies.size());
     }
 
     void sortMovies(int choice) {
+        List<Movie> unsortedList = new ArrayList<>();
+        unsortedList.addAll(getPopularMoviesSingleton());
+
         switch (choice) {
+            // TODO: Still not returning default list.
+            case SORT_DEFAULT:
+                setSortTitle(R.string.toolbar_sort_default);
+                sortDefaultOrder(unsortedList);
+                break;
+
             case SORT_TOP_RATED:
                 setSortTitle(R.string.toolbar_sort_top);
                 sortTopRatedBasedOnTab();
                 break;
 
+            case SORT_NAME_ALPHABETICAL:
+                setSortTitle(R.string.toolbar_sort_name);
+                sortNameBasedOnTab();
+                break;
+
             default:
                 setSortTitle(R.string.toolbar_sort_default);
-                sortDefaultOrder();
+                sortDefaultOrder(unsortedList);
         }
     }
 
@@ -341,6 +359,5 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
     abstract String createUrl();
 
     abstract PosterRecyclerViewAdapter initRecyclerViewAdapter();
-
 
 }

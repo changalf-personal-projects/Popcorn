@@ -54,6 +54,8 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
     private final float PIVOT_X = 0.5f;
     private final float PIVOT_Y = 0.5f;
 
+    private final int FIRST_ITEM = 0;
+    private final int LIST_SIZE = 20;
     private final String NO_GENRE = "No genre";
     private final String SNACKBAR_SAVE_MESSAGE = "Saved to favourites!";
     private final String SNACKBAR_UNSAVE_MESSAGE = "Removed from favourites!";
@@ -153,6 +155,12 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
 
     // Call this when refreshing layout.
     public void renewData(List<Movie> listOfMovies) {
+        mListOfMovies.addAll(listOfMovies);
+        notifyDataSetChanged();
+    }
+
+    public void renewDataAfterSort(List<Movie> listOfMovies) {
+        mListOfMovies.clear();
         mListOfMovies.addAll(listOfMovies);
         notifyDataSetChanged();
     }
