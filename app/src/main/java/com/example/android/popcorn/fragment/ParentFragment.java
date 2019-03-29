@@ -232,9 +232,7 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
             case R.id.action_sort:
-                Log.d(LOG_TAG, "Here in onOptionsItemSelected.");
                 DialogFragment dialogFragment = new SortByDialogFragment();
-//                        (DialogFragment) DialogFragment.instantiate(getActivity(), DIALOG_FRAGMENT);
                 dialogFragment.show(getFragmentManager(), DIALOG_FRAGMENT);
 
             case R.id.action_settings:
