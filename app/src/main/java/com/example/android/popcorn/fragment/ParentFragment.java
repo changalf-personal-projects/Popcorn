@@ -57,7 +57,7 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
         OnMovieLongClickListener {
 
     private final String LOG_TAG = PopularFragment.class.getSimpleName();
-    private final String DIALOG_FRAGMENT = SortByDialogFragment.class.getName();
+    private final int DIALOG_FRAGMENT = 1;
     private final int LAYOUT_COL_SPAN = 2;
 
     protected final int SORT_DEFAULT = 0;
@@ -232,8 +232,8 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
             case R.id.action_sort:
-                DialogFragment dialogFragment = new SortByDialogFragment();
-                dialogFragment.show(getFragmentManager(), DIALOG_FRAGMENT);
+                displayDialog();
+                break;
 
             case R.id.action_settings:
 
@@ -245,6 +245,12 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void displayDialog() {
+        DialogFragment dialogFragment = SortByDialogFragment.newInstance(123);
+        dialogFragment.setTargetFragment(this, DIALOG_FRAGMENT);
+        dialogFragment.show(getFragmentManager().beginTransaction(), "dialog");
     }
 
     private void onPullScreenDown() {
