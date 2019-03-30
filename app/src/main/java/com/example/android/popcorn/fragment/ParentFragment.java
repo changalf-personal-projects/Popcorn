@@ -30,7 +30,6 @@ import com.android.volley.VolleyError;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.Utilities;
 import com.example.android.popcorn.activity.DetailActivity;
-import com.example.android.popcorn.fragment.DialogFragment.DialogComparator;
 import com.example.android.popcorn.fragment.DialogFragment.SortByDialogFragment;
 import com.example.android.popcorn.fragment.parsing.LoganDetailsTemplate;
 import com.example.android.popcorn.fragment.parsing.LoganIdTemplate;
@@ -39,18 +38,17 @@ import com.example.android.popcorn.fragment.saving.DataSaver;
 import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.networking.VolleyHelper;
 import com.example.android.popcorn.networking.VolleyRequestHandler;
+import com.example.android.popcorn.ui.MovieSorter;
 import com.example.android.popcorn.ui.poster_recyclerview.OnMovieClickListener;
 import com.example.android.popcorn.ui.poster_recyclerview.OnMovieLongClickListener;
 import com.example.android.popcorn.ui.poster_recyclerview.PosterRecyclerViewAdapter;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.example.android.popcorn.model.singleton.PopularMoviesSingleton.getPopularMoviesSingleton;
 import static com.example.android.popcorn.networking.UrlCreator.appendEndpoints;
 import static com.example.android.popcorn.networking.UrlCreator.createUrlWithAppendedResponse;
 
@@ -77,12 +75,13 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
 
     private VolleyRequestHandler mVolleyReqHandler;
     private VolleyHelper mVolleyHelper;
+    private MovieSorter mMovieSorter;
     private List<Movie> mListOfMovies;
     private List<Integer> mListOfRefreshColours = new ArrayList<>();
     private DataSaver mDataSaver;
     private View mRootView;
 
-    PosterRecyclerViewAdapter mRecyclerAdapter;
+    private PosterRecyclerViewAdapter mRecyclerAdapter;
 
     @BindView(R.id.progress_bar)
     ProgressBar mProgressBar;
@@ -263,70 +262,20 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
         }
     }
 
+    private void initializeMovieSorter() {
+        if (mMovieSorter == null) {
+            mMovieSorter = new MovieSorter(mRecyclerAdapter);
+        }
+    }
+
     private void resetDefaultOrder() {
         configureWheelColours();
         refreshScreen();
     }
 
-    // Ordered improperly.
-    private void sortByRating() {
-        List<Movie> listOfMovies = new ArrayList<>();
-        listOfMovies.addAll(getPopularMoviesSingleton());
-        Collections.sort(listOfMovies, DialogComparator.BestToWorstComparator);
+    private void sortMovies(int choice) {
+        initializeMovieSorter();
 
-        for (Movie movie : listOfMovies) {
-            Log.d(LOG_TAG, "Movie title and rating: " + movie.getTitle() + " " + movie.getRating());
-        }
-
-        mRecyclerAdapter.renewDataAfterSort(listOfMovies);
-    }
-
-    private void sortByName() {
-        List<Movie> listOfMovies = new ArrayList<>();
-        listOfMovies.addAll(getPopularMoviesSingleton());
-        Collections.sort(listOfMovies, DialogComparator.NameComparator);
-
-        mRecyclerAdapter.renewDataAfterSort(listOfMovies);
-    }
-
-    // May return NPE.
-    private void sortByRuntime() {
-        List<Movie> listOfMovies = new ArrayList<>();
-        listOfMovies.addAll(getPopularMoviesSingleton());
-        Collections.sort(listOfMovies, DialogComparator.LongestRuntimeComparator);
-
-        for (Movie movie : listOfMovies) {
-            Log.d(LOG_TAG, "Movie title and runtime: " + movie.getTitle() + " " + movie.getRuntime());
-        }
-
-        mRecyclerAdapter.renewDataAfterSort(listOfMovies);
-    }
-
-    private void sortByRelease() {
-        List<Movie> listOfMovies = new ArrayList<>();
-        listOfMovies.addAll(getPopularMoviesSingleton());
-        Collections.sort(listOfMovies, DialogComparator.NewestReleaseComparator);
-
-        mRecyclerAdapter.renewDataAfterSort(listOfMovies);
-    }
-
-    private void sortByRevenue() {
-        List<Movie> listOfMovies = new ArrayList<>();
-        listOfMovies.addAll(getPopularMoviesSingleton());
-        Collections.sort(listOfMovies, DialogComparator.HighestRevenueComparator);
-
-        mRecyclerAdapter.renewDataAfterSort(listOfMovies);
-    }
-
-    private void sortByProfit() {
-        List<Movie> listOfMovies = new ArrayList<>();
-        listOfMovies.addAll(getPopularMoviesSingleton());
-        Collections.sort(listOfMovies, DialogComparator.HighestProfitComparator);
-
-        mRecyclerAdapter.renewDataAfterSort(listOfMovies);
-    }
-
-    void sortMovies(int choice) {
         switch (choice) {
             case SORT_DEFAULT:
                 setSortTitle(R.string.toolbar_sort_default);
@@ -335,32 +284,32 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
 
             case SORT_TOP_RATED:
                 setSortTitle(R.string.toolbar_sort_top);
-                sortByRating();
+                mMovieSorter.sortByRating();
                 break;
 
             case SORT_NAME_ALPHABETICAL:
                 setSortTitle(R.string.toolbar_sort_name);
-                sortByName();
+                mMovieSorter.sortByName();
                 break;
 
             case SORT_LONGEST_RUNTIME:
                 setSortTitle(R.string.toolbar_sort_length);
-                sortByRuntime();
+                mMovieSorter.sortByRuntime();
                 break;
 
             case SORT_NEWEST_RELEASE:
                 setSortTitle(R.string.toolbar_sort_newest);
-                sortByRelease();
+                mMovieSorter.sortByRelease();
                 break;
 
             case SORT_HIGHEST_REVENUE:
                 setSortTitle(R.string.toolbar_sort_revenue);
-                sortByRevenue();
+                mMovieSorter.sortByRevenue();
                 break;
 
             case SORT_HIGHEST_PROFIT:
                 setSortTitle(R.string.toolbar_sort_profit);
-                sortByProfit();
+                mMovieSorter.sortByProfit();
                 break;
 
             default:
