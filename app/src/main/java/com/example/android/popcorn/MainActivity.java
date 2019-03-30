@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.android.popcorn.activity.SearchResultsActivity;
@@ -91,28 +90,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        switch (item.getItemId()) {
-//            case R.id.action_sort:
-//                SortByDialogFragment dialogFragment = new SortByDialogFragment();
-//                dialogFragment.show(getSupportFragmentManager(), DIALOG_FRAGMENT);
-
-            case R.id.action_settings:
-
-            case R.id.action_feedback:
-
-            case R.id.action_about:
-
-            default:
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     private void setupViewPager() {
