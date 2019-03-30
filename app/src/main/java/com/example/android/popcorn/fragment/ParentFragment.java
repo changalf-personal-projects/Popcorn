@@ -263,10 +263,8 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
         }
     }
 
-    private void sortDefaultOrder(List<Movie> unsortedList) {
-        Log.d(LOG_TAG, "Popular movies singleton size 3: " + unsortedList.size());
-        mRecyclerAdapter.renewDataAfterSort(unsortedList);
-        Log.d(LOG_TAG, "Popular movies singleton size 4: " + unsortedList.size());
+    private void sortDefaultOrder(List<Movie> unsortedListOfMovies) {
+        mRecyclerAdapter.renewDataAfterSort(unsortedListOfMovies);
     }
 
     void sortTopRatedBasedOnTab() {
@@ -274,9 +272,11 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
         listOfMovies.addAll(getPopularMoviesSingleton());
         Collections.sort(listOfMovies, DialogComparator.BestToWorstComparator);
 
-        Log.d(LOG_TAG, "Popular movies singleton size 1: " + listOfMovies.size());
+        for (Movie movie : listOfMovies) {
+            Log.d(LOG_TAG, "Movie title and rating 2: " + movie.getTitle() + " " + movie.getRating());
+        }
+
         mRecyclerAdapter.renewDataAfterSort(listOfMovies);
-        Log.d(LOG_TAG, "Popular movies singleton size 2: " + listOfMovies.size());
     }
 
     void sortNameBasedOnTab() {
@@ -284,20 +284,22 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
         listOfMovies.addAll(getPopularMoviesSingleton());
         Collections.sort(listOfMovies, DialogComparator.NameComparator);
 
-        Log.d(LOG_TAG, "Popular movies singleton size 1: " + listOfMovies.size());
         mRecyclerAdapter.renewDataAfterSort(listOfMovies);
-        Log.d(LOG_TAG, "Popular movies singleton size 2: " + listOfMovies.size());
     }
 
     void sortMovies(int choice) {
-        List<Movie> unsortedList = new ArrayList<>();
-        unsortedList.addAll(getPopularMoviesSingleton());
+        List<Movie> unsortedListOfMovies = new ArrayList<>();
+        unsortedListOfMovies.addAll(getPopularMoviesSingleton());
+
+        for (Movie movie : unsortedListOfMovies) {
+            Log.d(LOG_TAG, "Movie title and rating 1: " + movie.getTitle() + " " + movie.getRating());
+        }
 
         switch (choice) {
             // TODO: Still not returning default list.
             case SORT_DEFAULT:
                 setSortTitle(R.string.toolbar_sort_default);
-                sortDefaultOrder(unsortedList);
+                sortDefaultOrder(unsortedListOfMovies);
                 break;
 
             case SORT_TOP_RATED:
@@ -312,7 +314,7 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
 
             default:
                 setSortTitle(R.string.toolbar_sort_default);
-                sortDefaultOrder(unsortedList);
+                sortDefaultOrder(unsortedListOfMovies);
         }
     }
 
