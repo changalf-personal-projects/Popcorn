@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build.VERSION;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -73,15 +74,16 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
     protected final int SORT_HIGHEST_REVENUE = 5;
     protected final int SORT_HIGHEST_PROFIT = 6;
 
+    private int tabIndex = 0;
+
     private VolleyRequestHandler mVolleyReqHandler;
     private VolleyHelper mVolleyHelper;
+    private PosterRecyclerViewAdapter mRecyclerAdapter;
     private MovieSorter mMovieSorter;
     private List<Movie> mListOfMovies;
     private List<Integer> mListOfRefreshColours = new ArrayList<>();
     private DataSaver mDataSaver;
     private View mRootView;
-
-    private PosterRecyclerViewAdapter mRecyclerAdapter;
 
     @BindView(R.id.progress_bar)
     ProgressBar mProgressBar;
@@ -91,6 +93,8 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
     SwipeRefreshLayout mPullRefreshLayout;
     @BindView(R.id.frame_layout)
     FrameLayout mFrameLayout;
+    @BindView(R.id.tab_layout)
+    TabLayout mTabLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -110,6 +114,8 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
         initVolleyHandler();
         initVolleyHelper();
         fetchJsonId();
+
+        tabIndex = mTabLayout.getSelectedTabPosition();
 
         return mRootView;
     }
