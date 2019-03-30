@@ -1,5 +1,6 @@
 package com.example.android.popcorn.fragment;
 
+import com.example.android.popcorn.R;
 import com.example.android.popcorn.model.Movie;
 import com.example.android.popcorn.networking.UriTerms;
 import com.example.android.popcorn.networking.UrlCreator;
@@ -16,18 +17,64 @@ import static com.example.android.popcorn.model.singleton.TopMoviesSingleton.get
 public class TopFragment extends ParentFragment {
 
     @Override
-    List<Movie> getSingletonList() {
+    protected List<Movie> getSingletonList() {
         return getTopMoviesSingleton();
     }
 
     @Override
-    String createUrl() {
+    protected String createUrl() {
         return UrlCreator.createUrlWithCategory(UriTerms.TOP);
     }
 
     @Override
-    PosterRecyclerViewAdapter initRecyclerViewAdapter() {
+    protected PosterRecyclerViewAdapter initRecyclerViewAdapter() {
         return new PosterRecyclerViewAdapter(getTopMoviesSingleton(), this, this);
+    }
+
+    @Override
+    protected void sortMovies(int choice) {
+        initializeMovieSorter();
+
+        switch (choice) {
+            case SORT_DEFAULT:
+                setSortTitle(R.string.toolbar_sort_default);
+                resetDefaultOrder();
+                break;
+
+            case SORT_TOP_RATED:
+                setSortTitle(R.string.toolbar_sort_top);
+                mMovieSorter.sortByRating(getTopMoviesSingleton());
+                break;
+
+            case SORT_NAME_ALPHABETICAL:
+                setSortTitle(R.string.toolbar_sort_name);
+                mMovieSorter.sortByName(getTopMoviesSingleton());
+                break;
+
+            case SORT_LONGEST_RUNTIME:
+                setSortTitle(R.string.toolbar_sort_length);
+                mMovieSorter.sortByRuntime(getTopMoviesSingleton());
+                break;
+
+            case SORT_NEWEST_RELEASE:
+                setSortTitle(R.string.toolbar_sort_newest);
+                mMovieSorter.sortByRelease(getTopMoviesSingleton());
+                break;
+
+            case SORT_HIGHEST_REVENUE:
+                setSortTitle(R.string.toolbar_sort_revenue);
+                mMovieSorter.sortByRevenue(getTopMoviesSingleton());
+                break;
+
+            case SORT_HIGHEST_PROFIT:
+                setSortTitle(R.string.toolbar_sort_profit);
+                mMovieSorter.sortByProfit(getTopMoviesSingleton());
+                break;
+
+            default:
+                setSortTitle(R.string.toolbar_sort_default);
+                resetDefaultOrder();
+        }
     }
 
 }

@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static com.example.android.popcorn.model.singleton.PopularMoviesSingleton.getPopularMoviesSingleton;
-
 public class MovieSorter {
 
     private final String LOG_TAG = MovieSorter.class.getSimpleName();
@@ -20,49 +18,53 @@ public class MovieSorter {
         mRecyclerViewAdapter = recyclerViewAdapter;
     }
 
-    public void sortByRating() {
+    public void sortMovies(int sortChoice, int tabIndex) {
+
+    }
+
+    public void sortByRating(List<Movie> movieSingleton) {
         List<Movie> listOfMovies = new ArrayList<>();
-        listOfMovies.addAll(getPopularMoviesSingleton());
+        listOfMovies.addAll(movieSingleton);
         Collections.sort(listOfMovies, DialogComparator.BestToWorstComparator);
 
         mRecyclerViewAdapter.renewDataAfterSort(listOfMovies);
     }
 
-    public void sortByName() {
+    public void sortByName(List<Movie> movieSingleton) {
         List<Movie> listOfMovies = new ArrayList<>();
-        listOfMovies.addAll(getPopularMoviesSingleton());
+        listOfMovies.addAll(movieSingleton);
         Collections.sort(listOfMovies, DialogComparator.NameComparator);
 
         mRecyclerViewAdapter.renewDataAfterSort(listOfMovies);
     }
 
-    public void sortByRuntime() {
+    public void sortByRuntime(List<Movie> movieSingleton) {
         List<Movie> listOfMovies = new ArrayList<>();
-        listOfMovies.addAll(getPopularMoviesSingleton());
+        listOfMovies.addAll(movieSingleton);
         Collections.sort(listOfMovies, DialogComparator.LongestRuntimeComparator);
 
         mRecyclerViewAdapter.renewDataAfterSort(listOfMovies);
     }
 
-    public void sortByRelease() {
+    public void sortByRelease(List<Movie> movieSingleton) {
         List<Movie> listOfMovies = new ArrayList<>();
-        listOfMovies.addAll(getPopularMoviesSingleton());
+        listOfMovies.addAll(movieSingleton);
         Collections.sort(listOfMovies, DialogComparator.NewestReleaseComparator);
 
         mRecyclerViewAdapter.renewDataAfterSort(listOfMovies);
     }
 
-    public void sortByRevenue() {
+    public void sortByRevenue(List<Movie> movieSingleton) {
         List<Movie> listOfMovies = new ArrayList<>();
-        listOfMovies.addAll(getPopularMoviesSingleton());
+        listOfMovies.addAll(movieSingleton);
         Collections.sort(listOfMovies, DialogComparator.HighestRevenueComparator);
 
         mRecyclerViewAdapter.renewDataAfterSort(listOfMovies);
     }
 
-    public void sortByProfit() {
+    public void sortByProfit(List<Movie> movieSingleton) {
         List<Movie> listOfMovies = new ArrayList<>();
-        listOfMovies.addAll(getPopularMoviesSingleton());
+        listOfMovies.addAll(movieSingleton);
         Collections.sort(listOfMovies, DialogComparator.HighestProfitComparator);
 
         mRecyclerViewAdapter.renewDataAfterSort(listOfMovies);

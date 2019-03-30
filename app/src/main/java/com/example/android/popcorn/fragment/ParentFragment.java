@@ -74,16 +74,18 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
     protected final int SORT_HIGHEST_REVENUE = 5;
     protected final int SORT_HIGHEST_PROFIT = 6;
 
-    private int tabIndex = 0;
+    private int mTabIndex = 0;
 
     private VolleyRequestHandler mVolleyReqHandler;
     private VolleyHelper mVolleyHelper;
     private PosterRecyclerViewAdapter mRecyclerAdapter;
-    private MovieSorter mMovieSorter;
     private List<Movie> mListOfMovies;
     private List<Integer> mListOfRefreshColours = new ArrayList<>();
     private DataSaver mDataSaver;
     private View mRootView;
+
+    MovieSorter mMovieSorter;
+    TabLayout mTabLayout;
 
     @BindView(R.id.progress_bar)
     ProgressBar mProgressBar;
@@ -93,8 +95,6 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
     SwipeRefreshLayout mPullRefreshLayout;
     @BindView(R.id.frame_layout)
     FrameLayout mFrameLayout;
-    @BindView(R.id.tab_layout)
-    TabLayout mTabLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -115,7 +115,8 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
         initVolleyHelper();
         fetchJsonId();
 
-        tabIndex = mTabLayout.getSelectedTabPosition();
+        mTabLayout = (TabLayout) getActivity().findViewById(R.id.tab_layout);
+        mTabIndex = mTabLayout.getSelectedTabPosition();
 
         return mRootView;
     }
@@ -268,63 +269,21 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
         }
     }
 
-    private void initializeMovieSorter() {
+    // TODO: Movie to MovieSorter.
+    protected void initializeMovieSorter() {
         if (mMovieSorter == null) {
             mMovieSorter = new MovieSorter(mRecyclerAdapter);
         }
     }
 
-    private void resetDefaultOrder() {
+    // TODO: Movie to MovieSorter.
+    protected void resetDefaultOrder() {
         configureWheelColours();
         refreshScreen();
     }
 
-    private void sortMovies(int choice) {
-        initializeMovieSorter();
-
-        switch (choice) {
-            case SORT_DEFAULT:
-                setSortTitle(R.string.toolbar_sort_default);
-                resetDefaultOrder();
-                break;
-
-            case SORT_TOP_RATED:
-                setSortTitle(R.string.toolbar_sort_top);
-                mMovieSorter.sortByRating();
-                break;
-
-            case SORT_NAME_ALPHABETICAL:
-                setSortTitle(R.string.toolbar_sort_name);
-                mMovieSorter.sortByName();
-                break;
-
-            case SORT_LONGEST_RUNTIME:
-                setSortTitle(R.string.toolbar_sort_length);
-                mMovieSorter.sortByRuntime();
-                break;
-
-            case SORT_NEWEST_RELEASE:
-                setSortTitle(R.string.toolbar_sort_newest);
-                mMovieSorter.sortByRelease();
-                break;
-
-            case SORT_HIGHEST_REVENUE:
-                setSortTitle(R.string.toolbar_sort_revenue);
-                mMovieSorter.sortByRevenue();
-                break;
-
-            case SORT_HIGHEST_PROFIT:
-                setSortTitle(R.string.toolbar_sort_profit);
-                mMovieSorter.sortByProfit();
-                break;
-
-            default:
-                setSortTitle(R.string.toolbar_sort_default);
-                resetDefaultOrder();
-        }
-    }
-
-    private void setSortTitle(int category) {
+    // TODO: Movie to MovieSorter.
+    protected void setSortTitle(int category) {
         Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
         TextView sortTitle = (TextView) toolbar.findViewById(R.id.sort_category);
         sortTitle.setText(category);
@@ -366,10 +325,12 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
         }
     }
 
-    abstract List<Movie> getSingletonList();
+    protected abstract List<Movie> getSingletonList();
 
-    abstract String createUrl();
+    protected abstract String createUrl();
 
-    abstract PosterRecyclerViewAdapter initRecyclerViewAdapter();
+    protected abstract PosterRecyclerViewAdapter initRecyclerViewAdapter();
+
+    protected abstract void sortMovies(int choice);
 
 }
