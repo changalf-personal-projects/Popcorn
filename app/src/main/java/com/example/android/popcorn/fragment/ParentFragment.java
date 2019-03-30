@@ -263,23 +263,25 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
         }
     }
 
-    private void sortDefaultOrder(List<Movie> unsortedListOfMovies) {
-        mRecyclerAdapter.renewDataAfterSort(unsortedListOfMovies);
+    private void resetDefaultOrder() {
+        configureWheelColours();
+        refreshScreen();
     }
 
-    void sortTopRatedBasedOnTab() {
+    // Ordered improperly.
+    private void sortByRating() {
         List<Movie> listOfMovies = new ArrayList<>();
         listOfMovies.addAll(getPopularMoviesSingleton());
         Collections.sort(listOfMovies, DialogComparator.BestToWorstComparator);
 
         for (Movie movie : listOfMovies) {
-            Log.d(LOG_TAG, "Movie title and rating 2: " + movie.getTitle() + " " + movie.getRating());
+            Log.d(LOG_TAG, "Movie title and rating: " + movie.getTitle() + " " + movie.getRating());
         }
 
         mRecyclerAdapter.renewDataAfterSort(listOfMovies);
     }
 
-    void sortNameBasedOnTab() {
+    private void sortByName() {
         List<Movie> listOfMovies = new ArrayList<>();
         listOfMovies.addAll(getPopularMoviesSingleton());
         Collections.sort(listOfMovies, DialogComparator.NameComparator);
@@ -287,34 +289,83 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
         mRecyclerAdapter.renewDataAfterSort(listOfMovies);
     }
 
-    void sortMovies(int choice) {
-        List<Movie> unsortedListOfMovies = new ArrayList<>();
-        unsortedListOfMovies.addAll(getPopularMoviesSingleton());
+    // May return NPE.
+    private void sortByRuntime() {
+        List<Movie> listOfMovies = new ArrayList<>();
+        listOfMovies.addAll(getPopularMoviesSingleton());
+        Collections.sort(listOfMovies, DialogComparator.LongestRuntimeComparator);
 
-        for (Movie movie : unsortedListOfMovies) {
-            Log.d(LOG_TAG, "Movie title and rating 1: " + movie.getTitle() + " " + movie.getRating());
+        for (Movie movie : listOfMovies) {
+            Log.d(LOG_TAG, "Movie title and runtime: " + movie.getTitle() + " " + movie.getRuntime());
         }
 
+        mRecyclerAdapter.renewDataAfterSort(listOfMovies);
+    }
+
+    private void sortByRelease() {
+        List<Movie> listOfMovies = new ArrayList<>();
+        listOfMovies.addAll(getPopularMoviesSingleton());
+        Collections.sort(listOfMovies, DialogComparator.NewestReleaseComparator);
+
+        mRecyclerAdapter.renewDataAfterSort(listOfMovies);
+    }
+
+    private void sortByRevenue() {
+        List<Movie> listOfMovies = new ArrayList<>();
+        listOfMovies.addAll(getPopularMoviesSingleton());
+        Collections.sort(listOfMovies, DialogComparator.HighestRevenueComparator);
+
+        mRecyclerAdapter.renewDataAfterSort(listOfMovies);
+    }
+
+    private void sortByProfit() {
+        List<Movie> listOfMovies = new ArrayList<>();
+        listOfMovies.addAll(getPopularMoviesSingleton());
+        Collections.sort(listOfMovies, DialogComparator.HighestProfitComparator);
+
+        mRecyclerAdapter.renewDataAfterSort(listOfMovies);
+    }
+
+    void sortMovies(int choice) {
         switch (choice) {
-            // TODO: Still not returning default list.
             case SORT_DEFAULT:
                 setSortTitle(R.string.toolbar_sort_default);
-                sortDefaultOrder(unsortedListOfMovies);
+                resetDefaultOrder();
                 break;
 
             case SORT_TOP_RATED:
                 setSortTitle(R.string.toolbar_sort_top);
-                sortTopRatedBasedOnTab();
+                sortByRating();
                 break;
 
             case SORT_NAME_ALPHABETICAL:
                 setSortTitle(R.string.toolbar_sort_name);
-                sortNameBasedOnTab();
+                sortByName();
+                break;
+
+            case SORT_LONGEST_RUNTIME:
+                setSortTitle(R.string.toolbar_sort_length);
+                sortByRuntime();
+                break;
+
+            case SORT_NEWEST_RELEASE:
+                setSortTitle(R.string.toolbar_sort_newest);
+                sortByRelease();
+                break;
+
+            case SORT_HIGHEST_REVENUE:
+                setSortTitle(R.string.toolbar_sort_revenue);
+                sortByRevenue();
+                break;
+
+            case SORT_HIGHEST_PROFIT:
+                setSortTitle(R.string.toolbar_sort_profit);
+                sortByProfit();
                 break;
 
             default:
                 setSortTitle(R.string.toolbar_sort_default);
-                sortDefaultOrder(unsortedListOfMovies);
+                resetDefaultOrder();
         }
     }
 
@@ -335,12 +386,16 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
         mPullRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                mRecyclerAdapter.clearData();
-                fetchJsonId();
-                mRecyclerAdapter.renewData(mListOfMovies);
-                mPullRefreshLayout.setRefreshing(false);
+                refreshScreen();
             }
         });
+    }
+
+    private void refreshScreen() {
+        mRecyclerAdapter.clearData();
+        fetchJsonId();
+        mRecyclerAdapter.renewData(mListOfMovies);
+        mPullRefreshLayout.setRefreshing(false);
     }
 
     private void getRefreshColours() {
