@@ -28,8 +28,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.android.volley.VolleyError;
+import com.example.android.popcorn.MainActivity;
 import com.example.android.popcorn.R;
 import com.example.android.popcorn.Utilities;
+import com.example.android.popcorn.activity.AboutActivity;
 import com.example.android.popcorn.activity.DetailActivity;
 import com.example.android.popcorn.fragment.DialogFragment.SortByDialogFragment;
 import com.example.android.popcorn.fragment.parsing.LoganDetailsTemplate;
@@ -253,8 +255,12 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
             case R.id.action_feedback:
 
             case R.id.action_about:
+                Intent aboutIntent = new Intent(getActivity(), AboutActivity.class);
+                startActivity(aboutIntent);
 
             default:
+                Intent mainIntent = new Intent(getActivity(), MainActivity.class);
+                startActivity(mainIntent);
         }
 
         return super.onOptionsItemSelected(item);

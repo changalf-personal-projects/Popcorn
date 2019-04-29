@@ -70,6 +70,9 @@
             android:name=".YoutubePlayerActivity"
             android:configChanges="keyboardHidden|orientation|screenSize">
         </activity>
+        <activity
+            android:name=".activity.AboutActivity"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
