@@ -29,14 +29,6 @@ public class MainActivity extends AppCompatActivity {
 
     private final int PAGES_TO_RETAIN = 1;
 
-    private final int SORT_DEFAULT = 0;
-    private final int SORT_TOP_RATED = 1;
-    private final int SORT_NAME_ALPHABETICAL = 2;
-    private final int SORT_LONGEST_RUNTIME = 3;
-    private final int SORT_NEWEST_RELEASE = 4;
-    private final int SORT_HIGHEST_REVENUE = 5;
-    private final int SORT_HIGHEST_PROFIT = 6;
-
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
     @BindView(R.id.view_pager)
