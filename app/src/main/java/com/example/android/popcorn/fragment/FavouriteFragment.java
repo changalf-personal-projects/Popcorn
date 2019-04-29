@@ -48,6 +48,7 @@ public class FavouriteFragment extends Fragment implements OnMovieClickListener,
     private List<Movie> mListOfSavedMovies;
     private DbHelper mDbHelper;
     private SQLiteDatabase mSqlDb;
+
     private Cursor mMovieCursor;
     private Cursor mTrailerCursor;
     SavedMoviesRVAdapter mRecyclerAdapter;

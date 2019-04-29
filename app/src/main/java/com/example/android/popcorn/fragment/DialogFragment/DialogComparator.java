@@ -1,5 +1,7 @@
 package com.example.android.popcorn.fragment.DialogFragment;
 
+import android.util.Log;
+
 import com.example.android.popcorn.model.Movie;
 
 import java.util.Comparator;
@@ -11,6 +13,7 @@ public class DialogComparator {
     public static Comparator<Movie> BestToWorstComparator = new Comparator<Movie>() {
         @Override
         public int compare(Movie movie, Movie t1) {
+            Log.d(LOG_TAG, "t1 rating: " + t1.getRating() + " ;movie rating: " + movie.getRating());
             return (int) ((Double.parseDouble(t1.getRating()) - Double.parseDouble(movie.getRating())) * 10.0);
         }
     };

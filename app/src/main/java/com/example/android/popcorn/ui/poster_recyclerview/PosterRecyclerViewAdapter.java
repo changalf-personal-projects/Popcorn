@@ -162,6 +162,8 @@ public class PosterRecyclerViewAdapter extends RecyclerView.Adapter<PosterRecycl
     public void renewDataAfterSort(List<Movie> listOfMovies) {
         mListOfMovies.clear();
         mListOfMovies.addAll(listOfMovies);
+
+        // TODO: notifyItemRangeChanged(...).
         notifyDataSetChanged();
     }
 
