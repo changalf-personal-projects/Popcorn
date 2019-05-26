@@ -256,6 +256,7 @@ public abstract class ParentFragment extends Fragment implements OnMovieClickLis
 
             case R.id.action_about:
                 Intent aboutIntent = new Intent(getActivity(), AboutActivity.class);
+                Log.d(LOG_TAG, "Intent name about: " + aboutIntent.getDataString());
                 startActivity(aboutIntent);
 
             default:
