@@ -8,5 +8,4 @@ This app also includes a feature to save movies for future offline viewing.
 
 
 
-[!Screenshot of app upon opening.]
-[Screenshot_20200505-174748_Popcorn.jpg]
+![Screenshot of app upon opening.](Screenshot_20200505-174748_Popcorn.jpg)
