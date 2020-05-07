@@ -7,7 +7,7 @@ At the bottom of each movie are trailers and recommendations.
 This app also includes a feature to save movies for future offline viewing.
 
 
+<img src="Screenshot_20200505-174748_Popcorn.jpg" width="200" height="500">
 
-![Screenshot of app upon opening.]
-(Screenshot_20200505-174748_Popcorn.jpg)
-<img src="Screenshot_20200505-174748_Popcorn.jpg" width="500" height="1200">
+App upon opening.
+
