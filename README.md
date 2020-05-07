@@ -9,7 +9,7 @@ This app also includes a feature to save movies for future offline viewing.
 <br />
 <br />
 <br />
-<img src="Screenshot_20200505-174748_Popcorn.jpg" width="300" height="500"/> <img src="Screenshot_20200505-174748_Popcorn.jpg" width="300" height="500"/>
+<img src="Screenshot_20200505-174748_Popcorn.jpg" width="300" height="500"/>
 App upon opening.
 
 <br />
@@ -18,4 +18,15 @@ App upon opening.
 <img src="Screenshot_20200505-174823_Popcorn.jpg" width="300" height="500">
 Displaying trailers and recommendations of a movie.
 
+<br />
+<br />
+<br />
+<img src="Screenshot_20200505-174834_Popcorn.jpg" width="300" height="500">
+Additional info of a movie (here it is cast).
+
+<br />
+<br />
+<br />
+<img src="Screenshot_20200505-175030_Popcorn.jpg" width="300" height="500">
+Top movies sorted from highest profit to lowest profit.
 
