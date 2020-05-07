@@ -9,7 +9,7 @@ This app also includes a feature to save movies for future offline viewing.
 <br />
 <br />
 <br />
-<img src="Screenshot_20200505-174748_Popcorn.jpg" width="300" height="500"> <img src="Screenshot_20200505-174748_Popcorn.jpg" width="300" height="500">
+<img src="Screenshot_20200505-174748_Popcorn.jpg" width="300" height="500"/> <img src="Screenshot_20200505-174748_Popcorn.jpg" width="300" height="500"/>
 App upon opening.
 
 <br />
