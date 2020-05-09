@@ -13,24 +13,24 @@ Insert these keys into Popcorn/gradle.properties in the appropriate quotations. 
 <br />
 <br />
 <br />
-<img src="Screenshot_20200505-174748_Popcorn.jpg" width="300" height="500"/>
+<img src="Screenshot_20200508-202103_Popcorn.jpg" width="300" height="500"/>
 App upon opening.
 
 <br />
 <br />
 <br />
-<img src="Screenshot_20200505-174823_Popcorn.jpg" width="300" height="500">
+<img src="Screenshot_20200508-202118_Popcorn.jpg" width="300" height="500">
 Displaying trailers and recommendations of a movie.
 
 <br />
 <br />
 <br />
-<img src="Screenshot_20200505-174834_Popcorn.jpg" width="300" height="500">
+<img src="Screenshot_20200508-202126_Popcorn.jpg" width="300" height="500">
 Additional info of a movie (here it is cast).
 
 <br />
 <br />
 <br />
-<img src="Screenshot_20200505-175030_Popcorn.jpg" width="300" height="500">
-Top movies sorted from highest profit to lowest profit.
+<img src="Screenshot_20200508-202140_Popcorn.jpg" width="300" height="500">
+Popular movies sorted from highest profit to lowest profit.
 
